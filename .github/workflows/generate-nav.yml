@@ -18,8 +18,8 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt  # 如果脚本有依赖项，可在此安装
+      # - name: Install dependencies
+      #   run: pip install -r requirements.txt  # 如果脚本有依赖项，可在此安装
 
       - name: Run script
         run: python generate_navigation.py  # 运行生成导航的脚本
