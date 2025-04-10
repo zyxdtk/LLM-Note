@@ -2,8 +2,8 @@ import os
 
 def generate_tree(directory, prefix='', is_last=True, exclude_dirs=['.git', '.github']):
     """递归生成目录树结构"""
-    indent = '    ' if is_last else '│   '
-    new_prefix = prefix + ('└── ' if is_last else '├── ')
+    indent = '    ' if is_last else '    '  # 统一使用4空格缩进
+    new_prefix = prefix + ('- ' if is_last else '- ')  # 使用Markdown列表符号
     
     items = []
     try:
@@ -12,7 +12,7 @@ def generate_tree(directory, prefix='', is_last=True, exclude_dirs=['.git', '.gi
         return ""
     
     dirs = [d for d in items if os.path.isdir(os.path.join(directory, d)) and d not in exclude_dirs]
-    files = [f for f in items if os.path.isfile(os.path.join(directory, f)) and f.endswith('.md')]
+    files = [f for f in items if os.path.isfile(os.path.join(directory, f)) and f.endswith('.md') and f != 'README.md']
     
     tree = []
     for i, item in enumerate(dirs + files):
