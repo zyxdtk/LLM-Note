@@ -28,10 +28,16 @@ def generate_tree(directory, prefix='', is_last=True, exclude_dirs=['.git', '.gi
     
     return '\n'.join(filter(None, tree))
 
+# 标题
+title = """
+ 大模型学习笔记和面试题
+"""
+
 # 生成目录树
 tree_structure = generate_tree('.')
-tree_structure = "# 项目目录树\n\n```\n" + tree_structure + "\n```"
+tree_structure = "# 项目目录树\n\n" + tree_structure + "\n"
 
+content = f"{title}\n{tree_structure}"
 # 写入README.md
 with open('README.md', 'w', encoding='utf-8') as f:
-    f.write(tree_structure)
+    f.write(content)
