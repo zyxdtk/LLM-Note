@@ -1,6 +1,6 @@
 import os
 
-def generate_tree(directory, prefix='', is_last=True, exclude_dirs=['.git', '.github']):
+def generate_tree(directory, prefix='', is_last=True, exclude_dirs=['.git', '.github', '_layouts']):
     """递归生成目录树结构"""
     indent = '    ' if is_last else '    '  # 统一使用4空格缩进
     new_prefix = prefix + ('- ' if is_last else '- ')  # 使用Markdown列表符号
@@ -31,6 +31,8 @@ def generate_tree(directory, prefix='', is_last=True, exclude_dirs=['.git', '.gi
 # 标题
 title = """
  大模型学习笔记和面试题
+ 
+ 网址: [zyxdtk.github.io/LLM-Note](https://zyxdtk.github.io/LLM-Note)
 """
 
 # 生成目录树
