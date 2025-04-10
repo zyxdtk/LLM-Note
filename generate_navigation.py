@@ -30,6 +30,10 @@ def generate_tree(directory, prefix='', is_last=True, exclude_dirs=['.git', '.gi
 
 # 标题
 title = """
+---
+layout: sidebar_layout
+title: 首页
+---
  大模型学习笔记和面试题
  
  网址: [zyxdtk.github.io/LLM-Note](https://zyxdtk.github.io/LLM-Note)

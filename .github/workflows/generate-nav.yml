@@ -11,7 +11,9 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -25,6 +27,8 @@ jobs:
         run: python generate_navigation.py  # 运行生成导航的脚本
 
       - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_PAT }}  # 使用个人访问令牌
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
