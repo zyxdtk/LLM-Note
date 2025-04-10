@@ -1,0 +1,37 @@
+name: Generate Navigation
+
+on:
+  push:
+    branches:
+      - main  # 可以根据需要修改为其他分支
+
+jobs:
+  generate-navigation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt  # 如果脚本有依赖项，可在此安装
+
+      - name: Run script
+        run: python generate_navigation.py  # 运行生成导航的脚本
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update README with navigation"
+            git push
+          fi
