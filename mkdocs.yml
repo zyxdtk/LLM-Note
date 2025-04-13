@@ -1,2 +1,7 @@
-site_name: My Docs
+site_name: 大模型笔记
 theme: readthedocs
+markdown_extensions:
+  - toc:
+      permalink: "#"
+      baselevel: 2
+      separator: "_"
