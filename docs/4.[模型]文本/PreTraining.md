@@ -16,7 +16,15 @@
 ## 大模型预训练核心模块
 
 ### 1. 数据预处理
-- 数据清洗与去重
+- 数据清洗
+    - [kenlm](https://kheafield.com/code/kenlm/) 速度快，占用内存小，支持多线程。用优质语料训练模型，然后用来过滤低质量语料。
+        - [自然语言处理之数据平滑方法](https://blog.csdn.net/fuermolei/article/details/81353746) 第一种类型为政府给大家每人一笔或者几笔钱（如1和2），第二种为找父母要（如3和4），最后一种就是劫富济贫（如5-7）。比喻很好，最后kn平滑的公式图不对。
+        - [Kenlm中使用的Modified Kneser-Ney 平滑方法和计算过程推演](https://zhuanlan.zhihu.com/p/406029473) 把kn的公式推演了一遍，跟上面文章的结合看会比较好理解。
+        - [github:kenlm](https://github.com/kpu/kenlm) kenlm的c++实现,官方库
+        - [github:kneser-ney](https://github.com/smilli/kneser-ney) kn的python实现
+        - [Scalable Modified Kneser-Ney Language Model Estimation](https://kheafield.com/papers/edinburgh/estimate_paper.pdf) 比srilm用7.7%的ram和14%的时间。介绍了kn的优化。
+        - [KenLM: Faster and Smaller Language Model Queries](https://kheafield.com/papers/avenue/kenlm.pdf) 介绍了kenlm的优化。trie数存储n-gram概率降序排列，bit-level压缩存储概率和backoff，变长编码存储n-gram索引。与计算边界条件概率、用sse指令并行计算、延迟backoff计算。mmio实现零拷贝加载。
+- 数据去重 
 - 文本标准化（大小写、标点等）
 - Tokenization
     - byte-pair-encoding (BPE)  
