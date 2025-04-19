@@ -10,6 +10,8 @@
 - [TRL](https://github.com/huggingface/trl) HuggingFace RLHF工具库
 - [DeepSpeed-Chat](https://github.com/microsoft/DeepSpeedExamples) 微软RLHF实现
 - [verl](https://github.com/volcengine/verl) 火山引擎RLHF实现
+- [open-r1](https://github.com/huggingface/open-r1)
+- [OpenRLHF](https://github.com/OpenRLHF/OpenRLHF)
 
 
 ## 核心模块

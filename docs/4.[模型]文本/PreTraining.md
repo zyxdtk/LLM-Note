@@ -11,6 +11,12 @@
 - [2025.03] [Gemma 3 Technical Report](https://storage.googleapis.com/deepmind-media/gemma/Gemma3Report.pdf) 多模态理解、蒸馏和量化
 - [2024.12] [DeepSeek-V3 Technical Report](https://arxiv.org/pdf/2412.19437)/[github:DeepSeek-V3](https://github.com/deepseek-ai/DeepSeek-V3) MLA、MOE、MTP、GRPO等
 
+## 开源库
+
+### 智谱AI
+- [GLM-4](https://github.com/THUDM/GLM-4)
+    - [ChatGLM: A Family of Large Language Models from GLM-130B to GLM-4 All Tools](https://arxiv.org/pdf/2406.12793)
+
 
 
 ## 大模型预训练核心模块
@@ -43,11 +49,18 @@ between Human and Machine Translation](https://arxiv.org/pdf/1609.08144) 基于l
 ### 2. 模型架构
 - Transformer结构选择（Encoder/Decoder/Encoder-Decoder）
 - 注意力机制变体（多头注意力、稀疏注意力等）
+    - [缓存与效果的极限拉扯：从MHA、MQA、GQA到MLA](https://spaces.ac.cn/archives/10091) 节约kv cache空间。
 - 位置编码方案（绝对/相对位置编码）
     - rope
         - [2021.03] [Transformer升级之路：2、博采众长的旋转式位置编码](https://kexue.fm/archives/8265) 每2位做一个旋转，旋转角度为1/2^k, 其中k为位置。qk相乘之后相对距离越远，qk的乘积越小。
         - [旋转矩阵及左右乘的意义，看这一篇就够了](https://blog.csdn.net/weixin_45632220/article/details/117735223) 
 - 归一化层选择（LayerNorm/RMSNorm）
+    - [LayerNorm VS BatchNorm VS RMSNorm](https://zhuanlan.zhihu.com/p/694909672)
+    - [2019.10] [Root Mean Square Layer Normalization](https://arxiv.org/abs/1910.07467) RMSNorm性能和LayerNorm相当，但是可以节省7%到64%的运算。
+- 激活函数
+    - [激活函数 Relu,Gelu,Mish,SiLU,Swish,Tanh,Sigmoid](https://blog.csdn.net/weixin_38649779/article/details/127647257) deepseek使用silu，SiLU具备无上界有下界、平滑、非单调的特性。SiLU在深层模型上的效果优于 ReLU。可以看做是平滑的ReLU激活函数。
+
+
 
 
 ### 3. 训练策略
