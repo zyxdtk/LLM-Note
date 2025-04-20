@@ -22,9 +22,14 @@
     - [ai-bot.cn](https://ai-bot.cn/)
 - 编程
     - [devin](https://devin.ai/) 海外收费，没有体验
+    - [lovable](https://lovable.dev/)
+    - [bolt](https://bolt.new/)    
+    - [dify](https://dify.ai/)
+    - [webdraw](https://webdraw.com/)
     - [codeflying](https://www.codeflying.net/) 提需求，生成方案，确认后生成prd、测试用例、架构，确认后开始写代码。生成的网站还有运营后台，不过比较粗糙。
     - [mgx.dev](https://mgx.dev/) 给程序员用，生成的代码可以改
     - [秒哒](https://cloud.baidu.com/product-s/miaoda_home) 自然语言建站，不暴露建站过程。
+    - [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
 - 招聘
     - [finalroundai](https://www.finalroundai.com/)
 - 会议
