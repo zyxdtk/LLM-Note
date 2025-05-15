@@ -9,3 +9,8 @@
 
 - [mem0ai/mem0](https://github.com/mem0ai/mem0) agent的记忆层
 - [Perplexica](https://github.com/ItzCrazyKns/Perplexica) ai搜索引擎
+
+
+## deepresearch
+
+- [bytedance/deer-flow](https://github.com/bytedance/deer-flow)

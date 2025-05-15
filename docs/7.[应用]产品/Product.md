@@ -20,6 +20,18 @@
     - [producthunt](https://www.producthunt.com/)
     - [aibase.com](https://top.aibase.com/)
     - [ai-bot.cn](https://ai-bot.cn/)
+- deepresearch
+    - 产品
+        - [search.jina.ai](https://search.jina.ai/)
+        - [introducing-perplexity-deep-research](https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research)
+        - [introducing-deep-research](https://openai.com/index/introducing-deep-research/)
+    - 开源 
+        - [open-deep-research](https://huggingface.co/blog/open-deep-research)
+        - [togethercomputer/open_deep_research](https://github.com/togethercomputer/open_deep_research)
+        - [langchain-ai/open_deep_research](https://github.com/langchain-ai/open_deep_research)
+        - [dzhng/deep-research](https://github.com/dzhng/deep-research)
+        - [jina-ai/node-DeepResearch](https://github.com/jina-ai/node-DeepResearch)
+            - [DeepSearch 与 DeepResearch 的设计和实现](https://zhuanlan.zhihu.com/p/26560000573)
 - 编程
     - [devin](https://devin.ai/) 海外收费，没有体验
     - [lovable](https://lovable.dev/)
@@ -44,15 +56,16 @@
 - 海外
     - [Chai](https://web.chai-research.com/)   
         - [chai_roadmap_2025](https://www.chai-research.com/chai_roadmap_2025.pdf) 
-    - https://www.dippy.ai/
-    - https://moescape.ai/
-    - 色情
-      - https://crushon.ai/
-      - https://sexyai.top/#/
-      - https://www.polybuzz.ai/
-      - https://candy.ai/
+    - [https://www.dippy.ai/](https://www.dippy.ai/)
+    - [https://moescape.ai/](https://moescape.ai/)
+    - [https://xiaoyequ9.com/](https://xiaoyequ9.com/)
+    - nsfw
+      - [https://crushon.ai/](https://crushon.ai/)
+      - [https://sexyai.top/#/](https://sexyai.top/#/)
+      - [https://www.polybuzz.ai/](https://www.polybuzz.ai/)
+      - [https://candy.ai/](https://candy.ai/)
 - 国内
-- https://www.zhumengdao.com/
+    - [https://www.zhumengdao.com/](https://www.zhumengdao.com/)
 
 
 ### 2G

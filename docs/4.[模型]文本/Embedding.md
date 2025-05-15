@@ -20,6 +20,7 @@
     - [FlagEmbedding](https://github.com/FlagOpen/FlagEmbedding)
     - [bge-large-zh-v1.5](https://huggingface.co/BAAI/bge-large-zh-v1.5)
     - [bge-reranker-large](https://huggingface.co/BAAI/bge-reranker-large)
+    - [2022.10] [RetroMAE: Pre-Training Retrieval-oriented Language Models Via Masked Auto-Encoder](https://arxiv.org/pdf/2205.12035)
 - [2023.08] [Towards General Text Embeddings with Multi-stage Contrastive Learning](https://arxiv.org/abs/2308.03281) 阿里开源。infoNCE。mean polling，两阶段：大batchsize的in-batch训练。难负样本训练。
    - [gte-large-zh](https://huggingface.co/thenlper/gte-large-zh)
 - [2022.08] [https://arxiv.org/pdf/2202.08904v5](SGPT: GPT Sentence Embeddings for Semantic Search) 清华，对比了 cross-encoder vs bi-encoder，使用位置加权的mean polling，只是fine-tunning了bias
