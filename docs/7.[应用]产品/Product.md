@@ -1,19 +1,15 @@
-# ai产品
 
+# 1. 2B
 
-## 产品方向
-
-### 2B
-
-#### 广告
+## 1.1. 广告
 
 - https://www.adcreative.ai/#section-pricing 
 - https://tryatria.com/
 - https://www.meetsocial.com/  这公司要做投放方向的manus，先做copilot，替代目前投放优化师70%的偏执行的工作，再做决策方向的指导
 
-### 2C
+# 2. 2C
 
-#### 工具类
+## 2.1. 工具类
 
 - 导航
     - [toolify.ai](https://www.toolify.ai/) ai产品榜单，竞对社媒监听
@@ -49,9 +45,14 @@
 - 其他
     - [promptlayer](https://www.promptlayer.com/platform/prompt-management)
 
-#### 娱乐类
+### 2.1.1. ai搜索
 
-##### 角色扮演
+- [知乎直答：AI 搜索产品从 0 到 1 实践探索](https://zhuanlan.zhihu.com/p/19611633997)
+    - [CoSENT（一）：比Sentence-BERT更有效的句向量方案](https://spaces.ac.cn/archives/8847)
+
+## 2.2. 娱乐类
+
+### 2.2.1. 角色扮演
 
 - 海外
     - [Chai](https://web.chai-research.com/)   
@@ -68,5 +69,5 @@
     - [https://www.zhumengdao.com/](https://www.zhumengdao.com/)
 
 
-### 2G
+# 3. 2G
 
