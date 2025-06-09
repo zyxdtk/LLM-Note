@@ -2,12 +2,13 @@
 
 - [LLM推理优化技术详解](https://zhuanlan.zhihu.com/p/655557420) 推理加速方法
 - [github:vLLM](https://github.com/vllm-project/vllm) 高性能推理框架
+- [NVIDIA/FasterTransformer](https://github.com/NVIDIA/FasterTransformer)
 - [分析transformer模型的参数量、计算量、中间激活、KV cache](https://zhuanlan.zhihu.com/p/624740065)
 
 # 2. 大模型推理优化
 
-大模型推理优化有一个基础认知，LLM是一个io约束。
-大模型推理优化分：改模型参数、单机优化、分布式优化、调度优化。
+
+大模型推理关注：延迟、吞吐和成本，优化分：改模型参数、单机优化、分布式优化。
 
 - 改模型参数。
     - 量化
@@ -15,10 +16,10 @@
     - ffn结构(moe)
     - 其他结构(silu、rmsnorm)
     - 随机解码。
-- 单机优化。
+- 单机优化。LLM是io约束的。
     - 算子融合。qkv融合，bias融合。
     - 高性能算子。flash attention、高性能矩阵运算gemm。需要深入到kernel层面。
-    - 调度优化。continuous batching
+    - 内存管理。continuous batching、paged attention。
 - 分布式优化。
     - 模型并行。tensor并行、pipeline并行、专家并行
     - 数据并行。zero3
@@ -76,6 +77,9 @@
 ## 2.3. 分布式优化
 
 - [3FS](https://github.com/deepseek-ai/3FS) 分布式文件系统
+- [2022.12] [Overlap Communication with Dependent Computation via Decomposition in Large Deep Learning Models](https://dl.acm.org/doi/abs/10.1145/3567955.3567959)
 - [2022.11] [Efficiently Scaling Transformer Inference](https://arxiv.org/abs/2211.05102) 
+    - [大模型并行推理的太祖长拳：解读Jeff Dean署名MLSys 23杰出论文](https://zhuanlan.zhihu.com/p/660715870)
+- [2022.07] [Alpa: Automating Inter- and Intra-Operator Parallelism for Distributed Deep Learning](https://www.usenix.org/system/files/osdi22-zheng-lianmin.pdf)
 - [大模型推理序列并行](https://zhuanlan.zhihu.com/p/9816504195)
 - [序列并行DeepSpeed-FPDT](https://zhuanlan.zhihu.com/p/720387198)
