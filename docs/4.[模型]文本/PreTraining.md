@@ -87,6 +87,15 @@ between Human and Machine Translation](https://arxiv.org/pdf/1609.08144) 基于l
     - [2023.08] [YaRN: Efficient Context Window Extension of Large Language Models](https://arxiv.org/abs/2309.00071)
         - [论文YaRN: Efficient Context Window Extension of Large Language Models笔记](https://zhuanlan.zhihu.com/p/683863159)
 
+
+### 激活函数
+
+
+- [2020.02] [GLU Variants Improve Transformer](https://arxiv.org/abs/2002.05202) SwiGLU。论文提到预训练不用dropout效果更好。GLU效果更好，作者解释不了，所以归因于上天眷顾
+- [2017.10] [Searching for Activation Functions](https://arxiv.org/abs/1710.05941)
+- [2016.06] [Gaussian Error Linear Units (GELUs)](https://arxiv.org/abs/1606.08415)
+
+
 ### 3.4. 注意力机制
 
 
@@ -102,6 +111,8 @@ between Human and Machine Translation](https://arxiv.org/pdf/1609.08144) 基于l
     - [openai/sparse_attention](https://github.com/openai/sparse_attention)
     - [为节约而生：从标准Attention到稀疏Attention](https://spaces.ac.cn/archives/6853) 
     - [Transformer综述（一）：稀疏注意力](https://zhuanlan.zhihu.com/p/691296437)
+    - [Sliding Window Attention（滑动窗口注意力）](https://blog.csdn.net/shizheng_Li/article/details/145809397)
+    - [2023.09] [Mistral 7B](https://mistral.ai/news/announcing-mistral-7b)
 
 ### 3.5. 训练策略
 - 优化器选择（Adam/AdamW/LAMB）

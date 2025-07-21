@@ -28,7 +28,7 @@
 - Video Generation on UCF-101[link]
 
 
-### 角色扮演
+## 角色扮演
 
 - [2025.02] [CoSER: Coordinating LLM-Based Persona Simulation of Established Roles](https://arxiv.org/abs/2502.09082) 1.8w角色，3w对话
     - [Neph0s/COSER](https://github.com/Neph0s/COSER)
@@ -41,3 +41,10 @@
 - [2023.10] [RoleLLM: Benchmarking, Eliciting, and Enhancing Role-Playing Abilities of Large Language Models](https://arxiv.org/abs/2310.00746) 
     - [InteractiveNLP-Team/RoleLLM-public](https://github.com/InteractiveNLP-Team/RoleLLM-public)
 - [SuperCLUE-Role: 重新定义中文角色大模型测评基准](https://github.com/CLUEbenchmark/SuperCLUE-Role)
+
+
+## 多模态
+
+- [2024.10] [MEGA-Bench: Scaling Multimodal Evaluation to over 500 Real-World Tasks](https://arxiv.org/abs/2410.10563) 505个任务，8186个样本。
+    - [MEGA-Bench page](https://tiger-ai-lab.github.io/MEGA-Bench/)
+    - [MEGA-Bench Leaderboard](https://huggingface.co/spaces/TIGER-Lab/MEGA-Bench)
