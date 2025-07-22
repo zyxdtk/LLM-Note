@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Benchmark - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Benchmark";
+        var mkdocs_page_input_path = "6.[\u6a21\u578b]\u8bc4\u6d4b/Benchmark.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.[基建]数据</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%5B%E5%9F%BA%E5%BB%BA%5D%E6%95%B0%E6%8D%AE/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.[基建]效率</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.%5B%E5%9F%BA%E5%BB%BA%5D%E6%95%88%E7%8E%87/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.%5B%E5%9F%BA%E5%BB%BA%5D%E6%95%88%E7%8E%87/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.[模型]文本</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.%5B%E6%A8%A1%E5%9E%8B%5D%E6%96%87%E6%9C%AC/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.%5B%E6%A8%A1%E5%9E%8B%5D%E6%96%87%E6%9C%AC/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.%5B%E6%A8%A1%E5%9E%8B%5D%E6%96%87%E6%9C%AC/PreTraining/">PreTraining</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.[模型]多模态</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.[模型]评测</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Benchmark</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">常见评估集</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">角色扮演</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">多模态</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.[应用]产品</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.%5B%E5%BA%94%E7%94%A8%5D%E4%BA%A7%E5%93%81/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.%5B%E5%BA%94%E7%94%A8%5D%E4%BA%A7%E5%93%81/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.%5B%E5%BA%94%E7%94%A8%5D%E4%BA%A7%E5%93%81/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">6.[模型]评测</li>
+      <li class="breadcrumb-item active">Benchmark</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="_1">大模型评测<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<h3 id="_2">常见评估集<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<ul>
+<li>chatbot-arena<ul>
+<li>https://lmarena.ai/</li>
+<li>https://huggingface.co/spaces/lmarena-ai/chatbot-arena-leaderboard</li>
+</ul>
+</li>
+<li>推理&amp;知识 </li>
+<li>人类最后考试 https://agi.safe.ai/</li>
+<li>视觉推理  https://mmmu-benchmark.github.io/</li>
+<li>科学 https://github.com/idavidrein/gpqa</li>
+<li>数学 https://artofproblemsolving.com/wiki/index.php/AIME_Problems_and_Solutions</li>
+<li>代码  </li>
+<li>代码生成 https://livecodebench.github.io/</li>
+<li>代码编辑 https://aider.chat/docs/leaderboards/</li>
+<li>Agent编程 https://www.swebench.com/</li>
+<li>事实</li>
+<li>https://openai.com/index/introducing-simpleqa/   https://github.com/openai/simple-evals/</li>
+<li>图像理解 https://github.com/reka-ai/reka-vibe-eval</li>
+<li>长上下文   </li>
+<li>多轮一致性 https://arxiv.org/html/2409.12640v2</li>
+<li>多语言</li>
+<li>https://huggingface.co/datasets/CohereForAI/Global-MMLU</li>
+<li></li>
+<li>
+<p>open_llm_leaderboard</p>
+</li>
+<li>SuperCLUE总排行榜[link]</li>
+<li>Text-to-Video Generation on MSR-VTT[link]</li>
+<li>Video Generation on UCF-101[link]</li>
+</ul>
+<h3 id="_3">角色扮演<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<ul>
+<li>[2025.02] <a href="https://arxiv.org/abs/2502.09082">CoSER: Coordinating LLM-Based Persona Simulation of Established Roles</a> 1.8w角色，3w对话<ul>
+<li><a href="https://github.com/Neph0s/COSER">Neph0s/COSER</a></li>
+</ul>
+</li>
+<li>[2024.08] <a href="https://arxiv.org/abs/2408.04203">MMRole: A Comprehensive Framework for Developing and Evaluating Multimodal Role-Playing Agents</a> 多模态角色扮演评估，85 characters, 11K images, and 14K single or multi-turn dialogues<ul>
+<li><a href="https://github.com/YanqiDai/MMRole">YanqiDai/MMRole</a></li>
+</ul>
+</li>
+<li>[2024.01] <a href="https://arxiv.org/abs/2401.12474">Large Language Models are Superpositions of All Characters: Attaining Arbitrary Role-play via Self-Alignment</a> 4k个角色，3.6w的对话<ul>
+<li><a href="https://github.com/OFA-Sys/Ditto">OFA-Sys/Ditto</a></li>
+</ul>
+</li>
+<li>[2024.01] <a href="https://arxiv.org/abs/2401.01275">CharacterEval: A Chinese Benchmark for Role-Playing Conversational Agent Evaluation</a> 中文角色扮演评估，77个角色，1785个多轮对话</li>
+<li>[2023.12] <a href="https://arxiv.org/abs/2312.16132">RoleEval: A Bilingual Role Evaluation Benchmark for Large Language Models</a> 中英双语角色评估，300个角色，6000个问题</li>
+<li>[2023.10] <a href="https://arxiv.org/abs/2310.00746">RoleLLM: Benchmarking, Eliciting, and Enhancing Role-Playing Abilities of Large Language Models</a> <ul>
+<li><a href="https://github.com/InteractiveNLP-Team/RoleLLM-public">InteractiveNLP-Team/RoleLLM-public</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/CLUEbenchmark/SuperCLUE-Role">SuperCLUE-Role: 重新定义中文角色大模型测评基准</a></li>
+</ul>
+<h3 id="_4">多模态<a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
+<ul>
+<li>[2024.10] <a href="https://arxiv.org/abs/2410.10563">MEGA-Bench: Scaling Multimodal Evaluation to over 500 Real-World Tasks</a> 505个任务，8186个样本。<ul>
+<li><a href="https://tiger-ai-lab.github.io/MEGA-Bench/">MEGA-Bench page</a></li>
+<li><a href="https://huggingface.co/spaces/TIGER-Lab/MEGA-Bench">MEGA-Bench Leaderboard</a></li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/VLM/" class="btn btn-neutral float-left" title="VLM"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../7.%5B%E5%BA%94%E7%94%A8%5D%E4%BA%A7%E5%93%81/Agent/" class="btn btn-neutral float-right" title="Agent">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/VLM/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../7.%5B%E5%BA%94%E7%94%A8%5D%E4%BA%A7%E5%93%81/Agent/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

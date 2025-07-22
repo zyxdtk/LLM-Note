@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>PreTraining - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "PreTraining";
+        var mkdocs_page_input_path = "4.[\u6a21\u578b]\u6587\u672c/PreTraining.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.[基建]数据</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%5B%E5%9F%BA%E5%BB%BA%5D%E6%95%B0%E6%8D%AE/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.[基建]效率</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.%5B%E5%9F%BA%E5%BB%BA%5D%E6%95%88%E7%8E%87/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.%5B%E5%9F%BA%E5%BB%BA%5D%E6%95%88%E7%8E%87/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.[模型]文本</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">PreTraining</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.[模型]多模态</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.[模型]评测</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.%5B%E6%A8%A1%E5%9E%8B%5D%E8%AF%84%E6%B5%8B/Benchmark/">Benchmark</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.[应用]产品</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.%5B%E5%BA%94%E7%94%A8%5D%E4%BA%A7%E5%93%81/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.%5B%E5%BA%94%E7%94%A8%5D%E4%BA%A7%E5%93%81/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.%5B%E5%BA%94%E7%94%A8%5D%E4%BA%A7%E5%93%81/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">4.[模型]文本</li>
+      <li class="breadcrumb-item active">PreTraining</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h3 id="1">1. 大模型学习资料<a class="headerlink" href="#1" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/648050614">LLM学习1：大模型架构要点总结</a> 回忆基础知识</li>
+<li><a href="https://github.com/bbycroft/llm-viz">github:llm-viz</a>/<a href="https://bbycroft.net/llm">网页:bbycroft</a>大模型结构可视化</li>
+</ul>
+<h3 id="2">2. 论文和开源库<a class="headerlink" href="#2" title="Permanent link">#</a></h3>
+<h4 id="21_deepseek">2.1. DeepSeek<a class="headerlink" href="#21_deepseek" title="Permanent link">#</a></h4>
+<ul>
+<li>[2024.12] <a href="https://arxiv.org/pdf/2412.19437">DeepSeek-V3 Technical Report</a>/<a href="https://github.com/deepseek-ai/DeepSeek-V3">github:DeepSeek-V3</a> MLA、MOE、MTP、GRPO等</li>
+<li>[2024.05] <a href="https://arxiv.org/abs/2405.04434">DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model</a><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/987052830">工业界主流大语言模型后训练(Post-Training)技术总结</a></li>
+</ul>
+</li>
+<li>[2024.01] <a href="https://arxiv.org/pdf/2401.06066">DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models</a></li>
+<li>[2024.01] <a href="https://arxiv.org/abs/2401.02954">DeepSeek LLM: Scaling Open-Source Language Models with Longtermism</a> </li>
+</ul>
+<h4 id="22_google">2.2. Google<a class="headerlink" href="#22_google" title="Permanent link">#</a></h4>
+<ul>
+<li>[2025.03] <a href="https://storage.googleapis.com/deepmind-media/gemma/Gemma3Report.pdf">Gemma 3 Technical Report</a> 多模态理解、蒸馏和量化</li>
+</ul>
+<h4 id="23_openai">2.3. Openai<a class="headerlink" href="#23_openai" title="Permanent link">#</a></h4>
+<ul>
+<li>[2024.03] <a href="https://arxiv.org/pdf/2303.08774">GPT-4 Technical Report</a> </li>
+</ul>
+<h4 id="24_ai">2.4. 智谱AI<a class="headerlink" href="#24_ai" title="Permanent link">#</a></h4>
+<ul>
+<li>[2024.07] <a href="https://arxiv.org/pdf/2406.12793">ChatGLM: A Family of Large Language Models from GLM-130B to GLM-4 All Tools</a><ul>
+<li><a href="https://github.com/THUDM/GLM-4">GLM-4</a> </li>
+</ul>
+</li>
+</ul>
+<h3 id="3">3. 大模型预训练核心模块<a class="headerlink" href="#3" title="Permanent link">#</a></h3>
+<h4 id="31">3.1. 数据预处理<a class="headerlink" href="#31" title="Permanent link">#</a></h4>
+<ul>
+<li>数据清洗<ul>
+<li><a href="https://kheafield.com/code/kenlm/">kenlm</a> 速度快，占用内存小，支持多线程。用优质语料训练模型，然后用来过滤低质量语料。<ul>
+<li><a href="https://blog.csdn.net/fuermolei/article/details/81353746">自然语言处理之数据平滑方法</a> 第一种类型为政府给大家每人一笔或者几笔钱（如1和2），第二种为找父母要（如3和4），最后一种就是劫富济贫（如5-7）。比喻很好，最后kn平滑的公式图不对。</li>
+<li><a href="https://zhuanlan.zhihu.com/p/406029473">Kenlm中使用的Modified Kneser-Ney 平滑方法和计算过程推演</a> 把kn的公式推演了一遍，跟上面文章的结合看会比较好理解。</li>
+<li><a href="https://github.com/kpu/kenlm">github:kenlm</a> kenlm的c++实现,官方库</li>
+<li><a href="https://github.com/smilli/kneser-ney">github:kneser-ney</a> kn的python实现</li>
+<li><a href="https://kheafield.com/papers/edinburgh/estimate_paper.pdf">Scalable Modified Kneser-Ney Language Model Estimation</a> 比srilm用7.7%的ram和14%的时间。介绍了kn的优化。</li>
+<li><a href="https://kheafield.com/papers/avenue/kenlm.pdf">KenLM: Faster and Smaller Language Model Queries</a> 介绍了kenlm的优化。trie数存储n-gram概率降序排列，bit-level压缩存储概率和backoff，变长编码存储n-gram索引。与计算边界条件概率、用sse指令并行计算、延迟backoff计算。mmio实现零拷贝加载。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据去重 </li>
+<li>文本标准化（大小写、标点等）</li>
+<li>数据增强<ul>
+<li>[2024.04] <a href="https://arxiv.org/abs/2404.10830">Fewer Truncations Improve Language Modeling</a></li>
+<li>[2022.07] <a href="https://arxiv.org/abs/2207.14255">Efficient Training of Language Models to Fill in the Middle</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="32_tokenization">3.2. Tokenization<a class="headerlink" href="#32_tokenization" title="Permanent link">#</a></h4>
+<p>介绍和代码库：</p>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/651430181">大模型基础组件 - Tokenizer</a>  详细介绍了bpe、bbpe、wordpiece、sentencepiece</li>
+<li><a href="https://github.com/huggingface/tokenizers">huggingface/tokenizers</a></li>
+</ul>
+<p>算法：</p>
+<ul>
+<li>byte-pair-encoding (BPE)  <ul>
+<li>[2016] <a href="https://aclanthology.org/P16-1162/">Neural Machine Translation of Rare Words with Subword Units</a> bpe用subword来处理oov问题。把词打散成char，词尾需要添加特殊字符&lt;\w&gt;。 通过合并最频繁出现的相邻子词对来迭代地构建更大的子词单元。</li>
+<li><a href="https://github.com/rsennrich/subword-nmt">github:subword-nmt</a></li>
+</ul>
+</li>
+<li>WordPiece<ul>
+<li>[2016.10] <a href="https://arxiv.org/pdf/1609.08144">Google’s Neural Machine Translation System: Bridging the Gap
+between Human and Machine Translation</a> 基于lstm的8层encoder-decoder模型处理翻译任务,用到了残差。提出了wordpiece, 在词首添加_词首符号。通过概率最大化选择子词对。</li>
+</ul>
+</li>
+<li>BBPE<ul>
+<li>[2019.09] <a href="https://arxiv.org/abs/1909.03341">Neural Machine Translation with Byte-Level Subwords</a></li>
+</ul>
+</li>
+<li>SentencePiece<ul>
+<li><a href="https://github.com/google/sentencepiece">github:google/sentencepiece</a>  NFKC-based normalization, </li>
+<li>[2018.08] <a href="https://arxiv.org/abs/1808.06226">SentencePiece: A simple and language independent subword tokenizer and detokenizer for Neural Text Processing</a> </li>
+<li>[2018.04] <a href="https://arxiv.org/abs/1804.10959">Subword Regularization: Improving Neural Network Translation Models with Multiple Subword Candidates</a> 每次训练时从概率分布中随机采样一种分割方式作为输入，而非固定使用最高概率分割。</li>
+<li>[2019.10] <a href="https://arxiv.org/abs/1910.13267">BPE-Dropout: Simple and Effective Subword Regularization</a>  以概率 p 随机跳过某些合并步骤。</li>
+</ul>
+</li>
+</ul>
+<h4 id="33">3.3. 模型架构<a class="headerlink" href="#33" title="Permanent link">#</a></h4>
+<ul>
+<li>Transformer结构选择（Encoder/Decoder/Encoder-Decoder）</li>
+<li>位置编码方案（绝对/相对位置编码）<ul>
+<li>rope<ul>
+<li>[2021.03] <a href="https://kexue.fm/archives/8265">Transformer升级之路：2、博采众长的旋转式位置编码</a> 每2位做一个旋转，旋转角度为1/2^k, 其中k为位置。qk相乘之后相对距离越远，qk的乘积越小。</li>
+<li><a href="https://blog.csdn.net/weixin_45632220/article/details/117735223">旋转矩阵及左右乘的意义，看这一篇就够了</a> </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>归一化层选择（LayerNorm/RMSNorm）<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/694909672">LayerNorm VS BatchNorm VS RMSNorm</a></li>
+<li><a href="https://arxiv.org/pdf/1803.08494">Group Normalization</a> 这里是图像中的norm，跟nlp中的还不太一样</li>
+<li>[2019.10] <a href="https://arxiv.org/abs/1910.07467">Root Mean Square Layer Normalization</a> RMSNorm性能和LayerNorm相当，但是可以节省7%到64%的运算。</li>
+</ul>
+</li>
+<li>激活函数<ul>
+<li><a href="https://blog.csdn.net/weixin_38649779/article/details/127647257">激活函数 Relu,Gelu,Mish,SiLU,Swish,Tanh,Sigmoid</a> deepseek使用silu，SiLU具备无上界有下界、平滑、非单调的特性。SiLU在深层模型上的效果优于 ReLU。可以看做是平滑的ReLU激活函数。</li>
+</ul>
+</li>
+<li>长上下文<ul>
+<li>[2023.08] <a href="https://arxiv.org/abs/2309.00071">YaRN: Efficient Context Window Extension of Large Language Models</a><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/683863159">论文YaRN: Efficient Context Window Extension of Large Language Models笔记</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="_1">激活函数<a class="headerlink" href="#_1" title="Permanent link">#</a></h4>
+<ul>
+<li>[2020.02] <a href="https://arxiv.org/abs/2002.05202">GLU Variants Improve Transformer</a> SwiGLU。论文提到预训练不用dropout效果更好。GLU效果更好，作者解释不了，所以归因于上天眷顾</li>
+<li>[2017.10] <a href="https://arxiv.org/abs/1710.05941">Searching for Activation Functions</a></li>
+<li>[2016.06] <a href="https://arxiv.org/abs/1606.08415">Gaussian Error Linear Units (GELUs)</a></li>
+</ul>
+<h4 id="34">3.4. 注意力机制<a class="headerlink" href="#34" title="Permanent link">#</a></h4>
+<ul>
+<li><a href="https://spaces.ac.cn/archives/10091">缓存与效果的极限拉扯：从MHA、MQA、GQA到MLA</a> 节约kv cache空间。</li>
+<li>[2024.01] <a href="https://arxiv.org/abs/2401.04658">Lightning Attention-2: A Free Lunch for Handling Unlimited Sequence Lengths in Large Language Models</a><ul>
+<li><a href="https://github.com/OpenNLPLab/lightning-attention">OpenNLPLab/lightning-attention</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/678552539">新一代注意力机制Lightning Attention-2：无限序列长度、恒定算力开销、更高建模精度</a></li>
+</ul>
+</li>
+<li>[2023.07] <a href="https://arxiv.org/abs/2307.14995">TransNormerLLM: A Faster and Better Large Language Model with Improved TransNormer</a></li>
+<li>[2020.01] <a href="https://arxiv.org/abs/2006.16236">Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention</a> 线性注意力<ul>
+<li><a href="https://spaces.ac.cn/archives/7546">线性Attention的探索：Attention必须有个Softmax吗？</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/718156896">笔记：简单图解一下线性注意力机制</a> SSM(State Space Model) 实现了对每一个历史步骤的记录和压缩，但是忽略了具体的步数索引。</li>
+</ul>
+</li>
+<li>[2019.04] <a href="https://arxiv.org/abs/1904.10509">Generating Long Sequences with Sparse Transformers</a> 稀疏注意力<ul>
+<li><a href="https://github.com/openai/sparse_attention">openai/sparse_attention</a></li>
+<li><a href="https://spaces.ac.cn/archives/6853">为节约而生：从标准Attention到稀疏Attention</a> </li>
+<li><a href="https://zhuanlan.zhihu.com/p/691296437">Transformer综述（一）：稀疏注意力</a></li>
+<li><a href="https://blog.csdn.net/shizheng_Li/article/details/145809397">Sliding Window Attention（滑动窗口注意力）</a></li>
+<li>[2023.09] <a href="https://mistral.ai/news/announcing-mistral-7b">Mistral 7B</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="35">3.5. 训练策略<a class="headerlink" href="#35" title="Permanent link">#</a></h4>
+<ul>
+<li>优化器选择（Adam/AdamW/LAMB）</li>
+<li>学习率调度（线性预热+余弦衰减）</li>
+<li>批次策略（动态批处理/梯度累积）</li>
+<li>混合精度训练（FP16/BF16）</li>
+</ul>
+<h4 id="36">3.6. 分布式训练<a class="headerlink" href="#36" title="Permanent link">#</a></h4>
+<ul>
+<li><a href="https://huggingface.co/docs/transformers/v4.15.0/en/parallelism">huggingface: Model Parallelism</a></li>
+<li>数据并行（Data Parallelism）</li>
+<li>流水线并行（Pipeline Parallelism）</li>
+<li>张量并行（Tensor Parallelism）</li>
+<li>3D并行策略组合</li>
+</ul>
+<h4 id="37">3.7. 损失函数<a class="headerlink" href="#37" title="Permanent link">#</a></h4>
+<ul>
+<li>语言建模损失（标准交叉熵）</li>
+<li>掩码语言建模（MLM）</li>
+<li>序列到序列损失</li>
+<li>特殊token处理策略</li>
+</ul>
+<h4 id="38">3.8. 监控与调试<a class="headerlink" href="#38" title="Permanent link">#</a></h4>
+<ul>
+<li>训练动态监控（损失/梯度/激活值）</li>
+<li>显存使用分析</li>
+<li>异常检测（梯度爆炸/消失）</li>
+<li>模型检查点管理</li>
+</ul>
+<h4 id="39">3.9. 扩展技术<a class="headerlink" href="#39" title="Permanent link">#</a></h4>
+<ul>
+<li>课程学习（Curriculum Learning）</li>
+<li>模型增长（渐进式训练）</li>
+<li>知识蒸馏（Teacher-Student）</li>
+<li>持续预训练</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../PostTraining/" class="btn btn-neutral float-left" title="PostTraining"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/MultiModalEmbedding/" class="btn btn-neutral float-right" title="MultiModalEmbedding">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../PostTraining/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/MultiModalEmbedding/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

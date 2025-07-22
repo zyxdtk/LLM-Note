@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>PostTraining - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "PostTraining";
+        var mkdocs_page_input_path = "4.[\u6a21\u578b]\u6587\u672c/PostTraining.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.[基建]数据</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.%5B%E5%9F%BA%E5%BB%BA%5D%E6%95%B0%E6%8D%AE/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.[基建]效率</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.%5B%E5%9F%BA%E5%BB%BA%5D%E6%95%88%E7%8E%87/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.%5B%E5%9F%BA%E5%BB%BA%5D%E6%95%88%E7%8E%87/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.[模型]文本</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">PostTraining</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#11">1.1. 学习资料</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#12">1.2. 开源工具</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#13">1.3. 研究机构</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#14">1.4. 核心模块</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#141">1.4.1. 对齐算法</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1411_sft">1.4.1.1. SFT</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#1412_peft">1.4.1.2. PEFT</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#1413_dpo">1.4.1.3. DPO</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#1414_rl">1.4.1.4. RL</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#1415">1.4.1.5. 推理和工具</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#1416">1.4.1.6. 蒸馏</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#142_reward_model">1.4.2. Reward Model</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#15">1.5. 细分方向</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#151">1.5.1. 形式化证明</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#152">1.5.2. 角色扮演</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#16">1.6. 理解对齐</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PreTraining/">PreTraining</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.[模型]多模态</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.%5B%E6%A8%A1%E5%9E%8B%5D%E5%A4%9A%E6%A8%A1%E6%80%81/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.[模型]评测</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.%5B%E6%A8%A1%E5%9E%8B%5D%E8%AF%84%E6%B5%8B/Benchmark/">Benchmark</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.[应用]产品</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.%5B%E5%BA%94%E7%94%A8%5D%E4%BA%A7%E5%93%81/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.%5B%E5%BA%94%E7%94%A8%5D%E4%BA%A7%E5%93%81/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.%5B%E5%BA%94%E7%94%A8%5D%E4%BA%A7%E5%93%81/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">4.[模型]文本</li>
+      <li class="breadcrumb-item active">PostTraining</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="1">1. 大模型后训练技术<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<h3 id="11">1.1. 学习资料<a class="headerlink" href="#11" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="https://huggingface.co/learn/llm-course/chapter11/1?fw=pt">huggingface-llm-course</a> HuggingFace的LLM课程，主要看了11章对齐和12章推理模型。</li>
+<li><a href="https://github.com/huggingface/smol-course">huggingface-smol-course</a> HuggingFace的SMOL课程，用小模型学习对齐技术</li>
+<li><a href="https://zhuanlan.zhihu.com/p/987052830">工业界主流大语言模型后训练(Post-Training)技术总结</a></li>
+<li><a href="https://agijuejin.feishu.cn/wiki/VhqZwf34riSekcksULFcx6K3nDg">从零开始训练大模型</a></li>
+</ul>
+<h3 id="12">1.2. 开源工具<a class="headerlink" href="#12" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="https://github.com/huggingface/trl">TRL</a> HuggingFace RLHF工具库</li>
+<li><a href="https://github.com/microsoft/DeepSpeedExamples">DeepSpeed-Chat</a> 微软RLHF实现</li>
+<li><a href="https://github.com/volcengine/verl">verl</a> 火山引擎RLHF实现</li>
+<li><a href="https://github.com/huggingface/open-r1">open-r1</a></li>
+<li><a href="https://github.com/OpenRLHF/OpenRLHF">OpenRLHF</a></li>
+</ul>
+<h3 id="13">1.3. 研究机构<a class="headerlink" href="#13" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="https://sail.sea.com/">Sea AI Lab</a> sea的ai实验室，新加坡<ul>
+<li><a href="https://github.com/sail-sg">github:sail-sg</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="14">1.4. 核心模块<a class="headerlink" href="#14" title="Permanent link">#</a></h3>
+<h4 id="141">1.4.1. 对齐算法<a class="headerlink" href="#141" title="Permanent link">#</a></h4>
+<h5 id="1411_sft">1.4.1.1. SFT<a class="headerlink" href="#1411_sft" title="Permanent link">#</a></h5>
+<ul>
+<li>[2023.08] <a href="https://arxiv.org/abs/2308.12050">Aligning Language Models with Offline Learning from Human Feedback</a> conditional-sft 不同的样本有不同的权重</li>
+</ul>
+<h5 id="1412_peft">1.4.1.2. PEFT<a class="headerlink" href="#1412_peft" title="Permanent link">#</a></h5>
+<p>相关资料：</p>
+<ul>
+<li><a href="https://huggingface.co/docs/peft/index">huggingface:peft</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/621700272">大模型参数高效微调(PEFT)</a></li>
+</ul>
+<p>算法：</p>
+<ul>
+<li>LORA</li>
+<li>QLORA</li>
+<li>Adapter</li>
+<li>Prefix Tuning</li>
+<li>Prompt Tuning</li>
+<li>BitFit</li>
+</ul>
+<h5 id="1413_dpo">1.4.1.3. DPO<a class="headerlink" href="#1413_dpo" title="Permanent link">#</a></h5>
+<ul>
+<li>[2024.05] <a href="https://arxiv.org/abs/2405.21046">Exploratory Preference Optimization: Harnessing Implicit Q*-Approximation for Sample-Efficient RLHF</a> XPO在Online DPO基础上在loss上加了鼓励探索的正则项。</li>
+<li>[2024.04] <a href="https://arxiv.org/abs/2404.04656">Binary Classifier Optimization for Large Language Model Alignment</a> BCO用BCE。奖励转移、底层分布匹配。</li>
+<li>[2024.03] <a href="https://arxiv.org/abs/2403.07691">ORPO: Monolithic Preference Optimization without Reference Model</a> DPO基础上去掉reference model。</li>
+<li>[2024.02] <a href="https://arxiv.org/abs/2402.04792">Direct Language Model Alignment from Online AI Feedback</a> Online DPO​ 结合在线数据更新，动态调整偏好数据集，缓解分布偏移。用LLM+Prompt实时对样本打标得到对比对。</li>
+<li>[2024.02] <a href="https://arxiv.org/abs/2402.01306">KTO: Model Alignment as Prospect Theoretic Optimization</a> 基于前景理论，直接优化人类感知效用，替代传统偏好对数似然<ul>
+<li><a href="https://github.com/ContextualAI/HALOs">ContextualAI/HALOs</a></li>
+</ul>
+</li>
+<li>[2024.01] <a href="https://arxiv.org/abs/2401.08417">Contrastive Preference Optimization: Pushing the Boundaries of LLM Performance in Machine Translation</a>  CPO是负对数似然损失+偏好损失。</li>
+<li>[2023.12] <a href="https://arxiv.org/abs/2312.00886">Nash Learning from Human Feedback</a> 在act和ref的模型上分别得到logit然后加权求和得到额外策略。</li>
+<li>[2023.10] <a href="https://arxiv.org/abs/2310.12036">A General Theoretical Paradigm to Understand Learning from Human Preferences</a> IPO相当于 在DPO的损失函数上添加了一个正则项</li>
+<li>[2023.05] <a href="https://arxiv.org/abs/2305.18290">Direct Preference Optimization: Your Language Model is Secretly a Reward Model</a> / <a href="https://www.cnblogs.com/lemonzhang/p/17910358.html">【笔记】</a> 通过偏好数据直接优化策略，绕过显式奖励建模<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/5830338806">DPO为什么会让大语言模型输出变长</a></li>
+<li><a href="https://blog.csdn.net/beingstrong/article/details/138973997">大模型对齐方法笔记一：DPO及其变种IPO、KTO、CPO</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/712819706">一文看尽LLM对齐技术：RLHF、RLAIF、PPO、DPO……</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="1414_rl">1.4.1.4. RL<a class="headerlink" href="#1414_rl" title="Permanent link">#</a></h5>
+<ul>
+<li>[2025.04] <a href="https://arxiv.org/abs/2504.13914">Seed1.5-Thinking: Advancing Superb Reasoning Models with Reinforcement Learning</a></li>
+<li>[2025.04] <a href="https://arxiv.org/abs/2504.11343">A Minimalist Approach to LLM Reasoning: from Rejection Sampling to Reinforce</a>  RAFT++，<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/1909203956380460977">GRPO=高级版拒绝采样？强化学习祛魅时刻：负样本“去芜存菁”才是关键！</a> </li>
+</ul>
+</li>
+<li>[2025.04] <a href="https://arxiv.org/html/2504.05118v1">VAPO: Efficient and Reliable Reinforcement Learning for Advanced Reasoning Tasks</a> VAPO,seed,加上value function。</li>
+<li>[2025.03] <a href="https://arxiv.org/abs/2503.14476">DAPO: An Open-Source LLM Reinforcement Learning System at Scale</a> DAPO,seed,调高clip上界，动态采样去掉reward为1的prompt，soft超长惩罚，去掉kl</li>
+<li>[2025.03] <a href="https://arxiv.org/abs/2503.01491">What's Behind PPO's Collapse in Long-CoT? Value Optimization Holds the Secret</a> VC-PPO, 字节seed。long-cot的问题在于value估计不准，靠后的token的V大，A小。V做预训练，用lamada=1。Policy学习的时候对应的A用lamada=0.95减少方差，因为A不会因为V的引入bias。</li>
+<li>[2025.03] <a href="https://arxiv.org/abs/2503.20783">Understanding R1-Zero-Like Training: A Critical Perspective</a> Dr.GRPO <ul>
+<li><a href="https://github.com/sail-sg/understand-r1-zero">sail-sg/understand-r1-zero</a></li>
+</ul>
+</li>
+<li>[2025.02] <a href="https://arxiv.org/abs/2502.01456">Process Reinforcement through Implicit Rewards</a> PRIME<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/18181925892">【论文解读】PRIME：通过「隐式过程奖励」来提升LLM的推理能力</a></li>
+</ul>
+</li>
+<li>[2025.01] <a href="https://arxiv.org/abs/2501.03262">REINFORCE++: An Efficient RLHF Algorithm with Robustness to Both Prompt and Reward Models</a> 在batch内归一化，用kl散度作为正则项。<ul>
+<li>[2025.02] <a href="https://arxiv.org/abs/2502.14768">Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning</a> </li>
+<li><a href="https://zhuanlan.zhihu.com/p/26480918542">Logic-RL：基于规则强化学习的大语言模型推理能力突破</a></li>
+</ul>
+</li>
+<li>[2024.07] <a href="https://arxiv.org/abs/2406.14088">ReaL: Efficient RLHF Training of Large Language Models with Parameter Reallocation</a> </li>
+<li>[2024.04] <a href="https://arxiv.org/pdf/2402.03300">DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models</a></li>
+<li>[2024.02] <a href="https://arxiv.org/pdf/2402.14740">Back to Basics: Revisiting REINFORCE Style Optimization for Learning from Human Feedback in LLMs</a> RLOO,避免使用value model和GAE，减少显存占用，留一法做归一化</li>
+<li>[2024.01] <a href="https://arxiv.org/abs/2401.08967">ReFT: Reasoning with Reinforced Fine-Tuning</a> REFT。使用跟SFT一样的数据，只是会采样更多cot，然后用PPO优化。</li>
+<li>[2023.10] <a href="https://arxiv.org/abs/2310.10505">ReMax: A Simple, Effective, and Efficient Reinforcement Learning Method for Aligning Large Language Models</a> Remax, 用贪婪采样作为base。</li>
+<li>[2023.07] <a href="https://arxiv.org/abs/2307.04964">Secrets of RLHF in Large Language Models Part I: PPO</a> PPO-max<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/687850058">PPO探索（如何实现稳定训练）</a></li>
+</ul>
+</li>
+<li>[2023.05] <a href="https://arxiv.org/abs/2305.20050">Let's Verify Step by Step</a></li>
+<li>[2023.03] <a href="https://arxiv.org/abs/2303.17651">Self-Refine: Iterative Refinement with Self-Feedback</a> 用few-shot得到feedback，然后优化回答。</li>
+<li>[2022.12] <a href="https://arxiv.org/abs/2212.08073">Constitutional AI: Harmlessness from AI Feedback</a></li>
+<li>
+<p>[2022.11] <a href="https://arxiv.org/abs/2211.14275">Solving math word problems with process- and outcome-based feedback</a></p>
+</li>
+<li>
+<p>[2022.04] <a href="https://arxiv.org/abs/2204.05862">Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback</a></p>
+</li>
+<li>[2018.06] <a href="https://arxiv.org/abs/1806.05635">Self-Imitation Learning</a></li>
+<li>[2017.07] <a href="https://arxiv.org/abs/1707.06347">Proximal Policy Optimization Algorithms</a></li>
+</ul>
+<h5 id="1415">1.4.1.5. 推理和工具<a class="headerlink" href="#1415" title="Permanent link">#</a></h5>
+<ul>
+<li>[2022.11] <a href="[2211.10435](https://arxiv.org/abs/2211.10435)">PAL: Program-aided Language Models</a> PAL</li>
+<li>[2022.10] <a href="https://arxiv.org/abs/2210.03629">ReAct: Synergizing Reasoning and Acting in Language Models</a>  ReAct，Google，query、think、action、result。</li>
+</ul>
+<h5 id="1416">1.4.1.6. 蒸馏<a class="headerlink" href="#1416" title="Permanent link">#</a></h5>
+<ul>
+<li>[2023.06] <a href="https://arxiv.org/abs/2306.13649">On-Policy Distillation of Language Models: Learning from Self-Generated Mistakes</a> GKD解决训推不一致问题。</li>
+</ul>
+<h4 id="142_reward_model">1.4.2. Reward Model<a class="headerlink" href="#142_reward_model" title="Permanent link">#</a></h4>
+<ul>
+<li>[2025.04] <a href="https://arxiv.org/abs/2504.02495">Inference-Time Scaling for Generalist Reward Modeling</a> / <a href="https://zhuanlan.zhihu.com/p/1892290985284855414">【论文解读】</a>  SPCT 让模型自己生成原则，然后生成打分。</li>
+<li>[2024.10] <a href="https://arxiv.org/abs/2410.12832">Generative Reward Models</a> 斯坦福，合成实验室，CoT-GenRM，先通过prompt让模型给Q生成推理和A标记出正确的，或给定Q和A生成推理链。用得到的推理数据做sft和dpo。在难得推理任务上表现更好。</li>
+<li>[2024.08] <a href="https://arxiv.org/abs/2408.15240">Generative Verifiers: Reward Modeling as Next-Token Prediction</a> 谷歌，deepmind，Cot-GenRM，只做了sft</li>
+<li>[2024.06] <a href="https://arxiv.org/abs/2406.08673">HelpSteer2: Open-source dataset for training top-performing reward models</a> <ul>
+<li><a href="https://huggingface.co/datasets/nvidia/HelpSteer2">nvidia/HelpSteer2</a></li>
+<li><a href="https://github.com/NVIDIA/NeMo-Aligner">NVIDIA/NeMo-Aligner</a></li>
+</ul>
+</li>
+<li>[2024.03] <a href="https://arxiv.org/abs/2403.13787">RewardBench: Evaluating Reward Models for Language Modeling</a><ul>
+<li><a href="https://github.com/allenai/reward-bench">allenai/reward-bench</a></li>
+</ul>
+</li>
+<li>[2024.01] <a href="https://arxiv.org/abs/2401.06080">Secrets of RLHF in Large Language Models Part II: Reward Modeling</a> <ul>
+<li><a href="https://zhuanlan.zhihu.com/p/705168755">复旦大学邱锡鹏老师文章解读：Secrets of RLHF in Large Language Models Part II: Reward Modeling</a></li>
+</ul>
+</li>
+<li>[2023.06] <a href="https://arxiv.org/abs/2306.05087">PandaLM: An Automatic Evaluation Benchmark for LLM Instruction Tuning Optimization</a><ul>
+<li><a href="https://github.com/WeOpenML/PandaLM">WeOpenML/PandaLM</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="15">1.5. 细分方向<a class="headerlink" href="#15" title="Permanent link">#</a></h3>
+<h4 id="151">1.5.1. 形式化证明<a class="headerlink" href="#151" title="Permanent link">#</a></h4>
+<ul>
+<li>[2025.04] <a href="https://github.com/MoonshotAI/Kimina-Prover-Preview">Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning</a>  MiniF2F-test 80+%</li>
+<li>[2025.04] <a href="https://arxiv.org/pdf/2504.06122">Leanabell-Prover: Posttraining Scaling in Formal Reasoning</a> MiniF2F-test 59.8%</li>
+<li>[2024.08] <a href="https://arxiv.org/abs/2408.08152">DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search</a>  miniF2F-test达到63.5%<ul>
+<li><a href="https://github.com/deepseek-ai/DeepSeek-Prover-V1.5">github:DeepSeek-Prover-V1.5</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="152">1.5.2. 角色扮演<a class="headerlink" href="#152" title="Permanent link">#</a></h4>
+<ul>
+<li>[2023.03] <a href="https://arxiv.org/pdf/2303.06135">Rewarding Chatbots for Real-World Engagement with Millions of Users</a> Chai的论文，用RLHF优化Chatbot</li>
+</ul>
+<h3 id="16">1.6. 理解对齐<a class="headerlink" href="#16" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="https://www.fast.ai/posts/2023-09-04-learning-jumps/">LLM 能从单个例子中学习吗？</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Embedding/" class="btn btn-neutral float-left" title="Embedding"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../PreTraining/" class="btn btn-neutral float-right" title="PreTraining">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Embedding/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../PreTraining/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
