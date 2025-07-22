@@ -6,6 +6,16 @@
 - [deepspeedai/DeepSpeed](https://github.com/deepspeedai/DeepSpeed)
 - [unslothai/unsloth](https://github.com/unslothai/unsloth) Finetune框架
 
+
+## 强化学习训练框架
+
+- [54.7k] [hiyouga/LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory)
+- [14.7k] [huggingface/trl](https://github.com/huggingface/trl)
+- [11.3k] [volcengine/verl](https://github.com/volcengine/verl) 字节
+- [8.8k] [modelscope/ms-swift](https://github.com/modelscope/ms-swift) 
+- [7.4k] [OpenRLHF/OpenRLHF](https://github.com/OpenRLHF/OpenRLHF) 
+- [1.5k] [alibaba/ROLL](https://github.com/alibaba/ROLL)
+
 ## 分布式训练
 
 - [2024.10] [Liger Kernel: Efficient Triton Kernels for LLM Training](https://arxiv.org/abs/2410.10989)
