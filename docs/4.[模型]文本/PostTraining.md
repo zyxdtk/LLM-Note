@@ -105,7 +105,9 @@
 
 ### 1.4.2. Reward Model
 
-- [2025.04] [Inference-Time Scaling for Generalist Reward Modeling](https://arxiv.org/abs/2504.02495) / [【论文解读】](https://zhuanlan.zhihu.com/p/1892290985284855414)  SPCT 让模型自己生成原则，然后生成打分。
+- [2025.04] [Inference-Time Scaling for Generalist Reward Modeling](https://arxiv.org/abs/2504.02495) / [【论文解读】](https://zhuanlan.zhihu.com/p/1892290985284855414)  SPCT 让模型自己生成原则，然后生成打分。推理时采样多次用不同的原则得到打分，最后用一个meta原则觉得哪些打分有权重
+- [2025.03] [Think-RM: Enabling Long-Horizon Reasoning in Generative Reward Models](https://arxiv.org/abs/2505.16265) 亚马逊
+    - [IlgeeHong/Think-RM](https://github.com/IlgeeHong/Think-RM)
 - [2024.10] [Generative Reward Models](https://arxiv.org/abs/2410.12832) 斯坦福，合成实验室，CoT-GenRM，先通过prompt让模型给Q生成推理和A标记出正确的，或给定Q和A生成推理链。用得到的推理数据做sft和dpo。在难得推理任务上表现更好。
 - [2024.08] [Generative Verifiers: Reward Modeling as Next-Token Prediction](https://arxiv.org/abs/2408.15240) 谷歌，deepmind，Cot-GenRM，只做了sft
 - [2024.06] [HelpSteer2: Open-source dataset for training top-performing reward models](https://arxiv.org/abs/2406.08673) 
