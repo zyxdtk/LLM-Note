@@ -105,6 +105,8 @@
 
 ### 1.4.2. Reward Model
 
+- [2025.07] [One Token to Fool LLM-as-a-Judge](https://arxiv.org/abs/2507.08794) 腾讯
+- [2025.06] [BLEUBERI: BLEU is a surprisingly effective reward for instruction following](https://arxiv.org/abs/2505.11080) 给定多个参考答案，训练GRPO的时候用BLEU做reward。
 - [2025.04] [Inference-Time Scaling for Generalist Reward Modeling](https://arxiv.org/abs/2504.02495) / [【论文解读】](https://zhuanlan.zhihu.com/p/1892290985284855414)  SPCT 让模型自己生成原则，然后生成打分。推理时采样多次用不同的原则得到打分，最后用一个meta原则觉得哪些打分有权重
 - [2025.03] [Think-RM: Enabling Long-Horizon Reasoning in Generative Reward Models](https://arxiv.org/abs/2505.16265) 亚马逊
     - [IlgeeHong/Think-RM](https://github.com/IlgeeHong/Think-RM)
