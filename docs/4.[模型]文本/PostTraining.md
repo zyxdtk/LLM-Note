@@ -40,7 +40,7 @@
 算法：
 
 - LORA
-- QLORA
+- [QLoRA: Efficient Finetuning of Quantized LLMs](https://arxiv.org/abs/2305.14314)
 - Adapter
 - Prefix Tuning
 - Prompt Tuning
@@ -64,6 +64,7 @@
 
 #### 1.4.1.4. RL
 
+- [2025.06] [RLPR: Extrapolating RLVR to General Domains without Verifiers](https://arxiv.org/abs/2506.18254)
 - [2025.04] [Seed1.5-Thinking: Advancing Superb Reasoning Models with Reinforcement Learning](https://arxiv.org/abs/2504.13914)
 - [2025.04] [A Minimalist Approach to LLM Reasoning: from Rejection Sampling to Reinforce](https://arxiv.org/abs/2504.11343)  RAFT++，
     - [GRPO=高级版拒绝采样？强化学习祛魅时刻：负样本“去芜存菁”才是关键！](https://zhuanlan.zhihu.com/p/1909203956380460977) 
@@ -106,6 +107,7 @@
 ### 1.4.2. Reward Model
 
 - [2025.07] [One Token to Fool LLM-as-a-Judge](https://arxiv.org/abs/2507.08794) 腾讯
+- [2025.06] [ReasonGRM: Enhancing Generative Reward Models through Large Reasoning Models](https://www.arxiv.org/abs/2506.16712)
 - [2025.06] [BLEUBERI: BLEU is a surprisingly effective reward for instruction following](https://arxiv.org/abs/2505.11080) 给定多个参考答案，训练GRPO的时候用BLEU做reward。
 - [2025.04] [Inference-Time Scaling for Generalist Reward Modeling](https://arxiv.org/abs/2504.02495) / [【论文解读】](https://zhuanlan.zhihu.com/p/1892290985284855414)  SPCT 让模型自己生成原则，然后生成打分。推理时采样多次用不同的原则得到打分，最后用一个meta原则觉得哪些打分有权重
 - [2025.03] [Think-RM: Enabling Long-Horizon Reasoning in Generative Reward Models](https://arxiv.org/abs/2505.16265) 亚马逊
@@ -115,6 +117,7 @@
 - [2024.06] [HelpSteer2: Open-source dataset for training top-performing reward models](https://arxiv.org/abs/2406.08673) 
     - [nvidia/HelpSteer2](https://huggingface.co/datasets/nvidia/HelpSteer2)
     - [NVIDIA/NeMo-Aligner](https://github.com/NVIDIA/NeMo-Aligner)
+- [2024.03] [Interpretable User Satisfaction Estimation for Conversational Systems with Large Language Models](https://arxiv.org/abs/2403.12388) 
 - [2024.03] [RewardBench: Evaluating Reward Models for Language Modeling](https://arxiv.org/abs/2403.13787)
     - [allenai/reward-bench](https://github.com/allenai/reward-bench)
 - [2024.01] [Secrets of RLHF in Large Language Models Part II: Reward Modeling](https://arxiv.org/abs/2401.06080) 

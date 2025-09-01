@@ -28,6 +28,10 @@
 - Video Generation on UCF-101[link]
 
 
+## 幻觉
+
+- [HHEM](https://github.com/vectara/hallucination-leaderboard)
+    - [vectara/leaderboard](https://huggingface.co/spaces/vectara/leaderboard)
 
 ## 角色扮演
 
@@ -50,4 +54,10 @@
     - [MEGA-Bench page](https://tiger-ai-lab.github.io/MEGA-Bench/)
     - [MEGA-Bench Leaderboard](https://huggingface.co/spaces/TIGER-Lab/MEGA-Bench)
 
-  
+
+## 电商
+
+- [2025.05] [TransBench: Benchmarking Machine Translation for Industrial-Scale Applications](https://arxiv.org/abs/2505.14244) 评测体系中的数据集包含 “电商文化” 类别
+    - [transbench](https://transbench.com/)
+- [2025.02] [ChineseEcomQA: A Scalable E-commerce Concept Evaluation Benchmark for Large Language Models](https://arxiv.org/pdf/2502.20196)
+- [2024.10] [Shopping MMLU: A Massive Multi-Task Online Shopping Benchmark for Large Language Models](https://arxiv.org/abs/2410.20745)

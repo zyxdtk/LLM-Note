@@ -7,6 +7,10 @@
 
 ## 2. 论文和开源库
 
+### Qwen
+
+- [2025.05] [Qwen3 Technical Report](https://arxiv.org/abs/2505.09388)
+
 ### 2.1. DeepSeek
 
 - [2024.12] [DeepSeek-V3 Technical Report](https://arxiv.org/pdf/2412.19437)/[github:DeepSeek-V3](https://github.com/deepseek-ai/DeepSeek-V3) MLA、MOE、MTP、GRPO等
@@ -74,6 +78,7 @@ between Human and Machine Translation](https://arxiv.org/pdf/1609.08144) 基于l
 ### 3.3. 模型架构
 - Transformer结构选择（Encoder/Decoder/Encoder-Decoder）
 - 位置编码方案（绝对/相对位置编码）
+    - [2024.01] [Extending LLMs’ Context Window with 100 Samples](https://arxiv.org/pdf/2401.07004)
     - rope
         - [2021.03] [Transformer升级之路：2、博采众长的旋转式位置编码](https://kexue.fm/archives/8265) 每2位做一个旋转，旋转角度为1/2^k, 其中k为位置。qk相乘之后相对距离越远，qk的乘积越小。
         - [旋转矩阵及左右乘的意义，看这一篇就够了](https://blog.csdn.net/weixin_45632220/article/details/117735223) 
@@ -84,6 +89,8 @@ between Human and Machine Translation](https://arxiv.org/pdf/1609.08144) 基于l
 - 激活函数
     - [激活函数 Relu,Gelu,Mish,SiLU,Swish,Tanh,Sigmoid](https://blog.csdn.net/weixin_38649779/article/details/127647257) deepseek使用silu，SiLU具备无上界有下界、平滑、非单调的特性。SiLU在深层模型上的效果优于 ReLU。可以看做是平滑的ReLU激活函数。
 - 长上下文
+    - [2024.02] [Training-Free Long-Context Scaling of Large Language Models](https://arxiv.org/abs/2402.17463) dca
+    - [2024.01] [Extending LLMs' Context Window with 100 Samples](https://arxiv.org/abs/2401.07004)  abf
     - [2023.08] [YaRN: Efficient Context Window Extension of Large Language Models](https://arxiv.org/abs/2309.00071)
         - [论文YaRN: Efficient Context Window Extension of Large Language Models笔记](https://zhuanlan.zhihu.com/p/683863159)
 
@@ -147,9 +154,12 @@ between Human and Machine Translation](https://arxiv.org/pdf/1609.08144) 基于l
 - 持续预训练
 
 
+## 可解释性
 
-
-
-
+- [2025.05] [Open-sourcing circuit tracing tools](https://www.anthropic.com/research/open-source-circuit-tracing)
+    - [safety-research/circuit-tracer](https://github.com/safety-research/circuit-tracer)
+    - [neuronpedia](https://www.neuronpedia.org/gemma-2-2b/graph)
+- [2025.03] [Circuit Tracing: Revealing Computational Graphs in Language Models](https://transformer-circuits.pub/2025/attribution-graphs/methods.html)
+- [2021.12] [A Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/index.html)
 
 

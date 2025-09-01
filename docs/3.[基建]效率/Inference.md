@@ -5,6 +5,17 @@
 - [NVIDIA/FasterTransformer](https://github.com/NVIDIA/FasterTransformer)
 - [分析transformer模型的参数量、计算量、中间激活、KV cache](https://zhuanlan.zhihu.com/p/624740065)
 
+# 大模型部署框架
+
+- [54.7k] [vllm](https://github.com/vllm-project/vllm)
+- [16.8k] [sglang](https://github.com/sgl-project/sglang)
+- [150k] [ollama](https://github.com/ollama/ollama)
+- [84.5] [llama.cpp](https://github.com/ggml-org/llama.cpp)
+- [21.9] [mlx](https://github.com/ml-explore/mlx)
+- [14.8k] [ktransformers](https://github.com/kvcache-ai/ktransformers)
+- [0] [lmstudio](https://lmstudio.ai/)
+
+
 # 2. 大模型推理优化
 
 
@@ -29,7 +40,9 @@
 
 ### 2.1.1. 量化
 
+#### 论文
 - [2025.01] [Qrazor: Reliable and Effortless 4-bit LLM Quantization by Significant Data Razoring](https://arxiv.org/abs/2501.13331)
+- [2024.08] [MARLIN: Mixed-Precision Auto-Regressive Parallel Inference on Large Language Models](https://arxiv.org/abs/2408.11743)
 - [2023.10] [LLM-FP4: 4-Bit Floating-Point Quantized Transformers](https://arxiv.org/abs/2310.16836)
 - [2023.09] [Optimize Weight Rounding via Signed Gradient Descent for the Quantization of LLMs](https://arxiv.org/abs/2309.05516) AutoRound
     - [intel/auto-round](https://github.com/intel/auto-round)
@@ -37,6 +50,11 @@
 - [2022.10] [GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers](https://arxiv.org/abs/2210.17323) GPTQ
 - [2022.08] [LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale](https://arxiv.org/abs/2208.07339)
     - [LLM.int8(): 8-bit量化推理](https://arxiv.org/abs/2208.07339)
+    - [LLM大模型之精度问题（FP16，FP32，BF16）详解与实践](https://zhuanlan.zhihu.com/p/657886517)
+#### 工具
+- [1.8k] [vllm-project/llm-compressor](https://github.com/vllm-project/llm-compressor/)
+- [730] [ModelCloud/GPTQModel](https://github.com/ModelCloud/GPTQModel)
+
 
 ### 2.1.2. attention结构
 
@@ -44,9 +62,17 @@
 
 ### 2.1.3. 并行解码
 
-
-- [2024.01] [EAGLE: Speculative Sampling Requires Rethinking Feature Uncertainty](https://arxiv.org/abs/2401.15077)
+- [2025.03] [EAGLE-3: Scaling up Inference Acceleration of Large Language Models via Training-Time Test](https://arxiv.org/abs/2503.01840) 5.6倍加速
+    - [hemingkx/SpeculativeDecodingPapers](https://github.com/hemingkx/SpeculativeDecodingPapers)
+    - [SafeAILab/EAGLE](https://github.com/SafeAILab/EAGLE) eagle-3相比原始有5.6倍加速
+    - [sgl-project/SpecForge](https://github.com/sgl-project/SpecForge)
+    - [angelslim-benchmark](https://angelslim.readthedocs.io/zh-cn/latest/performance/speculative_decoding/benchmarks.html)
+    - [eagle3部署：A100-cuda12.6-sglang0.4.6](https://zhuanlan.zhihu.com/p/1938989829766509156)
+- [2024.01] [Unlocking Efficiency in Large Language Model Inference:A Comprehensive Survey of Speculative Decoding](https://arxiv.org/abs/2401.07851) 综述
+    - [万字综述 10+ 种 LLM 投机采样推理加速方案](https://www.53ai.com/news/finetuning/2024071109285.html)
+- [2024.01] [EAGLE: Speculative Sampling Requires Rethinking Feature Uncertainty](https://arxiv.org/abs/2401.15077) 预估特征层
     - [论文解读】EAGLE：在特征层进行自回归的投机采样框架](https://zhuanlan.zhihu.com/p/15955544919)
+    - [vllm-spec_decode](https://docs.vllm.ai/en/v0.9.0/features/spec_decode.html)
 - [2024.01] [Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads](https://arxiv.org/abs/2401.10774) 加多个解码头，用topk解码多个token，用tree attention判定是否采纳。
 - [2023.10] [Lookahead: An Inference Acceleration Framework for Large Language Model with Lossless Generation Accuracy](https://arxiv.org/abs/2312.12728) 用2D窗口维护多个ngram
 - [2022.11] [Fast Inference from Transformers via Speculative Decoding](https://arxiv.org/abs/2211.17192) 小模型预估，大模型判定是否采纳。计算量不变，但是可以并行化了。
@@ -56,6 +82,8 @@
 
 ### 2.2.1. attention
 
+- [2025.01] [FlashInfer: Efficient and Customizable Attention Engine for LLM Inference Serving](https://arxiv.org/abs/2501.01005)
+    - [flashinfer](https://github.com/flashinfer-ai/flashinfer)
 - [2023.09] [Efficient Memory Management for Large Language Model Serving with PagedAttention](https://arxiv.org/abs/2309.06180) PagedAttention,虚拟内存技术，分页。比朴素batch快22倍吞吐，比ft快4倍。
     - [vllm-project/vllm](https://github.com/vllm-project/vllm)
     - [How continuous batching enables 23x throughput in LLM inference while reducing p50 latency](https://www.anyscale.com/blog/continuous-batching-llm-inference)
@@ -83,3 +111,5 @@
 - [2022.07] [Alpa: Automating Inter- and Intra-Operator Parallelism for Distributed Deep Learning](https://www.usenix.org/system/files/osdi22-zheng-lianmin.pdf)
 - [大模型推理序列并行](https://zhuanlan.zhihu.com/p/9816504195)
 - [序列并行DeepSpeed-FPDT](https://zhuanlan.zhihu.com/p/720387198)
+- [Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving](https://arxiv.org/abs/2407.00079) PD分离
+    - [kvcache-ai/Mooncake](https://github.com/kvcache-ai/Mooncake)
