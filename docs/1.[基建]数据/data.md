@@ -7,3 +7,15 @@
     - [论文解读：如何自动选择SFT数据](https://zhuanlan.zhihu.com/p/690779419)
     - [LLM模型之高质量数据选择和微调方法](https://zhuanlan.zhihu.com/p/703612817)
 - [2023.08] [InsTag: Instruction Tagging for Analyzing Supervised Fine-tuning of Large Language Models](https://arxiv.org/abs/2308.07074) instag
+
+
+## 主动学习
+
+- [2024.05] [ActiveLLM: Large Language Model-based Active Learning for Textual Few-Shot Scenarios](https://arxiv.org/abs/2405.10808)
+
+
+
+- [ALiPy: Active Learning in Python](https://github.com/NUAA-AL/ALiPy)
+    - [https://parnec.nuaa.edu.cn/huangsj/alipy/](https://parnec.nuaa.edu.cn/huangsj/alipy/)
+- [baifanxxx/awesome-active-learning](https://github.com/baifanxxx/awesome-active-learning)
+- [modAL-python/modAL](https://github.com/modAL-python/modAL)

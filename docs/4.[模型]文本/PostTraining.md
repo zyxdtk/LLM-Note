@@ -65,6 +65,7 @@
 #### 1.4.1.4. RL
 
 - [2025.06] [RLPR: Extrapolating RLVR to General Domains without Verifiers](https://arxiv.org/abs/2506.18254)
+- [2025.05] [AdaCoT: Pareto-Optimal Adaptive Chain-of-Thought Triggering via Reinforcement Learning](https://arxiv.org/abs/2505.11896) 自适应使用cot
 - [2025.04] [Seed1.5-Thinking: Advancing Superb Reasoning Models with Reinforcement Learning](https://arxiv.org/abs/2504.13914)
 - [2025.04] [A Minimalist Approach to LLM Reasoning: from Rejection Sampling to Reinforce](https://arxiv.org/abs/2504.11343)  RAFT++，
     - [GRPO=高级版拒绝采样？强化学习祛魅时刻：负样本“去芜存菁”才是关键！](https://zhuanlan.zhihu.com/p/1909203956380460977) 
@@ -104,6 +105,7 @@
 - [2023.06] [On-Policy Distillation of Language Models: Learning from Self-Generated Mistakes](https://arxiv.org/abs/2306.13649) GKD解决训推不一致问题。
 
 
+
 ### 1.4.2. Reward Model
 
 - [2025.07] [One Token to Fool LLM-as-a-Judge](https://arxiv.org/abs/2507.08794) 腾讯
@@ -117,6 +119,8 @@
 - [2024.06] [HelpSteer2: Open-source dataset for training top-performing reward models](https://arxiv.org/abs/2406.08673) 
     - [nvidia/HelpSteer2](https://huggingface.co/datasets/nvidia/HelpSteer2)
     - [NVIDIA/NeMo-Aligner](https://github.com/NVIDIA/NeMo-Aligner)
+- [2024.06] [Regularizing Hidden States Enables Learning Generalizable Reward Model for LLMs](https://arxiv.org/abs/2406.10216) RM训练的时候，两个头，新加的头使用sft loss。
+    - [YangRui2015/Generalizable-Reward-Model](https://github.com/YangRui2015/Generalizable-Reward-Model)
 - [2024.03] [Interpretable User Satisfaction Estimation for Conversational Systems with Large Language Models](https://arxiv.org/abs/2403.12388) 
 - [2024.03] [RewardBench: Evaluating Reward Models for Language Modeling](https://arxiv.org/abs/2403.13787)
     - [allenai/reward-bench](https://github.com/allenai/reward-bench)
@@ -139,7 +143,6 @@
 ### 1.5.2. 角色扮演
 
 - [2023.03] [Rewarding Chatbots for Real-World Engagement with Millions of Users](https://arxiv.org/pdf/2303.06135) Chai的论文，用RLHF优化Chatbot
-
 
 
 ## 1.6. 理解对齐

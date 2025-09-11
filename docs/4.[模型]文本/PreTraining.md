@@ -32,7 +32,9 @@
 - [2024.07] [ChatGLM: A Family of Large Language Models from GLM-130B to GLM-4 All Tools](https://arxiv.org/pdf/2406.12793)
     - [GLM-4](https://github.com/THUDM/GLM-4) 
 
+### 2.5. 字节
 
+- [ByteDance-Seed/seed-oss](https://github.com/ByteDance-Seed/seed-oss)
 
 ## 3. 大模型预训练核心模块
 
@@ -90,7 +92,6 @@ between Human and Machine Translation](https://arxiv.org/pdf/1609.08144) 基于l
     - [激活函数 Relu,Gelu,Mish,SiLU,Swish,Tanh,Sigmoid](https://blog.csdn.net/weixin_38649779/article/details/127647257) deepseek使用silu，SiLU具备无上界有下界、平滑、非单调的特性。SiLU在深层模型上的效果优于 ReLU。可以看做是平滑的ReLU激活函数。
 - 长上下文
     - [2024.02] [Training-Free Long-Context Scaling of Large Language Models](https://arxiv.org/abs/2402.17463) dca
-    - [2024.01] [Extending LLMs' Context Window with 100 Samples](https://arxiv.org/abs/2401.07004)  abf
     - [2023.08] [YaRN: Efficient Context Window Extension of Large Language Models](https://arxiv.org/abs/2309.00071)
         - [论文YaRN: Efficient Context Window Extension of Large Language Models笔记](https://zhuanlan.zhihu.com/p/683863159)
 
