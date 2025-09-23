@@ -9,6 +9,7 @@
 
 ### Qwen
 
+- [2025.09] [Qwen3-Next：迈向更极致的训练推理性价比](https://qwen.ai/blog?id=4074cca80393150c248e508aa62983f9cb7d27cd&from=research.latest-advancements-list)
 - [2025.05] [Qwen3 Technical Report](https://arxiv.org/abs/2505.09388)
 
 ### 2.1. DeepSeek
@@ -25,7 +26,9 @@
 
 ### 2.3. Openai
 
+- [2025.08] [GPT-5 System Card](https://cdn.openai.com/gpt-5-system-card.pdf)
 - [2024.03] [GPT-4 Technical Report](https://arxiv.org/pdf/2303.08774) 
+
 
 ### 2.4. 智谱AI
 
