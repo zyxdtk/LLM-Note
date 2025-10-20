@@ -26,6 +26,7 @@
 
 ## 论文
 
+- [2025.10] [Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models](https://www.arxiv.org/abs/2510.04618)
 - [2025.06] [Refract ICL: Rethinking Example Selection in the Era of Million-Token Models](https://arxiv.org/abs/2506.12346)
 - [2024.10] [StablePrompt: Automatic Prompt Tuning using Reinforcement Learning for Large Language Models](https://arxiv.org/abs/2410.07652) 韩国科技院KAIST。achor model更新更慢，且只有在agent model提升超过阈值的时候才会更新。
 - [2024.04] [Automatic Prompt Selection for Large Language Models](https://arxiv.org/abs/2404.02717) Deakin澳大利亚迪肯大学。对样本聚类每类一个prompt，新问题用prompt评估器挑选最适合的prompt。

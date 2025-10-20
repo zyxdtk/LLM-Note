@@ -126,10 +126,17 @@ between Human and Machine Translation](https://arxiv.org/pdf/1609.08144) 基于l
     - [2023.09] [Mistral 7B](https://mistral.ai/news/announcing-mistral-7b)
 
 ### 3.5. 训练策略
+
+- [2025.02] [Muon is Scalable for LLM Training](https://arxiv.org/abs/2502.16982)
+    - [KellerJordan/Muon](https://github.com/KellerJordan/Muon)
+    - [muon](https://kellerjordan.github.io/posts/muon/)
+
 - 优化器选择（Adam/AdamW/LAMB）
 - 学习率调度（线性预热+余弦衰减）
 - 批次策略（动态批处理/梯度累积）
 - 混合精度训练（FP16/BF16）
+
+
 
 ### 3.6. 分布式训练
 

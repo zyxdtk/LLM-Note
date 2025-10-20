@@ -2,9 +2,12 @@
 
 ## 学习资料
 
-
+- [2025.05] [DeepEyes: Incentivizing "Thinking with Images" via Reinforcement Learning](https://arxiv.org/abs/2505.14362) 带图片cot，放大图片
+- [2024.08] [Multimodal Causal Reasoning Benchmark: Challenging Vision Large Language Models to Discern Causal Links Across Modalities](https://arxiv.org/abs/2408.08105)
+    - [HCPLab-SYSU/CausalVLR](https://github.com/HCPLab-SYSU/CausalVLR)
 
 ## 开源项目
+
 
 - [2025.04] [Kimi-VL Technical Report](https://arxiv.org/abs/2504.07491)
     - [MoonshotAI/Kimi-VL](https://github.com/MoonshotAI/Kimi-VL)
@@ -45,3 +48,4 @@
 
 - [2024.09] [“闭门造车”之多模态思路浅谈（三）：位置编码](https://spaces.ac.cn/archives/10352/comment-page-1)
 - [2024.03] [RoPE-Tie Transformer升级之路：17、多模态位置编码的简单思考](https://spaces.ac.cn/archives/10040)
+

@@ -48,12 +48,14 @@
 
 #### 1.4.1.3. DPO
 
+- [2024.05] [Self-Play Preference Optimization for Language Model Alignment](https://arxiv.org/abs/2405.00675) SPPO,从模型中采样一对，然后用pairRM评估pair
 - [2024.05] [Exploratory Preference Optimization: Harnessing Implicit Q*-Approximation for Sample-Efficient RLHF](https://arxiv.org/abs/2405.21046) XPO在Online DPO基础上在loss上加了鼓励探索的正则项。
 - [2024.04] [Binary Classifier Optimization for Large Language Model Alignment](https://arxiv.org/abs/2404.04656) BCO用BCE。奖励转移、底层分布匹配。
 - [2024.03] [ORPO: Monolithic Preference Optimization without Reference Model](https://arxiv.org/abs/2403.07691) DPO基础上去掉reference model。
 - [2024.02] [Direct Language Model Alignment from Online AI Feedback](https://arxiv.org/abs/2402.04792) Online DPO​ 结合在线数据更新，动态调整偏好数据集，缓解分布偏移。用LLM+Prompt实时对样本打标得到对比对。
 - [2024.02] [KTO: Model Alignment as Prospect Theoretic Optimization](https://arxiv.org/abs/2402.01306) 基于前景理论，直接优化人类感知效用，替代传统偏好对数似然
     - [ContextualAI/HALOs](https://github.com/ContextualAI/HALOs)
+- [2024.01] [Self-Play Fine-Tuning Converts Weak Language Models to Strong Language Models](https://arxiv.org/abs/2401.01335) SPIN
 - [2024.01] [Contrastive Preference Optimization: Pushing the Boundaries of LLM Performance in Machine Translation](https://arxiv.org/abs/2401.08417)  CPO是负对数似然损失+偏好损失。
 - [2023.12] [Nash Learning from Human Feedback](https://arxiv.org/abs/2312.00886) 在act和ref的模型上分别得到logit然后加权求和得到额外策略。
 - [2023.10] [A General Theoretical Paradigm to Understand Learning from Human Preferences](https://arxiv.org/abs/2310.12036) IPO相当于 在DPO的损失函数上添加了一个正则项
@@ -65,15 +67,19 @@
 #### 1.4.1.4. RL
 
 - [2025.08] [Part I: Tricks or Traps? A Deep Dive into RL for LLM Reasoning](https://arxiv.org/abs/2508.08221)
+- [2025.07] [Group Sequence Policy Optimization](https://arxiv.org/abs/2507.18071) 在序列级别做重要性采样
 - [2025.06] [RLPR: Extrapolating RLVR to General Domains without Verifiers](https://arxiv.org/abs/2506.18254)
+- [2025.05] [On-Policy RL with Optimal Reward Baseline](https://arxiv.org/abs/2505.23585) OPO
+- [2025.05] [The Entropy Mechanism of Reinforcement Learning for Reasoning Language Models](https://arxiv.org/abs/2505.22617)
 - [2025.05] [AdaCoT: Pareto-Optimal Adaptive Chain-of-Thought Triggering via Reinforcement Learning](https://arxiv.org/abs/2505.11896) 自适应使用cot
+- [2025.04] [GPG: A Simple and Strong Reinforcement Learning Baseline for Model Reasoning](https://arxiv.org/abs/2504.02546)
 - [2025.04] [Seed1.5-Thinking: Advancing Superb Reasoning Models with Reinforcement Learning](https://arxiv.org/abs/2504.13914)
 - [2025.04] [A Minimalist Approach to LLM Reasoning: from Rejection Sampling to Reinforce](https://arxiv.org/abs/2504.11343)  RAFT++，
     - [GRPO=高级版拒绝采样？强化学习祛魅时刻：负样本“去芜存菁”才是关键！](https://zhuanlan.zhihu.com/p/1909203956380460977) 
 - [2025.04] [VAPO: Efficient and Reliable Reinforcement Learning for Advanced Reasoning Tasks](https://arxiv.org/html/2504.05118v1) VAPO,seed,加上value function。
 - [2025.03] [DAPO: An Open-Source LLM Reinforcement Learning System at Scale](https://arxiv.org/abs/2503.14476) DAPO,seed,调高clip上界，动态采样去掉reward为1的prompt，soft超长惩罚，去掉kl
 - [2025.03] [What's Behind PPO's Collapse in Long-CoT? Value Optimization Holds the Secret](https://arxiv.org/abs/2503.01491) VC-PPO, 字节seed。long-cot的问题在于value估计不准，靠后的token的V大，A小。V做预训练，用lamada=1。Policy学习的时候对应的A用lamada=0.95减少方差，因为A不会因为V的引入bias。
-- [2025.03] [Understanding R1-Zero-Like Training: A Critical Perspective](https://arxiv.org/abs/2503.20783) Dr.GRPO 
+- [2025.03] [Understanding R1-Zero-Like Training: A Critical Perspective](https://arxiv.org/abs/2503.20783) Dr.GRPO,去掉Advantage计算的seq_len和std。
     - [sail-sg/understand-r1-zero](https://github.com/sail-sg/understand-r1-zero)
 - [2025.02] [Process Reinforcement through Implicit Rewards](https://arxiv.org/abs/2502.01456) PRIME
     - [【论文解读】PRIME：通过「隐式过程奖励」来提升LLM的推理能力](https://zhuanlan.zhihu.com/p/18181925892)
@@ -145,6 +151,10 @@
 
 - [2023.03] [Rewarding Chatbots for Real-World Engagement with Millions of Users](https://arxiv.org/pdf/2303.06135) Chai的论文，用RLHF优化Chatbot
 
+### 1.5.3. 多轮
+
+- [2025.03] [SWEET-RL: Training Multi-Turn LLM Agents on Collaborative Reasoning Tasks](https://arxiv.org/abs/2503.15478)
+- [2025.02] [CollabLLM: From Passive Responders to Active Collaborators](https://arxiv.org/abs/2502.00640) 多轮
 
 ## 1.6. 理解对齐
 
