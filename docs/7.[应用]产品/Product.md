@@ -22,6 +22,8 @@
         - [introducing-perplexity-deep-research](https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research)
         - [introducing-deep-research](https://openai.com/index/introducing-deep-research/)
     - 开源 
+    
+        - [DavidZWZ/Awesome-Deep-Research](https://github.com/DavidZWZ/Awesome-Deep-Research)
         - [open-deep-research](https://huggingface.co/blog/open-deep-research)
         - [togethercomputer/open_deep_research](https://github.com/togethercomputer/open_deep_research)
         - [langchain-ai/open_deep_research](https://github.com/langchain-ai/open_deep_research)
