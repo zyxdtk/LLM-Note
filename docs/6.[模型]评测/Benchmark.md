@@ -1,5 +1,13 @@
 # 大模型评测
 
+## 一键评测
+
+- [huggingface/lighteval](https://github.com/huggingface/lighteval)
+- [open-compass/opencompass](https://github.com/open-compass/opencompass)
+  - [https://rank.opencompass.org.cn/home](https://rank.opencompass.org.cn/home)
+- [open-compass/VLMEvalKit](https://github.com/open-compass/VLMEvalKit)
+- [modelscope/evalscope](https://github.com/modelscope/evalscope)
+
 ## 综合基准
 - chatbot-arena 包括文本、t2i、web2dev、t2v、搜索、copilot等榜单。
     - https://lmarena.ai/
@@ -99,3 +107,4 @@
 ## RAG
 
 - [2024.09] [Fact, Fetch, and Reason: A Unified Evaluation of Retrieval-Augmented Generation](https://arxiv.org/abs/2409.12941) 模型在没检索辅助时，答对率只有 0.408；就算给一些检索到的文章，答对率也只到 0.474；但如果给全所有需要的文章，答对率能到 0.729，不过就算这样，模型在算数字、处理表格这类推理题上还是容易错。“多步检索” 方法，让模型一步步生成搜索词、找文章、补全信息，再结合示例引导模型 “按步骤思考”，结果答对率提升到了 0.66，比最初提升了 50% 以上，很接近给全资料的理想状态。
+
