@@ -2,7 +2,10 @@
 
 
 ## 文章
- 
+
+- [2025.10] [The Principles of Diffusion Models](https://arxiv.org/abs/2510.21890)
+    - [扩散模型的基本原理](https://hjfy.top/arxiv/2510.21890)
+- [2025.06] [An Introduction to Flow Matching and Diffusion Models](https://arxiv.org/abs/2506.02070)
 - [2025.06] [Orthogonal Finetuning Made Scalable](https://arxiv.org/abs/2506.19847) oftv2 性能和效果跟lora差不多
 - [2025.04] [In-Context Edit: Enabling Instructional Image Editing with In-Context Generation in Large Scale Diffusion Transformer](https://arxiv.org/abs/2504.20690)
 - [2023.05] [Training Diffusion Models with Reinforcement Learning](https://arxiv.org/abs/2305.13301) 用VLM+RL训练Diffusion模型
