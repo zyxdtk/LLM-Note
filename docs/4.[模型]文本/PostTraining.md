@@ -136,6 +136,12 @@
 - [2023.06] [PandaLM: An Automatic Evaluation Benchmark for LLM Instruction Tuning Optimization](https://arxiv.org/abs/2306.05087)
     - [WeOpenML/PandaLM](https://github.com/WeOpenML/PandaLM)
 
+### 安全对齐
+
+- [2025.10] [Qwen3Guard Technical Report](https://arxiv.org/abs/2510.14276)
+    - [Qwen3Guard: 实时安全，逐词响应](https://qwen.ai/blog?id=f0bbad0677edf58ba93d80a1e12ce458f7a80548&from=research.research-list) 流式每个token加一个分类头。未来创新点：实时内容修正、情景化个性化的安全策略、更轻量化、通过审核思维链主动预防
+    - [QwenLM/Qwen3Guard](https://github.com/QwenLM/Qwen3Guard)
+- [2025.04] [PolyGuard: A Multilingual Safety Moderation Tool for 17 Languages](https://arxiv.org/abs/2504.04377) 
 
 ## 1.5. 细分方向
 
