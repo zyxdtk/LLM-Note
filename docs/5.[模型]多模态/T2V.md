@@ -12,7 +12,7 @@
     - [jannerm/ddpo](https://github.com/jannerm/ddpo)
 - [2025.05] [DanceGRPO: Unleashing GRPO on Visual Generation](https://arxiv.org/html/2505.07818v1#S2)
 - [2023.06] [Controlling Text-to-Image Diffusion by Orthogonal Finetuning](https://arxiv.org/abs/2306.07280) oft 性能比lora差
-
+- [2022.10] [Flow Matching for Generative Modeling](https://arxiv.org/abs/2210.02747)
 
 ## World Model
 

@@ -2,6 +2,7 @@
 
 ## 数据清洗
 
+- [2025.04] [Meta-rater: A Multi-dimensional Data Selection Method for Pre-training Language Models](https://arxiv.org/abs/2504.14194) 四维质量评估（PRRC）; Meta-rater 方法训练多个代理小模型从多个维度打分，最后选出综合质量更高的数据。
 - [2024.02] [Clustering and Ranking: Diversity-preserved Instruction Selection through Expert-aligned Quality Estimation](https://arxiv.org/abs/2402.18191) 用rm对qa对打分然后排序。pca降维，kmeans聚类。
 - [2023.12] [What Makes Good Data for Alignment? A Comprehensive Study of Automatic Data Selection in Instruction Tuning](https://arxiv.org/abs/2312.15685) deita。complexity, quality, and diversity。用gpt来给指令和QA对打复杂度和质量分，用emb_sim来评估相似度。
     - [论文解读：如何自动选择SFT数据](https://zhuanlan.zhihu.com/p/690779419)

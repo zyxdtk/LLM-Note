@@ -141,7 +141,9 @@
 - [2025.10] [Qwen3Guard Technical Report](https://arxiv.org/abs/2510.14276)
     - [Qwen3Guard: 实时安全，逐词响应](https://qwen.ai/blog?id=f0bbad0677edf58ba93d80a1e12ce458f7a80548&from=research.research-list) 流式每个token加一个分类头。未来创新点：实时内容修正、情景化个性化的安全策略、更轻量化、通过审核思维链主动预防
     - [QwenLM/Qwen3Guard](https://github.com/QwenLM/Qwen3Guard)
-- [2025.04] [PolyGuard: A Multilingual Safety Moderation Tool for 17 Languages](https://arxiv.org/abs/2504.04377) 
+- [2025.04] [PolyGuard: A Multilingual Safety Moderation Tool for 17 Languages](https://arxiv.org/abs/2504.04377) 通过翻译构造多语言样本。191w训练、2.9w评估。
+- [2024.11] [ShieldLM: Empowering LLMs as Aligned, Customizable and Explainable Safety Detectors](https://arxiv.org/pdf/2402.16444) 14k样本，中英双语。三元label。定制规则。
+- [2024.08] [ShieldGemma: Generative AI Content Moderation Based on Gemma](https://arxiv.org/pdf/2407.21772) 有2B、9B、27B等模型，不过好像效果差异不大。clustermargin做主动学习。
 
 ## 1.5. 细分方向
 

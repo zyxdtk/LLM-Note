@@ -2,6 +2,8 @@
 
 ## 相关工作
 
+- [2025.11] [Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory]https://arxiv.org/abs/2511.20857)
+- [2025.08] [A SURVEY OF SELF-EVOLVING AGENTS: ON PATH TOARTIFICIAL SUPER INTELLIGENCE](https://arxiv.org/pdf/2507.21046)
 - [2025.03] [Why Do Multi-Agent LLM Systems Fail?](https://arxiv.org/abs/2503.13657)
     - [为什么多 Agent 系统总是失败？](https://zhuanlan.zhihu.com/p/1900953262250780260)
 - [2024.10] [AutoGLM: Autonomous Foundation Agents for GUIs](https://arxiv.org/pdf/2411.00820) 三个insight，中间接口设计、自进化的课程RL、策略分布漂移
