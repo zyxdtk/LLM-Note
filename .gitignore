@@ -1,4 +1,4 @@
 site/
 .vscode/
 .venv/
-src/notebook/excel.ipynb
+.ipynb

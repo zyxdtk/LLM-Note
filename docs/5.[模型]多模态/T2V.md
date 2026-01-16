@@ -3,6 +3,7 @@
 
 ## 文章
 
+- [2025.11] [RubricRL: Simple Generalizable Rewards for Text-to-Image Generation](https://arxiv.org/abs/2511.20651) 模型自动生成评分规则
 - [2025.10] [The Principles of Diffusion Models](https://arxiv.org/abs/2510.21890)
     - [扩散模型的基本原理](https://hjfy.top/arxiv/2510.21890)
 - [2025.06] [An Introduction to Flow Matching and Diffusion Models](https://arxiv.org/abs/2506.02070)

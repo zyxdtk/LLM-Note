@@ -2,7 +2,11 @@
 
 ## 相关工作
 
+- [2026.01] [When Single-Agent with Skills Replace Multi-Agent Systems
+and When They Fail](https://arxiv.org/pdf/2601.04748)
 - [2025.11] [Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory]https://arxiv.org/abs/2511.20857)
+- [2025.09] [The Landscape of Agentic Reinforcement Learning for LLMs: A Survey](https://arxiv.org/abs/2509.02547)
+- [2025.09] [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) anthropic，
 - [2025.08] [A SURVEY OF SELF-EVOLVING AGENTS: ON PATH TOARTIFICIAL SUPER INTELLIGENCE](https://arxiv.org/pdf/2507.21046)
 - [2025.03] [Why Do Multi-Agent LLM Systems Fail?](https://arxiv.org/abs/2503.13657)
     - [为什么多 Agent 系统总是失败？](https://zhuanlan.zhihu.com/p/1900953262250780260)
@@ -20,6 +24,14 @@
 - [2022.10] [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)  ReAct，Google，query、think、action、result。
     - [Agent的九种设计模式(图解+代码)](https://zhuanlan.zhihu.com/p/692971105)
     - [ysymyth/ReAct](https://github.com/ysymyth/ReAct)
+
+## 个性化
+
+- [2025.04] [ADAPT: Actively Discovering and Adapting to Preferences for any Task](https://arxiv.org/abs/2504.04040)
+
+## 记忆
+
+- [2025.12] [Nested Learning: The Illusion of Deep Learning Architecture](https://arxiv.org/pdf/2512.24695)
 
 ## 开源项目
 
