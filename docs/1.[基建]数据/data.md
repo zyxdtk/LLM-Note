@@ -1,5 +1,9 @@
 
 
+## 理论
+
+- [2026.01] [From Entropy to Epiplexity: Rethinking Information for Computationally Bounded Intelligence](https://arxiv.org/abs/2601.03220)
+
 ## 数据清洗
 
 - [2025.04] [Meta-rater: A Multi-dimensional Data Selection Method for Pre-training Language Models](https://arxiv.org/abs/2504.14194) 四维质量评估（PRRC）; Meta-rater 方法训练多个代理小模型从多个维度打分，最后选出综合质量更高的数据。
@@ -13,6 +17,7 @@
 ## 主动学习
 
 - [2024.05] [ActiveLLM: Large Language Model-based Active Learning for Textual Few-Shot Scenarios](https://arxiv.org/abs/2405.10808)
+
 
 
 

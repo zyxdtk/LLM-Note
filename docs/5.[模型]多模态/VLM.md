@@ -2,6 +2,7 @@
 
 ## 学习资料
 
+- [2025.05] [Pixel Reasoner: Incentivizing Pixel-Space Reasoning with Curiosity-Driven Reinforcement Learning](https://arxiv.org/abs/2505.15966)
 - [2025.05] [Thinking with Images for Multimodal Reasoning:Foundations, Methods, and Future Frontiers](https://arxiv.org/abs/2506.23918) 
 - [2025.05] [DeepEyes: Incentivizing "Thinking with Images" via Reinforcement Learning](https://arxiv.org/abs/2505.14362) 小红书，带图片cot，放大图片
 - [2024.08] [Multimodal Causal Reasoning Benchmark: Challenging Vision Large Language Models to Discern Causal Links Across Modalities](https://arxiv.org/abs/2408.08105)
@@ -33,7 +34,7 @@
 
 ### Qwen
 
-
+- [2025.11] [Qwen3-VL Technical Report](https://arxiv.org/pdf/2511.21631)
 - [2025.02] [Qwen2.5-VL Technical Report](https://arxiv.org/abs/2502.13923)
     - [QwenLM/Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL)
 - [2023.08] [Qwen-VL: A Versatile Vision-Language Model for Understanding, Localization, Text Reading, and Beyond](https://arxiv.org/abs/2308.12966)

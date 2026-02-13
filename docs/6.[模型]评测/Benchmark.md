@@ -7,6 +7,7 @@
   - [https://rank.opencompass.org.cn/home](https://rank.opencompass.org.cn/home)
 - [open-compass/VLMEvalKit](https://github.com/open-compass/VLMEvalKit)
 - [modelscope/evalscope](https://github.com/modelscope/evalscope)
+- [agi-eval](https://agi-eval.cn/topRanking)
 
 ## 综合基准
 - chatbot-arena 包括文本、t2i、web2dev、t2v、搜索、copilot等榜单。

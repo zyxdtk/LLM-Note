@@ -8,6 +8,7 @@ and When They Fail](https://arxiv.org/pdf/2601.04748)
 - [2025.09] [The Landscape of Agentic Reinforcement Learning for LLMs: A Survey](https://arxiv.org/abs/2509.02547)
 - [2025.09] [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) anthropic，
 - [2025.08] [A SURVEY OF SELF-EVOLVING AGENTS: ON PATH TOARTIFICIAL SUPER INTELLIGENCE](https://arxiv.org/pdf/2507.21046)
+- [2025.05] [Leveraging Dual Process Theory in Language Agent Framework for Real-time Simultaneous Human-AI Collaboration](https://arxiv.org/pdf/2502.11882)  system1和system2
 - [2025.03] [Why Do Multi-Agent LLM Systems Fail?](https://arxiv.org/abs/2503.13657)
     - [为什么多 Agent 系统总是失败？](https://zhuanlan.zhihu.com/p/1900953262250780260)
 - [2024.10] [AutoGLM: Autonomous Foundation Agents for GUIs](https://arxiv.org/pdf/2411.00820) 三个insight，中间接口设计、自进化的课程RL、策略分布漂移
