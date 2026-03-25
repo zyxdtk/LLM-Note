@@ -66,6 +66,7 @@
 
 #### 1.4.1.4. RL
 
+- [2026.03] [Efficient Exploration at Scale](https://arxiv.org/pdf/2603.17378)
 - [2025.08] [Part I: Tricks or Traps? A Deep Dive into RL for LLM Reasoning](https://arxiv.org/abs/2508.08221)
 - [2025.07] [Group Sequence Policy Optimization](https://arxiv.org/abs/2507.18071) 在序列级别做重要性采样
 - [2025.06] [RLPR: Extrapolating RLVR to General Domains without Verifiers](https://arxiv.org/abs/2506.18254)
