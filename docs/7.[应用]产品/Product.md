@@ -10,7 +10,6 @@
 # 2. 2C
 
 ## 2.1. 工具类
-
 - 导航
     - [toolify.ai](https://www.toolify.ai/) ai产品榜单，竞对社媒监听
     - [producthunt](https://www.producthunt.com/)
@@ -44,6 +43,14 @@
     - 飞书会议。自动生成会议纪要，体验很好。
 - 其他
     - [promptlayer](https://www.promptlayer.com/platform/prompt-management)
+
+### chatbox
+
+- [105k] [open-webui/open-webui](https://github.com/open-webui/open-webui)
+- [47k] [Mintplex-Labs/anything-llm](https://github.com/Mintplex-Labs/anything-llm)
+- [28k] [danny-avila/LibreChat](https://github.com/danny-avila/LibreChat)
+- [64k] [lobehub/lobe-chat](https://github.com/lobehub/lobe-chat)
+
 
 ### 2.1.1. ai搜索
 

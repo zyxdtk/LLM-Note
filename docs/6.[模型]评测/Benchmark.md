@@ -48,3 +48,7 @@
 - [2024.10] [MEGA-Bench: Scaling Multimodal Evaluation to over 500 Real-World Tasks](https://arxiv.org/abs/2410.10563) 505个任务，8186个样本。
     - [MEGA-Bench page](https://tiger-ai-lab.github.io/MEGA-Bench/)
     - [MEGA-Bench Leaderboard](https://huggingface.co/spaces/TIGER-Lab/MEGA-Bench)
+
+## 评估指标
+
+- [CodeBLEU: a Method for Automatic Evaluation of Code Synthesis](https://arxiv.org/abs/2009.10297)
