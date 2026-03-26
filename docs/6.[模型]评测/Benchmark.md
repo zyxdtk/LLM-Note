@@ -85,10 +85,9 @@
     - [MEGA-Bench page](https://tiger-ai-lab.github.io/MEGA-Bench/)
     - [MEGA-Bench Leaderboard](https://huggingface.co/spaces/TIGER-Lab/MEGA-Bench)
 
-
 ## 电商
 
-- [2025.05] [TransBench: Benchmarking Machine Translation for Industrial-Scale Applications](https://arxiv.org/abs/2505.14244) 评测体系中的数据集包含 “电商文化” 类别
+- [2025.05] [TransBench: Benchmarking Machine Translation for Industrial-Scale Applications](https://arxiv.org/abs/2505.14244) 评测体系中的数据集包含 "电商文化" 类别
     - [transbench](https://transbench.com/)
 - [2025.02] [ChineseEcomQA: A Scalable E-commerce Concept Evaluation Benchmark for Large Language Models](https://arxiv.org/pdf/2502.20196)
 - [2024.10] [Shopping MMLU: A Massive Multi-Task Online Shopping Benchmark for Large Language Models](https://arxiv.org/abs/2410.20745)
@@ -98,14 +97,15 @@
 - [2025.09] [MORABLES: A Benchmark for Assessing Abstract Moral Reasoning in LLMs with Fables](https://arxiv.org/abs/2509.12371) 道德推理能力。现在的大模型更多的还是记答案，并没有真的懂了。越大的模型越强，但是容易出现断章取义错误。ai容易自相矛盾。推理增强模型没有更好(应该是rl没有在这类人物上训练过)。ai不敢选都不对。
 - [2025.05] [FABLE: A Novel Data-Flow Analysis Benchmark on Procedural Text for Large Language Model Evaluation](https://arxiv.org/html/2505.24258v1) 评估模型在程序化的数据流上的推理能力：烹饪食谱、旅行路线和自动化计划。
 
-
 ## 安全
 
 - [2025.09] [detecting-and-reducing-scheming-in-ai-models](https://openai.com/index/detecting-and-reducing-scheming-in-ai-models/) 发现ai的阴谋
   - [Stress Testing Deliberative Alignment for Anti-Scheming Training](https://static1.squarespace.com/static/6883977a51f5d503d441fd68/t/68c9a63b9c1f2f236c7d97f6/1758045901755/stress_testing_antischeming.pdf)
 
-
 ## RAG
 
-- [2024.09] [Fact, Fetch, and Reason: A Unified Evaluation of Retrieval-Augmented Generation](https://arxiv.org/abs/2409.12941) 模型在没检索辅助时，答对率只有 0.408；就算给一些检索到的文章，答对率也只到 0.474；但如果给全所有需要的文章，答对率能到 0.729，不过就算这样，模型在算数字、处理表格这类推理题上还是容易错。“多步检索” 方法，让模型一步步生成搜索词、找文章、补全信息，再结合示例引导模型 “按步骤思考”，结果答对率提升到了 0.66，比最初提升了 50% 以上，很接近给全资料的理想状态。
+- [2024.09] [Fact, Fetch, and Reason: A Unified Evaluation of Retrieval-Augmented Generation](https://arxiv.org/abs/2409.12941) 模型在没检索辅助时，答对率只有 0.408；就算给一些检索到的文章，答对率也只到 0.474；但如果给全所有需要的文章，答对率能到 0.729，不过就算这样，模型在算数字、处理表格这类推理题上还是容易错。"多步检索" 方法，让模型一步步生成搜索词、找文章、补全信息，再结合示例引导模型 "按步骤思考"，结果答对率提升到了 0.66，比最初提升了 50% 以上，很接近给全资料的理想状态。
 
+## 评估指标
+
+- [CodeBLEU: a Method for Automatic Evaluation of Code Synthesis](https://arxiv.org/abs/2009.10297)
