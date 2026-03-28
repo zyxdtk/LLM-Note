@@ -12,6 +12,8 @@
 
 ### 1.2.1. 主流模型
 
+- [2026.02] [GLM-5: from Vibe Coding to Agentic Engineering](https://arxiv.org/abs/2602.15763) 智谱 AI，旨在将编程范式从 Vibe Coding 过渡到智能体工程
+- [2026.02] [CUDA Agent: Large-Scale Agentic RL for High-Performance CUDA Kernel Generation](https://arxiv.org/abs/2602.24286) 字节跳动 + 清华，自动生成高性能 CUDA 内核，在 KernelBench 基准测试上取得 SOTA 成绩
 - [2024.01] [DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence](https://arxiv.org/abs/2401.14196) deepseek
   - [DeepSeek Coder](https://github.com/deepseek-ai/DeepSeek-Coder) 
 - [2023.12] [Magicoder: Empowering Code Generation with OSS-Instruct](https://arxiv.org/abs/2312.02120) 从codebase中提取代码片段，用llm生成code任务，用llm生成solution。生成的prompt因为包含了代码片段，所以更多样。本质还是蒸馏strong2weak
