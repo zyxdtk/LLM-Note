@@ -2,8 +2,10 @@
 
 ## 相关工作
 
-- [2026.01] [When Single-Agent with Skills Replace Multi-Agent Systems
-and When They Fail](https://arxiv.org/pdf/2601.04748)
+- [2026.01] [Terminal-Bench: Benchmarking Agents on Hard, Realistic Tasks in Command Line Interfaces](https://arxiv.org/abs/2601.11868) Agent 在命令行环境的 benchmark
+- [2026.02] [SWE-Universe: Scale Real-World Verifiable Environments to Millions](https://arxiv.org/abs/2602.02361) 大规模真实世界可验证的软件开发环境
+- [2026.02] [GLM-5: from Vibe Coding to Agentic Engineering](https://arxiv.org/abs/2602.15763) 从 Vibe Coding 到智能体工程
+- [2026.01] [When Single-Agent with Skills Replace Multi-Agent Systems and When They Fail](https://arxiv.org/pdf/2601.04748)
 - [2025.11] [Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory]https://arxiv.org/abs/2511.20857)
 - [2025.09] [The Landscape of Agentic Reinforcement Learning for LLMs: A Survey](https://arxiv.org/abs/2509.02547)
 - [2025.09] [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) anthropic，

@@ -12,6 +12,7 @@
 
 ### 1.2.1. 主流模型
 
+- [2026.01] [Stable-DiffCoder: Pushing the Frontier of Code Diffusion Large Language Model](https://arxiv.org/abs/2601.15892) 代码扩散模型
 - [2024.01] [DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence](https://arxiv.org/abs/2401.14196) deepseek
   - [DeepSeek Coder](https://github.com/deepseek-ai/DeepSeek-Coder) 
 - [2023.12] [Magicoder: Empowering Code Generation with OSS-Instruct](https://arxiv.org/abs/2312.02120) 从codebase中提取代码片段，用llm生成code任务，用llm生成solution。生成的prompt因为包含了代码片段，所以更多样。本质还是蒸馏strong2weak
@@ -80,3 +81,16 @@
 - 代码补全
 - 代码修复
 - 代码理解
+## 1.7. 🎓 训练指南专题
+
+**完整教程**:
+1. [如何训练 SOTA 代码大模型](how-to-train-sota-code-llm.md) - 完整训练流程和技术细节
+2. [Code LLM 训练快速开始](code-llm-quickstart.md) - 30 分钟理解核心概念
+3. [Code LLM 关键论文阅读清单](code-llm-reading-list.md) - 精选 30 篇核心论文
+
+**核心论文**:
+- DeepSeek-Coder (2024) - 预训练最佳实践
+- WizardCoder (2023) - Evol-Instruct 指令进化
+- Magicoder (2023) - OSS-Instruct 开源指令生成
+- StarCoder2 (2024) - 多语言代码预训练
+- OpenCoder (2024) - 开源训练手册

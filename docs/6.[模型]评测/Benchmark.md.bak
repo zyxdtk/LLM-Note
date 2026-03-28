@@ -22,7 +22,6 @@
   - 代码生成 https://livecodebench.github.io/
   - 代码编辑 https://aider.chat/docs/leaderboards/
   - Agent编程 https://www.swebench.com/
-  - [2026.01] [Terminal-Bench: Benchmarking Agents on Hard, Realistic Tasks in Command Line Interfaces](https://arxiv.org/abs/2601.11868) Agent 在命令行环境的 benchmark
 - 事实
   - https://openai.com/index/introducing-simpleqa/   https://github.com/openai/simple-evals/
 - 图像理解 https://github.com/reka-ai/reka-vibe-eval
