@@ -2,3 +2,6 @@ site/
 .vscode/
 .venv/
 .ipynb
+.joycode/
+__pycache__/
+.trae/
