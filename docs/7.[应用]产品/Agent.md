@@ -25,4 +25,17 @@
 - [Perplexica](https://github.com/ItzCrazyKns/Perplexica) ai搜索引擎
 - [bytedance/deer-flow](https://github.com/bytedance/deer-flow)
 
+## 博弈游戏 Agent
+
+- [2024.01] [PokerLLM: Large Language Models Are Effective Decision-Makers for Poker](https://arxiv.org/abs/2401.06781) - 大模型作为扑克博弈决策者
+  - [pokerllm/pokerbench](https://github.com/pokerllm/pokerbench) - PokerLLM 评测基准框架
+  - [PokerLLM paper @ UT Austin](https://repositories.lib.utexas.edu/items/c5522380-e675-42fe-b327-3f36d960dbea)
+- 德州扑克相关项目
+  - [jfamestad/TexasHoldemAgents](https://github.com/jfamestad/TexasHoldemAgents) - 多种德州扑克 AI Agent 实现
+  - [bupticybee/AlphaNLHoldem](https://github.com/bupticybee/AlphaNLHoldem) - 德州扑克无限制 Hold'em Alpha 算法
+- 卡牌游戏强化学习
+  - [datamllab/rlcard-tutorial](https://github.com/datamllab/rlcard-tutorial) - RLCard 强化学习教程
+  - [datamllab/rlcard-showdown](https://github.com/datamllab/rlcard-showdown) - RLCard 卡牌游戏对战平台
+  - [datamllab/awesome-game-ai](https://github.com/datamllab/awesome-game-ai) - Game AI 资源精选合集
+
 
