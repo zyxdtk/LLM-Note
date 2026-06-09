@@ -113,6 +113,7 @@
 
 ### Prompt优化
 
+- [2026.03] [MemAPO: Generalizable Self-Evolving Memory for Automatic Prompt Optimization](https://arxiv.org/abs/2603.21520) 双记忆机制：将成功推理轨迹蒸馏为可复用策略模板，将错误生成组织为结构化错误模式。新prompt检索相关策略+错误模式来组合优化，通过迭代自反思和记忆编辑持续进化，无需每个任务从头开始
 - [2025.07] [GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning](https://arxiv.org/abs/2507.19457) UC伯克利&斯坦福。遗传式提示词进化+自然语言反思+帕累托候选选择。比GRPO高10%-20%，rollout减少35倍。比MIPROv2(DSPy优化器)高10%+
 - [2025.03] [DLPO: Towards a Robust, Efficient, and Generalizable Prompt Optimization Framework from a Deep-Learning Perspective](https://arxiv.org/abs/2503.13413) 从深度学习角度提出鲁棒、高效、可泛化的Prompt优化框架
 - [2024.10] [StablePrompt: Automatic Prompt Tuning using Reinforcement Learning for Large Language Models](https://arxiv.org/abs/2410.07652) 韩国科技院KAIST。achor model更新更慢，且只有在agent model提升超过阈值的时候才会更新。
