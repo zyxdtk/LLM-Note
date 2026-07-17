@@ -7,9 +7,9 @@ true_w = torch.tensor([[2.0], [3.0]])
 y = torch.matmul(x, true_w) + 5.0 + torch.randn(100, 1)
 
 class LinearRegressionModel(nn.Module):
-    def __init__(self):
+    def __init__(self, input_dim, output_dim):
         super(LinearRegressionModel, self).__init__()
-        self.linear = nn.Linear(2, 1)
+        self.linear = nn.Linear(input_dim, output_dim)
         
     def forward(self, x):
         return self.linear(x)

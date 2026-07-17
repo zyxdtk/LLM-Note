@@ -12,7 +12,7 @@ class QNetwork(nn.Module):
             nn.Linear(state_dim, 64),
             nn.ReLU(),
             nn.Linear(64, 64),
-            nn.ReLU,
+            nn.ReLU(),
             nn.Linear(64, action_dim)
         )
 
@@ -88,12 +88,15 @@ for e in range(100):
     for step in range(100):
         action = agent.choose_action(state)
         next_state = np.random.rand(state_dim)
-        reward = np.random.rand()
-        done = np.random.rand() < 0.1
+        reward = 1
+        done = True if step == 99 else False
         agent.memory.push(state, action, reward, next_state, done)
         agent.train_step()
         state = next_state
         total_reward += reward
         if done:
             break
+    if e % target_update_freq == 0:
+        agent.target_q_network.load_state_dict(agent.q_network.state_dict())
+    
     print(f"Episode {e}, Total Reward: {total_reward}")
