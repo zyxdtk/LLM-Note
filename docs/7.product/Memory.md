@@ -6,11 +6,22 @@
 
 ## 一、综述与概念框架
 
-- [2025.12] [Memory in the Age of AI Agents](https://arxiv.org/abs/2512.13564) 大规模综述。明确区分 agent memory 与 RAG、Context Engineering 的概念边界。从 forms（记忆形态）、functions（记忆功能）、dynamics（记忆动态）三维度分析。**理解 agent 记忆分类的入口论文**
+- [2025.12] [Memory in the Age of AI Agents](https://arxiv.org/abs/2512.13564) **最新最全综述**，46 位作者。三维框架：Forms（记忆形态：Token级/参数化/潜在）、Functions（记忆功能：事实型/经验型/工作型）、Dynamics（记忆动态：形成/演化/检索）。明确区分 agent memory 与 RAG、Context Engineering 的概念边界。开源 [论文列表](https://github.com/Shichun-Liu/Agent-Memory-Paper-List)
+- [2024.04] [大模型智能体记忆机制综述](https://arxiv.org/abs/2404.13501) 经典综述。参数化记忆 vs 上下文记忆。六大操作：巩固/更新/索引/遗忘/检索/压缩
 - [2025.05] [From Storage to Experience: A Survey on the Evolution of LLM Agent Memory Mechanisms](https://arxiv.org/abs/2605.06716) 记忆机制演进综述。从简单存储到经验学习
 - [2025.08] [A Survey of Self-Evolving Agents: On Path to Artificial Super Intelligence](https://arxiv.org/abs/2507.21046) 自进化 agent 综述
 - [2026.08] [The Horizon Gap: Planning, Memory, Execution, Training, and Evaluation for Long-Horizon LLM Agents](https://arxiv.org/abs/2608.06663) 长程 agent 的规划-记忆-执行-训练-评估全景
 - [2026.07] [Dynamic Agent Skills: A Lifecycle Survey and Taxonomy of Evolving Skill Libraries](https://arxiv.org/abs/2607.10113) 技能库生命周期综述：技能的创建、检索、演化、废弃
+
+### 两大流派
+
+| 维度 | 模型驱动派 | 应用驱动派 |
+|------|-----------|-----------|
+| 代表 | Memorizing Transformers, MemoryLLM, Titans, WISE | MemGPT, Mem0, Zep, MemOS, MIRIX |
+| 核心思路 | 改造模型内部结构 | 应用层记忆管理 |
+| 优势 | 性能上限高、读取效率高 | 落地快、易扩展、模型无关 |
+| 劣势 | 研发成本高、需重新训练 | 依赖底层模型、可能有延迟 |
+| 适合 | 算法创新 | 工程落地 |
 
 ### 记忆的分类（认知科学映射）
 
@@ -25,12 +36,33 @@
 
 ## 二、记忆架构与开源框架
 
-### 基础工作
+### 应用驱动：基础工作
 
-- [2023.10] [MemGPT: Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560) 将 LLM 视为操作系统，通过虚拟内存管理实现超出上下文窗口的记忆。主上下文 + 外部存储的分页机制。**开源为 [Letta](https://github.com/letta-ai/letta)**
-- [2025.01] [Zep: A Temporal Knowledge Graph Architecture for Agent Memory](https://arxiv.org/abs/2501.13956) 时序知识图谱记忆层。在 Deep Memory Retrieval 基准上超越 MemGPT。将对话提取为知识图谱三元组，支持时间推理
-- [2023.05] [Voyager: An Open-Ended Embodied Agent with Large Language Models](https://arxiv.org/abs/2305.16291) Minecraft 中的终身学习 agent。三大组件：自动课程、技能库、迭代提示。**技能库是程序记忆的典范**：agent 将成功的行为序列编码为可复用代码，存入技能库供后续调用
-- [2023.04] [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442) Stanford。记忆流 (Memory Stream) + 反思 (Reflection) + 规划。agent 记录观察→定期反思提炼→基于记忆规划行为。**情景记忆+反思机制的奠基工作**
+- [2023.04] [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442) Stanford。记忆流 (Memory Stream) + 反思 (Reflection) + 规划。检索三标准：Recency（新近性）、Importance（重要性）、Relevance（相关性）。**情景记忆+反思机制的奠基工作**
+- [2023.05] [Voyager: An Open-Ended Embodied Agent with Large Language Models](https://arxiv.org/abs/2305.16291) Minecraft 终身学习 agent。三大组件：自动课程、技能库、迭代提示。**技能库是程序记忆的典范**：agent 将成功行为序列编码为可复用代码，存入技能库供后续调用
+- [2023.10] [MemGPT: Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560) UC Berkeley。将 LLM 视为操作系统，虚拟内存管理：主上下文（Main Context）+ 外部存储（External Context），LLM 自主决定 swap in/out。分层：System Instructions / Working Context / FIFO。**开源为 [Letta](https://github.com/letta-ai/letta)**
+- [2023.05] [MemoryBank: Enhancing Large Language Models with Long-Term Memory](https://arxiv.org/abs/2305.10250) **遗忘曲线先驱**。三层存储：In-Depth Memory（详细对话+时间戳）、Hierarchical Event Summary（层次化摘要）、Dynamic Personality Understanding（用户个性动态评估）。借鉴艾宾浩斯遗忘曲线实现记忆遗忘
+- [2024.05] [HippoRAG: Neurobiologically Inspired Long-Term Memory](https://arxiv.org/abs/2405.14831) NeurIPS 2024。模拟人脑海马体：海马索引（Personalized PageRank）+ 新皮层存储（知识图谱）+ 模式分离。多跳问答超越传统 RAG 20%+
+- [2024.09] [A-MEM: Agentic Memory for LLM Agents](https://arxiv.org/abs/2409.09908) **卡片笔记法（Zettelkasten）**。每个记忆是知识卡片：原始内容+时间戳+关键词+标签+上下文+链接集合。通过链接建立记忆网络，LOCOMO 上优于 MemGPT 和 MemoryBank
+- [2025.01] [Zep: A Temporal Knowledge Graph Architecture for Agent Memory](https://arxiv.org/abs/2501.13956) 时序知识图谱记忆层。三层图结构：情境子图（Episodic）→ 语义子图（Semantic）→ 社区子图（Community）。记忆去重+时间边失效机制。DMR 基准上超越 MemGPT
+- [2025.04] [Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory](https://arxiv.org/abs/2504.19413) **生产级首选**。两种实现：Mem0（向量检索）和 Mem0-G（图增强）。记忆生成=上下文感知（当前问答+最近 M 条+会话 Summary），记忆更新=检索相似 N 条→LLM 判断增/改/删。冲突检测标记无效而非物理删除。LOCOMO 综合 SOTA
+- [2025.05] [MemOS: A Memory OS for AI System](https://arxiv.org/abs/2505.22101) 记忆张素（亿元天使轮）。**记忆操作系统**。三类记忆：纯文本（显式长期）、激活（隐式短期 KV-Cache）、参数（隐式长期）。动态转换：纯文本→激活（预生成 KV-Cache 降低 TTFT）、纯文本/激活→参数（蒸馏/LoRA 固化）、参数→纯文本（卸载过时知识）。统一抽象 MemCube，LOCOMO SOTA
+- [2025.07] [MIRIX: Multi-Agent Memory System for LLM-Based Agents](https://arxiv.org/abs/2507.07957) **多模块记忆**。借鉴人类记忆分工，6 个记忆组件+Multi-Agent 架构管理。元记忆管理器路由→对应记忆管理器→两阶段检索（粗检索摘要→详细搜索）
+- [2024.08] [MemLong: Memory-Augmented Retrieval for Long Context Modeling](https://arxiv.org/abs/2408.16967) 检索记忆模块+可控注意力，超长文本处理
+
+### 模型驱动：改造模型内部结构
+
+- [2022.03] [Memorizing Transformers](https://arxiv.org/abs/2203.08913) Google。**模型驱动开山之作**。首次在 Transformer 中引入外部记忆：每个 token 存入外部记忆库，推理时 KNN 检索相关历史，融合外部记忆和内部注意力
+- [2024.02] [MemoryLLM: Towards Self-Updatable Large Language Models](https://arxiv.org/abs/2402.04624) ICML 2024。每层 Transformer 插入可更新的 Memory Tokens：固定参数（预训练）+ Memory Tokens（可读写）。Read/Write Gates 控制更新，遗忘控制对抗灾难性遗忘
+- [2024.07] [Memory³: Language Modeling with Explicit Memory](https://arxiv.org/abs/2407.01178) 三层显式记忆：感知记忆（原始输入）→ 短期记忆（工作上下文）→ 长期记忆（知识存储），每层不同编码和检索策略
+- [2024.05] [WISE: Rethinking the Knowledge Memory for Lifelong Model Editing](https://arxiv.org/abs/2405.14768) 浙江大学。双参数体系：主记忆（预训练知识冻结）+ 侧记忆（后续编辑可更新）。避免灾难性遗忘。开源 [EasyEdit](https://github.com/zjunlp/EasyEdit)
+- [2024.12] [Titans: Learning to Memorize at Test Time](https://arxiv.org/abs/2501.00663) Google。**学习遗忘**。三个门控：存储门控（什么值得记）、遗忘门控（何时清理）、检索门控（调用哪些）。测试时学习（Test-Time Learning），Surprise 指标（梯度误差）决定新颖性。处理 2M+ 上下文
+
+### 认知架构与理论框架
+
+- [2023.09] [CoALA: Cognitive Architectures for Language Agents](https://arxiv.org/abs/2309.02427) 将 agent 记忆正式结构化为四类：Working Memory（工作记忆）、Episodic Memory（情景记忆）、Semantic Memory（语义记忆）、Procedural Memory（程序记忆）。**统一了所有论文的术语，理解 Agent 架构的通用蓝图**
+- [2024.04] [大模型智能体记忆机制综述](https://arxiv.org/abs/2404.13501) 经典综述。记忆分类：参数化记忆 vs 上下文记忆。六大操作：巩固（Consolidation）、更新（Update）、索引（Indexing）、遗忘（Forgetting）、检索（Retrieval）、压缩（Compression）。开源 [论文列表](https://github.com/nuster1128/LLM_Agent_Memory_Survey)
+- [多模态记忆综述](https://github.com/patrick-tssn/Awesome-Multimodal-Memory) 400+ 篇多模态记忆论文：视觉记忆、机器人记忆、多模态上下文建模
 
 ### 记忆架构创新
 
@@ -44,12 +76,14 @@
 
 ### 开源记忆框架
 
-| 框架 | 特点 | 仓库 |
-|------|------|------|
-| [mem0](https://github.com/mem0ai/mem0) | Agent 记忆层，支持提取、存储、检索 | 25k+ stars |
-| [Letta (MemGPT)](https://github.com/letta-ai/letta) | LLM as OS，虚拟内存分页 | 15k+ stars |
-| [Zep](https://github.com/getzep/zep) | 时序知识图谱记忆，长期记忆服务 | 3k+ stars |
-| [LangMem (LangChain)](https://github.com/langchain-ai/langmem) | LangChain 记忆工具，写入/修订/删除 | - |
+| 框架 | 核心隐喻 | 记忆类型 | 仓库 |
+|------|---------|---------|------|
+| [mem0](https://github.com/mem0ai/mem0) | 知识图谱 | 图增强记忆，增/改/删 pipeline | 29k+ stars |
+| [Letta (MemGPT)](https://github.com/letta-ai/letta) | 操作系统 | 分层（RAM/Disk），虚拟内存分页 | 22k+ stars |
+| [Zep](https://github.com/getzep/zep) | 时间图谱 | 时序知识图谱，自研 Graphiti 引擎 | 3k+ stars |
+| [MemOS](https://github.com/MemTensor/MemOS) | 记忆OS | 三类记忆动态转换，MemCube 统一抽象 | - |
+| [HippoRAG](https://github.com/OSU-NLP-Group/HippoRAG) | 海马体 | 神经生物学启发，PPR+知识图谱 | 1k+ stars |
+| [LangMem (LangChain)](https://github.com/langchain-ai/langmem) | - | 写入/修订/删除，与 LangGraph 集成 | - |
 
 ---
 
@@ -133,6 +167,15 @@
 ---
 
 ## 五、记忆评估基准
+
+### 主流基准
+
+- **LOCOMO** 长对话记忆评测。Mem0/MemGPT/Zep/A-MEM 等均在 LOCOMO 上对比。Mem0 综合 SOTA，MemOS SOTA
+- **LongMemEval** 企业级长期记忆评测。Zep 准确度提升 18.5%
+- **DMR Benchmark** 动态记忆检索评测。Zep 94.8% vs MemGPT 93.4%
+- **MemoryBench** 多任务记忆能力评测
+
+### 最新基准
 
 - [2025.11] [Evo-Memory](https://arxiv.org/abs/2511.20857) 自进化记忆基准：评估测试时学习
 - [2026.07] [Ground Truth First](https://arxiv.org/abs/2607.21962) 纵向评估工具：先有 ground truth 再生成对话，避免标签错误
