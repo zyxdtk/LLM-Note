@@ -5,15 +5,22 @@
 
 ---
 
+<script>
+  document.querySelectorAll('a[href^="http"]').forEach(a => {
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+  });
+</script>
+
 ## 1. Percy Liang 是谁
 
 - **职位**：Stanford 大学计算机科学教授（兼统计学），Gates 366
-- **创建**：Stanford CRFM（Center for Research on Foundation Models，基础模型研究中心）
-- **教学**：CS336 "Language Models from Scratch"（与 Tatsunori Hashimoto 共同授课）
-- **创建**：Marin（开放模型开发项目，marin.community）、CodaLab Worksheets（实验管理平台）
-- **关联**：Together AI（X 资料页标注）、Simile（创始人 Joon Sung Park 是他的博士生）
-- **X/Twitter**：@percyliang，1,327 posts，2009 年 10 月加入，Stanford CA
-- **主页**：https://cs.stanford.edu/~pliang/
+- **创建**：Stanford [CRFM](https://crfm.stanford.edu/)（Center for Research on Foundation Models，基础模型研究中心）
+- **教学**：[CS336](https://stanford-cs336.github.io/) "Language Models from Scratch"（与 Tatsunori Hashimoto 共同授课）
+- **创建**：Marin（开放模型开发项目，[marin.community](https://marin.community/)）、CodaLab Worksheets（实验管理平台）
+- **关联**：[Together AI](https://www.together.ai/)（X 资料页标注）、[Simile](https://simile.ai/)（创始人 Joon Sung Park 是他的博士生）
+- **X/Twitter**：[@percyliang](https://x.com/percyliang)，1,327 posts，2009 年 10 月加入，Stanford CA
+- **主页**：[https://cs.stanford.edu/~pliang/](https://cs.stanford.edu/~pliang/)
 
 ### 自述研究方向
 
@@ -34,24 +41,24 @@ Percy Liang 的工作横跨技术、评估、安全、政策和教育五个维�
 **论文**：On the Opportunities and Risks of Foundation Models
 **作者**：Rishi Bommasani, Drew Hudson, Ehsan Adeli, Russ Altman, Simran Arora, Sydney von Arx, ..., Percy Liang (100+ 作者)
 **时间**：2021.08
-**arXiv**：https://arxiv.org/abs/2108.07258
+**arXiv**：[https://arxiv.org/abs/2108.07258](https://arxiv.org/abs/2108.07258)
 
 这篇论文创造了"Foundation Model"这个术语，定义了"在广域数据上大规模训练、可适配多种下游任务的模型"这一范式。论文不是技术论文，而是一篇 200+ 页的立场文件，涵盖了技术基础、应用、社会影响三个维度。
 
 意义：在 GPT-3 之后、ChatGPT 之前，这篇论文给了整个领域一个概念框架。后来所有人讨论 GPT/Claude/Gemini 都在用他定义的术语。
 
 **后续衍生工作**：
-- Ecosystem Graphs (arXiv:2303.15772)：追踪基础模型的社会足迹——谁训练了模型、谁部署、谁依赖
-- Foundation Models and Fair Use (arXiv:2303.15715)：基础模型与版权合理使用
-- Picking on the Same Person (arXiv:2211.13972)：算法单一文化导致结果同质化
+- Ecosystem Graphs ([arXiv:2303.15772](https://arxiv.org/abs/2303.15772))：追踪基础模型的社会足迹——谁训练了模型、谁部署、谁依赖
+- Foundation Models and Fair Use ([arXiv:2303.15715](https://arxiv.org/abs/2303.15715))：基础模型与版权合理使用
+- Picking on the Same Person ([arXiv:2211.13972](https://arxiv.org/abs/2211.13972))：算法单一文化导致结果同质化
 
 ### 主线二：HELM — 最系统的大模型评估体系
 
 这是 Percy Liang 影响力最大的工程贡献。
 
-**原始 HELM**：Holistic Evaluation of Language Models
+**原始 HELM**：[Holistic Evaluation of Language Models](https://crfm.stanford.edu/helm/)
 **时间**：2022.11
-**arXiv**：https://arxiv.org/abs/2211.09110
+**arXiv**：[https://arxiv.org/abs/2211.09110](https://arxiv.org/abs/2211.09110)
 **作者**：Percy Liang, Rishi Bommasani, Tony Lee, Dimitris Tsipras, Dilara Soylu, Michihiro Yasunaga, et al.
 
 HELM 的核心理念：不只看模型在某个基准上的分数，而是"整体评估"——准确性、鲁棒性、公平性、偏见、毒性、效率等多维度。HELM 成为 2023-2024 年最权威的 LLM 排行榜之一。
@@ -70,27 +77,27 @@ HELM 的核心理念：不只看模型在某个基准上的分数，而是"整�
 
 **最新评估方向（2025-2026）**：
 
-- **UQ (Unsolved Questions)** (arXiv:2508.17580)：用"未解决的问题"做基准——题目必须对前沿模型有挑战性，同时反映真实世界用途
-- **HAL (Holistic Agent Leaderboard)** (arXiv:2510.11977)：Agent 评估缺少基础设施，HAL 填补这个空白
-- **BountyBench** (arXiv:2505.15216)：用真实网络安全系统评估 AI 攻防能力，以美元影响量化
-- **Best Practices for Agentic Benchmarks** (arXiv:2507.02825)：建立 Agent 基准的最佳实践
+- **UQ (Unsolved Questions)** ([arXiv:2508.17580](https://arxiv.org/abs/2508.17580))：用"未解决的问题"做基准——题目必须对前沿模型有挑战性，同时反映真实世界用途
+- **HAL (Holistic Agent Leaderboard)** ([arXiv:2510.11977](https://arxiv.org/abs/2510.11977))：Agent 评估缺少基础设施，HAL 填补这个空白
+- **BountyBench** ([arXiv:2505.15216](https://arxiv.org/abs/2505.15216))：用真实网络安全系统评估 AI 攻防能力，以美元影响量化
+- **Best Practices for Agentic Benchmarks** ([arXiv:2507.02825](https://arxiv.org/abs/2507.02825))：建立 Agent 基准的最佳实践
 
 ### 主线三：Foundation Model Transparency Index (FMTI) — 透明度运动
 
 **论文**：The Foundation Model Transparency Index
 **时间**：2023.10（首发），2024.07（年度更新），2025.12（最新）
-**arXiv**：https://arxiv.org/abs/2310.12941
+**arXiv**：[https://arxiv.org/abs/2310.12941](https://arxiv.org/abs/2310.12941)
 
 FMTI 是一个年度指数，给 OpenAI、Google、Anthropic、Meta 等基础模型开发商打"透明度分数"。评估维度包括：训练数据来源、模型架构、训练计算、评估方法、下游使用等。
 
 **系列论文**：
-- The Foundation Model Transparency Index (2023, arXiv:2310.12941)
-- Foundation Model Transparency Reports (2024.02, arXiv:2402.16268)
-- The 2024 Foundation Model Transparency Index (2024.07, arXiv:2407.12929)
-- The 2025 Foundation Model Transparency Index (2025.12, arXiv:2512.10169)
-- On the Societal Impact of Open Foundation Models (2024.02, arXiv:2403.07918)
-- Language model developers should report train-test overlap (2024.10, arXiv:2410.08385)
-- The Responsible Foundation Model Development Cheatsheet (2024.06, arXiv:2406.16746)
+- The Foundation Model Transparency Index (2023, [arXiv:2310.12941](https://arxiv.org/abs/2310.12941))
+- Foundation Model Transparency Reports (2024.02, [arXiv:2402.16268](https://arxiv.org/abs/2402.16268))
+- The 2024 Foundation Model Transparency Index (2024.07, [arXiv:2407.12929](https://arxiv.org/abs/2407.12929))
+- The 2025 Foundation Model Transparency Index (2025.12, [arXiv:2512.10169](https://arxiv.org/abs/2512.10169))
+- On the Societal Impact of Open Foundation Models (2024.02, [arXiv:2403.07918](https://arxiv.org/abs/2403.07918))
+- Language model developers should report train-test overlap (2024.10, [arXiv:2410.08385](https://arxiv.org/abs/2410.08385))
+- The Responsible Foundation Model Development Cheatsheet (2024.06, [arXiv:2406.16746](https://arxiv.org/abs/2406.16746))
 
 意义：这个指数直接影响了 AI 政策讨论。OpenAI、Google 等公司开始公开更多信息，部分原因是 FMTI 把不透明量化了。
 
@@ -99,46 +106,46 @@ FMTI 是一个年度指数，给 OpenAI、Google、Anthropic、Meta 等基础模
 这是 Percy Liang 近年最活跃的研究方向，直接关联当前 AI 法律争议。
 
 **记忆化提取系列**：
-- Extracting memorized pieces of (copyrighted) books from open-weight LLMs (2025.05, arXiv:2505.12546) — 从开源权重模型中提取受版权保护的书籍片段
-- Extracting books from production language models (2026.01, arXiv:2601.02671) — 从生产级模型中提取书籍
-- Extractable Memorization From First Principles (2026.07, arXiv:2607.12649) — 从第一性原理定义"可提取记忆化"
-- Estimating near-verbatim extraction risk (2026.03, arXiv:2603.24917) — 用解码约束束搜索估计近似逐字提取风险
-- Blackbox Model Provenance via Palimpsestic Membership Inference (2025.10, arXiv:2510.19796) — 通过"羊皮纸式"成员推断证明模型血缘
+- Extracting memorized pieces of (copyrighted) books from open-weight LLMs (2025.05, [arXiv:2505.12546](https://arxiv.org/abs/2505.12546)) — 从开源权重模型中提取受版权保护的书籍片段
+- Extracting books from production language models (2026.01, [arXiv:2601.02671](https://arxiv.org/abs/2601.02671)) — 从生产级模型中提取书籍
+- Extractable Memorization From First Principles (2026.07, [arXiv:2607.12649](https://arxiv.org/abs/2607.12649)) — 从第一性原理定义"可提取记忆化"
+- Estimating near-verbatim extraction risk (2026.03, [arXiv:2603.24917](https://arxiv.org/abs/2603.24917)) — 用解码约束束搜索估计近似逐字提取风险
+- Blackbox Model Provenance via Palimpsestic Membership Inference (2025.10, [arXiv:2510.19796](https://arxiv.org/abs/2510.19796)) — 通过"羊皮纸式"成员推断证明模型血缘
 
 **安全与缺陷报告**：
-- FLARE-AI: Flaw Reporting for AI (2026.06, arXiv:2606.31567) — 部署 AI 系统的缺陷报告框架
-- DelusionEval (2026.08, arXiv:2608.05004) — 测量 AI 聊天机器人的妄想关联行为
-- SpecEval (2025.09, arXiv:2509.02464) — 评估模型是否遵守自己发布的行为规范
-- AIR-Bench 2024 (2024.07, arXiv:2407.17436) — 基于法规和政策的安全基准
-- DTap (2026.05, arXiv:2605.04808) — Agent 红队测试平台
-- In-House Evaluation Is Not Enough (2025.03, arXiv:2503.16861) — 呼吁第三方缺陷披露
-- Auditing Prompt Caching (2025.02, arXiv:2502.07776) — Prompt 缓存引入时序侧信道风险
-- AILuminate v1.0 (2025.02, arXiv:2503.05731) — MLCommons 的 AI 风险与可靠性基准
-- AI Audits Under Constraints (2025.09, arXiv:2509.05627) — 资源约束下的 AI 审计 scaling law
+- FLARE-AI: Flaw Reporting for AI (2026.06, [arXiv:2606.31567](https://arxiv.org/abs/2606.31567)) — 部署 AI 系统的缺陷报告框架
+- DelusionEval (2026.08, [arXiv:2608.05004](https://arxiv.org/abs/2608.05004)) — 测量 AI 聊天机器人的妄想关联行为
+- SpecEval (2025.09, [arXiv:2509.02464](https://arxiv.org/abs/2509.02464)) — 评估模型是否遵守自己发布的行为规范
+- AIR-Bench 2024 (2024.07, [arXiv:2407.17436](https://arxiv.org/abs/2407.17436)) — 基于法规和政策的安全基准
+- DTap (2026.05, [arXiv:2605.04808](https://arxiv.org/abs/2605.04808)) — Agent 红队测试平台
+- In-House Evaluation Is Not Enough (2025.03, [arXiv:2503.16861](https://arxiv.org/abs/2503.16861)) — 呼吁第三方缺陷披露
+- Auditing Prompt Caching (2025.02, [arXiv:2502.07776](https://arxiv.org/abs/2502.07776)) — Prompt 缓存引入时序侧信道风险
+- AILuminate v1.0 (2025.02, [arXiv:2503.05731](https://arxiv.org/abs/2503.05731)) — MLCommons 的 AI 风险与可靠性基准
+- AI Audits Under Constraints (2025.09, [arXiv:2509.05627](https://arxiv.org/abs/2509.05627)) — 资源约束下的 AI 审计 scaling law
 
 ### 主线五：机器人 VLA 与 Agent
 
 Percy Liang 近两年在 Physical AI 方向也很活跃，主要与 Chelsea Finn 合作。
 
 **机器人/VLA**：
-- Fine-Tuning Vision-Language-Action Models (2025.02, arXiv:2502.19645) — VLA 微调的速度与成功率优化
-- RoboArena (2025.06, arXiv:2506.18123) — 分布式真实世界机器人策略评估
-- WorldGym (2025.06, arXiv:2506.00613) — 用世界模型做策略评估环境
-- RoboReward (2026.01, arXiv:2601.00675) — 通用视觉语言奖励模型
-- Cosmos Policy (2026.01, arXiv:2601.16163) — 微调视频模型做视觉运动控制
-- VLAW (2026.02, arXiv:2602.12063) — VLA 策略与世界模型迭代共提升
+- Fine-Tuning Vision-Language-Action Models (2025.02, [arXiv:2502.19645](https://arxiv.org/abs/2502.19645)) — VLA 微调的速度与成功率优化
+- RoboArena (2025.06, [arXiv:2506.18123](https://arxiv.org/abs/2506.18123)) — 分布式真实世界机器人策略评估
+- WorldGym (2025.06, [arXiv:2506.00613](https://arxiv.org/abs/2506.00613)) — 用世界模型做策略评估环境
+- RoboReward (2026.01, [arXiv:2601.00675](https://arxiv.org/abs/2601.00675)) — 通用视觉语言奖励模型
+- Cosmos Policy (2026.01, [arXiv:2601.16163](https://arxiv.org/abs/2601.16163)) — 微调视频模型做视觉运动控制
+- VLAW (2026.02, [arXiv:2602.12063](https://arxiv.org/abs/2602.12063)) — VLA 策略与世界模型迭代共提升
 
 **Agent（非物理）**：
-- Reinforcement Learning for MLE Agents (2025.09, arXiv:2509.01684) — 用 RL 让 ML 工程 Agent 从经验中学习
-- MLE-Dojo (2025.05, arXiv:2505.07782) — ML 工程 Agent 的 Gym 式训练环境
-- MLE-Smith (2025.10, arXiv:2510.07307) — 自动化多 Agent 管线扩展 MLE 任务
-- Comparing AI Agents to Cybersecurity Professionals (2025.12, arXiv:2512.09882) — AI Agent vs 人类安全专家的真实渗透测试对比
+- Reinforcement Learning for MLE Agents (2025.09, [arXiv:2509.01684](https://arxiv.org/abs/2509.01684)) — 用 RL 让 ML 工程 Agent 从经验中学习
+- MLE-Dojo (2025.05, [arXiv:2505.07782](https://arxiv.org/abs/2505.07782)) — ML 工程 Agent 的 Gym 式训练环境
+- MLE-Smith (2025.10, [arXiv:2510.07307](https://arxiv.org/abs/2510.07307)) — 自动化多 Agent 管线扩展 MLE 任务
+- Comparing AI Agents to Cybersecurity Professionals (2025.12, [arXiv:2512.09882](https://arxiv.org/abs/2512.09882)) — AI Agent vs 人类安全专家的真实渗透测试对比
 
 ---
 
 ## 3. Marin：激进开放的模型开发
 
-Percy Liang 创建了 Marin 项目（marin.community），践行他称为"激进开放"（radical openness）的模型开发理念。
+Percy Liang 创建了 Marin 项目（[marin.community](https://marin.community/)），践行他称为"激进开放"（radical openness）的模型开发理念。
 
 ### 核心理念
 
@@ -202,9 +209,9 @@ scaling ladder（用于调试和预测）：
 3. 535B-A23B（18.75T tokens）← hero run
 
 全部实时公开：
-- 数据构成：storage.googleapis.com/marin-public/...
-- 实时训练：wandb.ai/marin-community/marin_moe
-- 完整细节：github.com/marin-community/marin/issues/8435
+- 数据构成：[storage.googleapis.com/marin-public/...](https://storage.googleapis.com/marin-public/)
+- 实时训练：[wandb.ai/marin-community/marin_moe](https://wandb.ai/marin-community/marin_moe)
+- 完整细节：[github.com/marin-community/marin/issues/8435](https://github.com/marin-community/marin/issues/8435)
 
 ### 为什么重要
 
@@ -350,16 +357,16 @@ Percy Liang 创建并领导的 CRFM（Center for Research on Foundation Models�
 
 ### 训练技术
 
-- **Hyperball Optimizer** (2026.06, arXiv:2606.16899)：Muon 等矩阵优化器在大规模时收益缩小的分析与改进
-- **Synthetic Megadocs** (2026.03, arXiv:2603.18534)：用合成大文档做数据高效的预训练
-- **Replaying Pre-training Data** (2026.03, arXiv:2603.04964)：微调时回放预训练数据提升效果
-- **Self-Verified Distillation** (2026.05, arXiv:2605.26132)：模型用未标注 prompt 自我蒸馏，不需要外部教师
+- **Hyperball Optimizer** (2026.06, [arXiv:2606.16899](https://arxiv.org/abs/2606.16899))：Muon 等矩阵优化器在大规模时收益缩小的分析与改进
+- **Synthetic Megadocs** (2026.03, [arXiv:2603.18534](https://arxiv.org/abs/2603.18534))：用合成大文档做数据高效的预训练
+- **Replaying Pre-training Data** (2026.03, [arXiv:2603.04964](https://arxiv.org/abs/2603.04964))：微调时回放预训练数据提升效果
+- **Self-Verified Distillation** (2026.05, [arXiv:2605.26132](https://arxiv.org/abs/2605.26132))：模型用未标注 prompt 自我蒸馏，不需要外部教师
 
 ### 经济与社会
 
-- **Economic Evaluations** (2026.06, arXiv:2607.19375)：评估语言模型执行经济价值任务的能力
-- **Algorithmic Monocultures in Hiring** (2026.05, arXiv:2605.27371)：招聘算法单一文化的影响
-- **FLARE-AI** (2026.06, arXiv:2606.31567)：AI 缺陷报告生态系统
+- **Economic Evaluations** (2026.06, [arXiv:2607.19375](https://arxiv.org/abs/2607.19375))：评估语言模型执行经济价值任务的能力
+- **Algorithmic Monocultures in Hiring** (2026.05, [arXiv:2605.27371](https://arxiv.org/abs/2605.27371))：招聘算法单一文化的影响
+- **FLARE-AI** (2026.06, [arXiv:2606.31567](https://arxiv.org/abs/2606.31567))：AI 缺陷报告生态系统
 
 ---
 
@@ -386,10 +393,10 @@ Percy Liang 创建并领导的 CRFM（Center for Research on Foundation Models�
 
 ## 9. 与已有文档的交叉引用
 
-- **[ScalingLaws.md](../4.text-model/ScalingLaws.md)**：Percy Liang 的学生 Tanishq Kumar 是 "Scaling Laws for Precision"（arXiv:2411.04330）的第一作者，那篇论文正是我们 ScalingLaws.md 第 6 章的核心论文
+- **[ScalingLaws.md](../4.text-model/ScalingLaws.md)**：Percy Liang 的学生 Tanishq Kumar 是 "Scaling Laws for Precision"（[arXiv:2411.04330](https://arxiv.org/abs/2411.04330)）的第一作者，那篇论文正是我们 ScalingLaws.md 第 6 章的核心论文
 - **[AGI-Feynman.md](../8.tutorial/AGI-Feynman.md)**：Percy Liang 的"Foundation Model"定义和 FMTI 透明度运动，是 AGI 治理层面的重要工作
 - **[PhysicalAI-Feynman.md](../8.tutorial/PhysicalAI-Feynman.md)**：Percy Liang 近期在 VLA 方向的工作（VLAW/RoboReward/Cosmos Policy）与 Physical AI 直接相关
-- **[SelfEvolving.md](../7.product/SelfEvolving.md)**：Self-Verified Distillation（arXiv:2605.26132）是自进化方向的最新工作——模型只用未标注 prompt 自我提升
+- **[SelfEvolving.md](../7.product/SelfEvolving.md)**：Self-Verified Distillation（[arXiv:2605.26132](https://arxiv.org/abs/2605.26132)）是自进化方向的最新工作——模型只用未标注 prompt 自我提升
 
 ---
 
@@ -397,60 +404,60 @@ Percy Liang 创建并领导的 CRFM（Center for Research on Foundation Models�
 
 | # | 论文 | arXiv | 时间 | 方向 |
 |---|------|-------|------|------|
-| 1 | On the Opportunities and Risks of Foundation Models | 2108.07258 | 2021.08 | Foundation Model 定义 |
-| 2 | Holistic Evaluation of Language Models (HELM) | 2211.09110 | 2022.11 | 评估 |
-| 3 | Picking on the Same Person (Algorithmic Monoculture) | 2211.13972 | 2022.11 | 社会影响 |
-| 4 | Deep Bidirectional Language-Knowledge Graph Pretraining | 2210.09338 | 2022.10 | 技术 |
-| 5 | Ecosystem Graphs: The Social Footprint of Foundation Models | 2303.15772 | 2023.03 | 生态 |
-| 6 | Foundation Models and Fair Use | 2303.15715 | 2023.03 | 版权 |
-| 7 | FlexGen: High-Throughput LLM Inference | 2303.06865 | 2023.03 | 推理 |
-| 8 | Holistic Evaluation of Text-To-Image Models | 2311.04287 | 2023.11 | 评估 |
-| 9 | The Foundation Model Transparency Index (FMTI) | 2310.12941 | 2023.10 | 透明度 |
-| 10 | Designing and Interpreting Probes with Control Tasks | 1909.03368 | 2019.09 | 可解释性 |
-| 11 | Why Overparameterization Exacerbates Spurious Correlations | 2005.04345 | 2020.05 | 公平性 |
-| 12 | The 2024 Foundation Model Transparency Index | 2407.12929 | 2024.07 | 透明度 |
-| 13 | Foundation Model Transparency Reports | 2402.16268 | 2024.02 | 透明度 |
-| 14 | On the Societal Impact of Open Foundation Models | 2403.07918 | 2024.02 | 社会影响 |
-| 15 | The Responsible Foundation Model Development Cheatsheet | 2406.16746 | 2024.06 | 开发实践 |
-| 16 | AIR-Bench 2024: Safety Benchmark | 2407.17436 | 2024.07 | 安全 |
-| 17 | Language model developers should report train-test overlap | 2410.08385 | 2024.10 | 透明度 |
-| 18 | VHELM: Holistic Evaluation of Vision Language Models | 2410.07112 | 2024.10 | 评估 |
-| 19 | Image2Struct: Benchmarking Structure Extraction for VLMs | 2410.22456 | 2024.10 | 评估 |
-| 20 | Decentralized Training of Foundation Models | 2206.01288 | 2022.06 | 训练 |
-| 21 | Fine-Tuning Vision-Language-Action Models | 2502.19645 | 2025.02 | 机器人 |
-| 22 | Auditing Prompt Caching in Language Model APIs | 2502.07776 | 2025.02 | 安全 |
-| 23 | AILuminate: AI Risk and Reliability Benchmark | 2503.05731 | 2025.02 | 安全 |
-| 24 | In-House Evaluation Is Not Enough | 2503.16861 | 2025.03 | 安全 |
-| 25 | Reliable and Efficient Amortized Model-based Evaluation | 2503.13335 | 2025.03 | 评估 |
-| 26 | Extracting memorized pieces of (copyrighted) books | 2505.12546 | 2025.05 | 记忆化/版权 |
-| 27 | MLE-Dojo: Interactive Environments for LLM Agents | 2505.07782 | 2025.05 | Agent |
-| 28 | BountyBench: AI Agent Attackers and Defenders | 2505.15216 | 2025.05 | 安全 |
-| 29 | MedHELM: Holistic Evaluation for Medical Tasks | 2505.23802 | 2025.05 | 评估 |
-| 30 | RoboArena: Distributed Real-World Robot Evaluation | 2506.18123 | 2025.06 | 机器人 |
-| 31 | WorldGym: World Model as Environment for Policy Evaluation | 2506.00613 | 2025.06 | 机器人 |
-| 32 | Best Practices for Agentic Benchmarks | 2507.02825 | 2025.07 | 评估 |
-| 33 | UQ: Assessing Language Models on Unsolved Questions | 2508.17580 | 2025.08 | 评估 |
-| 34 | AHELM: Holistic Evaluation of Audio-Language Models | 2508.21376 | 2025.08 | 评估 |
-| 35 | SpecEval: Model Adherence to Behavior Specifications | 2509.02464 | 2025.09 | 安全 |
-| 36 | RL for Machine Learning Engineering Agents | 2509.01684 | 2025.09 | Agent |
-| 37 | AI Audits Under Resource Constraints | 2509.05627 | 2025.09 | 安全 |
-| 38 | HAL: Holistic Agent Leaderboard | 2510.11977 | 2025.10 | 评估 |
-| 39 | MLE-Smith: Scaling MLE Tasks | 2510.07307 | 2025.10 | Agent |
-| 40 | Blackbox Model Provenance | 2510.19796 | 2025.10 | 记忆化 |
-| 41 | Comparing AI Agents to Cybersecurity Professionals | 2512.09882 | 2025.12 | 安全 |
-| 42 | The 2025 Foundation Model Transparency Index | 2512.10169 | 2025.12 | 透明度 |
-| 43 | Self-Verified Distillation | 2605.26132 | 2026.05 | 训练 |
-| 44 | Algorithmic Monocultures in Hiring | 2605.27371 | 2026.05 | 社会影响 |
-| 45 | DTap: Red-Teaming Platform for AI Agents | 2605.04808 | 2026.05 | 安全 |
-| 46 | FLARE-AI: Flaw Reporting for AI | 2606.31567 | 2026.06 | 安全 |
-| 47 | Hyperball Optimizer | 2606.16899 | 2026.06 | 训练 |
-| 48 | Economic Evaluations of Language Models | 2607.19375 | 2026.06 | 评估 |
-| 49 | Extractable Memorization From First Principles | 2607.12649 | 2026.07 | 记忆化 |
-| 50 | DelusionEval: Measuring Delusion-Linked Behaviors | 2608.05004 | 2026.08 | 安全 |
-| 51 | Extracting books from production language models | 2601.02671 | 2026.01 | 记忆化/版权 |
-| 52 | Estimating near-verbatim extraction risk | 2603.24917 | 2026.03 | 记忆化 |
-| 53 | Synthetic Megadocs for Pre-training | 2603.18534 | 2026.03 | 训练 |
-| 54 | Replaying pre-training data improves fine-tuning | 2603.04964 | 2026.03 | 训练 |
-| 55 | VLAW: VLA Policy and World Model Co-Improvement | 2602.12063 | 2026.02 | 机器人 |
-| 56 | Cosmos Policy: Fine-Tuning Video Models for Robotics | 2601.16163 | 2026.01 | 机器人 |
-| 57 | RoboReward: Vision-Language Reward Models for Robotics | 2601.00675 | 2026.01 | 机器人 |
+| 1 | On the Opportunities and Risks of Foundation Models | [2108.07258](https://arxiv.org/abs/2108.07258) | 2021.08 | Foundation Model 定义 |
+| 2 | Holistic Evaluation of Language Models (HELM) | [2211.09110](https://arxiv.org/abs/2211.09110) | 2022.11 | 评估 |
+| 3 | Picking on the Same Person (Algorithmic Monoculture) | [2211.13972](https://arxiv.org/abs/2211.13972) | 2022.11 | 社会影响 |
+| 4 | Deep Bidirectional Language-Knowledge Graph Pretraining | [2210.09338](https://arxiv.org/abs/2210.09338) | 2022.10 | 技术 |
+| 5 | Ecosystem Graphs: The Social Footprint of Foundation Models | [2303.15772](https://arxiv.org/abs/2303.15772) | 2023.03 | 生态 |
+| 6 | Foundation Models and Fair Use | [2303.15715](https://arxiv.org/abs/2303.15715) | 2023.03 | 版权 |
+| 7 | FlexGen: High-Throughput LLM Inference | [2303.06865](https://arxiv.org/abs/2303.06865) | 2023.03 | 推理 |
+| 8 | Holistic Evaluation of Text-To-Image Models | [2311.04287](https://arxiv.org/abs/2311.04287) | 2023.11 | 评估 |
+| 9 | The Foundation Model Transparency Index (FMTI) | [2310.12941](https://arxiv.org/abs/2310.12941) | 2023.10 | 透明度 |
+| 10 | Designing and Interpreting Probes with Control Tasks | [1909.03368](https://arxiv.org/abs/1909.03368) | 2019.09 | 可解释性 |
+| 11 | Why Overparameterization Exacerbates Spurious Correlations | [2005.04345](https://arxiv.org/abs/2005.04345) | 2020.05 | 公平性 |
+| 12 | The 2024 Foundation Model Transparency Index | [2407.12929](https://arxiv.org/abs/2407.12929) | 2024.07 | 透明度 |
+| 13 | Foundation Model Transparency Reports | [2402.16268](https://arxiv.org/abs/2402.16268) | 2024.02 | 透明度 |
+| 14 | On the Societal Impact of Open Foundation Models | [2403.07918](https://arxiv.org/abs/2403.07918) | 2024.02 | 社会影响 |
+| 15 | The Responsible Foundation Model Development Cheatsheet | [2406.16746](https://arxiv.org/abs/2406.16746) | 2024.06 | 开发实践 |
+| 16 | AIR-Bench 2024: Safety Benchmark | [2407.17436](https://arxiv.org/abs/2407.17436) | 2024.07 | 安全 |
+| 17 | Language model developers should report train-test overlap | [2410.08385](https://arxiv.org/abs/2410.08385) | 2024.10 | 透明度 |
+| 18 | VHELM: Holistic Evaluation of Vision Language Models | [2410.07112](https://arxiv.org/abs/2410.07112) | 2024.10 | 评估 |
+| 19 | Image2Struct: Benchmarking Structure Extraction for VLMs | [2410.22456](https://arxiv.org/abs/2410.22456) | 2024.10 | 评估 |
+| 20 | Decentralized Training of Foundation Models | [2206.01288](https://arxiv.org/abs/2206.01288) | 2022.06 | 训练 |
+| 21 | Fine-Tuning Vision-Language-Action Models | [2502.19645](https://arxiv.org/abs/2502.19645) | 2025.02 | 机器人 |
+| 22 | Auditing Prompt Caching in Language Model APIs | [2502.07776](https://arxiv.org/abs/2502.07776) | 2025.02 | 安全 |
+| 23 | AILuminate: AI Risk and Reliability Benchmark | [2503.05731](https://arxiv.org/abs/2503.05731) | 2025.02 | 安全 |
+| 24 | In-House Evaluation Is Not Enough | [2503.16861](https://arxiv.org/abs/2503.16861) | 2025.03 | 安全 |
+| 25 | Reliable and Efficient Amortized Model-based Evaluation | [2503.13335](https://arxiv.org/abs/2503.13335) | 2025.03 | 评估 |
+| 26 | Extracting memorized pieces of (copyrighted) books | [2505.12546](https://arxiv.org/abs/2505.12546) | 2025.05 | 记忆化/版权 |
+| 27 | MLE-Dojo: Interactive Environments for LLM Agents | [2505.07782](https://arxiv.org/abs/2505.07782) | 2025.05 | Agent |
+| 28 | BountyBench: AI Agent Attackers and Defenders | [2505.15216](https://arxiv.org/abs/2505.15216) | 2025.05 | 安全 |
+| 29 | MedHELM: Holistic Evaluation for Medical Tasks | [2505.23802](https://arxiv.org/abs/2505.23802) | 2025.05 | 评估 |
+| 30 | RoboArena: Distributed Real-World Robot Evaluation | [2506.18123](https://arxiv.org/abs/2506.18123) | 2025.06 | 机器人 |
+| 31 | WorldGym: World Model as Environment for Policy Evaluation | [2506.00613](https://arxiv.org/abs/2506.00613) | 2025.06 | 机器人 |
+| 32 | Best Practices for Agentic Benchmarks | [2507.02825](https://arxiv.org/abs/2507.02825) | 2025.07 | 评估 |
+| 33 | UQ: Assessing Language Models on Unsolved Questions | [2508.17580](https://arxiv.org/abs/2508.17580) | 2025.08 | 评估 |
+| 34 | AHELM: Holistic Evaluation of Audio-Language Models | [2508.21376](https://arxiv.org/abs/2508.21376) | 2025.08 | 评估 |
+| 35 | SpecEval: Model Adherence to Behavior Specifications | [2509.02464](https://arxiv.org/abs/2509.02464) | 2025.09 | 安全 |
+| 36 | RL for Machine Learning Engineering Agents | [2509.01684](https://arxiv.org/abs/2509.01684) | 2025.09 | Agent |
+| 37 | AI Audits Under Resource Constraints | [2509.05627](https://arxiv.org/abs/2509.05627) | 2025.09 | 安全 |
+| 38 | HAL: Holistic Agent Leaderboard | [2510.11977](https://arxiv.org/abs/2510.11977) | 2025.10 | 评估 |
+| 39 | MLE-Smith: Scaling MLE Tasks | [2510.07307](https://arxiv.org/abs/2510.07307) | 2025.10 | Agent |
+| 40 | Blackbox Model Provenance | [2510.19796](https://arxiv.org/abs/2510.19796) | 2025.10 | 记忆化 |
+| 41 | Comparing AI Agents to Cybersecurity Professionals | [2512.09882](https://arxiv.org/abs/2512.09882) | 2025.12 | 安全 |
+| 42 | The 2025 Foundation Model Transparency Index | [2512.10169](https://arxiv.org/abs/2512.10169) | 2025.12 | 透明度 |
+| 43 | Self-Verified Distillation | [2605.26132](https://arxiv.org/abs/2605.26132) | 2026.05 | 训练 |
+| 44 | Algorithmic Monocultures in Hiring | [2605.27371](https://arxiv.org/abs/2605.27371) | 2026.05 | 社会影响 |
+| 45 | DTap: Red-Teaming Platform for AI Agents | [2605.04808](https://arxiv.org/abs/2605.04808) | 2026.05 | 安全 |
+| 46 | FLARE-AI: Flaw Reporting for AI | [2606.31567](https://arxiv.org/abs/2606.31567) | 2026.06 | 安全 |
+| 47 | Hyperball Optimizer | [2606.16899](https://arxiv.org/abs/2606.16899) | 2026.06 | 训练 |
+| 48 | Economic Evaluations of Language Models | [2607.19375](https://arxiv.org/abs/2607.19375) | 2026.06 | 评估 |
+| 49 | Extractable Memorization From First Principles | [2607.12649](https://arxiv.org/abs/2607.12649) | 2026.07 | 记忆化 |
+| 50 | DelusionEval: Measuring Delusion-Linked Behaviors | [2608.05004](https://arxiv.org/abs/2608.05004) | 2026.08 | 安全 |
+| 51 | Extracting books from production language models | [2601.02671](https://arxiv.org/abs/2601.02671) | 2026.01 | 记忆化/版权 |
+| 52 | Estimating near-verbatim extraction risk | [2603.24917](https://arxiv.org/abs/2603.24917) | 2026.03 | 记忆化 |
+| 53 | Synthetic Megadocs for Pre-training | [2603.18534](https://arxiv.org/abs/2603.18534) | 2026.03 | 训练 |
+| 54 | Replaying pre-training data improves fine-tuning | [2603.04964](https://arxiv.org/abs/2603.04964) | 2026.03 | 训练 |
+| 55 | VLAW: VLA Policy and World Model Co-Improvement | [2602.12063](https://arxiv.org/abs/2602.12063) | 2026.02 | 机器人 |
+| 56 | Cosmos Policy: Fine-Tuning Video Models for Robotics | [2601.16163](https://arxiv.org/abs/2601.16163) | 2026.01 | 机器人 |
+| 57 | RoboReward: Vision-Language Reward Models for Robotics | [2601.00675](https://arxiv.org/abs/2601.00675) | 2026.01 | 机器人 |
