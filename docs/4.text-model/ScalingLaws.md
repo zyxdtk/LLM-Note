@@ -539,7 +539,7 @@ Pre-training data ──→ Base model size ──→ Compute/forward pass
 
 - **AGI-Feynman.md**：唐杰的论点与 AGI 五条路线中的"经验驱动 RL"直接对应。Post-training scaling 本质是用 RL 让模型在环境中积累经验，不靠加参数。
 - **TTT-Feynman.md**：Test-time scaling（推理时多采样/搜索）与 TTT（测试时训练）不同但相关。前者不改参数，后者改参数。Roberts 的 T² scaling law 连接了两者。
-- **SSI-Ilya.md**：Ilya 从 Scale 转向持续学习。唐杰的推文从另一个角度验证了这个转向：Scale 的参数维度到阈值了，新维度是 post-training。
+- **[SSI-Ilya.md](../9.people/SSI-Ilya.md)**：Ilya 从 Scale 转向持续学习。唐杰的推文从另一个角度验证了这个转向：Scale 的参数维度到阈值了，新维度是 post-training。
 - **PostTraining.md**（4.text-model/）：本文可与已有的 post-training 文档互补，前者聚焦技术方法，本文聚焦 scaling law 演进。
 
 ---

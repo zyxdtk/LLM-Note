@@ -2,7 +2,7 @@
 
 > 本文档用费曼学习法组织——用最简单的话把概念讲清楚，有推理过程、有类比、有逻辑链。
 > 配套论文索引见 [PhysicalAI.md](../5.multimodal/PhysicalAI.md)
-> 配套访谈记录见 [Cosmos-Interview.md](../5.multimodal/Cosmos-Interview.md)
+> 配套访谈记录见 [Cosmos-Interview.md](../9.people/Cosmos-Interview.md)
 
 ---
 
@@ -505,6 +505,6 @@ Physical AI Agent 完整技术栈
 
 - [PhysicalAI.md](../5.multimodal/PhysicalAI.md) — Physical AI Agent 论文索引（202 篇+）
 - [VLA.md](../5.multimodal/VLA.md) — VLA 模型论文索引
-- [Cosmos-Interview.md](../5.multimodal/Cosmos-Interview.md) — 英伟达研究副总裁刘洺堉访谈记录
+- [Cosmos-Interview.md](../9.people/Cosmos-Interview.md) — 英伟达研究副总裁刘洺堉访谈记录
 - [TTT.md](../4.text-model/TTT.md) — 测试时训练（TTT layers 与世界模型的关系）
 - [LongContext.md](../4.text-model/LongContext.md) — 长上下文注意力优化

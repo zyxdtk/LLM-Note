@@ -215,6 +215,6 @@ AGI 是一个能持续学习、有世界模型、能自主设定目标的系统�
 - [TTT.md](../4.text-model/TTT.md) — 测试时训练（持续学习的技术路径）
 - [SelfEvolving.md](../7.product/SelfEvolving.md) — 自进化 Agent（RSI 路径）
 - [PhysicalAI-Feynman.md](./PhysicalAI-Feynman.md) — Physical AI 费曼学习笔记
-- [PhysicalAI-Landscape.md](../5.multimodal/PhysicalAI-Landscape.md) — Physical AI 全景
-- [Cosmos-Interview.md](../5.multimodal/Cosmos-Interview.md) — 英伟达刘洺堉访谈
+- [PhysicalAI-Landscape.md](../9.people/PhysicalAI-Landscape.md) — Physical AI 全景
+- [Cosmos-Interview.md](../9.people/Cosmos-Interview.md) — 英伟达刘洺堉访谈
 - [LongContext.md](../4.text-model/LongContext.md) — 长上下文注意力优化

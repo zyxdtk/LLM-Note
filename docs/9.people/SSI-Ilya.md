@@ -2,7 +2,7 @@
 
 > Ilya 离开 OpenAI 后创立 SSI（Safe Superintelligence），核心方向是 TTT（测试时训练）。
 > 本文整理公开信息并分析其与 AGI 路线、TTT、NVIDIA 战略的关系。
-> 配套文档：[AGI-Feynman.md](./AGI-Feynman.md)、[TTT-Feynman.md](./TTT-Feynman.md)、[PhysicalAI-Landscape.md](../5.multimodal/PhysicalAI-Landscape.md)
+> 配套文档：[AGI-Feynman.md](../8.tutorial/AGI-Feynman.md)、[TTT-Feynman.md](../8.tutorial/TTT-Feynman.md)、[PhysicalAI-Landscape.md](./PhysicalAI-Landscape.md)
 
 ---
 
@@ -220,8 +220,8 @@ Ilya（SSI）：AGI 缺持续学习
 
 ## 延伸阅读
 
-- [AGI-Feynman.md](./AGI-Feynman.md) — AGI 三缺失与五条路线
-- [TTT-Feynman.md](./TTT-Feynman.md) — TTT 数学本质、三流派、Titans 记忆、开放问题
+- [AGI-Feynman.md](../8.tutorial/AGI-Feynman.md) — AGI 三缺失与五条路线
+- [TTT-Feynman.md](../8.tutorial/TTT-Feynman.md) — TTT 数学本质、三流派、Titans 记忆、开放问题
 - [TTT.md](../4.text-model/TTT.md) — TTT 论文索引
-- [PhysicalAI-Landscape.md](../5.multimodal/PhysicalAI-Landscape.md) — Physical AI 全景（含 NVIDIA 战略）
+- [PhysicalAI-Landscape.md](./PhysicalAI-Landscape.md) — Physical AI 全景（含 NVIDIA 战略）
 - [SelfEvolving.md](../7.product/SelfEvolving.md) — 自进化 Agent（RSI 路径）

@@ -759,5 +759,5 @@ LLM 研究者懂 Transformer、懂训练、懂 inference 优化。但通常缺�
 
 - [PhysicalAI-Feynman.md](../8.tutorial/PhysicalAI-Feynman.md) — 费曼学习笔记
 - [PhysicalAI.md](../5.multimodal/PhysicalAI.md) — 论文索引
-- [Cosmos-Interview.md](../5.multimodal/Cosmos-Interview.md) — 英伟达刘洺堉访谈
+- [Cosmos-Interview.md](./Cosmos-Interview.md) — 英伟达刘洺堉访谈
 - [SelfEvolving.md](../7.product/SelfEvolving.md) — 自进化 Agent（含 Sakana AI / Darwin Gödel Machine）
