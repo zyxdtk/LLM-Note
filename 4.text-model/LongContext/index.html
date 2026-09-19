@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>LongContext - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "LongContext";
+        var mkdocs_page_input_path = "4.text-model/LongContext.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">LongContext</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">综述</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1m">厂商注意力优化方案（1M+ 上下文）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#deepseekmla_dsa_csahca">DeepSeek：MLA → DSA → CSA+HCA</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kimi_moonshot_aimoba_kimi_linear_kda_k3">Kimi (Moonshot AI)：MoBA → Kimi Linear → KDA (K3)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#minimaxlightning_attention_msa_m3">MiniMax：Lightning Attention → MSA (M3)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#qwen">Qwen (阿里)：标准注意力 + 工程优化</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#meta_llama_410m">Meta Llama 4：10M 上下文</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#glm_mladsa_glm-552">智谱 GLM：标准注意力 → MLA+DSA (GLM-5/5.2)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#google_gemini2m">Google Gemini：2M 上下文</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mistral">Mistral：滑动窗口注意力</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">厂商方案对比</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">注意力机制优化：学术论文</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#sparse_attention">稀疏注意力 (Sparse Attention)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_4">基础工作</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">最新进展</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_6">分布式稀疏注意力工程</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#transformer">线性注意力与非 Transformer 架构</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ssm_state_space_model">SSM (State Space Model)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#rnn">RNN 架构</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#transformer_1">线性 Transformer</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kv_cache">KV Cache 压缩与管理</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#eviction">驱逐策略 (Eviction)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#quantization">量化 (Quantization)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2025-2026">最新趋势 (2025-2026)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">分布式注意力计算</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">混合架构</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">位置编码扩展</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">记忆与推理增强</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">记忆模块</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">情景记忆</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_13">多记忆系统</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_14">评估与基准测试</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#10m">10M 级别</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#token">百万 token 级别</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rag">RAG 与长上下文</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_15">应用场景</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">4.text model</li>
+      <li class="breadcrumb-item active">LongContext</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="long_context">长上下文 (Long Context)<a class="headerlink" href="#long_context" title="Permanent link">#</a></h2>
+<blockquote>
+<p>10M token 上下文 ≈ 700万汉字 / 32MB 文本。研究方向：架构创新、记忆机制、评估基准。</p>
+</blockquote>
+<h3 id="_1">综述<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<ul>
+<li>[2025.03] <a href="https://arxiv.org/abs/2503.13299">A Survey on Transformer Context Extension: Approaches and Evaluation</a> 长上下文扩展方法与评估综述</li>
+</ul>
+<hr />
+<h3 id="1m">厂商注意力优化方案（1M+ 上下文）<a class="headerlink" href="#1m" title="Permanent link">#</a></h3>
+<blockquote>
+<p>聚焦各厂商在百万 token 上下文场景下对注意力机制的具体优化。核心问题：标准注意力 O(n²) 复杂度在 1M 长度下不可行，需要架构级创新。</p>
+</blockquote>
+<h4 id="deepseekmla_dsa_csahca">DeepSeek：MLA → DSA → CSA+HCA<a class="headerlink" href="#deepseekmla_dsa_csahca" title="Permanent link">#</a></h4>
+<p>DeepSeek 在注意力优化上经历了三代演进，是目前最系统的长上下文注意力优化路线。</p>
+<p><strong>第一代：MLA (Multi-head Latent Attention)</strong> — DeepSeek-V2/V3</p>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2412.19437">DeepSeek-V3 Technical Report</a>（2024.12）</li>
+<li>原理：将 Key 和 Value 压缩到低秩潜在空间（latent space），推理时只需缓存压缩后的潜在向量，而非完整的 KV pair。解码时通过上投影矩阵重建 KV</li>
+<li>效果：KV cache 减少约 93%（相比标准 MHA），大幅降低长上下文的显存压力</li>
+<li>上下文：128K（V3）</li>
+</ul>
+<p><strong>第二代：DSA (DeepSeek Sparse Attention)</strong> — DeepSeek-V3.2</p>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2512.02556">DeepSeek-V3.2</a>（2025.12）</li>
+<li>原理：稀疏注意力机制，在保持模型性能的前提下大幅降低长上下文场景的计算复杂度</li>
+<li>意义：V3.2 是 V3 到 V4 的过渡，DSA 为 V4 的 CSA+HCA 混合注意力奠定了基础</li>
+</ul>
+<p><strong>第三代：CSA + HCA 混合注意力</strong> — DeepSeek-V4</p>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2606.19348">DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence</a>（2026.04）</li>
+<li>上下文：1M（标准），Pro 1.6T 参数 / 49B 激活，Flash 284B / 13B 激活</li>
+<li>CSA (Compressed Sparse Attention)：沿序列维度压缩 KV cache，然后在压缩后的 KV 上执行 DSA。两层压缩降低计算量</li>
+<li>HCA (Heavily Compressed Attention)：比 CSA 更激进的 KV 压缩，但保持 dense attention（不做稀疏选择）。适合需要全局信息的层</li>
+<li>混合策略：不同层使用不同注意力类型，CSA 和 HCA 交替部署，平衡效率和表达力</li>
+<li>效果：1M token 设置下，单 token 推理 FLOPs 仅为 V3.2 的 27%，KV cache 仅为 10%</li>
+<li>其他优化：FP4 量化感知训练（MoE 权重 + CSA 索引器 QK 路径），Muon 优化器</li>
+</ul>
+<h4 id="kimi_moonshot_aimoba_kimi_linear_kda_k3">Kimi (Moonshot AI)：MoBA → Kimi Linear → KDA (K3)<a class="headerlink" href="#kimi_moonshot_aimoba_kimi_linear_kda_k3" title="Permanent link">#</a></h4>
+<p>三代演进：块级稀疏注意力 → 线性注意力 → Delta Attention。</p>
+<p><strong>MoBA (Mixture of Block Attention)</strong> — K2 时代</p>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2502.13189">MoBA: Mixture of Block Attention for Long-Context LLMs</a>（2025.02）</li>
+<li>原理：将上下文划分为块（block），借鉴 MoE 思想，通过门控机制动态选择每个 query 需要关注哪些块。无参数的块级稀疏注意力，可根据序列长度自适应调整稀疏度</li>
+<li>特点：可在全注意力和稀疏注意力之间无缝切换；已在 Kimi 产品中验证</li>
+<li>上下文：Kimi 支持 1M+（MoBA 使其可行）</li>
+<li>后续优化：<a href="https://arxiv.org/abs/2511.11571">Optimizing Mixture of Block Attention</a>（MIT Song Han 团队, 2025.11）</li>
+</ul>
+<p><strong>Kimi Linear</strong></p>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2510.26692">Kimi Linear: An Expressive, Efficient Attention Architecture</a>（2025.10）</li>
+<li>原理：新的线性注意力架构，兼顾表达力和效率</li>
+</ul>
+<p><strong>Kimi Delta Attention (KDA)</strong> — Kimi K3</p>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2607.24653">Kimi K3: Open Frontier Intelligence</a>（2026.07）</li>
+<li>上下文：1M token，2.8T 参数 MoE / 104B 激活，原生多模态</li>
+<li>KDA 原理：基于 <a href="https://arxiv.org/abs/2605.18855">Delta Attention Residuals</a>（2026.05）。标准 Attention Residuals 对前层累积 hidden states 做 softmax 路由，但深层累积状态高度冗余，导致路由坍缩（max weight ≈0.2）。KDA 改为对"delta"——每层引入的变化量 (v_i = h_{i+1} - h_i)——做注意力路由。Delta 表示结构性更多样，注意力分布对比度更高（max weight ≈0.6），实现更选择性的跨层路由</li>
+<li>Attention Residuals：用学习到的 softmax 注意力替代标准加法残差连接，实现选择性跨层信息路由</li>
+<li>Stable LatentMoE：896 个路由专家中每 token 激活 16 个</li>
+<li>效果：相比 K2 整体缩放效率提升约 2.5x</li>
+</ul>
+<h4 id="minimaxlightning_attention_msa_m3">MiniMax：Lightning Attention → MSA (M3)<a class="headerlink" href="#minimaxlightning_attention_msa_m3" title="Permanent link">#</a></h4>
+<p>两代演进：线性注意力 → 块级稀疏注意力。</p>
+<p><strong>Lightning Attention</strong> — Text-01 / M1 / M2</p>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2506.13585">MiniMax-M1: Scaling Test-Time Compute Efficiently with Lightning Attention</a>（2025.06）</li>
+<li>架构：混合注意力（hybrid-attention），部分层用 Lightning Attention（线性注意力），部分层用标准注意力</li>
+<li>Lightning Attention 原理：通过分块计算（tiling）和核函数技巧将注意力复杂度从 O(n²) 降至 O(n)，利用左乘右乘重排实现推理恒定速度</li>
+<li>相关论文：<a href="https://arxiv.org/abs/2401.04658">Lightning Attention-2</a></li>
+<li>上下文：M1 原生支持 1M token（8x DeepSeek R1）</li>
+<li>M2 系列：<a href="https://arxiv.org/abs/2605.26494">The MiniMax-M2 Series</a>（2025），229.9B 总参数 / 9.8B 激活，面向 agentic 部署</li>
+<li>Ling and Ring 2.6：<a href="https://arxiv.org/abs/2606.15079">技术报告</a>（2026.06），万亿参数规模混合架构，验证线性注意力在超大规模的可行性</li>
+</ul>
+<p><strong>MSA (MiniMax Sparse Attention)</strong> — MiniMax-M3</p>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2606.13392">MiniMax Sparse Attention</a>（2026.06）</li>
+<li>上下文：1M，109B 参数，原生多模态训练。模型已开源：<a href="https://huggingface.co/MiniMaxAI/MiniMax-M3">HuggingFace</a></li>
+<li>架构：基于 GQA 的块级稀疏注意力，双分支设计：</li>
+<li>Index Branch（索引分支）：轻量级，对 KV 块打分，为每个 GQA group 独立选择 Top-k 子集。实现 group-specific 稀疏检索</li>
+<li>Main Branch（主分支）：对选中的块执行精确 block-sparse attention</li>
+<li>工程协同设计：exp-free Top-k 选择 + KV-outer sparse attention，提升 tensor-core 利用率</li>
+<li>效果：1M 上下文下每 token 注意力计算量减少 28.4x；H800 上 prefill 加速 14.2x、decoding 加速 7.6x</li>
+<li>与 Lightning Attention 的关系：M3 从线性注意力转向稀疏注意力路线，可能是为了在超长上下文下获得更好的精度-效率平衡</li>
+</ul>
+<h4 id="qwen">Qwen (阿里)：标准注意力 + 工程优化<a class="headerlink" href="#qwen" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2505.09388">Qwen3 Technical Report</a>（2025.05）</li>
+<li>架构：Dense + MoE 两种架构，参数 0.6B~235B。Qwen3 技术报告中未报告专门的注意力机制创新，主要依赖标准 GQA + RoPE + YaRN 进行上下文扩展</li>
+<li>上下文：Qwen2.5-Turbo 支持 1M；Qwen3 系列支持 128K~256K（通过 YaRN 外推扩展）</li>
+<li>特点：thinking/non-thinking 双模式，thinking budget 机制。模型能力侧重多语言（119 种语言）和推理，注意力层面以工程优化为主</li>
+</ul>
+<h4 id="meta_llama_410m">Meta Llama 4：10M 上下文<a class="headerlink" href="#meta_llama_410m" title="Permanent link">#</a></h4>
+<ul>
+<li>上下文：Llama 4 Scout 原生 10M token</li>
+<li>架构细节：Meta 未发布 Llama 4 的学术论文。公开信息显示采用了 iRoPE（interleaved RoPE）和注意力稀疏化策略，但具体机制未公开</li>
+<li>相关工程实践：<a href="https://arxiv.org/abs/2506.13996">Arctic Long Sequence Training</a>（2025.06）讨论了多百万 token 序列训练的可扩展方案</li>
+</ul>
+<h4 id="glm_mladsa_glm-552">智谱 GLM：标准注意力 → MLA+DSA (GLM-5/5.2)<a class="headerlink" href="#glm_mladsa_glm-552" title="Permanent link">#</a></h4>
+<p><strong>GLM-4</strong> — 基础阶段</p>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2406.12793">ChatGLM: A Family of Large Language Models from GLM-130B to GLM-4 All Tools</a>（2024.06）</li>
+<li>架构：GLM-4-9B 支持 128K/1M 上下文，标准注意力 + RoPE 位置扩展</li>
+</ul>
+<p><strong>GLM-5</strong> — 引入 DSA</p>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2602.15763">GLM-5: from Vibe Coding to Agentic Engineering</a>（2026.02）</li>
+<li>架构：采用 DSA (DeepSeek Sparse Attention) 显著降低训练和推理成本，同时保持长上下文保真度。异步 RL 基础设施解耦生成与训练</li>
+<li>意义：GLM-5 开始跟进 DeepSeek 的 DSA 路线，从标准注意力转向稀疏注意力</li>
+</ul>
+<p><strong>GLM-5.2</strong> — MLA + DSA + IndexShare</p>
+<ul>
+<li>架构（来源：<a href="https://arxiv.org/abs/2607.14952">LongStraw</a> 论文对 GLM-5.2 架构的描述）：</li>
+<li>78 层 MLA/DSA 注意力堆栈 + 256 专家 top-8 MoE 尾部</li>
+<li>MLA latent pages 和 DSA indexer-key pages 在 CPU 内存中分片存储（CP-sharded）</li>
+<li>IndexShare 机制：跨上下文并行 ranks（CP32）重建 IndexShare-aware 全局稀疏选择。DSA 的索引（决定哪些 KV 块参与注意力）在多个 CP rank 间共享，使分布式稀疏注意力能够全局协调</li>
+<li>响应 token 通过 EP32（专家并行 32 路）分发</li>
+<li>特点：GLM-5.2 的注意力栈本质上和 DeepSeek V3.2 同源（MLA+DSA），但通过 IndexShare 解决了 DSA 在分布式训练/推理中的索引共享问题</li>
+</ul>
+<h4 id="google_gemini2m">Google Gemini：2M 上下文<a class="headerlink" href="#google_gemini2m" title="Permanent link">#</a></h4>
+<ul>
+<li>上下文：Gemini 1.5 Pro 2M，Gemini 2.0 Pro 2M+</li>
+<li>架构：Google 未公开 Gemini 的注意力架构细节。业界推测采用了混合注意力（局部+全局）和高效的 KV cache 管理，但无公开论文确认</li>
+</ul>
+<h4 id="mistral">Mistral：滑动窗口注意力<a class="headerlink" href="#mistral" title="Permanent link">#</a></h4>
+<ul>
+<li>架构：Mistral 7B 首创 sliding window attention（窗口大小 4096），通过层级堆叠实现有效上下文扩展。每层只关注局部窗口，但通过多层堆叠，信息可以间接传播到更远</li>
+<li>演进：Mistral Large 2 支持扩展上下文，具体注意力优化未公开</li>
+</ul>
+<h4 id="_2">厂商方案对比<a class="headerlink" href="#_2" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>厂商</th>
+<th>模型</th>
+<th>注意力机制</th>
+<th>复杂度</th>
+<th>上下文</th>
+<th>论文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DeepSeek</td>
+<td>V4</td>
+<td>CSA+HCA 混合 + MLA</td>
+<td>次线性</td>
+<td>1M</td>
+<td><a href="https://arxiv.org/abs/2606.19348">2606.19348</a></td>
+</tr>
+<tr>
+<td>DeepSeek</td>
+<td>V3</td>
+<td>MLA (低秩压缩)</td>
+<td>O(n) 缓存</td>
+<td>128K</td>
+<td><a href="https://arxiv.org/abs/2412.19437">2412.19437</a></td>
+</tr>
+<tr>
+<td>Kimi</td>
+<td>K3</td>
+<td>KDA (Delta Attention Residuals)</td>
+<td>次线性</td>
+<td>1M</td>
+<td><a href="https://arxiv.org/abs/2607.24653">2607.24653</a></td>
+</tr>
+<tr>
+<td>Kimi</td>
+<td>K2</td>
+<td>MoBA (块级稀疏)</td>
+<td>O(n·k)</td>
+<td>1M+</td>
+<td><a href="https://arxiv.org/abs/2502.13189">2502.13189</a></td>
+</tr>
+<tr>
+<td>MiniMax</td>
+<td>M3</td>
+<td>MSA (Index+Main 双分支稀疏)</td>
+<td>次线性</td>
+<td>1M</td>
+<td><a href="https://arxiv.org/abs/2606.13392">2606.13392</a></td>
+</tr>
+<tr>
+<td>MiniMax</td>
+<td>M1</td>
+<td>Lightning Attention (线性)</td>
+<td>O(n)</td>
+<td>1M</td>
+<td><a href="https://arxiv.org/abs/2506.13585">2506.13585</a></td>
+</tr>
+<tr>
+<td>智谱</td>
+<td>GLM-5.2</td>
+<td>MLA + DSA + IndexShare</td>
+<td>次线性</td>
+<td>1M</td>
+<td><a href="https://arxiv.org/abs/2607.14952">LongStraw</a></td>
+</tr>
+<tr>
+<td>智谱</td>
+<td>GLM-5</td>
+<td>DSA</td>
+<td>次线性</td>
+<td>1M</td>
+<td><a href="https://arxiv.org/abs/2602.15763">2602.15763</a></td>
+</tr>
+<tr>
+<td>Qwen</td>
+<td>Qwen3</td>
+<td>GQA + YaRN</td>
+<td>O(n²)</td>
+<td>128K-1M</td>
+<td><a href="https://arxiv.org/abs/2505.09388">2505.09388</a></td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>Llama 4 Scout</td>
+<td>iRoPE + 稀疏化 (未公开)</td>
+<td>未知</td>
+<td>10M</td>
+<td>无公开论文</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>Gemini 2.0</td>
+<td>未公开</td>
+<td>未知</td>
+<td>2M+</td>
+<td>无公开论文</td>
+</tr>
+<tr>
+<td>Mistral</td>
+<td>Mistral</td>
+<td>Sliding Window</td>
+<td>O(n·w)</td>
+<td>128K</td>
+<td>无公开论文</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>趋势：国内厂商在注意力架构创新上全面铺开，DeepSeek/智谱走 MLA+DSA 路线，Kimi 走 Delta Attention 路线，MiniMax 从线性注意力转向稀疏注意力。一个明显的趋势是各家从 V1 的线性/标准注意力方案，在 V2/V3 转向稀疏注意力方案（Kimi: MoBA→KDA, MiniMax: Lightning→MSA, DeepSeek: MLA→DSA→CSA+HCA, GLM: 标准注意力→DSA+MLA）。</p>
+</blockquote>
+<hr />
+<h3 id="_3">注意力机制优化：学术论文<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<h4 id="sparse_attention">稀疏注意力 (Sparse Attention)<a class="headerlink" href="#sparse_attention" title="Permanent link">#</a></h4>
+<h5 id="_4">基础工作<a class="headerlink" href="#_4" title="Permanent link">#</a></h5>
+<ul>
+<li><strong>Longformer</strong> [2020.04] <a href="https://arxiv.org/abs/2004.05150">论文</a> Allen AI。滑动窗口注意力 + 全局注意力，O(n²)→O(n)。局部 token 用滑动窗口，特定 token（如 CLS）用全局注意力</li>
+<li><strong>BigBird</strong> [2020.07] <a href="https://arxiv.org/abs/2007.14062">论文</a> Google。稀疏注意力 = 随机 + 窗口 + 全局。理论上证明是通用近似器且图灵完备</li>
+</ul>
+<h5 id="_5">最新进展<a class="headerlink" href="#_5" title="Permanent link">#</a></h5>
+<ul>
+<li>[2025.02] <a href="https://arxiv.org/abs/2502.11089">NSA: Native Sparse Attention</a> DeepSeek。动态分层稀疏策略：粗粒度 token 压缩 + 细粒度 token 选择。两大创新：(1) 算术强度均衡的硬件对齐设计；(2) 支持端到端训练。64k 序列上解码/前向/反向均显著加速，性能保持或超越 Full Attention</li>
+<li>[2025.02] <a href="https://arxiv.org/abs/2502.13189">MoBA: Mixture of Block Attention</a> Moonshot AI。MoE 式块选择，门控动态路由，无参数设计，全/稀疏注意力无缝切换。与 NSA 同日发布，技术路径互补</li>
+<li>[2024.02] <a href="https://arxiv.org/abs/2402.04617">InfLLM</a> 清华大学。免训练长上下文外推：块级记忆 + 相似度检索动态加载。内存随块数线性增长</li>
+<li>[2025.09] <a href="https://arxiv.org/abs/2509.24663">InfLLM-V2</a> 清华大学。密集-稀疏可切换注意力，根据序列长度动态切换全/稀疏模式，解决短序列性能下降问题</li>
+<li>[2024.01] <a href="https://arxiv.org/abs/2401.04658">Lightning Attention-2</a> 线性注意力变体，分块+核函数 O(n²)→O(n)，推理恒定速度</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.13392">MiniMax Sparse Attention (MSA)</a> MiniMax。基于 GQA 的块级稀疏注意力，双分支：Index Branch 对 KV 块打分选 Top-k，Main Branch 做精确 block-sparse attention。exp-free Top-k + KV-outer 稀疏注意力协同 GPU 设计。1M 上下文计算量减少 28.4x，H800 prefill 14.2x / decoding 7.6x</li>
+<li>[2026.05] <a href="https://arxiv.org/abs/2605.18855">Delta Attention Residuals</a> Attention Residuals 的改进。标准 Attention Residuals 对前层累积 hidden states 路由，深层冗余导致路由坍缩（max weight ≈0.2）。改为对 delta（每层变化量 v_i = h_{i+1} - h_i）路由，对比度更高（max weight ≈0.6）。220M~7.6B 规模 perplexity 提升 1.7~8.2%。Kimi K3 的 KDA 基于此</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.01662">LongCat Sparse Attention</a> 美团。流式感知分层跨层索引，跨层共享索引信息</li>
+<li>[2025.11] <a href="https://arxiv.org/abs/2511.11571">Optimizing MoBA</a> MIT。对 MoBA 的进一步优化</li>
+<li>[2025.11] <a href="https://arxiv.org/abs/2511.00819">Optimizing NSA</a> 美团。潜在注意力和局部-全局交替策略优化 NSA</li>
+</ul>
+<h5 id="_6">分布式稀疏注意力工程<a class="headerlink" href="#_6" title="Permanent link">#</a></h5>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.14952">LongStraw</a> 长上下文 RL 系统，支持 2M+ token 的 GRPO 训练。对 GLM-5.2 实现 IndexShare-aware 全局稀疏选择（跨 CP32 ranks 共享 DSA 索引），对 Qwen3.6 实现 GDN 循环状态 + CP8 分片 KV 的跨 rank 合并</li>
+</ul>
+<h4 id="transformer">线性注意力与非 Transformer 架构<a class="headerlink" href="#transformer" title="Permanent link">#</a></h4>
+<h5 id="ssm_state_space_model">SSM (State Space Model)<a class="headerlink" href="#ssm_state_space_model" title="Permanent link">#</a></h5>
+<ul>
+<li>[2023.12] <a href="https://arxiv.org/abs/2312.00752">Mamba</a> 选择性 SSM，参数为输入函数实现内容感知。推理吞吐 5x Transformer，序列线性扩展</li>
+<li>[2024.05] <a href="https://arxiv.org/abs/2405.21060">Mamba-2</a> ICML 2024。状态空间对偶性 (SSD) 框架，揭示 SSM 和注意力的理论联系。核心层比 Mamba-1 快 2-8x</li>
+</ul>
+<h5 id="rnn">RNN 架构<a class="headerlink" href="#rnn" title="Permanent link">#</a></h5>
+<ul>
+<li>[2025.03] <a href="https://arxiv.org/abs/2503.14456">RWKV-7 "Goose"</a> 表达式动态状态演化。纯 RNN 架构，推理恒定内存。RWKV-7 在状态跟踪和长序列建模上显著优于前代</li>
+<li><a href="https://arxiv.org/abs/2504.21463">RWKV-X</a>：线性复杂度混合语言模型</li>
+<li><a href="https://arxiv.org/abs/2501.15570">ARWKV</a>：从 Transformer 权重转换的 RNN-注意力混合模型，免预训练</li>
+</ul>
+<h5 id="transformer_1">线性 Transformer<a class="headerlink" href="#transformer_1" title="Permanent link">#</a></h5>
+<ul>
+<li>[2023.07] <a href="https://arxiv.org/abs/2307.14995">TransNormerLLM</a> 改进的线性注意力 LLM 架构</li>
+<li>[2025.10] <a href="https://arxiv.org/abs/2510.26692">Kimi Linear</a> Moonshot AI。兼顾表达力和效率的线性注意力架构</li>
+</ul>
+<h4 id="kv_cache">KV Cache 压缩与管理<a class="headerlink" href="#kv_cache" title="Permanent link">#</a></h4>
+<h5 id="eviction">驱逐策略 (Eviction)<a class="headerlink" href="#eviction" title="Permanent link">#</a></h5>
+<ul>
+<li>[2023.06] <a href="https://arxiv.org/abs/2306.14048">H2O (Heavy-Hitter Oracle)</a> UT Austin/Stanford。发现"重击者"token，动态保留高注意力分数 token，KV cache 降至 ~10%</li>
+<li>[2023.09] <a href="https://arxiv.org/abs/2309.17453">StreamingLLM (Attention Sinks)</a> MIT/Meta。发现"注意力槽"现象：初始 token 获得不成比例的高注意力。保留注意力槽 + 最近窗口 → 无限流式推理。ICLR 2024</li>
+<li>[2024.04] <a href="https://arxiv.org/abs/2404.14469">SnapKV</a> 利用 prefill 阶段注意力模式识别重要 KV 对，预先压缩</li>
+<li>[2024.06] <a href="https://arxiv.org/abs/2406.02069">PyramidKV</a> 金字塔式层级 cache 分配：浅层多、深层少</li>
+<li>[2024.06] <a href="https://arxiv.org/abs/2406.10774">QUEST</a> MIT。查询感知稀疏注意力：先近似估计再精确计算。ICML 2024</li>
+<li>[2024.07] <a href="https://arxiv.org/abs/2407.21018">ThinK</a> 查询驱动 Key 通道维度剪枝</li>
+</ul>
+<h5 id="quantization">量化 (Quantization)<a class="headerlink" href="#quantization" title="Permanent link">#</a></h5>
+<ul>
+<li>[2024.02] <a href="https://arxiv.org/abs/2402.02750">KIVI</a> 免调参非对称 2bit 量化。Key 按通道、Value 按 token，KV cache 内存减少 8x</li>
+<li>[2024.01] <a href="https://arxiv.org/abs/2401.18079">KVQuant</a> UC Berkeley。面向 10M token 的 KV cache 量化。非均匀量化 + 注意力槽保留。NeurIPS 2024</li>
+<li>[2024.03] <a href="https://arxiv.org/abs/2403.05527">GEAR</a> Georgia Tech。量化 + 低秩近似补偿，近无损压缩</li>
+</ul>
+<h5 id="2025-2026">最新趋势 (2025-2026)<a class="headerlink" href="#2025-2026" title="Permanent link">#</a></h5>
+<ul>
+<li><a href="https://arxiv.org/abs/2606.26472">EpiKV</a>：无需注意力矩阵的 KV 驱逐，"顿悟分数"</li>
+<li><a href="https://arxiv.org/abs/2510.11236">XQuant</a>：跨层压缩超低比特 KV 量化</li>
+<li><a href="https://arxiv.org/abs/2510.05529">H1B-KV</a>：混合 1bit cache</li>
+</ul>
+<h4 id="_7">分布式注意力计算<a class="headerlink" href="#_7" title="Permanent link">#</a></h4>
+<ul>
+<li>[2023.10] <a href="https://arxiv.org/abs/2310.01889">Ring Attention</a> UC Berkeley。分块注意力 + 环形通信，GPU 间异步传递 KV 块，近无限上下文。通信与计算重叠</li>
+<li>[2023.10] <a href="https://arxiv.org/abs/2310.03294">DistFlashAttn</a> FlashAttention 的多 GPU 扩展</li>
+<li>[2024.05] <a href="https://arxiv.org/abs/2405.07719">USP (Unified Sequence Parallelism)</a> 统一 Ring Attention 和 Ulysses 的序列并行框架</li>
+<li>[2024.06] <a href="https://arxiv.org/abs/2406.18485">LoongTrain</a> 头-上下文并行，沿注意力头和上下文维度同时切分</li>
+<li>[2024.11] <a href="https://arxiv.org/abs/2411.01783">Context Parallelism</a> Meta。面向百万 token 推理的上下文并行，已生产部署</li>
+<li>[2024.12] <a href="https://arxiv.org/abs/2412.20501">TokenRing</a> 双向通信改进 Ring Attention</li>
+<li>[2025.09] <a href="https://arxiv.org/abs/2509.26541">TASP</a> 拓扑感知序列并行</li>
+<li>[2025.10] <a href="https://arxiv.org/abs/2510.18830">MTraining</a> 分布式动态稀疏注意力，超长上下文训练</li>
+<li>[2026.02] <a href="https://arxiv.org/abs/2602.21196">Untied Ulysses</a> 头级分块内存高效上下文并行</li>
+</ul>
+<h4 id="_8">混合架构<a class="headerlink" href="#_8" title="Permanent link">#</a></h4>
+<ul>
+<li>[2024.03] <a href="https://arxiv.org/abs/2403.19887">Jamba</a> AI21 Labs。Transformer + Mamba SSM 交替（1:7 比例）+ MoE。256K 上下文</li>
+<li>[2024.08] <a href="https://arxiv.org/abs/2408.12570">Jamba-1.5</a> 12B/94B 参数（94B MoE, 12B 活跃），256K 上下文</li>
+<li>[2026.02] <a href="https://arxiv.org/abs/2602.11761">MiniCPM-SALA</a> 面壁智能。混合稀疏 + 线性注意力，端侧友好</li>
+<li>[2025.01] <a href="https://arxiv.org/abs/2501.15570">ARWKV</a> 从 Transformer 演化的 RNN-注意力混合，可从已有权重转换</li>
+</ul>
+<h4 id="_9">位置编码扩展<a class="headerlink" href="#_9" title="Permanent link">#</a></h4>
+<ul>
+<li>[2023.09] <a href="https://arxiv.org/abs/2309.00071">YaRN</a> NTK-aware 插值 + 温度缩放，~400 步微调扩展 4x 上下文。最广泛使用的 RoPE 扩展方法</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.19363">AdaRoPE</a> ICML 2026。不同注意力头使用不同旋转/缩放参数</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.07740">Jet-Long</a> 动态双焦 RoPE，近焦局部精确 + 远焦全局粗略</li>
+<li>[2025.04] <a href="https://arxiv.org/abs/2504.18857">Dimension-Wise Positional Embeddings</a> 按维度操作 RoPE，比 YaRN 分组策略更细粒度</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.23687">Randomized YaRN</a> YaRN + 随机化位置编码，改善长上下文推理的长度泛化</li>
+<li>RoPE (Rotary Position Embedding)：主流长上下文位置编码基础</li>
+<li>ALiBi (Attention with Linear Biases)：无需位置编码，线性偏置实现长度外推</li>
+</ul>
+<hr />
+<h3 id="_10">记忆与推理增强<a class="headerlink" href="#_10" title="Permanent link">#</a></h3>
+<h4 id="_11">记忆模块<a class="headerlink" href="#_11" title="Permanent link">#</a></h4>
+<ul>
+<li>[2025.05] <a href="https://arxiv.org/abs/2505.23735">ATLAS: Learning to Optimally Memorize the Context at Test Time</a> Google。DeepTransformers 架构，可训练记忆模块替代注意力层。10M BABILong +80%。Titans 改进版</li>
+<li>[2024.04] <a href="https://arxiv.org/abs/2404.07143">Infini-attention</a> Google。压缩记忆融入 vanilla attention，masked local + long-term linear。1B/8B 验证 1M passkey 和 500K 书籍摘要</li>
+<li>[2024.07] <a href="https://arxiv.org/abs/2407.01437">Needle in the Haystack for Memory Based LLMs</a> IBM。Larimar 外部关联记忆，无需长上下文训练</li>
+</ul>
+<h4 id="_12">情景记忆<a class="headerlink" href="#_12" title="Permanent link">#</a></h4>
+<ul>
+<li>[2024.07] <a href="https://arxiv.org/abs/2407.09450">EM-LLM</a> ICLR 2025。Bayesian surprise + 图论边界分割"事件"，无需微调，10M token 检索</li>
+</ul>
+<h4 id="_13">多记忆系统<a class="headerlink" href="#_13" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>LIGHT (BEAM 框架)</strong>：长时情景记忆 + 短期工作记忆 + 草稿本。10M 对话提升 3.5%-12.69%</li>
+<li><strong>MELODI</strong>：记忆压缩，短上下文窗口处理长文档</li>
+<li><strong>Recursive Language Models (RLM)</strong> MIT。编程方式分块、检索和处理</li>
+</ul>
+<hr />
+<h3 id="_14">评估与基准测试<a class="headerlink" href="#_14" title="Permanent link">#</a></h3>
+<h4 id="10m">10M 级别<a class="headerlink" href="#10m" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.01] <a href="https://arxiv.org/abs/2601.14952">CorpusQA</a> 首个 10M token 语料库级基准。发现 SOTA 模型随长度退化，RAG 崩溃，记忆增强 agent 更鲁棒</li>
+<li><strong>BEAM</strong>：10M token 连贯对话，含 LIGHT 多记忆系统评估</li>
+<li><strong>BABILong</strong>：广泛采用的 10M 长度测试</li>
+</ul>
+<h4 id="token">百万 token 级别<a class="headerlink" href="#token" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>∞-Bench (InftyBench)</strong>：平均 100K+ token 样本</li>
+<li><strong>LongBench</strong>：多任务中文/英文长上下文理解</li>
+<li><strong>Needle in a Haystack (NIAH)</strong>：长文本检索标准测试</li>
+<li><strong>RULER</strong>：合成长上下文基准（multi-key/multi-value/multi-query/variable tracing/aggregation）</li>
+<li>[2024.09] <a href="https://arxiv.org/abs/2409.12640">LongMT-Bench</a> 长上下文多轮对话一致性</li>
+</ul>
+<h4 id="rag">RAG 与长上下文<a class="headerlink" href="#rag" title="Permanent link">#</a></h4>
+<ul>
+<li>[2025.11] <a href="https://arxiv.org/abs/2511.07328">Q-RAG</a> 长上下文多步检索，value-based embedder 训练</li>
+</ul>
+<hr />
+<h3 id="_15">应用场景<a class="headerlink" href="#_15" title="Permanent link">#</a></h3>
+<ul>
+<li><strong>软件工程</strong>：整个代码仓库，全局代码审查、漏洞检测、跨模块重构</li>
+<li><strong>法律合规</strong>：多年法律档案、诉讼记录，案例比对和风险分析</li>
+<li><strong>金融分析</strong>：数年交易记录、财报、市场数据，风险评估和欺诈检测</li>
+<li><strong>生物医药</strong>：临床试验档案、医学文献、基因组数据</li>
+<li><strong>学术研究</strong>：领域论文全集，自动文献综述</li>
+<li><strong>长视频理解</strong>：多模态模型处理数小时视频</li>
+<li><strong>Agent 工作流</strong>：完整多步骤 agent 工作记忆</li>
+<li><strong>超长对话</strong>：跨月对话记忆，个性化</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Embedding/" class="btn btn-neutral float-left" title="Embedding"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../PostTraining/" class="btn btn-neutral float-right" title="PostTraining">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Embedding/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../PostTraining/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

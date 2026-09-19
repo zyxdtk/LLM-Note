@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>PhysicalAI - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "PhysicalAI";
+        var mkdocs_page_input_path = "5.multimodal/PhysicalAI.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">PhysicalAI</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">一、综述与概念</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#world_model">二、世界模型 (World Model)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">世界基础模型</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#world_action_model_wam">World Action Model (WAM)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#agent">Agent 世界模型</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#embodied">三、Embodied 基础模型</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#embodied_1">通用 Embodied 基础模型</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">机器人基础模型</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vla">VLA 模型</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#embodied_agent">四、Embodied Agent 架构</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">规划与执行</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#agent_1">分布式与多 Agent</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#embodied_2">Embodied 记忆</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">五、操作与交互</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">触觉与灵巧操作</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#affordance">Affordance 与场景理解</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">人机协作</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">六、数据与仿真</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">数据集</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sim-to-real">Sim-to-Real</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">部署与推理</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_11">七、空间智能</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_12">八、安全与治理</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_13">九、评估基准</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_14">十、代表厂商/方案</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">5.multimodal</li>
+      <li class="breadcrumb-item active">PhysicalAI</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="physical_ai_agent">Physical AI Agent<a class="headerlink" href="#physical_ai_agent" title="Permanent link">#</a></h2>
+<blockquote>
+<p>Physical AI：AI 从屏幕走向物理世界。agent 感知环境、理解指令、规划动作、通过物理身体执行。核心挑战：实时安全约束、物理定律遵循、sim-to-real 鸿沟、长程任务。</p>
+</blockquote>
+<hr />
+<h3 id="_1">一、综述与概念<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<ul>
+<li>[2025.01] <a href="https://arxiv.org/abs/2501.10928">Generative Physical AI in Vision: A Survey</a> 生成式 Physical AI 综述，覆盖图像/视频/3D/4D 生成在物理智能中的应用</li>
+<li>[2025.08] <a href="https://arxiv.org/abs/2508.05294">Towards Embodied Agentic AI: Review and Classification of LLM- and VLM-Driven Robot Autonomy and Interaction</a> LLM/VLM 驱动的机器人自主性和交互分类综述</li>
+<li>[2026.05] <a href="https://arxiv.org/abs/2605.12090">World Action Models: The Next Frontier in Embodied AI</a> World Action Model 作为 Embodied AI 下一前沿。VLA 学语义泛化但不建模物理世界演化，WAM 显式建模干预下的世界动态</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.22877">Physical AI Governance: From Theory to Practice Across Life Cycle</a> Physical AI 全生命周期治理：实时安全约束、动态环境交互</li>
+<li>[2026.03] <a href="https://arxiv.org/abs/2605.02900">Safety in Embodied AI: A Survey of Risks, Attacks, and Defenses</a> Embodied AI 安全：风险、攻击、防御</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.05660">Safe Embodied AI for Long-horizon Tasks: A Cross-layer Analysis of Robotic Manipulation</a> 长程任务安全的跨层分析</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.28226">Security of World-Model-Based Embodied AI: A Lifecycle of Threats, Defenses, and Evaluation</a> 世界模型驱动的 Embodied AI 安全生命周期</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.03099">What Language Does and What the Evidence Supports: A Functional Role Taxonomy of Language Grounding in Embodied Agents</a> 语言在 Embodied Agent 中的功能角色分类</li>
+</ul>
+<hr />
+<h3 id="world_model">二、世界模型 (World Model)<a class="headerlink" href="#world_model" title="Permanent link">#</a></h3>
+<p>Physical AI 的核心基础设施：物理世界模拟器，用于训练和验证 agent。</p>
+<h4 id="_2">世界基础模型<a class="headerlink" href="#_2" title="Permanent link">#</a></h4>
+<ul>
+<li>[2025.01] <a href="https://arxiv.org/abs/2501.03575">Cosmos World Foundation Model Platform for Physical AI</a> NVIDIA。Physical AI 需要"数字优先训练"：policy model（自身的数字孪生）+ world model（世界的数字孪生）。Cosmos 提供可定制的世界基础模型平台</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.02800">Cosmos 3: Omnimodal World Models for Physical AI</a> NVIDIA。全模态世界模型：统一处理语言、图像、视频、音频、动作序列。混合 Transformer 架构，支持灵活输入输出配置</li>
+<li>[2025.05] <a href="https://arxiv.org/abs/2505.12705">DreamGen: Unlocking Generalization in Robot Learning through Video World Models</a> 4 阶段 pipeline：用视频世界模型生成神经轨迹（合成机器人数据），实现跨行为和环境泛化</li>
+</ul>
+<h4 id="world_action_model_wam">World Action Model (WAM)<a class="headerlink" href="#world_action_model_wam" title="Permanent link">#</a></h4>
+<p>VLA 的进化方向：不只观察→动作，还建模"干预下世界如何演化"。</p>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.11689">From World Action Models to Embodied Brains: A Roadmap for Open-World Physical Intelligence</a> WAM 路线图：连接候选干预与预测后果，是通向开放世界 Physical Intelligence 的路径</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.04927">DSWAM: A Dual-System World Action Foundation Model for Fine-Grained Robot Manipulation</a> 双系统 WAM：视频世界建模提供密集监督 + 语言级规划接口</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.02604">DynaWM: A Base-VLA-Guided World Foundation Model for Moving-Object Manipulation</a> 动态移动物体的操作：VLA+世界模型联合</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.11605">Foresight Without Seeing: Latent Futures for World Action Models</a> 隐式未来预测：不需要显式视频 rollout，用潜在表示预测未来指导动作</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.11521">Keep the Future, Drop the Rollout: RIFT for World Action Models</a> 只需未来表示，不需要迭代视频 rollout。4 个 WAM × 40 个 LIBERO 任务验证</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.10860">Flex-π: A Multi-Stream World-Action Model with Compute Flexibility</a> 多流 WAM：同一视频生成骨干同时预测 RGB+3D几何+物体语义</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.10780">JEPA-WAM: Stage-Level Joint-Embedding Prediction for World-Action Models</a> 阶段级联合嵌入预测：不只预测短期局部未来，还预测阶段级全局未来</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.11204">Surgical WAM: A World-Action Model for Data-Efficient Surgical Robot Learning</a> 手术机器人 WAM：解决动作标注数据稀缺问题</li>
+</ul>
+<h4 id="agent">Agent 世界模型<a class="headerlink" href="#agent" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.15901">DSWorld: A Data Science World Model for Efficient Autonomous Agents</a> 数据科学世界模型：预测数据操作的效果，减少试错计算</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.01561">FedWorld: Scope-Aware Federation of Agent World Models</a> 联邦世界模型：多个 agent 共享世界知识，scope-aware 合并</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.22813">Active Inference as the Test-Time Scaling Law for Physical AI Agents</a> 主动推理作为 Physical AI 的测试时 scaling law：agent 用世界模型推理应对未见场景</li>
+</ul>
+<hr />
+<h3 id="embodied">三、Embodied 基础模型<a class="headerlink" href="#embodied" title="Permanent link">#</a></h3>
+<h4 id="embodied_1">通用 Embodied 基础模型<a class="headerlink" href="#embodied_1" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.04426">ACE-Brain-0.5: A Unified Embodied Foundational Model for Physical Agentic AI</a> 统一 Embodied 基础模型：理解→规划→执行→监控→改进的完整循环。现有系统只解决局部，ACE-Brain 做完整闭环</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.11324">Embodied-R1.5: Evolving Physical Intelligence via Embodied Foundation Models</a> 统一 EFM：embodied 认知+任务规划+纠错+指向，单一架构。三种自动化数据 pipeline</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.17977">RynnBrain 1.1: Towards More Capable and Generalizable Embodied Foundation Model</a> 2B/9B/122B-A10B 三规模，统一时空+物理接地框架，支持感知+空间推理+定位+规划</li>
+<li>[2026.04] <a href="https://arxiv.org/abs/2604.07430">HY-Embodied-0.5: Embodied Foundation Models for Real-World Agents</a> 面向真实世界 embodied agent 的基础模型</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.18632">ROBOSHACKLES: A Safety Dataset for Human-Injury Prevention in Embodied Foundation Models</a> Embodied 基础模型的人身伤害预防安全数据集</li>
+</ul>
+<h4 id="_3">机器人基础模型<a class="headerlink" href="#_3" title="Permanent link">#</a></h4>
+<ul>
+<li>[2025.03] <a href="https://arxiv.org/abs/2503.14734">GR00T N1: An Open Foundation Model for Generalist Humanoid Robots</a> NVIDIA。通用人形机器人基础模型。需要 versatile body + intelligent mind</li>
+<li>[2025.07] <a href="https://arxiv.org/abs/2507.02029">RoboBrain 2.0 Technical Report</a> Embodied 视觉语言基础模型，7B/32B 双版本，统一感知+推理+规划</li>
+<li>[2026.01] <a href="https://arxiv.org/abs/2601.14352">RoboBrain 2.5: Depth in Sight, Time in Mind</a> 引入深度感知+时序建模</li>
+<li>[2025.02] <a href="https://arxiv.org/abs/2502.21257">RoboBrain: A Unified Brain Model for Robotic Manipulation from Abstract to Concrete</a> 统一脑模型：从抽象语义到具体操作的层次化处理</li>
+<li>[2024.05] <a href="https://arxiv.org/abs/2405.12213">Octo: An Open-Source Generalist Robot Policy</a> 开源通用机器人策略：预训练+少量数据微调即可适配新场景</li>
+</ul>
+<h4 id="vla">VLA 模型<a class="headerlink" href="#vla" title="Permanent link">#</a></h4>
+<p>详见 <a href="../VLA/">VLA.md</a>。此处补充最新进展：</p>
+<ul>
+<li>[2024.06] <a href="https://arxiv.org/abs/2406.09246">OpenVLA: An Open-Source Vision-Language-Action Model</a> 开源 VLA，大规模预训练+少量微调</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.11671">StellaVLA: In-Context Structured Demonstration for Generalizable VLA Models</a> 上下文结构化示例，解决 OOD 性能坍缩</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.10976">XCoT-VLA: Executable Chain-of-Thought for VLA Driving</a> 可执行思维链：自然语言 CoT 不适合实时控制，改为可执行格式</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.10824">Neural Introspection Gating for Adaptive KV-Cache Reuse in VLA Models</a> VLA 实时控制的 KV-Cache 复用：视觉 token 跨步变化小，门控决定是否重算</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.10484">Lost in Reconstruction: Aligning Action Representations with Language in VLA Models</a> 动作表示对齐：L1/L2 重建损失的数值接近不等于语义接近</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.09448">VANE: Reliable Test-Time Training for VLA Models</a> VLA 测试时训练：从无标注部署流自适应</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.08725">WA-SpecDec: World-Aware Speculative Decoding for VLA Models</a> VLA 的投机解码：用世界模型做 draft 验证，降低闭环延迟</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.14852">Towards Human-like Physical Intelligence: Lifelong VLA Learning for Robotic Manipulation</a> VLA 终身学习：像人一样顺序学习新任务</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.10393">Hidden in Plain Sight: Diffusion-Based Unrestricted Robotic Attacks on VLA Models</a> VLA 对抗攻击：扩散模型生成物理世界攻击</li>
+</ul>
+<hr />
+<h3 id="embodied_agent">四、Embodied Agent 架构<a class="headerlink" href="#embodied_agent" title="Permanent link">#</a></h3>
+<h4 id="_4">规划与执行<a class="headerlink" href="#_4" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.01428">When Replanning Becomes the Bottleneck: Budgeted Replanning for Embodied Agents</a> 重规划瓶颈：LLM 重规划调用累积上下文导致延迟，提出预算化重规划</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.09603">Mosaic: Runtime-Efficient Multi-Agent Embodied Planning</a> 多 agent embodied 规划：失败动作是主要瓶颈，来自不准确状态追踪+低效协调</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.05482">TypeGo: An OS Runtime for Embodied Agents</a> Embodied agent 的操作系统式运行时：LLM 不在关键路径上，支持实时控制和并发目标</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.12050">EFLUX: Elastic Multi-Robot Formation Navigation with Agentic LLMs</a> LLM 驱动的多机器人编队导航：自适应编队几何+拓扑</li>
+<li>[2026.05] <a href="https://arxiv.org/abs/2605.08330">Hierarchical Prompting with Dual LLM Modules for Robotic Task and Motion Planning</a> 双 LLM 层次化框架：高层规划 agent + 低层空间推理</li>
+<li>[2024.04] <a href="https://arxiv.org/abs/2404.05291">Long-horizon Locomotion and Manipulation on a Quadrupedal Robot with LLMs</a> 四足机器人长程运动+操作：LLM 做高层语义理解+低层运动控制</li>
+</ul>
+<h4 id="agent_1">分布式与多 Agent<a class="headerlink" href="#agent_1" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.10811">Distributed Agent System: Fault-Tolerant Collaboration Among Embodied Agents</a> Embodied Agent 容错协作：长程任务+资源约束+环境不确定性</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.09330">Communication-Efficient Digital-Twin Coordination for Heterogeneous LLM Embodied Agents</a> 异构 LLM Embodied Agent 的数字孪生协调：智能工厂/仓库/服务机器人</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.06830">When Coordination Becomes a Threat: Communication Attacks in LLM-Controlled Multi-Robot Systems</a> LLM 多机器人系统的通信攻击安全风险</li>
+</ul>
+<h4 id="embodied_2">Embodied 记忆<a class="headerlink" href="#embodied_2" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.04933">Mimir: A Neuro-Symbolic Memory System with Dynamic Grounding for Embodied Agents</a> 长程 embodied 任务的记忆：场景信念+执行进度，不是扁平历史</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.01456">Long-Horizon Embodied Decision-Making via Multimodal Memory Compression</a> 多模态记忆压缩：长程决策需要跨时间积累证据</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.21571">Beyond Episodic Evaluation: Memory Architectural Bottlenecks in Sequential Embodied QA</a> Embodied QA 的记忆架构瓶颈：连续操作中积累、保留、选择性复用信息</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.29774">Analytic Concept-Centric Memory for Agentic Embodied Manipulation</a> 概念中心记忆：记住持久物体+追踪场景状态+复用交互知识</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.05543">GEM-Occ: From Visual Geometry Evidence to Embodied Semantic Occupancy Memory</a> 语义占据记忆：结构化空间记忆，联合表示占据区域+自由空间+未知区域+物体语义</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.10350">ABot-AgentOS: A General Robotic Agent OS with Lifelong Multi-modal Memory</a> 通用机器人 Agent OS：终身多模态记忆，支持推理/记忆/工具/验证/跨身体执行</li>
+</ul>
+<hr />
+<h3 id="_5">五、操作与交互<a class="headerlink" href="#_5" title="Permanent link">#</a></h3>
+<h4 id="_6">触觉与灵巧操作<a class="headerlink" href="#_6" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.07287">TouchWorld: A Predictive and Reactive Tactile Foundation Model for Dexterous Manipulation</a> 触觉基础模型：预测接触演化+快速纠正局部错误（滑动/错位/不稳定抓取/力失配）</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.22332">Tactile Genesis: Exploring Tactile Sensors at Scale for Learning Dexterous Tasks</a> 大规模触觉传感器探索：哪种触觉抽象是策略需要的</li>
+<li>[2026.05] <a href="https://arxiv.org/abs/2605.05241">DexSim2Real: Foundation Model-Guided Sim-to-Real Transfer for Generalizable Dexterous Manipulation</a> 基础模型引导的 sim-to-real 迁移</li>
+<li>[2025.07] <a href="https://arxiv.org/abs/2507.00833">HumanoidGen: Data Generation for Bimanual Dexterous Manipulation via LLM Reasoning</a> LLM 推理生成人形机器人双手灵巧操作数据</li>
+</ul>
+<h4 id="affordance">Affordance 与场景理解<a class="headerlink" href="#affordance" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.05] <a href="https://arxiv.org/abs/2605.03927">StateVLM: A State-Aware Vision-Language Model for Robotic Affordance Reasoning</a> 状态感知 VLM 做 affordance 推理</li>
+<li>[2025.11] <a href="https://arxiv.org/abs/2511.20841">OVAL-Grasp: Open-Vocabulary Affordance Localization for Task Oriented Grasping</a> 开放词汇 affordance 定位：零样本任务导向抓取</li>
+<li>[2025.09] <a href="https://arxiv.org/abs/2509.06233">O³Afford: One-Shot 3D Object-to-Object Affordance Grounding</a> 一次性 3D 物体间 affordance 定位</li>
+</ul>
+<h4 id="_7">人机协作<a class="headerlink" href="#_7" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.04309">Structured LLM Reasoning for Zero-Shot Human-Robot Coordination Under Hidden Goals</a> 零样本人机协作：Dec-POMDP 建模，动作条件化 ToM 推理</li>
+<li>[2026.05] <a href="https://arxiv.org/abs/2605.01368">Assistance Without Interruption: Benchmark for Non-Intrusive Human-Robot Assistance</a> 非侵入式辅助：机器人主动支持人类多步活动但严格不打断</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.08320">Diminishing Returns of Intelligence: LLM Scale vs User Perception in Social HRI</a> 社交人机交互中 LLM 规模的边际递减效应</li>
+</ul>
+<hr />
+<h3 id="_8">六、数据与仿真<a class="headerlink" href="#_8" title="Permanent link">#</a></h3>
+<h4 id="_9">数据集<a class="headerlink" href="#_9" title="Permanent link">#</a></h4>
+<ul>
+<li>[2024.03] <a href="https://arxiv.org/abs/2403.12945">DROID: A Large-Scale In-The-Wild Robot Manipulation Dataset</a> 大规模真实世界机器人操作数据集</li>
+<li>[2023.10] <a href="https://arxiv.org/abs/2310.08864">Open X-Embodiment: Robotic Learning Datasets and RT-X Models</a> 多机构联合机器人学习数据集</li>
+<li>[2023.10] <a href="https://arxiv.org/abs/2310.01361">GenSim: Generating Robotic Simulation Tasks via Large Language Models</a> LLM 生成机器人仿真任务</li>
+</ul>
+<h4 id="sim-to-real">Sim-to-Real<a class="headerlink" href="#sim-to-real" title="Permanent link">#</a></h4>
+<ul>
+<li>[2025.12] <a href="https://arxiv.org/abs/2512.17853">AnyTask: Automated Task and Data Generation Framework for Advancing Sim-to-Real Policy Learning</a> 自动化任务+数据生成框架，推进 sim-to-real 策略学习</li>
+<li>[2026.04] <a href="https://arxiv.org/abs/2604.26509">3D Generation for Embodied AI and Robotic Simulation: A Survey</a> Embodied AI 的 3D 生成：超越视觉真实，需要物理接地的可交互 3D 内容</li>
+</ul>
+<h4 id="_10">部署与推理<a class="headerlink" href="#_10" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.03682">PhyAI: Real-Time Physical AI at the Edge, Scalable Rollouts in the Cloud</a> Physical AI 全生命周期推理：模型评估→云端 RL rollout→边缘 GPU serving→机载部署，统一 checkpoint</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.10942">Edge Physical AI Deployment of Vision Transformers on Heterogeneous Edge GPU</a> 自动驾驶边缘部署：ViT 在异构边缘 GPU 上的延迟和能耗优化</li>
+</ul>
+<hr />
+<h3 id="_11">七、空间智能<a class="headerlink" href="#_11" title="Permanent link">#</a></h3>
+<ul>
+<li>[2025.04] <a href="https://arxiv.org/abs/2504.09848">A Survey of LLM-Powered Spatial Intelligence Across Scales</a> 跨尺度空间智能：导航→城市规划→遥感</li>
+<li>[2025.08] <a href="https://arxiv.org/abs/2508.17198">From reactive to cognitive: brain-inspired spatial intelligence for embodied agents</a> 脑启发空间智能：landmarks→route knowledge→survey knowledge 三层</li>
+<li>[2025.09] <a href="https://arxiv.org/abs/2509.00465">Embodied Spatial Intelligence: from Implicit Scene Modeling to Spatial Reasoning</a> Embodied 空间智能：隐式场景建模到空间推理</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.15200">Keep It in Mind: User Centric Continual Spatial Intelligence Reasoning in Egocentric Video Streams</a> 第一人称视频流中的持续空间智能推理，170+ 小时数据</li>
+</ul>
+<hr />
+<h3 id="_12">八、安全与治理<a class="headerlink" href="#_12" title="Permanent link">#</a></h3>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.22877">Physical AI Governance: From Theory to Practice Across Life Cycle</a> Physical AI 全生命周期治理</li>
+<li>[2026.05] <a href="https://arxiv.org/abs/2606.00090">Silent Failures in Physical AI: Runtime Action Authorization for Autonomous Systems</a> Physical AI 的静默失败：运行时动作授权</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.07420">Initiation Safety: A Missing Dimension in Generalist-Robot Safety</a> 通用机器人安全的缺失维度：是否应该执行第一个不可逆社交动作</li>
+<li>[2025.09] <a href="https://arxiv.org/abs/2509.25885">SafeMind: Benchmarking and Mitigating Safety Risks in Embodied LLM Agents</a> Embodied LLM Agent 安全基准：任务理解→环境感知→规划→执行四阶段风险</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.19827">Clinical Pathways as Safety Specifications for Physical AI in Hospital Wards</a> 医院场景 Physical AI 安全：临床路径作为运行时安全规范</li>
+<li>[2026.02] <a href="https://arxiv.org/abs/2602.17345">What Breaks Embodied AI Security: LLM Vulnerabilities, CPS Flaws, or Something Else?</a> Embodied AI 安全破因分析：LLM 漏洞 vs 信息物理系统缺陷</li>
+</ul>
+<hr />
+<h3 id="_13">九、评估基准<a class="headerlink" href="#_13" title="Permanent link">#</a></h3>
+<ul>
+<li>[2026.05] <a href="https://arxiv.org/abs/2605.20544">The Yes-Man Syndrome: Benchmarking Abstention in Embodied Robotic Agents</a> Embodied Agent 的"应声虫综合征"：VLM 做规划时不懂得拒绝</li>
+<li>[2026.04] <a href="https://arxiv.org/abs/2604.16022">SocialGrid: A Benchmark for Planning and Social Reasoning in Embodied Multi-Agent Systems</a> Embodied 多 Agent 社交推理基准</li>
+<li>[2025.11] <a href="https://arxiv.org/abs/2511.17649">SWITCH: Benchmarking Tangible Interfaces in Long-horizon Embodied Scenarios</a> 有形控制接口（家电面板/遥控器/电梯）的长程 embodied 基准</li>
+<li>[2025.12] <a href="https://arxiv.org/abs/2512.19021">VLNVerse: A Benchmark for Vision-Language Navigation</a> 视觉语言导航基准：sim-to-real 泛化</li>
+<li>[2026.02] <a href="https://arxiv.org/abs/2602.10980">RADAR: Benchmarking VLA Generalization via Real-World Dynamics</a> VLA 泛化基准：真实世界动力学+空间物理智能+自主评估</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.14439">Active Real-World Factor-Based Evaluation for Generalist Robot Policies</a> 通用机器人策略的真实世界因子评估</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.16401">Apple-π: Benchmarking Thinking with Video Towards Law-Grounded Physical Intelligence</a> 视频生成模型是否真正理解物理定律的基准</li>
+</ul>
+<hr />
+<h3 id="_14">十、代表厂商/方案<a class="headerlink" href="#_14" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>机构</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://arxiv.org/abs/2501.03575">Cosmos</a></td>
+<td>NVIDIA</td>
+<td>世界基础模型平台，Physical AI 数字孪生</td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2503.14734">GR00T N1</a></td>
+<td>NVIDIA</td>
+<td>人形机器人基础模型</td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2307.15818">RT-1/RT-2</a></td>
+<td>Google</td>
+<td>Robotics Transformer，VLA 开山</td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2406.09246">OpenVLA</a></td>
+<td>Stanford 等</td>
+<td>开源 VLA</td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2405.12213">Octo</a></td>
+<td>Berkeley 等</td>
+<td>开源通用机器人策略</td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2502.21257">RoboBrain</a></td>
+<td>-</td>
+<td>统一脑模型，从抽象到具体</td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2606.11324">Embodied-R1.5</a></td>
+<td>-</td>
+<td>统一 EFM，认知+规划+纠错</td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2607.04426">ACE-Brain</a></td>
+<td>-</td>
+<td>Physical Agentic AI 完整闭环</td>
+</tr>
+<tr>
+<td>Figure AI</td>
+<td>Figure</td>
+<td>人形机器人（Helix VLA，未公开论文）</td>
+</tr>
+<tr>
+<td>Physical Intelligence (π)</td>
+<td>PI</td>
+<td>通用机器人策略（π0，未在 arXiv）</td>
+</tr>
+<tr>
+<td>Tesla Optimus</td>
+<td>Tesla</td>
+<td>人形机器人（未公开论文）</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Ox-Alpha/" class="btn btn-neutral float-left" title="Ox Alpha"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../T2V/" class="btn btn-neutral float-right" title="T2V">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Ox-Alpha/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../T2V/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>TTT Feynman - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "TTT Feynman";
+        var mkdocs_page_input_path = "8.tutorial/TTT-Feynman.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">TTT Feynman</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#ttt_1">一、TTT 到底更新什么——三个流派</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">二、三个时间尺度</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ttt_layers">三、TTT Layers 的数学本质</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#rnn">标准 RNN 的更新规则</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ttt_layer">TTT Layer 的更新规则</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ttt-linear">四、为什么 TTT-Linear 等价于线性注意力</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">推导</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">结论</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#titans">五、Titans 的记忆三要素</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">机制一：写入（什么时候记）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">机制二：更新（怎么记）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">机制三：遗忘（什么时候忘）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ttt_agi">六、TTT 与 AGI 三缺失的对应</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ttt_2">七、TTT 的前沿——还没解决的问题</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">问题一：灾难性遗忘</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">问题二：更新方向的安全保证</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">问题三：计算成本</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">问题四：从"序列内学习"到"跨序列学习"</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ttt_agi_1">八、把 TTT 放回 AGI 大图</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_11">延伸阅读</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">8.tutorial</li>
+      <li class="breadcrumb-item active">TTT Feynman</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="ttt">TTT 深入讲解：费曼学习笔记<a class="headerlink" href="#ttt" title="Permanent link">#</a></h2>
+<blockquote>
+<p>本文在 <a href="../../4.text-model/TTT/">TTT.md</a>（论文索引）基础上，用费曼学习法深入 TTT 的数学本质、架构设计和前沿问题。
+配套文档：<a href="../AGI-Feynman/">AGI-Feynman.md</a>、<a href="../PhysicalAI-Feynman/">PhysicalAI-Feynman.md</a></p>
+</blockquote>
+<hr />
+<h3 id="ttt_1">一、TTT 到底更新什么——三个流派<a class="headerlink" href="#ttt_1" title="Permanent link">#</a></h3>
+<p>TTT 说的"推理时更新"有三种完全不同的"更新"，对应三个流派：</p>
+<pre><code>流派一：更新一部分参数（Fast Weights）
+  代表：原始 TTT（2019）、In-Place TTT
+  做法：冻结主模型，只更新一个小子集的参数
+  类比：你不重新读大学，但工作中学新技能
+
+流派二：更新隐藏状态（Hidden State）
+  代表：TTT Layers（2024）、Titans（2025）
+  做法：不动模型参数，但 hidden state 本身是个小模型，
+        推理时对这个小模型做梯度更新
+  类比：你的大脑结构不变，但工作记忆在持续更新
+
+流派三：更新上下文（In-Context Learning）
+  代表：标准 LLM 的 few-shot learning
+  做法：什么都不更新，只往 context 里加例子
+  类比：你什么都没学到，但手边放了一本参考书
+</code></pre>
+<p>根本区别在于"信息存在哪里"：</p>
+<pre><code>流派一：信息存在参数里（持久但更新慢）
+流派二：信息存在隐藏状态里（半持久，序列内有效）
+流派三：信息存在上下文里（临时，context window 清空就没了）
+</code></pre>
+<p>这三个流派对应不同的时间尺度。</p>
+<hr />
+<h3 id="_1">二、三个时间尺度<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<p>人脑有三种记忆系统：</p>
+<pre><code>工作记忆（秒级）：你现在正在读的这句话，读完就忘了
+短期记忆（分钟到小时级）：你今天学的东西，明天可能忘
+长期记忆（天到年级）：你十年前学的骑自行车，现在还会
+</code></pre>
+<p>TTT 三个流派恰好对应：</p>
+<pre><code>流派三（In-Context Learning）≈ 工作记忆
+  context window 里的信息，清空就没了
+  时间尺度：单次对话（秒到分钟）
+
+流派二（Hidden State 更新）≈ 短期记忆
+  hidden state 在序列处理中持续更新
+  时间尺度：单条序列（分钟到小时）
+
+流派一（Fast Weights 更新）≈ 长期记忆
+  参数更新后持久存在
+  时间尺度：跨会话、跨天（如果更新被保存的话）
+</code></pre>
+<p>关键问题：当前 TTT 的流派二（TTT Layers）只在序列内有效。处理下一条序列时 hidden state 重置了。就像读一篇文章时记得前面的内容，但读完下一篇就忘了上一篇。</p>
+<p>要实现真正的"跨序列持续学习"，需要把 hidden state 的更新持久化保存。Titans 朝这个方向走了一步——神经记忆模块可以在序列间保留信息。但还远远不够。</p>
+<p>TTT 是 AGI 的核心缺失之一——它试图解决的"持续学习"问题，目前只解决了"序列内持续学习"，还没有解决"跨序列持续学习"。</p>
+<hr />
+<h3 id="ttt_layers">三、TTT Layers 的数学本质<a class="headerlink" href="#ttt_layers" title="Permanent link">#</a></h3>
+<h4 id="rnn">标准 RNN 的更新规则<a class="headerlink" href="#rnn" title="Permanent link">#</a></h4>
+<pre><code>h_t = f(h_{t-1}, x_t)
+
+h：隐藏状态（一个向量，比如 1024 维）
+x：当前输入
+f：一个神经网络
+
+h_t 的维度是固定的，不管输入多复杂，都被压缩到同一个维度的向量里
+</code></pre>
+<h4 id="ttt_layer">TTT Layer 的更新规则<a class="headerlink" href="#ttt_layer" title="Permanent link">#</a></h4>
+<pre><code>W_t = W_{t-1} - η · ∇ℓ(W_{t-1}; x_t)
+
+W：隐藏状态（一个模型的参数，比如线性模型的权重矩阵）
+η：学习率
+∇ℓ：自监督损失对 W 的梯度
+
+W_t 是通过梯度下降更新的！
+隐藏状态不再是一个向量，而是一组模型参数
+</code></pre>
+<p>标准 RNN 的 hidden state 是"被函数处理的向量"，TTT 的 hidden state 是"被梯度下降更新的模型参数"。</p>
+<p>这就是 "Learning to Learn at Test Time" 的精确含义：
+- 内循环（test time）：对 W 做梯度下降，学习当前序列的模式
+- 外循环（training time）：学习"怎么做好内循环"——即学习自监督损失 ℓ 的设计</p>
+<p>外循环学的是"如何学习"，不是"学什么"。</p>
+<hr />
+<h3 id="ttt-linear">四、为什么 TTT-Linear 等价于线性注意力<a class="headerlink" href="#ttt-linear" title="Permanent link">#</a></h3>
+<h4 id="_2">推导<a class="headerlink" href="#_2" title="Permanent link">#</a></h4>
+<p>TTT-Linear 的 hidden state W 是一个线性模型：W 是一个矩阵。</p>
+<p>内循环更新规则（简化版）：</p>
+<pre><code>W_t = W_{t-1} - η · ∇ℓ(W_{t-1}; x_t)
+</code></pre>
+<p>如果自监督损失是"用 W 重建输入 x_t"（自监督重建），即 ℓ = ||W·x_t - x_t||²，那么：</p>
+<pre><code>∇ℓ = 2·(W·x_t - x_t)·x_t^T
+    = 2·W·x_t·x_t^T - 2·x_t·x_t^T
+</code></pre>
+<p>更新后：</p>
+<pre><code>W_t = W_{t-1} - η·(2·W_{t-1}·x_t·x_t^T - 2·x_t·x_t^T)
+    = W_{t-1}·(I - 2η·x_t·x_t^T) + 2η·x_t·x_t^T
+</code></pre>
+<p>这个递推关系展开后，W_t 实际上是所有过去输入的加权累加。当用 W_t 去预测当前输出时，相当于用所有过去的输入做加权平均来预测。</p>
+<p>这恰好就是线性注意力（Linear Attention）做的事——用过去所有 key-value pair 的加权和对当前 query 做预测。</p>
+<h4 id="_3">结论<a class="headerlink" href="#_3" title="Permanent link">#</a></h4>
+<pre><code>TTT-Linear（内循环=线性模型，损失=重建）
+  = 线性注意力
+  = 一种 RNN，但 hidden state 是矩阵而不是向量
+</code></pre>
+<p>TTT-MLP：如果内循环学习器是两层 MLP（非线性），hidden state 的表达能力就超过线性注意力，接近自注意力。但代价是梯度计算更复杂，内存 I/O 是瓶颈。</p>
+<p>TTT 论文的核心理论贡献：不是又发明了一种新 RNN，而是发现了"RNN、线性注意力、自注意力"都是同一个框架（内循环学习器）的特例。选不同的内循环学习器，就得到不同的架构。</p>
+<pre><code>内循环学习器 = 线性模型  →  等价于线性注意力
+内循环学习器 = 核估计    →  等价于自注意力
+内循环学习器 = 神经网络  →  超越两者的新架构
+</code></pre>
+<hr />
+<h3 id="titans">五、Titans 的记忆三要素<a class="headerlink" href="#titans" title="Permanent link">#</a></h3>
+<p>Titans 在 TTT Layers 上加了"神经长期记忆"，有三个精心设计的机制：</p>
+<h4 id="_4">机制一：写入（什么时候记）<a class="headerlink" href="#_4" title="Permanent link">#</a></h4>
+<p>Titans 不会把每个输入都写进记忆。用"surprise 度量"来决定：</p>
+<pre><code>surprise(x_t) = ||∇ℓ(W_{t-1}; x_t)||  （梯度的幅度）
+
+如果 surprise 大 → 这个输入跟我预期不一样 → 值得记住
+如果 surprise 小 → 这个输入我已经会了 → 不用记
+</code></pre>
+<p>跟人脑一样——不会记住每天走过的同一条路，但会记住某天路上突然出现的一只熊。</p>
+<h4 id="_5">机制二：更新（怎么记）<a class="headerlink" href="#_5" title="Permanent link">#</a></h4>
+<p>用 delta rule（类似在线梯度下降）：</p>
+<pre><code>W_t = W_{t-1} + α_t · surprise(x_t) · (目标 - W_{t-1}·x_t)·x_t^T
+</code></pre>
+<p>α_t 是一个门控，决定这一步更新多大。门控本身也是学出来的。</p>
+<h4 id="_6">机制三：遗忘（什么时候忘）<a class="headerlink" href="#_6" title="Permanent link">#</a></h4>
+<pre><code>W_t = decay · W_t
+</code></pre>
+<p>每个时间步乘以衰减系数。不重要的记忆会逐渐淡化。</p>
+<p>三个机制加在一起，让 Titans 的记忆系统比原始 TTT 更接近人脑——不是什么都记，不是永远不忘，而是有选择地写入、更新和遗忘。</p>
+<hr />
+<h3 id="ttt_agi">六、TTT 与 AGI 三缺失的对应<a class="headerlink" href="#ttt_agi" title="Permanent link">#</a></h3>
+<pre><code>AGI 缺失                TTT 的对应
+────────────────────────────────────────────
+持续学习                TTT 的核心目标——推理时更新参数/状态
+  ├── 序列内持续学习      TTT Layers（已实现）
+  ├── 跨序列持续学习      Titans 神经记忆（部分实现）
+  └── 跨天/跨月持续学习   还没解决（需要持久化 + 无遗忘）
+
+世界模型                 TTT 不直接解决，但 TTT 的 hidden state
+                        可以看作&quot;序列级的世界模型&quot;
+
+自主目标设定             TTT 不解决
+</code></pre>
+<p>TTT 解决了 AGI 三缺失中的一个（持续学习），而且是最难的一个。但目前只解决了"序列内"的持续学习，还不能跨天记住经验。</p>
+<hr />
+<h3 id="ttt_2">七、TTT 的前沿——还没解决的问题<a class="headerlink" href="#ttt_2" title="Permanent link">#</a></h3>
+<h4 id="_7">问题一：灾难性遗忘<a class="headerlink" href="#_7" title="Permanent link">#</a></h4>
+<p>TTT 在推理时更新参数/状态，但新更新可能覆盖旧知识。</p>
+<p>在一条长序列里学了"猫的特征"，到后面又学了"狗的特征"，结果 hidden state 里的"猫"被覆盖了。</p>
+<p>人脑怎么解决？睡眠——人在睡眠时回放白天的经历，把短期记忆整合到长期记忆里，同时保留旧记忆。</p>
+<p>AI 的对应方案：经验回放（experience replay）+ 离线整合。但 TTT 目前是纯在线的，没有"睡眠"阶段。</p>
+<h4 id="_8">问题二：更新方向的安全保证<a class="headerlink" href="#_8" title="Permanent link">#</a></h4>
+<p>TTT 在推理时做梯度下降，但谁能保证更新方向是对的？</p>
+<p>训练时，梯度方向由标注数据保证。推理时，TTT 用自监督损失，但自监督任务可能跟下游任务不对齐——学了"重建被 mask 的 token"，但这不一定帮助回答用户的问题。</p>
+<p>In-Place TTT 通过"与 next-token prediction 对齐的目标函数"来缓解。但根本矛盾仍在——推理时没有外部反馈，不知道更新是在变好还是变差。</p>
+<h4 id="_9">问题三：计算成本<a class="headerlink" href="#_9" title="Permanent link">#</a></h4>
+<p>标准 attention 复杂度 O(n²)（n 是序列长度），但每步是简单矩阵乘法。</p>
+<p>TTT 复杂度 O(n)（线性！），但每步要做一次梯度计算——包含一次前向和一次反向传播。虽然理论上线性，但常数因子很大。</p>
+<p>实测中 TTT-Linear 在短序列（&lt;4k）时比 Transformer 慢，在长序列（&gt;32k）时才体现出优势。这就是为什么 TTT 目前主要被看作"长上下文方案"而不是"持续学习方案"——优势在长序列场景才显现。</p>
+<h4 id="_10">问题四：从"序列内学习"到"跨序列学习"<a class="headerlink" href="#_10" title="Permanent link">#</a></h4>
+<p>这是 TTT 走向 AGI 的真正门槛。目前 TTT 的更新在序列处理完后就丢弃了（或被下一个序列覆盖）。要实现跨序列学习，需要：</p>
+<ol>
+<li>把 hidden state 的更新持久化保存（类似 checkpoint）</li>
+<li>在新序列开始时加载上一次的 hidden state</li>
+<li>设计机制防止跨序列的灾难性遗忘</li>
+</ol>
+<p>aTTT（Agentic Test-Time Training）在这个方向迈了一步——在多轮 agent 交互中持续做 TTT，每次更新改变后续生成策略。但也发现了问题——"更新文本重复"会导致自训练漂移，需要 token 级重加权来缓解。</p>
+<hr />
+<h3 id="ttt_agi_1">八、把 TTT 放回 AGI 大图<a class="headerlink" href="#ttt_agi_1" title="Permanent link">#</a></h3>
+<pre><code>AGI 三缺失               当前最接近的技术     成熟度
+────────────────────────────────────────────────────
+持续学习                  TTT Layers/Titans    序列内已解决
+                                              跨序列未解决
+                                              跨天/月未解决
+
+世界模型                  Cosmos / WAM         物理世界预测初步
+                                              长程漂移未解决
+                                              物理幻觉未解决
+
+自主目标设定              无直接对应技术        ???
+</code></pre>
+<p>判断：</p>
+<ul>
+<li><strong>持续学习</strong>：AGI 三缺失中进展最快。TTT 已给出理论框架（内循环/外循环），剩下的是工程问题和"跨序列持久化"的架构创新。最可能先突破。</li>
+<li><strong>世界模型</strong>：第二可能突破。Cosmos 路线清晰，数据量在积累，只是需要时间。</li>
+<li><strong>自主目标设定</strong>：最不清晰。可能需要根本性的科学突破，不是工程能解决的。</li>
+</ul>
+<hr />
+<h3 id="_11">延伸阅读<a class="headerlink" href="#_11" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="../../4.text-model/TTT/">TTT.md</a> — TTT 论文索引（核心论文 5 篇 + 拓展论文 5 篇 + TRM 系列 7 篇 + RSI Workshop 论文）</li>
+<li><a href="../AGI-Feynman/">AGI-Feynman.md</a> — AGI 费曼学习笔记（三缺失与五条路线）</li>
+<li><a href="../PhysicalAI-Feynman/">PhysicalAI-Feynman.md</a> — Physical AI 费曼学习笔记（世界模型与 Cosmos）</li>
+<li><a href="../../7.product/SelfEvolving/">SelfEvolving.md</a> — 自进化 Agent（RSI 路径，aTTT 等）</li>
+<li><a href="../../4.text-model/LongContext/">LongContext.md</a> — 长上下文注意力优化（TTT-Linear 与 Mamba/Transformer 的关系）</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../PhysicalAI-Feynman/" class="btn btn-neutral float-left" title="PhysicalAI Feynman"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../9.people/Cosmos-Interview/" class="btn btn-neutral float-right" title="Cosmos Interview">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../PhysicalAI-Feynman/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../9.people/Cosmos-Interview/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

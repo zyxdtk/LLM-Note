@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Cosmos Interview - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Cosmos Interview";
+        var mkdocs_page_input_path = "9.people/Cosmos-Interview.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Cosmos Interview</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">基本信息</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">访谈大纲与要点</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1_000235">1. 英伟达的赌注与边界（00:02:35）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2_002957">2. 意外、顿悟、转变（00:29:57）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3_gpu010246">3. 如何在英伟达拿到 GPU（01:02:46）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4_vp012157">4. 从研究员到英伟达 VP（01:21:57）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5_cosmos_013700">5. Cosmos 的诞生（01:37:00）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6_cosmos_1_cosmos_3_015139">6. 从 Cosmos 1 到 Cosmos 3 的演变（01:51:39）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7_023633">7. "黑客帝国"（02:36:33）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8_cuda024420">8. 下一个 CUDA?（02:44:20）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#9_mission_is_the_boss024704">9. 关于黄仁勋：Mission is the boss（02:47:04）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#10_031220">10. 模型竞争不是鱿鱼游戏（03:12:20）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">技术洞察摘要</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">世界模型的技术哲学</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#physical_ai">英伟达 Physical AI 全栈战略</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">组织哲学</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">相关文档</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">9.people</li>
+      <li class="breadcrumb-item active">Cosmos Interview</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="cosmos_ai">英伟达研究副总裁刘洺堉访谈：Cosmos、世界模型与物理 AI<a class="headerlink" href="#cosmos_ai" title="Permanent link">#</a></h2>
+<blockquote>
+<p>来源：张小珺商业访谈录（B站）
+日期：2026-08-13
+时长：3小时36分
+嘉宾：刘洺堉（英伟达研究副总裁，Cosmos 世界基座模型负责人）
+主持人：张小珺
+文字版：公众号"语言即世界language is world"</p>
+</blockquote>
+<hr />
+<h3 id="_1">基本信息<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<ul>
+<li>刘洺堉：英伟达第一位从研究员擢升至副总裁的管理者，领导世界基座模型 Cosmos 项目</li>
+<li>Cosmos 项目：2024 年立项，已发布至 Cosmos 3，直属团队不到 100 人，虚线汇报 200-300 人</li>
+<li>黄仁勋原话："你就做到 Cosmos 97"——世界模型是英伟达长期战略，不是几代就停</li>
+</ul>
+<hr />
+<h3 id="_2">访谈大纲与要点<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<h4 id="1_000235">1. 英伟达的赌注与边界（00:02:35）<a class="headerlink" href="#1_000235" title="Permanent link">#</a></h4>
+<ul>
+<li>英伟达正在"造"的市场：面向物理世界的人工智能（Physical AI）</li>
+<li>Cosmos 世界基座模型被寄予厚望，是 Physical AI 战略核心</li>
+<li>黄仁勋的战略观："要造市场，而不是存量竞争"——做 zero-billion-dollar business（从零到十亿美元的业务），不满足于赚 100M 的小生意</li>
+<li>刘洺堉强调："我没有竞争对手，没有和任何人竞争，所有人都可以是合作伙伴"</li>
+<li>"什么叫战争呢？我没有打算把别人杀死。我们的心态是我们要怎么去造市场"</li>
+</ul>
+<h4 id="2_002957">2. 意外、顿悟、转变（00:29:57）<a class="headerlink" href="#2_002957" title="Permanent link">#</a></h4>
+<ul>
+<li>刘洺堉出生于中国台湾，金庸小说爱好者</li>
+<li>18 岁起师从武术家徐纪（神枪李书文一脉传人）练习中国功夫至今</li>
+<li>凌晨 4 点起床进行武术训练，之后冰水浴</li>
+<li>"中国武术最重要的是控制自己，我并不是为了展现强大的破坏能力"</li>
+<li>用东方智慧进行技术表达：把大模型比作中医，援引《孙子兵法》"备多则力寡"思考世界模型技术趋势</li>
+</ul>
+<h4 id="3_gpu010246">3. 如何在英伟达拿到 GPU（01:02:46）<a class="headerlink" href="#3_gpu010246" title="Permanent link">#</a></h4>
+<ul>
+<li>英伟达内部 GPU 资源分配机制</li>
+<li>大规模模型训练的算力协调</li>
+</ul>
+<h4 id="4_vp012157">4. 从研究员到英伟达 VP（01:21:57）<a class="headerlink" href="#4_vp012157" title="Permanent link">#</a></h4>
+<ul>
+<li>刘洺堉是英伟达第一位从研究员擢升至 VP 的管理者</li>
+<li>在英伟达工作 10 年，在美国生活 20 年</li>
+<li>从个体研究者到管理数百人团队的角色转变</li>
+</ul>
+<h4 id="5_cosmos_013700">5. Cosmos 的诞生（01:37:00）<a class="headerlink" href="#5_cosmos_013700" title="Permanent link">#</a></h4>
+<ul>
+<li>2024 年立项背景：英伟达判断 Physical AI 需要世界基座模型</li>
+<li>Cosmos 定位：物理世界的"数字孪生"基础设施</li>
+<li>与 NVIDIA Omniverse、Isaac Sim 的关系</li>
+</ul>
+<h4 id="6_cosmos_1_cosmos_3_015139">6. 从 Cosmos 1 到 Cosmos 3 的演变（01:51:39）<a class="headerlink" href="#6_cosmos_1_cosmos_3_015139" title="Permanent link">#</a></h4>
+<blockquote>
+<p>这一节与 <a href="./PhysicalAI.md">PhysicalAI.md</a> 中的 Cosmos 论文直接对应</p>
+</blockquote>
+<ul>
+<li><strong>Cosmos 1</strong>（2025.01）：<a href="https://arxiv.org/abs/2501.03575">arXiv:2501.03575</a></li>
+<li>Physical AI 需要"数字优先训练"：policy model（自身的数字孪生）+ world model（世界的数字孪生）</li>
+<li>
+<p>提供可定制的世界基础模型平台</p>
+</li>
+<li>
+<p><strong>Cosmos 3</strong>（2026.06）：<a href="https://arxiv.org/abs/2606.02800">arXiv:2606.02800</a></p>
+</li>
+<li>全模态世界模型：统一处理语言、图像、视频、音频、动作序列</li>
+<li>
+<p>混合 Transformer 架构，支持灵活输入输出配置</p>
+</li>
+<li>
+<p>架构演进的关键决策点</p>
+</li>
+<li>技术路线选择背后的思考</li>
+</ul>
+<h4 id="7_023633">7. "黑客帝国"（02:36:33）<a class="headerlink" href="#7_023633" title="Permanent link">#</a></h4>
+<ul>
+<li>世界模型的终极愿景：高保真模拟物理世界</li>
+<li>仿真与现实的关系：sim-to-real 的哲学层面</li>
+<li>"备多则力寡"与世界模型：为什么不需要在所有维度都做冗余预测</li>
+</ul>
+<h4 id="8_cuda024420">8. 下一个 CUDA?（02:44:20）<a class="headerlink" href="#8_cuda024420" title="Permanent link">#</a></h4>
+<ul>
+<li>Cosmos 是否会成为 Physical AI 领域的 CUDA 级基础设施</li>
+<li>世界模型平台的生态建设策略</li>
+<li>英伟达的飞轮：GPU 硬件 → CUDA 软件 → Cosmos 模型 → Omniverse 仿真 → 机器人部署</li>
+</ul>
+<h4 id="9_mission_is_the_boss024704">9. 关于黄仁勋：Mission is the boss（02:47:04）<a class="headerlink" href="#9_mission_is_the_boss024704" title="Permanent link">#</a></h4>
+<ul>
+<li>黄仁勋的管理哲学："Mission is the boss"——使命是老板，不是人</li>
+<li>英伟达的组织文化：去中心化 + 使命驱动</li>
+<li>黄仁勋对 Cosmos 项目的战略决心</li>
+</ul>
+<h4 id="10_031220">10. 模型竞争不是鱿鱼游戏（03:12:20）<a class="headerlink" href="#10_031220" title="Permanent link">#</a></h4>
+<ul>
+<li>英伟达的竞争观：不参与零和博弈</li>
+<li>世界模型不是赢家通吃——不同场景需要不同的世界模型</li>
+<li>合作伙伴生态比竞争壁垒更重要</li>
+</ul>
+<hr />
+<h3 id="_3">技术洞察摘要<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<h4 id="_4">世界模型的技术哲学<a class="headerlink" href="#_4" title="Permanent link">#</a></h4>
+<ul>
+<li>刘洺堉用《孙子兵法》"备多则力寡"思考世界模型：不需要在所有维度都做预测，过度冗余反而降低效果</li>
+<li>大模型比作中医：强调整体性和系统性，不是头痛医头</li>
+<li>世界模型的核心价值：为 Physical AI 提供可重复、可控制、低成本的训练环境</li>
+</ul>
+<h4 id="physical_ai">英伟达 Physical AI 全栈战略<a class="headerlink" href="#physical_ai" title="Permanent link">#</a></h4>
+<pre><code>硬件层：Jetson（边缘）→ DGX（云端）
+平台层：CUDA → Omniverse（仿真）→ Isaac Sim（机器人仿真）
+模型层：Cosmos（世界基座模型）→ GR00T（机器人基础模型）
+应用层：自动驾驶 → 人形机器人 → 工业机器人
+</code></pre>
+<h4 id="_5">组织哲学<a class="headerlink" href="#_5" title="Permanent link">#</a></h4>
+<ul>
+<li>使命驱动而非层级驱动："Mission is the boss"</li>
+<li>造市场而非存量竞争：做 zero-billion-dollar business</li>
+<li>不追求短期盈利小生意，聚焦最重要的问题和最大的贡献</li>
+<li>团队规模克制：Cosmos 核心团队不到 100 人</li>
+</ul>
+<hr />
+<h3 id="_6">相关文档<a class="headerlink" href="#_6" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="./PhysicalAI.md">PhysicalAI.md</a> — Physical AI Agent 论文全集，含 Cosmos 1/3 论文</li>
+<li><a href="./VLA.md">VLA.md</a> — VLA 模型论文</li>
+<li><a href="../../4.text-model/LongContext/">LongContext.md</a> — 长上下文（含注意力优化）</li>
+<li>→ 访谈中提到的 Cosmos 论文：</li>
+<li><a href="https://arxiv.org/abs/2501.03575">Cosmos World Foundation Model Platform (Cosmos 1)</a></li>
+<li><a href="https://arxiv.org/abs/2606.02800">Cosmos 3: Omnimodal World Models for Physical AI</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../8.tutorial/TTT-Feynman/" class="btn btn-neutral float-left" title="TTT Feynman"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../PercyLiang/" class="btn btn-neutral float-right" title="PercyLiang">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../8.tutorial/TTT-Feynman/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../PercyLiang/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>NovelGenerator - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NovelGenerator";
+        var mkdocs_page_input_path = "7.product/NovelGenerator.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">NovelGenerator</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">概览</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">开源项目</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1_inkos_ai_agent">1. InkOS — 故事创作 AI Agent 系统</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2_ai_novelgenerator">2. AI_NovelGenerator — 多章节长篇小说生成器</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3_mumuainovel_ai">3. MuMuAINovel — AI 智能小说创作助手</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4_show_me_the_story_ai">4. Show Me The Story — 自托管 AI 小说生成器</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5_awesome-novel-skill_ai_agent_skill">5. awesome-novel-skill — AI Agent 小说创作 Skill</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6_oh-story-claudecode_skill">6. oh-story-claudecode — 网文写作全流程 Skill 包 ⭐ 新发现</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7_ai-novel-writing-assistant_ai">7. AI-Novel-Writing-Assistant — AI 导演式长篇小说生产系统 ⭐ 新发现</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8_humanizer_ai_agent_skill">8. Humanizer — 去 AI 味 Agent Skill ⭐ 新发现</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#9_novel-studio">9. novel-studio — 多智能体世界推演小说生成引擎</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#10_recurrent-llm_recurrentgpt">10. Recurrent-LLM — RecurrentGPT 论文实现</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#11_novel-writer-skills_ai">11. novel-writer-skills — 零成本 AI 中文小说</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">自动发布工具</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1_fanqie_auto_publish">1. fanqie_auto_publish ⭐ 最成熟</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2_fanqie-publisher-skillopenclaw_skill">2. fanqie-publisher-skill（OpenClaw Skill）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3_tomato-novel-mcp-tool">3. tomato-novel-mcp-tool</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4_webfiction-write">4. webfiction-write</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5_openwrite">5. OpenWrite（通用多平台发布）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">平台覆盖情况</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">技术方案建议</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">论文资源</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">论文合集</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">重点论文（按方向）</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#plan_and_write">Plan And Write (规划与写作)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#multi_agent">Multi Agent (多智能体)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#better_storytelling">Better Storytelling (更好讲故事)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#more_controllable">More Controllable (可控性)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#more_personalized">More Personalized (个性化)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#evaluation">Evaluation (评估)</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#foundation_models">Foundation Models (基础模型)</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_9">对比总结</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">关键技术方向</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#github_topics">GitHub Topics 导航</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">7.product</li>
+      <li class="breadcrumb-item active">NovelGenerator</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="ai_agent">AI 小说生成 Agent<a class="headerlink" href="#ai_agent" title="Permanent link">#</a></h2>
+<blockquote>
+<p>整理日期: 2026-08-06 | 更新: 2026-08-06</p>
+</blockquote>
+<h3 id="_1">概览<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<p>AI 小说生成是 LLM 的重要应用方向。核心挑战：长文本一致性、角色/伏笔管理、上下文窗口限制、去 AI 味。</p>
+<hr />
+<h3 id="_2">开源项目<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<h4 id="1_inkos_ai_agent">1. InkOS — 故事创作 AI Agent 系统<a class="headerlink" href="#1_inkos_ai_agent" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/Narcooo/inkos">Narcooo/inkos</a></li>
+<li><strong>Stars:</strong> 8.8k</li>
+<li><strong>语言:</strong> TypeScript / Node.js (npm: <code>@actalk/inkos</code>)</li>
+<li><strong>License:</strong> AGPL-3.0 | <strong>最新版本:</strong> v1.7</li>
+</ul>
+<p><strong>定位:</strong> 面向长短篇小说、剧本剧作、互动影游、IP 内容与多语言翻译的创作智能体系统。</p>
+<p><strong>核心特性:</strong>
+- Studio (Web) / TUI / CLI 三种交互形式
+- 长篇小说: 创作简报建书 → 世界观/角色/卷纲/章节意图 → 写作 → 审稿 → 修订 → 状态结算
+- 剧情多线推演: 基于"正史"创建 2-5 条隔离候选未来，横向比较
+- InkOS Play: 开放世界互动 (角色 agent、物品/证据/关系状态、HUD)
+- InkOS Short: 独立短篇一键生成
+- 完整翻译工作台: EPUB/PDF/TXT/MD，术语表 + 对照审校
+- Skill 系统: 标准 <code>SKILL.md</code> 可插拔能力包
+- 联网研究: <code>research_web</code> 带来源参考报告
+- 上下文管理: protected/compressible 语义压缩 + SQLite 记忆
+- 已发布为 OpenClaw Skill (<code>clawhub install inkos</code>)
+- 支持 OpenAI 兼容 API、Moonshot (Kimi)、OpenRouter 等</p>
+<p><strong>亮点:</strong> 功能最全面，覆盖小说/剧本/互动影游/翻译多场景，Agent 架构成熟。</p>
+<hr />
+<h4 id="2_ai_novelgenerator">2. AI_NovelGenerator — 多章节长篇小说生成器<a class="headerlink" href="#2_ai_novelgenerator" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/YILING0013/AI_NovelGenerator">YILING0013/AI_NovelGenerator</a></li>
+<li><strong>Stars:</strong> 高 (topic 下最热门之一)</li>
+<li><strong>语言:</strong> Python | <strong>License:</strong> 开源</li>
+<li><strong>状态:</strong> 重构中 (2026/03/25 宣布重构，dev 分支)</li>
+</ul>
+<p><strong>定位:</strong> 基于 LLM 的多章节长篇小说生成工具，自动衔接上下文和伏笔。</p>
+<p><strong>核心特性:</strong>
+- 小说设定工坊: 世界观 / 角色设计 / 情节蓝图
+- 智能章节生成: 多阶段生成保证情节连贯
+- 状态追踪: 角色发展轨迹 / 伏笔管理
+- 语义搜索引擎: 向量检索长程上下文一致性
+- 知识库集成: 支持本地文档参考
+- 自动校对: 检测情节矛盾和逻辑冲突
+- 可视化工作台: GUI 全流程操作
+- 多模型配置: 支持不同任务路由不同模型 (大纲/正文/校对各用不同模型)</p>
+<p><strong>亮点:</strong> 向量检索做长程一致性 + 多模型任务路由，工程化程度高。</p>
+<hr />
+<h4 id="3_mumuainovel_ai">3. MuMuAINovel — AI 智能小说创作助手<a class="headerlink" href="#3_mumuainovel_ai" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/xiamuceer-j/MuMuAINovel">xiamuceer-j/MuMuAINovel</a></li>
+<li><strong>Stars:</strong> 中等 | <strong>语言:</strong> Python (FastAPI) + React</li>
+<li><strong>License:</strong> GPL v3 | <strong>最新版本:</strong> v1.5.4</li>
+</ul>
+<p><strong>定位:</strong> 基于 AI 的智能小说创作助手，Web 应用 + Docker 部署。</p>
+<p><strong>核心特性:</strong>
+- 多 AI 模型: OpenAI / Gemini / Claude
+- 智能向导: AI 自动生成大纲、角色和世界观
+- 角色管理: 人物关系、组织架构可视化
+- 伏笔管理: 智能追踪 + 未回收线索提醒 + 时间线可视化
+- 提示词工坊: 社区驱动 Prompt 模板分享
+- 拆书功能: 一键拆书分析已有作品
+- 职业等级体系: 支持修仙境界、魔法等级等
+- PostgreSQL 多用户数据隔离 + Docker 一键部署</p>
+<p><strong>亮点:</strong> 产品化程度高，多用户支持，Docker 开箱即用，伏笔可视化。</p>
+<hr />
+<h4 id="4_show_me_the_story_ai">4. Show Me The Story — 自托管 AI 小说生成器<a class="headerlink" href="#4_show_me_the_story_ai" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/Nigh/show-me-the-story">Nigh/show-me-the-story</a></li>
+<li><strong>Stars:</strong> 438 | <strong>语言:</strong> Go + Svelte | <strong>License:</strong> 开源</li>
+</ul>
+<p><strong>定位:</strong> 单文件运行的 AI 长篇小说创作工具，自托管，OpenAI 兼容 API。</p>
+<p><strong>核心特性:</strong>
+- 单二进制文件: 无需数据库，一个 Go binary + 浏览器
+- 两阶段创作: 先大纲后逐章写作
+- 逐章审核 + 自动确认模式
+- 伏笔系统: 埋设 → 推进 → 回收，超期告警
+- 叙事记忆: 自动提取大纲未体现的关键细节，跨章注入
+- 事实核查: 每章自动一致性检查，不通过自动重写
+- 续写已有作品 + 去 AI 味润色
+- 全书优化: 诊断 → 一致性核查 → 优化工单 → 逐章修订 → diff 对比
+- 技能系统 + AI 助理 (聊天式操作项目)
+- 中英双语，数据纯文本/JSON</p>
+<p><strong>亮点:</strong> 单文件部署最简，伏笔+叙事记忆+事实核查三件套，全书优化流程完整。</p>
+<hr />
+<h4 id="5_awesome-novel-skill_ai_agent_skill">5. awesome-novel-skill — AI Agent 小说创作 Skill<a class="headerlink" href="#5_awesome-novel-skill_ai_agent_skill" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/modoojunko/awesome-novel-skill">modoojunko/awesome-novel-skill</a></li>
+<li><strong>Stars:</strong> 509 | <strong>语言:</strong> Python | <strong>License:</strong> GPL 3.0</li>
+</ul>
+<p><strong>定位:</strong> 让 AI Agent (Claude Code / OpenCode / Reasonix) 成为小说创作搭档的 Skill 包。</p>
+<p><strong>核心特性:</strong>
+- 8 Agent 协作架构: novel-agent (总指挥) → updater / volume-planner / chapter-planner / prompt-crafter / writer / anti-ai / reader
+- 24 套预置题材画像
+- 四维规划: 情绪走向 / 冲突阶梯 / 信息差 / 场景卡
+- 写作动态记忆: 卷/章/提示词/写作四级 memory
+- 支持 Claude Code / OpenCode / Reasonix / OpenClaw</p>
+<p><strong>亮点:</strong> 纯 Skill 方案，多 Agent 协作，与 coding agent 生态深度集成。</p>
+<hr />
+<h4 id="6_oh-story-claudecode_skill">6. oh-story-claudecode — 网文写作全流程 Skill 包 ⭐ 新发现<a class="headerlink" href="#6_oh-story-claudecode_skill" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/worldwonderer/oh-story-claudecode">worldwonderer/oh-story-claudecode</a></li>
+<li><strong>Stars:</strong> 5.1k | <strong>语言:</strong> JavaScript</li>
+</ul>
+<p><strong>定位:</strong> 覆盖长篇与短篇网络小说的扫榜、拆文、写作、去AI味、封面图全流程。</p>
+<p><strong>核心特性:</strong>
+- 三步方法论: 扫榜 (分析热门榜单) → 拆文 (拆解大纲节奏) → 商业化写作
+- 13 个 Skill: story-setup / story-long-write / story-long-analyze / story-long-scan / story-short-write / story-short-analyze / story-short-scan / story-deslop / story-import 等
+- 7 个专业 Agent: story-architect / narrative-writer / consistency-checker 等
+- 长篇追踪状态模型: 单一权威 <code>_tracking-state.json</code>，续写状态卡 + 伏笔/时间线/角色快照
+- 本地工作台 Dashboard
+- 支持 Claude Code / OpenCode / ZCode / OpenClaw / Codex CLI / Reasonix
+- 核心理念: "套路 = 确定性的情绪满足"</p>
+<p><strong>亮点:</strong> 最贴近中文网文生态 (起点/番茄/晋江扫榜)，商业化写作导向，去 AI 味治理成熟。</p>
+<hr />
+<h4 id="7_ai-novel-writing-assistant_ai">7. AI-Novel-Writing-Assistant — AI 导演式长篇小说生产系统 ⭐ 新发现<a class="headerlink" href="#7_ai-novel-writing-assistant_ai" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/ExplosiveCoderflome/AI-Novel-Writing-Assistant">ExplosiveCoderflome/AI-Novel-Writing-Assistant</a></li>
+<li><strong>Stars:</strong> 2.3k | <strong>语言:</strong> TypeScript | <strong>桌面版:</strong> Windows EXE</li>
+</ul>
+<p><strong>定位:</strong> 面向长篇小说完成度的 AI Native 生产系统，从一句灵感到完整小说。</p>
+<p><strong>核心特性:</strong>
+- AI 自动导演开书: 一句灵感 → 整本方向/角色/卷章规划 → 正文生产
+- Creative Hub: 统一创作中枢 (对话/规划/工具调用/任务状态)
+- 整本生产主链: 章节生成 → AI 审核 → 修复 → 角色状态回灌
+- 拆书工作台: 四档角色档案 + 角色形象演变追踪
+- 写法引擎: 可保存/编辑/绑定的写法资产 + 反 AI 规则
+- RAG: Qdrant 向量检索，拆书产物入索引
+- 漫画与短剧衍生工坊
+- 模型路由: 多提供商按任务拆分
+- Windows 桌面版可直接下载安装</p>
+<p><strong>技术栈:</strong> React + Vite + Express + Prisma + LangChain + LangGraph + Qdrant</p>
+<p><strong>亮点:</strong> LangGraph 编排的生产链最完整，"导演式"全自动开书，角色资源账本精准上下文筛选。</p>
+<hr />
+<h4 id="8_humanizer_ai_agent_skill">8. Humanizer — 去 AI 味 Agent Skill ⭐ 新发现<a class="headerlink" href="#8_humanizer_ai_agent_skill" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/blader/humanizer">blader/humanizer</a></li>
+<li><strong>Stars:</strong> 33.9k | <strong>语言:</strong> Python (SKILL.md)</li>
+</ul>
+<p><strong>定位:</strong> 移除 AI 写作痕迹的 Agent Skill，基于 Wikipedia "Signs of AI writing" 指南。</p>
+<p><strong>核心特性:</strong>
+- 33 种 AI 写作模式检测 (意义膨胀、署名堆砌、推广语言、模糊归因等)
+- 两轮重写: 第一轮去 AI 味 + 第二轮审计
+- 声音校准: 可提供个人写作样本匹配风格
+- 无捏造规则: 不添加原文没有的事实/名字/日期
+- 适配所有支持 SKILL.md 的 Agent (Claude Code / OpenClaw 等)</p>
+<p><strong>亮点:</strong> Star 数最高 (33.9k)，专注去 AI 味这一垂直场景，基于维基百科 AI 清理项目的方法论。</p>
+<hr />
+<h4 id="9_novel-studio">9. novel-studio — 多智能体世界推演小说生成引擎<a class="headerlink" href="#9_novel-studio" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/Xiaoyangy/novel-studio">Xiaoyangy/novel-studio</a></li>
+<li><strong>Stars:</strong> 69 | <strong>语言:</strong> Go</li>
+</ul>
+<p><strong>定位:</strong> 开源、本地优先的 AI 长篇小说创作引擎。</p>
+<p><strong>核心特性:</strong>
+- 多智能体世界推演
+- 按弧规划 (Story Arc Planning)
+- RAG 长程记忆 (Qdrant)
+- 逐章审核与断点恢复
+- OpenAI 兼容 API</p>
+<hr />
+<h4 id="10_recurrent-llm_recurrentgpt">10. Recurrent-LLM — RecurrentGPT 论文实现<a class="headerlink" href="#10_recurrent-llm_recurrentgpt" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/jackaduma/Recurrent-LLM">jackaduma/Recurrent-LLM</a></li>
+<li><strong>Stars:</strong> 206 | <strong>语言:</strong> Python</li>
+</ul>
+<p><strong>定位:</strong> RecurrentGPT 论文的开源实现，交互式任意长文本生成。</p>
+<hr />
+<h4 id="11_novel-writer-skills_ai">11. novel-writer-skills — 零成本 AI 中文小说<a class="headerlink" href="#11_novel-writer-skills_ai" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/Shine8592/novel-writer-skills">Shine8592/novel-writer-skills</a></li>
+<li><strong>Stars:</strong> 15 | <strong>语言:</strong> Python</li>
+</ul>
+<p><strong>定位:</strong> 零成本 AI 中文小说写作，3 个 OpenClaw Skill，¥0 API 花费，已生成 90 万字+。</p>
+<hr />
+<h3 id="_3">自动发布工具<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<blockquote>
+<p>整理日期: 2026-08-06</p>
+</blockquote>
+<p>AI 写完小说后，手动上传各平台耗时耗力。以下工具可自动将章节发布到小说平台。</p>
+<h4 id="1_fanqie_auto_publish">1. fanqie_auto_publish ⭐ 最成熟<a class="headerlink" href="#1_fanqie_auto_publish" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/hchcx/fanqie_auto_publish">hchcx/fanqie_auto_publish</a></li>
+<li><strong>语言:</strong> Python | <strong>依赖:</strong> Playwright</li>
+<li><strong>平台:</strong> 番茄小说</li>
+</ul>
+<p><strong>核心特性:</strong>
+- 基于 Playwright 全自动网页端发文与状态管理
+- 批量 .txt 章节文件精准投递并发布
+- 断点续检 + 弹窗斩杀机制
+- 无人值守运行
+- Linux.do 有开源讨论帖</p>
+<h4 id="2_fanqie-publisher-skillopenclaw_skill">2. fanqie-publisher-skill（OpenClaw Skill）<a class="headerlink" href="#2_fanqie-publisher-skillopenclaw_skill" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>来源:</strong> <a href="https://clawhub.ai/followaf/skills/fanqie-publisher-skill">ClawHub</a></li>
+<li><strong>语言:</strong> Python | <strong>依赖:</strong> Playwright</li>
+<li><strong>平台:</strong> 番茄小说</li>
+</ul>
+<p><strong>核心特性:</strong>
+- OpenClaw Skill，可直接 <code>clawhub install</code> 安装使用
+- 支持单章/批量发布、存草稿箱
+- 登录番茄作家后台、查看作品列表和状态
+- 触发词：番茄发布、番茄小说上传、发布章节等</p>
+<h4 id="3_tomato-novel-mcp-tool">3. tomato-novel-mcp-tool<a class="headerlink" href="#3_tomato-novel-mcp-tool" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/WTW-NiuBi/tomato-novel-mcp-tool">WTW-NiuBi/tomato-novel-mcp-tool</a></li>
+<li><strong>语言:</strong> TypeScript | <strong>协议:</strong> MCP</li>
+<li><strong>平台:</strong> 番茄小说</li>
+</ul>
+<p><strong>核心特性:</strong>
+- MCP 协议工具，可接入任意支持 MCP 的 Agent
+- AI 生成章节 + 原创性检测 + 自动发布
+- 数据统计和分析
+- 定时发布功能</p>
+<h4 id="4_webfiction-write">4. webfiction-write<a class="headerlink" href="#4_webfiction-write" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Repo:</strong> <a href="https://github.com/qingyabailu-git/webfiction-write">qingyabailu-git/webfiction-write</a></li>
+<li><strong>语言:</strong> Python</li>
+<li><strong>平台:</strong> 番茄、起点、七猫、刺猬猫（面向这些平台优化）</li>
+</ul>
+<p><strong>核心特性:</strong>
+- 基于 Codex 的网文创作工具集 Skill
+- 从构思到完本完整工作流（偏创作侧，非纯发布）</p>
+<h4 id="5_openwrite">5. OpenWrite（通用多平台发布）<a class="headerlink" href="#5_openwrite" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>网站:</strong> <a href="https://openwrite.cn">openwrite.cn</a></li>
+<li><strong>类型:</strong> SaaS</li>
+<li><strong>平台:</strong> 掘金、CSDN、知乎等技术内容平台</li>
+</ul>
+<p><strong>核心特性:</strong>
+- 写一次同步到多个内容平台
+- Markdown 写作与内容管理
+- ⚠️ 偏技术文章，非小说专属</p>
+<h4 id="_4">平台覆盖情况<a class="headerlink" href="#_4" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>专用工具</th>
+<th>自动发布可行性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>番茄小说</strong></td>
+<td>3 个专用工具</td>
+<td>✅ 最成熟</td>
+</tr>
+<tr>
+<td><strong>起点中文网</strong></td>
+<td>无现成工具</td>
+<td>⚠️ 作家后台反爬严格</td>
+</tr>
+<tr>
+<td><strong>七猫</strong></td>
+<td>无专用工具</td>
+<td>⚠️ 需自研</td>
+</tr>
+<tr>
+<td><strong>刺猬猫</strong></td>
+<td>无专用工具</td>
+<td>⚠️ 需自研</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_5">技术方案建议<a class="headerlink" href="#_5" title="Permanent link">#</a></h4>
+<ol>
+<li><strong>番茄优先</strong> — 装 <code>fanqie-publisher-skill</code>（OpenClaw 原生）或 <code>fanqie_auto_publish</code>（独立脚本）</li>
+<li><strong>起点/七猫</strong> — 基于 Playwright 自研，参考 <code>fanqie_auto_publish</code> 架构改造</li>
+<li><strong>通用方案</strong> — 各平台作家后台用浏览器自动化模拟登录 + 上传，配合定时任务</li>
+<li><strong>注意事项</strong> — 各平台对自动化发文有不同限制策略，需关注账号安全</li>
+</ol>
+<hr />
+<h3 id="_6">论文资源<a class="headerlink" href="#_6" title="Permanent link">#</a></h3>
+<h4 id="_7">论文合集<a class="headerlink" href="#_7" title="Permanent link">#</a></h4>
+<p><strong>Awesome-Story-Generation</strong> — LLM 时代故事生成论文合集 ⭐
+- <strong>Repo:</strong> <a href="https://github.com/yingpengma/Awesome-Story-Generation">yingpengma/Awesome-Story-Generation</a>
+- <strong>Stars:</strong> 643
+- <strong>维护者:</strong> Yingpeng Ma, Yan Ma
+- 收录 LLM 时代故事生成相关论文，按方向分类，持续更新</p>
+<h4 id="_8">重点论文（按方向）<a class="headerlink" href="#_8" title="Permanent link">#</a></h4>
+<h5 id="plan_and_write">Plan And Write (规划与写作)<a class="headerlink" href="#plan_and_write" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>会议</th>
+<th>核心思路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Learning to Reason for Long-Form Story Generation</td>
+<td>ArXiv-2025</td>
+<td>推理能力用于长篇故事生成</td>
+</tr>
+<tr>
+<td>Generating Long-form Story Using Dynamic Hierarchical Outlining with Memory-Enhancement</td>
+<td>NAACL-2025</td>
+<td>动态分层大纲 + 记忆增强</td>
+</tr>
+<tr>
+<td>Collective Critics for Creative Story Generation</td>
+<td>EMNLP-2024</td>
+<td>多批评家协作提升创意</td>
+</tr>
+<tr>
+<td>Ex3: Automatic Novel Writing by Extracting, Excelsior and Expanding</td>
+<td>ACL-2024</td>
+<td>提取-提升-扩展自动小说写作</td>
+</tr>
+<tr>
+<td>Navigating the Path of Writing: Outline-guided Text Generation</td>
+<td>NAACL-2025</td>
+<td>大纲引导文本生成</td>
+</tr>
+<tr>
+<td>EIPE-text: Evaluation-Guided Iterative Plan Extraction</td>
+<td>ArXiv-2023</td>
+<td>评估引导的迭代计划提取</td>
+</tr>
+</tbody>
+</table>
+<h5 id="multi_agent">Multi Agent (多智能体)<a class="headerlink" href="#multi_agent" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>会议</th>
+<th>核心思路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HAMLET: Hierarchical and Adaptive Multi-Agent Framework</td>
+<td>ICLR-2026</td>
+<td>分层自适应多 Agent 框架，现场戏剧表演</td>
+</tr>
+<tr>
+<td>Agents' Room: Narrative Generation through Multi-step Collaboration</td>
+<td>ICLR-2025</td>
+<td>多步协作叙事生成 (Google DeepMind)</td>
+</tr>
+<tr>
+<td>IBSEN: Director-Actor Agent Collaboration</td>
+<td>ACL-2024</td>
+<td>导演-演员 Agent 协作生成可控剧本</td>
+</tr>
+<tr>
+<td>HoLLMwood: Screenwriting via Role Playing</td>
+<td>EMNLP-2024</td>
+<td>角色扮演释放 LLM 编剧创意</td>
+</tr>
+<tr>
+<td>StoryVerse: Co-authoring Dynamic Plot via Narrative Planning</td>
+<td>FDG-2024</td>
+<td>虚拟角色 + 叙事规划协同创作</td>
+</tr>
+</tbody>
+</table>
+<h5 id="better_storytelling">Better Storytelling (更好讲故事)<a class="headerlink" href="#better_storytelling" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>会议</th>
+<th>核心思路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Finding Flawed Fictions: Plot Hole Detection</td>
+<td>ArXiv-2025</td>
+<td>检测剧情漏洞评估推理能力</td>
+</tr>
+<tr>
+<td>Improving Pacing in Long-Form Story Planning</td>
+<td>EMNLP-2023</td>
+<td>长篇故事节奏控制</td>
+</tr>
+<tr>
+<td>GROVE: Retrieval-augmented Complex Story Generation</td>
+<td>EMNLP-2023</td>
+<td>RAG 增强复杂故事生成</td>
+</tr>
+<tr>
+<td>SWAG: Storytelling With Action Guidance</td>
+<td>EMNLP-2024</td>
+<td>动作引导的叙事 (RL/SFT)</td>
+</tr>
+</tbody>
+</table>
+<h5 id="more_controllable">More Controllable (可控性)<a class="headerlink" href="#more_controllable" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>会议</th>
+<th>核心思路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCORE: Story Coherence and Retrieval Enhancement</td>
+<td>ArXiv-2025</td>
+<td>故事连贯性 + 检索增强</td>
+</tr>
+<tr>
+<td>MoPS: Modular Story Premise Synthesis</td>
+<td>ACL-2024</td>
+<td>模块化故事前提合成</td>
+</tr>
+<tr>
+<td>RecurrentGPT: Interactive Generation of (Arbitrarily) Long Text</td>
+<td>ArXiv-2023</td>
+<td>交互式任意长文本生成 (64 引用)</td>
+</tr>
+<tr>
+<td>RLCD: Reinforcement Learning from Contrast Distillation</td>
+<td>ICLR-2024</td>
+<td>对比蒸馏 RL 对齐</td>
+</tr>
+</tbody>
+</table>
+<h5 id="more_personalized">More Personalized (个性化)<a class="headerlink" href="#more_personalized" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>会议</th>
+<th>核心思路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pastiche Novel Generation: Fan Fiction in Favorite Author's Style</td>
+<td>ArXiv-2025</td>
+<td>仿写指定作者风格的同人小说</td>
+</tr>
+<tr>
+<td>Whose story is it? Personalizing by inferring author styles</td>
+<td>ArXiv-2025</td>
+<td>推断作者风格个性化生成</td>
+</tr>
+<tr>
+<td>MirrorStories: Reflecting Diversity through Personalized Narrative</td>
+<td>EMNLP-2024</td>
+<td>个性化叙事反映多样性</td>
+</tr>
+</tbody>
+</table>
+<h5 id="evaluation">Evaluation (评估)<a class="headerlink" href="#evaluation" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>会议</th>
+<th>核心思路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What Makes a Good Story and How Can We Measure It?</td>
+<td>ArXiv-2024</td>
+<td>故事评估综合综述</td>
+</tr>
+<tr>
+<td>BooookScore: Book-length Summarization in the Era of LLMs</td>
+<td>ICLR-2024</td>
+<td>书长度摘要评估 (117 引用)</td>
+</tr>
+<tr>
+<td>Are Large Language Models Capable of Generating Human-Level Narratives?</td>
+<td>EMNLP-2024</td>
+<td>LLM 能否达到人类叙事水平 (33 引用)</td>
+</tr>
+<tr>
+<td>Echoes in AI: Quantifying Lack of Plot Diversity</td>
+<td>ArXiv-2025</td>
+<td>量化 LLM 输出剧情多样性不足</td>
+</tr>
+<tr>
+<td>LongEval: Long-Text Generation Analysis</td>
+<td>ArXiv-2025</td>
+<td>基于计划的长文本生成评估</td>
+</tr>
+<tr>
+<td>FACTTRACK: Time-Aware World State Tracking</td>
+<td>NAACL-2025</td>
+<td>时间感知世界状态追踪</td>
+</tr>
+<tr>
+<td>Art or Artifice? LLMs and the False Promise of Creativity</td>
+<td>CHI-2023</td>
+<td>LLM 创造力的虚假承诺 (136 引用)</td>
+</tr>
+</tbody>
+</table>
+<h5 id="foundation_models">Foundation Models (基础模型)<a class="headerlink" href="#foundation_models" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>会议</th>
+<th>核心思路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Weaver: Foundation Models for Creative Writing</td>
+<td>ArXiv-2024</td>
+<td>专注写作能力的基础模型</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="_9">对比总结<a class="headerlink" href="#_9" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>Stars</th>
+<th>形态</th>
+<th>部署难度</th>
+<th>核心优势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>InkOS</strong></td>
+<td>8.8k</td>
+<td>npm/Studio/TUI/CLI</td>
+<td>低</td>
+<td>功能最全，多形态创作</td>
+</tr>
+<tr>
+<td><strong>oh-story</strong></td>
+<td>5.1k</td>
+<td>Agent Skill</td>
+<td>低</td>
+<td>网文全流程，扫榜+拆文</td>
+</tr>
+<tr>
+<td><strong>AI-Novel-Writing</strong></td>
+<td>2.3k</td>
+<td>桌面App/Web</td>
+<td>低</td>
+<td>LangGraph 导演式全自动</td>
+</tr>
+<tr>
+<td><strong>AI_NovelGenerator</strong></td>
+<td>高</td>
+<td>Python GUI</td>
+<td>中</td>
+<td>向量检索+多模型路由</td>
+</tr>
+<tr>
+<td><strong>MuMuAINovel</strong></td>
+<td>中</td>
+<td>Docker Web</td>
+<td>低</td>
+<td>产品化好，多用户</td>
+</tr>
+<tr>
+<td><strong>Show Me The Story</strong></td>
+<td>438</td>
+<td>单Go binary</td>
+<td>最低</td>
+<td>伏笔+核查+全书优化</td>
+</tr>
+<tr>
+<td><strong>awesome-novel-skill</strong></td>
+<td>509</td>
+<td>Agent Skill</td>
+<td>低</td>
+<td>8 Agent 协作</td>
+</tr>
+<tr>
+<td><strong>Humanizer</strong></td>
+<td>33.9k</td>
+<td>Agent Skill</td>
+<td>低</td>
+<td>专注去 AI 味，33 模式</td>
+</tr>
+<tr>
+<td><strong>novel-studio</strong></td>
+<td>69</td>
+<td>Go 自托管</td>
+<td>中</td>
+<td>多智能体世界推演</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="_10">关键技术方向<a class="headerlink" href="#_10" title="Permanent link">#</a></h3>
+<ol>
+<li><strong>长程一致性</strong> — 向量检索 / 叙事记忆 / RAG / 全书脉络注入</li>
+<li><strong>伏笔管理</strong> — 埋设→推进→回收状态机 + 超期告警</li>
+<li><strong>去 AI 味</strong> — 33+ 模式检测 / 禁用套话 / 口语化改写 / AI 味检测流程</li>
+<li><strong>多 Agent 协作</strong> — 角色分工 (设定/大纲/写作/审稿/修订) / 导演-演员架构</li>
+<li><strong>上下文管理</strong> — 语义压缩 + 分层记忆 + 角色资源精准筛选</li>
+<li><strong>全书优化</strong> — 诊断→核查→工单→修订→diff</li>
+<li><strong>多模型路由</strong> — 不同任务用不同模型 (规划/正文/审阅/拆书)</li>
+<li><strong>大纲引导生成</strong> — 动态分层大纲 + 记忆增强 / 评估引导迭代计划</li>
+<li><strong>个性化/风格</strong> — 作者风格推断 / 仿写 / 声音校准</li>
+</ol>
+<hr />
+<h3 id="github_topics">GitHub Topics 导航<a class="headerlink" href="#github_topics" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="https://github.com/topics/novel-generator">novel-generator</a> — 31 个项目</li>
+<li><a href="https://github.com/topics/ai-writing">ai-writing</a> — 869 个项目</li>
+<li><a href="https://github.com/topics/story-generation">story-generation</a> — 136 个项目</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Memory/" class="btn btn-neutral float-left" title="Memory"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Product/" class="btn btn-neutral float-right" title="Product">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Memory/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Product/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Ox Alpha - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Ox Alpha";
+        var mkdocs_page_input_path = "5.multimodal/Ox-Alpha.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Ox Alpha</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">一、时间线</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">二、模型是什么</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">三、谁做的：取证证据（从强到弱）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31_8_22">3.1. 服务层堆栈泄露（最强证据 — 8 月 22 日）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32_1214">3.2. 错误码 1214 共享</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33_tokenizer">3.3. Tokenizer 完全匹配</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#34">3.4. 视频编码器匹配</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#35">3.5. 研究者置信度</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">四、被排除的猜测</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">五、为什么匿名发布</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">六、隐私风险</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">七、相关链接</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">八、与本文档的关联</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">5.multimodal</li>
+      <li class="breadcrumb-item active">Ox Alpha</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="ox_alpha">Ox Alpha：匿名模型身份调查<a class="headerlink" href="#ox_alpha" title="Permanent link">#</a></h2>
+<blockquote>
+<p>Ox Alpha 是 2026 年 8 月突然出现在 OpenRouter 上的免费隐身模型，编码能力突出但提供商匿名。
+截至 8 月 22 日，服务层取证强烈指向智谱 AI（Zhipu AI / Z.AI），可能是未发布的 GLM-5.3 变体，但官方未确认。
+来源：explainx.ai、TNW、Wccftech、Business Insider、TechTimes 等公开报道，以及研究者 Chetaslua、@aitrackerbot 的取证分析。</p>
+</blockquote>
+<hr />
+<h3 id="_1">一、时间线<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<pre><code>2026.08 上旬   Ox Alpha 出现在 OpenRouter，列为 &quot;Stealth&quot; 提供商，免费
+2026.08 中旬   在编码基准测试中登顶，引发社区关注
+2026.08.21     @aitrackerbot 进行 tokenizer 和视频编码器匹配测试
+2026.08.22     研究者 Chetaslua 通过畸形请求获取 Java 堆栈跟踪，锁定智谱
+2026.08.23     多家媒体报道，TechTimes 披露模型保留所有 prompt 的隐私问题
+</code></pre>
+<hr />
+<h3 id="_2">二、模型是什么<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模型 ID</td>
+<td><code>stealth/ox-alpha</code></td>
+</tr>
+<tr>
+<td>上下文窗口</td>
+<td>100 万 tokens</td>
+</tr>
+<tr>
+<td>最大输出</td>
+<td>128K tokens</td>
+</tr>
+<tr>
+<td>输入模态</td>
+<td>文本 + 图片 + 视频（多模态）</td>
+</tr>
+<tr>
+<td>API 格式</td>
+<td>OpenAI 兼容 Chat Completions</td>
+</tr>
+<tr>
+<td>价格</td>
+<td>目前免费</td>
+</tr>
+<tr>
+<td>可用平台</td>
+<td>OpenRouter、OpenCode</td>
+</tr>
+<tr>
+<td>官网</td>
+<td><a href="https://oxalpha.io">oxalpha.io</a></td>
+</tr>
+<tr>
+<td>推理与工具</td>
+<td>支持 <code>reasoning.enabled</code>、tool definitions、tool choice</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="_3">三、谁做的：取证证据（从强到弱）<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<h4 id="31_8_22">3.1. 服务层堆栈泄露（最强证据 — 8 月 22 日）<a class="headerlink" href="#31_8_22" title="Permanent link">#</a></h4>
+<p>研究者 Chetaslua（<a href="https://x.com/chetaslua">@chetaslua</a>）向 OpenCode 的 Ox Alpha 直连路由发送畸形请求——将 <code>top_p</code> 设为字符串 <code>"abc"</code> 而非数字——服务器返回 Java 堆栈跟踪，暴露内部类名：</p>
+<pre><code>com.wd.paas.api.domain.v4.chat.ChatCompletionRequest
+</code></pre>
+<p>该包路径直接映射到智谱的文档化 API 路由 <code>/api/paas/v4/chat/completions</code>，在 <a href="https://open.bigmodel.cn">open.bigmodel.cn</a> 和 <a href="https://api.z.ai">api.z.ai</a> 上均存在。</p>
+<h4 id="32_1214">3.2. 错误码 1214 共享<a class="headerlink" href="#32_1214" title="Permanent link">#</a></h4>
+<p>Ox Alpha 与 Z.AI 托管的 GLM 系列模型共享相同的错误码方言（error code 1214）。DeepInfra 托管的 GLM-5.2 错误码方言不同，排除了第三方托管的可能性。</p>
+<h4 id="33_tokenizer">3.3. Tokenizer 完全匹配<a class="headerlink" href="#33_tokenizer" title="Permanent link">#</a></h4>
+<p>@aitrackerbot 对 Ox Alpha 进行了 30 次分词器探测，30/30 全部匹配 GLM 分词器。</p>
+<h4 id="34">3.4. 视频编码器匹配<a class="headerlink" href="#34" title="Permanent link">#</a></h4>
+<p>与 GLM-5V-Turbo 在 4 个视频上的编码器签名一致。</p>
+<h4 id="35">3.5. 研究者置信度<a class="headerlink" href="#35" title="Permanent link">#</a></h4>
+<p>Chetaslua 给出运营层置信度 0.98。但 explainx.ai 等媒体仍标注为"未确认"。</p>
+<hr />
+<h3 id="_4">四、被排除的猜测<a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>猜测</th>
+<th>排除原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MiMo v2.5</td>
+<td>签名不同</td>
+</tr>
+<tr>
+<td>Qwen 3.8 Max</td>
+<td>签名不同</td>
+</tr>
+<tr>
+<td>GLM-4.6V</td>
+<td>签名不同</td>
+</tr>
+<tr>
+<td>DeepInfra 托管的 GLM-5.2</td>
+<td>错误码方言不同</td>
+</tr>
+</tbody>
+</table>
+<p>注意：已发布的 GLM-5.2 被排除，说明 Ox Alpha 可能是更新的未发布版本 GLM-5.3。</p>
+<hr />
+<h3 id="_5">五、为什么匿名发布<a class="headerlink" href="#_5" title="Permanent link">#</a></h3>
+<p>几种分析（均为推测，无官方说法）：</p>
+<ol>
+<li><strong>压力测试</strong>：以免费形式吸引大规模真实使用数据，验证模型在极端负载下的表现</li>
+<li><strong>避免基准刷分争议</strong>：匿名发布可以避免"专门针对 benchmark 优化"的指控</li>
+<li><strong>试探海外市场</strong>：通过 OpenRouter 匿名上线，测试海外开发者对模型质量的自然反应，不受品牌偏见影响</li>
+<li><strong>合规考量</strong>：可能涉及尚未完成备案或审批的模型版本</li>
+</ol>
+<p>智谱、OpenRouter、OpenCode 三方均保持沉默，未做任何官方声明。</p>
+<hr />
+<h3 id="_6">六、隐私风险<a class="headerlink" href="#_6" title="Permanent link">#</a></h3>
+<p>TechTimes 在 8 月 23 日报道：Ox Alpha 保留了所有 prompt 数据，用户无法得知持有这些数据的公司身份。对于涉及敏感代码或商业秘密的使用场景，这是一个需要认真考虑的风险。</p>
+<hr />
+<h3 id="_7">七、相关链接<a class="headerlink" href="#_7" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="https://oxalpha.io">Ox Alpha 官网</a></li>
+<li><a href="https://www.explainx.ai/blog/ox-alpha-what-we-know-mystery-ai-model-august-2026">explainx.ai 详细调查报告</a></li>
+<li><a href="https://thenextweb.com/news/ox-alpha-stealth-model-openrouter-anonymous-provider">TNW 报道</a></li>
+<li><a href="https://wccftech.com/a-mysterious-ai-lab-is-offering-100-trillion-free-tokens-day-for-its-ox-alpha-model-as-evidence-points-to-zhipus-unreleased-glm/">Wccftech 报道（指向智谱 GLM）</a></li>
+<li><a href="https://www.businessinsider.com/ox-alpha-ai-model-mystery-2026-8">Business Insider 报道</a></li>
+<li><a href="https://www.techtimes.com/articles/325244/20260823/coding-model-ox-alpha-retains-every-prompt-you-cannot-name-company-holding-them.htm">TechTimes 隐私报道</a></li>
+<li><a href="https://officechai.com/ai/which-lab-is-behind-the-viral-ox-alpha-model-these-are-the-theories/">officechai 各方理论汇总</a></li>
+</ul>
+<hr />
+<h3 id="_8">八、与本文档的关联<a class="headerlink" href="#_8" title="Permanent link">#</a></h3>
+<ul>
+<li>智谱 GLM 系列参见：<a href="../../4.text-model/CodeLLM/">CodeLLM.md</a>（1.2 节列有 GLM-5 论文）</li>
+<li>多模态模型参见：<a href="../VLM/">VLM.md</a></li>
+<li>人物/团队全景参见：<a href="../9.people/">9.people/</a> 目录</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../MultiModalEmbedding/" class="btn btn-neutral float-left" title="MultiModalEmbedding"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../PhysicalAI/" class="btn btn-neutral float-right" title="PhysicalAI">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../MultiModalEmbedding/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../PhysicalAI/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

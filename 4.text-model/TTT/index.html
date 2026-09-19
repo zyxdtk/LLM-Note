@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>TTT - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "TTT";
+        var mkdocs_page_input_path = "4.text-model/TTT.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">TTT</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">技术脉络</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ttt">一、TTT 原始方法：测试时域适应</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11_test-time_training_with_self-supervision_for_generalization_under_distribution_shifts">1.1 Test-Time Training with Self-Supervision for Generalization under Distribution Shifts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12_ttt_when_does_self-supervised_test-time_training_fail_or_thrive">1.2 TTT++: When Does Self-Supervised Test-Time Training Fail or Thrive?</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ttt_layers_hidden_state">二、TTT Layers：把 Hidden State 变成模型</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21_learning_to_learn_at_test_time_rnns_with_expressive_hidden_states">2.1 Learning to (Learn at Test Time): RNNs with Expressive Hidden States</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22_ttt_layers">2.2 TTT Layers 论文配套解读</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#titans">三、Titans：神经长期记忆</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31_titans_learning_to_memorize_at_test_time">3.1 Titans: Learning to Memorize at Test Time</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#llm_ttt">四、LLM 中的 TTT：持续学习范式</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41_in-place_test-time_training">4.1 In-Place Test-Time Training</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42_agentic_test-time_training_attt">4.2 Agentic Test-Time Training (aTTT)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#43_tempo_scaling_test-time_training_for_large_reasoning_models">4.3 TEMPO: Scaling Test-time Training for Large Reasoning Models</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#44_vds-ttt_verifier-driven_sample_selection_for_test-time_training">4.4 VDS-TTT: Verifier-Driven Sample Selection for Test-Time Training</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rsi_workshop_ttt">五、RSI Workshop 中的 TTT 相关工作</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#51_test-time_self-distillationspotlight_20">5.1 Test-Time Self-Distillation（Spotlight #20）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#52_adaptive_meta-curriculum_for_test-time_self-improvementspotlight_25">5.2 Adaptive Meta-Curriculum for Test-Time Self-Improvement（Spotlight #25）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#53_alma_learning_to_continually_learn_via_meta-learning_agentic_memory_designsoral">5.3 ALMA: Learning to Continually Learn via Meta-learning Agentic Memory Designs（Oral）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#54_federated_nested_learning_fednl">5.4 Federated Nested Learning (FedNL)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tiny_recursive_models_trm">六、Tiny Recursive Models (TRM)：小模型的另一种路径</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#61_tiny_recursive_models_on_arc-agi">6.1 Tiny Recursive Models on ARC-AGI</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#62_probabilistic_trm_ptrm">6.2 Probabilistic TRM (PTRM)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#63_test-time_adaptation_of_tiny_recursive_models">6.3 Test-time Adaptation of Tiny Recursive Models</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#64_cgar_trm">6.4 CGAR: 加速 TRM 训练</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#65_vision_trm_vitrm">6.5 Vision TRM (ViTRM)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">七、核心技术拆解</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#71_fast_weights">7.1 Fast Weights（快权重）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#72_self-supervised_inner_loop">7.2 Self-Supervised Inner Loop（自监督内循环）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#73_expressive_hidden_state">7.3 Expressive Hidden State（表达性隐藏状态）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#74">7.4 线性注意力等价性</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#75">7.5 目标函数对齐</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#76">7.6 分块更新与并行</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ttt_1">八、TTT 与相关领域的关系</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#81_ttt_vs_continual_learning">8.1 TTT vs 持续学习 (Continual Learning)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#82_ttt_vs_in-context_learning_icl">8.2 TTT vs In-Context Learning (ICL)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#83_ttt_vs_rag">8.3 TTT vs 检索增强 (RAG)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#84_ttt_rsi">8.4 TTT 与 RSI（递归自我改进）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">九、论文索引</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">核心论文</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">拓展论文</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#tiny_recursive_models">Tiny Recursive Models 系列</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rsi_workshop">RSI Workshop 相关</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">十、延伸阅读</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">4.text model</li>
+      <li class="breadcrumb-item active">TTT</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="test-time_training_ttt">测试时训练 (Test-Time Training, TTT)<a class="headerlink" href="#test-time_training_ttt" title="Permanent link">#</a></h2>
+<blockquote>
+<p>核心思想：模型在推理（测试）阶段对自身参数或隐藏状态进行梯度更新，从而适应新输入、新分布。不同于"训练完就冻结"的传统范式，TTT 让模型具备在线学习/持续学习的能力。</p>
+<p>关键词：fast weights、expressive hidden state、self-supervised inner loop、continual learning、RSI</p>
+</blockquote>
+<hr />
+<h3 id="_1">技术脉络<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<p>TTT 的发展可以梳理为三条主线：</p>
+<ol>
+<li><strong>TTT 作为域适应方法</strong>（2019-2024）：推理时用自监督任务更新部分参数，应对分布偏移</li>
+<li><strong>TTT 作为序列建模层</strong>（2024-2025）：把 RNN 的 hidden state 本身变成一个小模型，推理时训练它 → TTT Layers / Titans</li>
+<li><strong>TTT 作为持续学习/自我改进范式</strong>（2025-2026）：在 LLM 和 Agent 场景中实现推理时持续适应 → In-Place TTT / aTTT / RSI Workshop</li>
+</ol>
+<hr />
+<h3 id="ttt">一、TTT 原始方法：测试时域适应<a class="headerlink" href="#ttt" title="Permanent link">#</a></h3>
+<h4 id="11_test-time_training_with_self-supervision_for_generalization_under_distribution_shifts">1.1 Test-Time Training with Self-Supervision for Generalization under Distribution Shifts<a class="headerlink" href="#11_test-time_training_with_self-supervision_for_generalization_under_distribution_shifts" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/1909.13231">arXiv:1909.13231</a>（Sun et al., ICML 2020，原始 TTT 论文）</li>
+<li>核心思想：模型同时有一个主任务头（分类/回归）和一个自监督头（如旋转预测）。测试时，冻结主任务头，只更新自监督头的参数（即共享的 backbone 部分参数），使模型适应测试分布</li>
+<li>机制：</li>
+<li>训练时：主任务 loss + 自监督 loss 联合优化</li>
+<li>测试时：对每个测试样本，先做几步自监督梯度更新（更新 backbone 的 fast weights），再用更新后的模型做主任务预测</li>
+<li>意义：首次系统化提出"测试时训练"概念，后续所有 TTT 工作都源于此</li>
+</ul>
+<h4 id="12_ttt_when_does_self-supervised_test-time_training_fail_or_thrive">1.2 TTT++: When Does Self-Supervised Test-Time Training Fail or Thrive?<a class="headerlink" href="#12_ttt_when_does_self-supervised_test-time_training_fail_or_thrive" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2007.10964">arXiv:2007.10964</a>（Liu et al., ICLR 2021）</li>
+<li>贡献：分析了 TTT 在何种条件下失效（如自监督任务与主任务不对齐时），提出用特征对齐改进</li>
+</ul>
+<hr />
+<h3 id="ttt_layers_hidden_state">二、TTT Layers：把 Hidden State 变成模型<a class="headerlink" href="#ttt_layers_hidden_state" title="Permanent link">#</a></h3>
+<h4 id="21_learning_to_learn_at_test_time_rnns_with_expressive_hidden_states">2.1 Learning to (Learn at Test Time): RNNs with Expressive Hidden States<a class="headerlink" href="#21_learning_to_learn_at_test_time_rnns_with_expressive_hidden_states" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2407.04620">arXiv:2407.04620</a>（Yu Sun et al., 2024）</li>
+<li>这是 TTT 从"域适应技巧"升级为"架构创新"的里程碑论文</li>
+</ul>
+<p><strong>核心问题</strong>：传统 RNN（含 Mamba）的 hidden state 是固定大小向量，表达能力受限；Attention 虽强但 O(n²) 不可扩展。</p>
+<p><strong>关键洞察</strong>：让 hidden state 本身就是一个机器学习模型，更新规则是一步自监督学习。因为 hidden state 在测试序列上被"训练"，所以叫 Test-Time Training layers。</p>
+<p><strong>两种实例化</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>实例化</th>
+<th>Hidden State</th>
+<th>等价于</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TTT-Linear</td>
+<td>线性模型</td>
+<td>线性注意力</td>
+<td>最快，等价于 linear attention</td>
+</tr>
+<tr>
+<td>TTT-MLP</td>
+<td>两层 MLP</td>
+<td>自注意力的推广</td>
+<td>更强表达力，但内存 I/O 是瓶颈</td>
+</tr>
+</tbody>
+</table>
+<p><strong>理论统一</strong>：
+- 内循环学习器 = 线性模型 → 等价于线性注意力
+- 内循环学习器 = 核估计 → 等价于自注意力
+- 内循环学习器 = 神经网络 → 超越两者</p>
+<p><strong>实验结果</strong>：
+- 125M~1.3B 参数规模，TTT-Linear 和 TTT-MLP 能像 Transformer 一样在长上下文持续降低 perplexity
+- Mamba 在 16k 上下文后 perplexity 不再下降
+- TTT-MLP 在 ImageNet 224×224 原始像素上大幅超越 linear attention Transformer</p>
+<p><strong>为什么小模型能强泛化</strong>：模型的有效容量来自迭代深度（递归次数）而非参数量。同一个 k 层 block 被反复应用 N 次，hidden state 在每次应用中被"训练"一步。</p>
+<h4 id="22_ttt_layers">2.2 TTT Layers 论文配套解读<a class="headerlink" href="#22_ttt_layers" title="Permanent link">#</a></h4>
+<ul>
+<li>项目主页：<a href="https://yueatsprograms.github.io/ttt/home.html">yueatsprograms.github.io/ttt</a></li>
+<li>核心代码已开源，包含 TTT-Linear 和 TTT-MLP 的实现</li>
+</ul>
+<hr />
+<h3 id="titans">三、Titans：神经长期记忆<a class="headerlink" href="#titans" title="Permanent link">#</a></h3>
+<h4 id="31_titans_learning_to_memorize_at_test_time">3.1 Titans: Learning to Memorize at Test Time<a class="headerlink" href="#31_titans_learning_to_memorize_at_test_time" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2501.00663">arXiv:2501.00663</a>（Google, 2025.01）</li>
+<li>在 TTT Layers 基础上引入"神经长期记忆模块"</li>
+</ul>
+<p><strong>核心思想</strong>：
+- Attention = 短期记忆（精确建模依赖关系，但受限于上下文窗口长度）
+- Neural Memory = 长期记忆（在测试时学习记忆历史上下文，持久且可并行训练）</p>
+<p><strong>三个变体</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>变体</th>
+<th>记忆融合方式</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Titans Mac</td>
+<td>记忆作为上下文拼接</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>Titans Nagi</td>
+<td>记忆作为门控分支</td>
+<td>需要选择性记忆</td>
+</tr>
+<tr>
+<td>Titans Alyiah</td>
+<td>记忆与注意力交错混合</td>
+<td>长序列</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键结果</strong>：
+- 语言建模、常识推理、基因组学、时间序列任务上超越 Transformer 和现代线性 RNN
+- 可扩展到 2M+ 上下文窗口
+- Needle-in-haystack 准确率高于基线</p>
+<p><strong>记忆更新机制</strong>：
+- 使用 surprise 度量（梯度幅度）决定何时写入记忆
+- 使用 delta rule（类似在线梯度下降）更新记忆权重
+- 记忆可以遗忘（decay 机制），避免无限膨胀</p>
+<hr />
+<h3 id="llm_ttt">四、LLM 中的 TTT：持续学习范式<a class="headerlink" href="#llm_ttt" title="Permanent link">#</a></h3>
+<h4 id="41_in-place_test-time_training">4.1 In-Place Test-Time Training<a class="headerlink" href="#41_in-place_test-time_training" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2604.06169">arXiv:2604.06169</a>（ICLR 2026）</li>
+<li>目标：作为 drop-in 增强给现有 LLM 加上 TTT 能力，不需要从头训练</li>
+</ul>
+<p><strong>技术方案</strong>：
+1. 把 MLP 块的最终投影矩阵作为 fast weights，推理时更新
+2. 用与 Next-Token Prediction 对齐的目标函数替代 TTT 的通用重建目标
+3. 分块（chunk-wise）更新机制，兼容上下文并行（context parallelism）</p>
+<p><strong>关键改进</strong>：目标函数对齐
+- 原始 TTT 用通用自监督重建目标 → 快权重更新方向可能与语言建模目标不一致
+- In-Place TTT 用理论上对齐的目标 → 快权重的更新直接服务于 next-token prediction</p>
+<p><strong>实验结果</strong>：
+- 4B 参数模型，128k 上下文任务超越基线
+- 从头预训练时持续优于竞争性 TTT 方法
+- 论文原话："establish In-Place TTT as a promising step towards a paradigm of continual learning in LLMs"</p>
+<h4 id="42_agentic_test-time_training_attt">4.2 Agentic Test-Time Training (aTTT)<a class="headerlink" href="#42_agentic_test-time_training_attt" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2607.03441">arXiv:2607.03441</a>（ICLR 2026 Workshop RSI）</li>
+<li>场景：多轮 Agent 交互中的持续 TTT</li>
+</ul>
+<p><strong>核心问题</strong>：LLM Agent 在长轨迹中退化——重复探索已知状态、重复失败动作、丢失有效策略。</p>
+<p><strong>技术方案</strong>：
+- 在多轮 episode 中持续做 TTT，每次更新改变后续生成策略（self-training loop）
+- 发现"更新文本重复"是退化的关键信号
+- aTTT：token 级重加权——降低在先前更新中出现过的重复 n-gram token 的 loss 权重，保留新 token 的完整权重
+- 工程实现：基于 vLLM runtime LoRA API 的并发服务系统，开销仅为无 TTT 的 1.9 倍</p>
+<p><strong>结果</strong>：ALFWorld +5.0 分，SWE-bench Lite +4.9 分。增益集中在模型已有能力但长轨迹漂移的场景。</p>
+<h4 id="43_tempo_scaling_test-time_training_for_large_reasoning_models">4.3 TEMPO: Scaling Test-time Training for Large Reasoning Models<a class="headerlink" href="#43_tempo_scaling_test-time_training_for_large_reasoning_models" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2604.19295">arXiv:2604.19295</a>（2026.04）</li>
+<li>方向：将 TTT 扩展到大型推理模型（如 o1/R1 类模型）</li>
+</ul>
+<h4 id="44_vds-ttt_verifier-driven_sample_selection_for_test-time_training">4.4 VDS-TTT: Verifier-Driven Sample Selection for Test-Time Training<a class="headerlink" href="#44_vds-ttt_verifier-driven_sample_selection_for_test-time_training" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2505.19475">arXiv:2505.19475</a>（2025.05）</li>
+<li>核心思想：用验证器从模型生成的 N 个候选答案中选出高置信度的伪标签，用于测试时 LoRA 微调</li>
+<li>结果：相对基线提升 32.29%，比无 TTT 的验证器方法提升 6.66%</li>
+</ul>
+<hr />
+<h3 id="rsi_workshop_ttt">五、RSI Workshop 中的 TTT 相关工作<a class="headerlink" href="#rsi_workshop_ttt" title="Permanent link">#</a></h3>
+<blockquote>
+<p>ICLR 2026 Workshop on Recursive Self-Improvement（RSI），2026年4月，巴西里约热内卢，收录 110 篇论文。</p>
+<p>参考综述：Lilian Weng, <a href="https://lilianweng.github.io/posts/2026-07-04-harness/">"Harness Engineering for Self-Improvement"</a>（2026.07）</p>
+</blockquote>
+<h4 id="51_test-time_self-distillationspotlight_20">5.1 Test-Time Self-Distillation（Spotlight #20）<a class="headerlink" href="#51_test-time_self-distillationspotlight_20" title="Permanent link">#</a></h4>
+<ul>
+<li>OpenReview: <a href="https://openreview.net/forum?id=iEmRSwdzyw">iEmRSwdzyw</a></li>
+<li>作者：Hübotter et al.</li>
+<li>方法：Self-Distillation Policy Optimization (SDPO)——将环境对失败轨迹的反馈转化为 dense learning 信号，把反馈条件化的模型自身作为 self-teacher</li>
+<li>结果：LiveCodeBench 竞赛编程上，用 3x 更少的尝试达到与 best-of-k sampling 相同的发现概率</li>
+</ul>
+<h4 id="52_adaptive_meta-curriculum_for_test-time_self-improvementspotlight_25">5.2 Adaptive Meta-Curriculum for Test-Time Self-Improvement（Spotlight #25）<a class="headerlink" href="#52_adaptive_meta-curriculum_for_test-time_self-improvementspotlight_25" title="Permanent link">#</a></h4>
+<ul>
+<li>OpenReview: <a href="https://openreview.net/forum?id=GjoUJTfXiW">GjoUJTfXiW</a></li>
+<li>作者：Bukkapatnam et al.</li>
+<li>方法：元学习课程调度器 + 自适应改进算子（在 revision / search / reflection 策略间选择）</li>
+<li>结果：2.3x 计算效率提升，数学推理准确率 +18.7%</li>
+</ul>
+<h4 id="53_alma_learning_to_continually_learn_via_meta-learning_agentic_memory_designsoral">5.3 ALMA: Learning to Continually Learn via Meta-learning Agentic Memory Designs（Oral）<a class="headerlink" href="#53_alma_learning_to_continually_learn_via_meta-learning_agentic_memory_designsoral" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2602.07755">arXiv:2602.07755</a></li>
+<li>OpenReview: <a href="https://openreview.net/forum?id=sOq52KnJmR">sOq52KnJmR</a></li>
+<li>作者：Xiong, Hu, Clune</li>
+<li>核心问题：基础模型是无状态的（stateless），限制了 Agent 的持续学习能力</li>
+<li>方法：Meta Agent 搜索代码形式的记忆设计（数据库 schema + 检索/更新机制），替代人工设计</li>
+<li>结果：在四个序列决策领域，学到的记忆设计优于 SOTA 人工设计</li>
+</ul>
+<h4 id="54_federated_nested_learning_fednl">5.4 Federated Nested Learning (FedNL)<a class="headerlink" href="#54_federated_nested_learning_fednl" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2605.16350">arXiv:2605.16350</a>（2026.05）</li>
+<li>将 Titans 的线性注意力嵌入联邦学习，实现零样本测试时适应</li>
+<li>用 delta rule 作为在线梯度步，保持常数推理内存</li>
+</ul>
+<hr />
+<h3 id="tiny_recursive_models_trm">六、Tiny Recursive Models (TRM)：小模型的另一种路径<a class="headerlink" href="#tiny_recursive_models_trm" title="Permanent link">#</a></h3>
+<blockquote>
+<p>TRM 不是 TTT 的直接变体，但同样展示了"小模型+递归=强能力"的范式，且与 TTT 在"迭代精化隐藏状态"的思路上高度相关。</p>
+</blockquote>
+<h4 id="61_tiny_recursive_models_on_arc-agi">6.1 Tiny Recursive Models on ARC-AGI<a class="headerlink" href="#61_tiny_recursive_models_on_arc-agi" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2511.02886">arXiv:2511.02886</a>（2025.11，原始 TRM 论文）</li>
+<li>核心：7M 参数的递归神经网络，通过两级潜在层次结构（reasoning state z + answer y）的迭代精化，在 ARC-AGI 上与大模型竞争</li>
+<li>机制：一个紧凑的推理模块被反复应用，通过迭代深度而非参数量获得有效容量</li>
+</ul>
+<h4 id="62_probabilistic_trm_ptrm">6.2 Probabilistic TRM (PTRM)<a class="headerlink" href="#62_probabilistic_trm_ptrm" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2605.19943">arXiv:2605.19943</a>（2026.05）</li>
+<li>问题：TRM 的确定性递归会收敛到次优解，无逃逸机制</li>
+<li>方案：在每个递归步注入高斯噪声，并行探索多样解空间，用 Q head 选择最优</li>
+<li>结果：Sudoku-Extreme 87.4% → 98.75%；Pencil Puzzle Bench 62.6% → 91.2%（前沿 LLM 仅 55.1%），仅用 7M 参数</li>
+</ul>
+<h4 id="63_test-time_adaptation_of_tiny_recursive_models">6.3 Test-time Adaptation of Tiny Recursive Models<a class="headerlink" href="#63_test-time_adaptation_of_tiny_recursive_models" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2511.02886">arXiv:2511.02886</a>（2025.11）</li>
+<li>在竞赛计算限制内，对预训练 TRM 做全参数微调（非 LoRA）</li>
+<li>预训练：1280 个公开任务，4×H100 训练 48 小时</li>
+<li>竞赛中：12,500 步梯度更新达到 6.67% 准确率</li>
+</ul>
+<h4 id="64_cgar_trm">6.4 CGAR: 加速 TRM 训练<a class="headerlink" href="#64_cgar_trm" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2511.08653">arXiv:2511.08653</a>（2025.11）</li>
+<li>课程学习应用到架构深度：从浅层 (2,1) 逐步到满深度 (6,3)</li>
+<li>结果：训练加速 1.71x，精度仅降 0.63%</li>
+</ul>
+<h4 id="65_vision_trm_vitrm">6.5 Vision TRM (ViTRM)<a class="headerlink" href="#65_vision_trm_vitrm" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2603.19503">arXiv:2603.19503</a>（2026.03）</li>
+<li>将 TRM 的递归状态精化范式迁移到视觉：用 3 层 block 递归替代 L 层 ViT</li>
+<li>参数量减少 6~84 倍，CIFAR-10/100 上保持竞争力</li>
+</ul>
+<hr />
+<h3 id="_2">七、核心技术拆解<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<h4 id="71_fast_weights">7.1 Fast Weights（快权重）<a class="headerlink" href="#71_fast_weights" title="Permanent link">#</a></h4>
+<ul>
+<li>不是所有参数都需要在训练时固定</li>
+<li>把一部分参数设为"快权重"，在推理时根据输入做梯度更新</li>
+<li>本质上是在模型内部嵌入一个在线学习器</li>
+<li>常见选择：MLP 投影矩阵（In-Place TTT）、hidden state 本身（TTT Layers）、LoRA adapter（VDS-TTT）</li>
+</ul>
+<h4 id="72_self-supervised_inner_loop">7.2 Self-Supervised Inner Loop（自监督内循环）<a class="headerlink" href="#72_self-supervised_inner_loop" title="Permanent link">#</a></h4>
+<ul>
+<li>TTT 的"训练"不需要外部标签</li>
+<li>内循环用一个自监督任务更新快权重</li>
+<li>外循环（正常预训练）学习的是"如何做自监督更新"本身</li>
+<li>这就是 "Learning to Learn at Test Time" 的含义：外循环学元学习器，内循环在测试时执行</li>
+</ul>
+<h4 id="73_expressive_hidden_state">7.3 Expressive Hidden State（表达性隐藏状态）<a class="headerlink" href="#73_expressive_hidden_state" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>架构</th>
+<th>Hidden State</th>
+<th>表达能力</th>
+<th>复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标准 RNN</td>
+<td>固定大小向量</td>
+<td>弱</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>Mamba</td>
+<td>固定大小向量 + 选择性</td>
+<td>中</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>TTT-Linear</td>
+<td>线性模型参数</td>
+<td>中强</td>
+<td>O(1) 更新</td>
+</tr>
+<tr>
+<td>TTT-MLP</td>
+<td>两层 MLP 参数</td>
+<td>强</td>
+<td>O(1) 更新</td>
+</tr>
+<tr>
+<td>Attention</td>
+<td>完整 KV cache</td>
+<td>最强</td>
+<td>O(n²)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="74">7.4 线性注意力等价性<a class="headerlink" href="#74" title="Permanent link">#</a></h4>
+<p>TTT 的理论统一意义：</p>
+<pre><code>内循环学习器 = 线性模型  →  等价于线性注意力
+内循环学习器 = 核估计    →  等价于自注意力
+内循环学习器 = 神经网络  →  超越两者的新架构
+</code></pre>
+<p>这意味着 TTT 不是另起炉灶，而是统一了 RNN 和 Attention 的更一般框架。</p>
+<h4 id="75">7.5 目标函数对齐<a class="headerlink" href="#75" title="Permanent link">#</a></h4>
+<ul>
+<li>原始 TTT：通用自监督重建目标 → 快权重更新方向可能与下游任务不一致</li>
+<li>In-Place TTT：与 Next-Token Prediction 对齐的目标 → 更新直接服务语言建模</li>
+<li>aTTT：token 级重加权 → 降低重复 n-gram 的 loss 权重，防止自训练漂移</li>
+</ul>
+<h4 id="76">7.6 分块更新与并行<a class="headerlink" href="#76" title="Permanent link">#</a></h4>
+<ul>
+<li>将序列分成 chunk，每个 chunk 内做一次快权重更新</li>
+<li>与上下文并行（context parallelism）兼容</li>
+<li>In-Place TTT 验证了该方案可扩展到 128k+ 上下文</li>
+<li>Titans 的神经记忆支持并行化训练</li>
+</ul>
+<hr />
+<h3 id="ttt_1">八、TTT 与相关领域的关系<a class="headerlink" href="#ttt_1" title="Permanent link">#</a></h3>
+<h4 id="81_ttt_vs_continual_learning">8.1 TTT vs 持续学习 (Continual Learning)<a class="headerlink" href="#81_ttt_vs_continual_learning" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>传统持续学习</th>
+<th>TTT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>更新时机</td>
+<td>训练阶段</td>
+<td>推理阶段</td>
+</tr>
+<tr>
+<td>更新对象</td>
+<td>全部或大部分参数</td>
+<td>快权重子集</td>
+</tr>
+<tr>
+<td>灾难性遗忘</td>
+<td>核心问题</td>
+<td>天然缓解（主参数不变）</td>
+</tr>
+<tr>
+<td>数据需求</td>
+<td>需要任务流数据</td>
+<td>自监督，无需外部标签</td>
+</tr>
+<tr>
+<td>更新频率</td>
+<td>每个任务/epoch</td>
+<td>每个样本/chunk</td>
+</tr>
+</tbody>
+</table>
+<h4 id="82_ttt_vs_in-context_learning_icl">8.2 TTT vs In-Context Learning (ICL)<a class="headerlink" href="#82_ttt_vs_in-context_learning_icl" title="Permanent link">#</a></h4>
+<ul>
+<li>ICL：通过上下文窗口中的示例引导模型行为，不更新参数</li>
+<li>TTT：通过梯度更新改变模型参数/状态，效果更持久</li>
+<li>关系：TTT 的 hidden state 更新可以看作"压缩版的 ICL"——把上下文信息压缩到参数中</li>
+</ul>
+<h4 id="83_ttt_vs_rag">8.3 TTT vs 检索增强 (RAG)<a class="headerlink" href="#83_ttt_vs_rag" title="Permanent link">#</a></h4>
+<ul>
+<li>RAG：从外部数据库检索相关信息，拼接到上下文</li>
+<li>TTT：将信息"学习"到模型参数中，不需要外部存储</li>
+<li>互补性：RAG 适合精确事实，TTT 适合分布适应和技能学习</li>
+</ul>
+<h4 id="84_ttt_rsi">8.4 TTT 与 RSI（递归自我改进）<a class="headerlink" href="#84_ttt_rsi" title="Permanent link">#</a></h4>
+<p>RSI 的系统栈（来自 ICLR 2026 RSI Workshop）：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>功能</th>
+<th>TTT 的角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>课程生成</td>
+<td>决定下一个训练任务</td>
+<td>TTT 的反馈可指导课程</td>
+</tr>
+<tr>
+<td>执行与求解</td>
+<td>完成任务</td>
+<td>TTT 在执行中持续适应</td>
+</tr>
+<tr>
+<td>验证与奖励</td>
+<td>评估方案质量</td>
+<td>—</td>
+</tr>
+<tr>
+<td>诊断与失败分析</td>
+<td>理解失败原因</td>
+<td>—</td>
+</tr>
+<tr>
+<td>记忆与持久化</td>
+<td>跨迭代保留知识</td>
+<td>TTT 的快权重是一种参数化记忆</td>
+</tr>
+<tr>
+<td>元学习与效率</td>
+<td>学会高效学习</td>
+<td>TTT 本质上是 meta-learning</td>
+</tr>
+<tr>
+<td>研究自动化</td>
+<td>AI 改进 AI 研究</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="_3">九、论文索引<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<h4 id="_4">核心论文<a class="headerlink" href="#_4" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>关键贡献</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Test-Time Training with Self-Supervision</td>
+<td>2020</td>
+<td>首次提出 TTT 概念</td>
+<td><a href="https://arxiv.org/abs/1909.13231">1909.13231</a></td>
+</tr>
+<tr>
+<td>Learning to (Learn at Test Time)</td>
+<td>2024</td>
+<td>TTT Layers，统一 RNN 与 Attention</td>
+<td><a href="https://arxiv.org/abs/2407.04620">2407.04620</a></td>
+</tr>
+<tr>
+<td>Titans: Learning to Memorize at Test Time</td>
+<td>2025</td>
+<td>神经长期记忆模块</td>
+<td><a href="https://arxiv.org/abs/2501.00663">2501.00663</a></td>
+</tr>
+<tr>
+<td>In-Place Test-Time Training</td>
+<td>2026</td>
+<td>Drop-in LLM 增强，目标对齐</td>
+<td><a href="https://arxiv.org/abs/2604.06169">2604.06169</a></td>
+</tr>
+<tr>
+<td>Agentic Test-Time Training (aTTT)</td>
+<td>2026</td>
+<td>多轮 Agent 持续 TTT</td>
+<td><a href="https://arxiv.org/abs/2607.03441">2607.03441</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_5">拓展论文<a class="headerlink" href="#_5" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>方向</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TTT++: When Does TTT Fail or Thrive?</td>
+<td>2021</td>
+<td>TTT 失效条件分析</td>
+<td><a href="https://arxiv.org/abs/2007.10964">2007.10964</a></td>
+</tr>
+<tr>
+<td>VDS-TTT: Verifier-Driven Sample Selection</td>
+<td>2025</td>
+<td>验证器驱动选样 + LoRA TTT</td>
+<td><a href="https://arxiv.org/abs/2505.19475">2505.19475</a></td>
+</tr>
+<tr>
+<td>TEMPO: Scaling TTT for Reasoning Models</td>
+<td>2026</td>
+<td>TTT 扩展到推理模型</td>
+<td><a href="https://arxiv.org/abs/2604.19295">2604.19295</a></td>
+</tr>
+<tr>
+<td>Specialization after Generalization</td>
+<td>2025</td>
+<td>TTT 理论理解</td>
+<td><a href="https://arxiv.org/abs/2509.24510">2509.24510</a></td>
+</tr>
+<tr>
+<td>Federated Nested Learning (FedNL)</td>
+<td>2026</td>
+<td>联邦学习 + Titans</td>
+<td><a href="https://arxiv.org/abs/2605.16350">2605.16350</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="tiny_recursive_models">Tiny Recursive Models 系列<a class="headerlink" href="#tiny_recursive_models" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>关键贡献</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tiny Recursive Models on ARC-AGI</td>
+<td>2025</td>
+<td>原始 TRM，7M 参数</td>
+<td><a href="https://arxiv.org/abs/2511.02886">2511.02886</a></td>
+</tr>
+<tr>
+<td>Test-time Adaptation of TRM</td>
+<td>2025</td>
+<td>TRM 测试时微调</td>
+<td><a href="https://arxiv.org/abs/2511.02886">2511.02886</a></td>
+</tr>
+<tr>
+<td>CGAR: 加速 TRM 训练</td>
+<td>2025</td>
+<td>课程引导自适应递归</td>
+<td><a href="https://arxiv.org/abs/2511.08653">2511.08653</a></td>
+</tr>
+<tr>
+<td>Probabilistic TRM (PTRM)</td>
+<td>2026</td>
+<td>随机探索 + Q head 选择</td>
+<td><a href="https://arxiv.org/abs/2605.19943">2605.19943</a></td>
+</tr>
+<tr>
+<td>Vision TRM (ViTRM)</td>
+<td>2026</td>
+<td>TRM 迁移到视觉</td>
+<td><a href="https://arxiv.org/abs/2603.19503">2603.19503</a></td>
+</tr>
+<tr>
+<td>Tiny Autoregressive Recursive Models</td>
+<td>2026</td>
+<td>TRM 迁移到自回归</td>
+<td><a href="https://arxiv.org/abs/2603.08082">2603.08082</a></td>
+</tr>
+<tr>
+<td>TRM on ARC-AGI-1: 分析报告</td>
+<td>2025</td>
+<td>TRM 性能归因分析</td>
+<td><a href="https://arxiv.org/abs/2512.11847">2512.11847</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="rsi_workshop">RSI Workshop 相关<a class="headerlink" href="#rsi_workshop" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>类型</th>
+<th>OpenReview</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ALMA: Meta-learning Memory Designs</td>
+<td>Oral</td>
+<td><a href="https://openreview.net/forum?id=sOq52KnJmR">sOq52KnJmR</a></td>
+</tr>
+<tr>
+<td>Test-Time Self-Distillation (SDPO)</td>
+<td>Spotlight</td>
+<td><a href="https://openreview.net/forum?id=iEmRSwdzyw">iEmRSwdzyw</a></td>
+</tr>
+<tr>
+<td>Adaptive Meta-Curriculum for TTSI</td>
+<td>Spotlight</td>
+<td><a href="https://openreview.net/forum?id=GjoUJTfXiW">GjoUJTfXiW</a></td>
+</tr>
+<tr>
+<td>RSI Workshop 主页</td>
+<td>—</td>
+<td><a href="https://recursive-workshop.github.io/">recursive-workshop.github.io</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="_6">十、延伸阅读<a class="headerlink" href="#_6" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="https://lilianweng.github.io/posts/2026-07-04-harness/">Lilian Weng: Harness Engineering for Self-Improvement</a>（2026.07）— RSI 全景综述，将 TTT 定位为 RSI 核心组件</li>
+<li><a href="https://artifocial.com/blog/rsi-workshop-2026-mar-18">Artifocial: From Self-Play to Self-Research</a>（2026.03）— ICLR 2026 RSI Workshop 论文解读</li>
+<li><a href="https://github.com/natnew/awesome-recursive-self-improvement">Awesome Recursive Self-Improvement</a> — RSI 论文合集</li>
+<li>→ 相关文档：<a href="../../7.product/Memory/">Agent记忆与知识自进化</a>、<a href="../LongContext/">长上下文</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ScalingLaws/" class="btn btn-neutral float-left" title="ScalingLaws"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../5.multimodal/MultiModalEmbedding/" class="btn btn-neutral float-right" title="MultiModalEmbedding">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ScalingLaws/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../5.multimodal/MultiModalEmbedding/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

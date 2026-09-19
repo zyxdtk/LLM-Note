@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>SelfEvolving - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "SelfEvolving";
+        var mkdocs_page_input_path = "7.product/SelfEvolving.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">SelfEvolving</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#rsi">一、RSI 分级体系</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#broad_rsi_vs_strict_rsi">Broad RSI vs. Strict RSI</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rsi_1">RSI 的五条路线</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">二、经典研究谱系</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21_godel_machine2003">2.1 Gödel Machine（2003）— 理论祖先</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22_star2022">2.2 STaR（2022）— 自生成推理训练</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23_self-refine2023">2.3 Self-Refine（2023）— 推理时迭代</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#24_reflexion2023">2.4 Reflexion（2023）— 语言强化学习</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#25_voyager2023">2.5 Voyager（2023）— 终身技能积累</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#26_eureka2023">2.6 Eureka（2023）— 自动奖励设计</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#27_expel2023">2.7 ExpeL（2023）— 经验学习</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#28_self-rewarding_language_models2024">2.8 Self-Rewarding Language Models（2024）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#29_absolute_zero2025">2.9 Absolute Zero（2025）— 零数据自博弈</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#210_godel_agent2024">2.10 Gödel Agent（2024）— 自指框架</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rsi_2024-2026">三、现代 RSI 核心工作（2024-2026）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31_the_ai_scientist20242026">3.1 The AI Scientist（2024→2026）— 自动化科研</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32_darwin_godel_machine2025">3.2 Darwin Gödel Machine（2025）— 进化式自改进</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33_alphaevolve2025_google_deepmind">3.3 AlphaEvolve（2025）— Google DeepMind</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#34_agentic_context_engineering2025-2026">3.4 Agentic Context Engineering（2025-2026）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#35_agentic_harness_engineering2026">3.5 Agentic Harness Engineering（2026）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#36_meta-harness2026">3.6 Meta-Harness（2026）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#37_metaskill-evolve2026">3.7 MetaSkill-Evolve（2026）— 递归元技能进化</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#38_hyperagents2026_agent">3.8 Hyperagents（2026）— 元 Agent 自改进</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#39_continual_harness2026">3.9 Continual Harness（2026）— 在线持续适应</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#310_self-harness2026">3.10 Self-Harness（2026）— 自我弱项挖掘</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rsi_2">四、RSI 综述与理论</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41_rsi">4.1 RSI 综述：从有界自精炼到自主研究循环</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42_agent_what_when_how_where">4.2 自进化 Agent 综述：What, When, How, Where</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#43_ai_agent">4.3 自进化 AI Agent 综合综述</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#44_agent">4.4 自进化编程 Agent 综述</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#45_agent_memory">4.5 Agent Memory 综述：第二半场</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#46">4.6 内省阈值理论</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#skill_evolution">五、技能进化 (Skill Evolution)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#memory-driven_evolution">六、记忆驱动进化 (Memory-Driven Evolution)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#harness_harness_framework_evolution">七、Harness 与框架进化 (Harness &amp; Framework Evolution)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#safety_security">八、安全与攻击 (Safety &amp; Security)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#benchmarks">九、评估基准 (Benchmarks)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rsi_3">十、前沿实验室 RSI 实践</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">关键事实</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rsi_4">十一、RSI 失败模式</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#111_model_collapse">11.1 Model Collapse</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#112_self-confirming_loop">11.2 Self-Confirming Loop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#113_reward_hacking">11.3 Reward Hacking</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#114_benchmark_overfitting">11.4 Benchmark Overfitting</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#115_diversity_collapse">11.5 Diversity Collapse</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rsi_5">十二、RSI 的核心工程原则</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#121_evaluator_generator">12.1 Evaluator &gt; Generator</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#122">12.2 固定资源计量</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#123">12.3 元生产率</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#124_coding_agent_rsi">12.4 Coding Agent 是 RSI 的最佳实验场</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#125_vs">12.5 开放性 vs. 可验证性</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">十三、应用领域</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">十四、技术演化路径</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">十五、论文总索引</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#6">综述（6 篇）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#8">基础工作（8 篇）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rsi_10">现代 RSI 核心（10 篇）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#10">技能进化（10 篇）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7">记忆驱动（7 篇）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#9">安全与攻击（9 篇）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5">理论与极限（5 篇）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">其他重要工作</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">十六、延伸阅读</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">7.product</li>
+      <li class="breadcrumb-item active">SelfEvolving</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="agent_self-evolving_agents">自进化 Agent (Self-Evolving Agents)<a class="headerlink" href="#agent_self-evolving_agents" title="Permanent link">#</a></h2>
+<blockquote>
+<p>核心命题：AI 利用自身能力、经验、产物、评价或研究结果，修改产生这些能力的系统，使后续系统不仅在目标任务上更强，而且具备更强的进一步改进自身的能力。</p>
+<p>关键词：self-evolving、recursive self-improvement (RSI)、skill evolution、harness evolution、experience-driven learning</p>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/2057943837826348906">知乎 RSI 研究报告</a>（2026.08，证据截止 2026-08-11）</p>
+</blockquote>
+<hr />
+<h3 id="rsi">一、RSI 分级体系<a class="headerlink" href="#rsi" title="Permanent link">#</a></h3>
+<blockquote>
+<p>不是所有"self-improvement"都是 RSI。核心区分：improvement mechanism 本身是否进入优化闭环。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>优化对象</th>
+<th>典型机制</th>
+<th>RSI 程度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L0</td>
+<td>Output（输出）</td>
+<td>Self-Refine / Reflection</td>
+<td>非 RSI</td>
+</tr>
+<tr>
+<td>L1</td>
+<td>Memory / Skill / Context</td>
+<td>Reflexion / ACE / Skill Evolution</td>
+<td>弱 RSI</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>Harness / Workflow</td>
+<td>Harness Evolution / DGM</td>
+<td>RSI-like</td>
+</tr>
+<tr>
+<td>L3</td>
+<td>Training / Policy / Weights</td>
+<td>Self-training / Self-play / TTT</td>
+<td>强 RSI</td>
+</tr>
+<tr>
+<td>L4</td>
+<td>AI Research Process</td>
+<td>AutoResearch / AI Scientist</td>
+<td>更强 RSI</td>
+</tr>
+<tr>
+<td>L5</td>
+<td>Improvement Mechanism</td>
+<td>Meta-improvement / Hyperagents</td>
+<td>真正递归</td>
+</tr>
+<tr>
+<td>L6</td>
+<td>Successor Model</td>
+<td>AI designs/trains/evaluates successor</td>
+<td>Strict RSI</td>
+</tr>
+<tr>
+<td>L7</td>
+<td>Open-ended Intelligence Explosion</td>
+<td>持续、开放式、自加速</td>
+<td>尚未证明</td>
+</tr>
+</tbody>
+</table>
+<h4 id="broad_rsi_vs_strict_rsi">Broad RSI vs. Strict RSI<a class="headerlink" href="#broad_rsi_vs_strict_rsi" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Broad RSI</strong>：AI 利用自身产生的信息/经验/代码/评价/训练数据改善下一轮 AI 系统。已广泛存在。</li>
+<li><strong>Strict RSI</strong>：AI 能产生改进 → 改进被客观验证 → 改进进入下一代 → 下一代拥有更强 improvement capability → 循环持续不依赖人工。尚未公开证明。</li>
+</ul>
+<h4 id="rsi_1">RSI 的五条路线<a class="headerlink" href="#rsi_1" title="Permanent link">#</a></h4>
+<pre><code>                    Recursive Self-Improvement
+                              │
+       ┌──────────────┬───────┼────────┬──────────────┐
+       │              │       │        │              │
+   Model Loop     Agent Loop  Research  Evolution   Experience
+       │              │       │        │              │
+  Self-training   Harness    AI Sci.   DGM        RL / Self-play
+  Self-reward     Memory     AutoRes.   AlphaEvolve World Models
+  Test-time RL    Skills     AutoResearch DGM-H     Continual RL
+       │              │       │        │              │
+       └──────────────┴───────┴────────┴──────────────┘
+                              │
+                       Meta-Improvement
+                              │
+                    Improve the Improver
+</code></pre>
+<hr />
+<h3 id="_1">二、经典研究谱系<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<h4 id="21_godel_machine2003">2.1 Gödel Machine（2003）— 理论祖先<a class="headerlink" href="#21_godel_machine2003" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://people.idsia.ch/~juergen/gmweb3/gmweb3.html">Schmidhuber, Gödel Machines</a>（2003）</li>
+<li>核心思想：self-referential universal problem solver，可修改自己的程序，但只有当内部 proof searcher 能证明修改会提高未来 utility 时才执行</li>
+<li>与现代 DGM 的区别：Gödel Machine = proof-driven；DGM = empirical-evaluation-driven</li>
+</ul>
+<h4 id="22_star2022">2.2 STaR（2022）— 自生成推理训练<a class="headerlink" href="#22_star2022" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2203.14465">arXiv:2203.14465</a>（Zelikman et al., 2022）</li>
+<li>机制：模型生成 reasoning → 检查答案 → 对错误答案用正确答案重新生成 reasoning → 加入训练集 → fine-tune → 重复</li>
+<li>意义：模型第一次比较明确地参与了自己的 training-data generation</li>
+</ul>
+<h4 id="23_self-refine2023">2.3 Self-Refine（2023）— 推理时迭代<a class="headerlink" href="#23_self-refine2023" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2303.17651">arXiv:2303.17651</a>（Madaan et al., 2023）</li>
+<li>机制：Generate → Feedback → Refine 循环，同一 LLM 同时负责生成、评价和修改</li>
+<li>结果：七类任务平均约 20pp 绝对提升</li>
+<li>局限：模型权重不变，不是严格 RSI</li>
+</ul>
+<h4 id="24_reflexion2023">2.4 Reflexion（2023）— 语言强化学习<a class="headerlink" href="#24_reflexion2023" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2303.11366">arXiv:2303.11366</a>（Shinn et al., 2023）</li>
+<li>机制：Act → Environment feedback → Verbal reflection → Episodic memory → Next trial</li>
+<li>结果：HumanEval 91% pass@1</li>
+<li>意义：Agent memory learning 的祖先之一</li>
+</ul>
+<h4 id="25_voyager2023">2.5 Voyager（2023）— 终身技能积累<a class="headerlink" href="#25_voyager2023" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2305.16291">arXiv:2305.16291</a>（Wang et al., 2023）</li>
+<li>机制：自动 curriculum + 自动探索 + 自动产生 executable skills + skill library + 环境反馈修改程序</li>
+<li>意义：Agent 可以不改变 model weights 也能产生真正持久的能力增长</li>
+<li>代码：<a href="https://github.com/MineDojo/Voyager">github.com/MineDojo/Voyager</a></li>
+</ul>
+<h4 id="26_eureka2023">2.6 Eureka（2023）— 自动奖励设计<a class="headerlink" href="#26_eureka2023" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2310.12931">arXiv:2310.12931</a>（Ma et al., 2023）</li>
+<li>机制：LLM 自动编写 reward function → RL 训练 → 评估 → 反思 → 更好的 reward code</li>
+<li>结果：29 个 RL 环境中 83% 超过 human-engineered reward，平均 52% normalized improvement</li>
+<li>意义：AI 开始优化"训练 AI 的程序"</li>
+</ul>
+<h4 id="27_expel2023">2.7 ExpeL（2023）— 经验学习<a class="headerlink" href="#27_expel2023" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2308.10379">arXiv:2308.10379</a>（Zhao et al., 2023）</li>
+<li>核心思想：LLM Agent 从成功和失败轨迹中抽取经验，形成可复用的 insights</li>
+</ul>
+<h4 id="28_self-rewarding_language_models2024">2.8 Self-Rewarding Language Models（2024）<a class="headerlink" href="#28_self-rewarding_language_models2024" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2401.10020">arXiv:2401.10020</a>（Yuan et al., 2024）</li>
+<li>机制：模型自己作为 judge 评估自己的输出，用偏好对做 DPO 训练</li>
+<li>意义：self-reward 闭环的早期工作</li>
+</ul>
+<h4 id="29_absolute_zero2025">2.9 Absolute Zero（2025）— 零数据自博弈<a class="headerlink" href="#29_absolute_zero2025" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2505.03335">arXiv:2505.03335</a>（Zhao et al., 2025）</li>
+<li>核心思想：一个模型同时扮演 proposer 和 solver，零外部数据实现 self-play reasoning</li>
+</ul>
+<h4 id="210_godel_agent2024">2.10 Gödel Agent（2024）— 自指框架<a class="headerlink" href="#210_godel_agent2024" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2410.04444">arXiv:2410.04444</a>（Shi et al., 2024）</li>
+<li>核心思想：受 Gödel machine 启发，Agent 动态修改自己的逻辑和行为，仅受高层目标引导</li>
+<li>结果：数学推理和复杂 Agent 任务上持续自我改进，超越人工设计 Agent</li>
+</ul>
+<hr />
+<h3 id="rsi_2024-2026">三、现代 RSI 核心工作（2024-2026）<a class="headerlink" href="#rsi_2024-2026" title="Permanent link">#</a></h3>
+<h4 id="31_the_ai_scientist20242026">3.1 The AI Scientist（2024→2026）— 自动化科研<a class="headerlink" href="#31_the_ai_scientist20242026" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2408.06292">arXiv:2408.06292</a>（Sakana AI, 2024）</li>
+<li>v2：<a href="https://arxiv.org/abs/2504.08066">arXiv:2504.08066</a>（2025，agentic tree search + AI-generated paper 通过 ICLR workshop peer review）</li>
+<li>2026.03：正式发表于 Nature</li>
+<li>流程：Idea → Code → Experiment → Analysis → Paper → Review</li>
+</ul>
+<h4 id="32_darwin_godel_machine2025">3.2 Darwin Gödel Machine（2025）— 进化式自改进<a class="headerlink" href="#32_darwin_godel_machine2025" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2505.22954">arXiv:2505.22954</a>（Zhang et al., 2025）</li>
+<li>核心思想：Agent 不仅解决任务，还可修改自己的代码；维护进化 archive，保留优秀变体</li>
+<li>结果：SWE-bench 20%→50%，Polyglot 14.2%→30.7%</li>
+<li>核心论点："DGM improves not only the solution, but the agent that produces solutions."</li>
+</ul>
+<h4 id="33_alphaevolve2025_google_deepmind">3.3 AlphaEvolve（2025）— Google DeepMind<a class="headerlink" href="#33_alphaevolve2025_google_deepmind" title="Permanent link">#</a></h4>
+<ul>
+<li>博客：<a href="https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/">Google DeepMind</a></li>
+<li>机制：Gemini 生成程序 → 自动评估器打分 → 进化数据库 → 选择优秀程序 → 生成下一代</li>
+<li>应用：数据中心优化、芯片设计、AI 训练优化、矩阵乘法、数学问题</li>
+<li>关键：官方明确表示 AlphaEvolve 优化过用于训练 Gemini 模型本身的 processes</li>
+</ul>
+<h4 id="34_agentic_context_engineering2025-2026">3.4 Agentic Context Engineering（2025-2026）<a class="headerlink" href="#34_agentic_context_engineering2025-2026" title="Permanent link">#</a></h4>
+<ul>
+<li>ACE：<a href="https://huggingface.co/papers/2510.04618">HuggingFace</a>（Zhang et al., 2025）</li>
+<li>Context 作为可进化 playbook：Generator → Reflector → Curator</li>
+<li>Meta Context Engineering (MCE)：<a href="https://arxiv.org/abs/2601.21557">arXiv:2601.21557</a>（Ye et al., 2026）</li>
+<li>双层优化：meta-level skill evolution + base-level context optimization</li>
+<li>结果：多个 domain 上 5.6%-53.8% relative improvement</li>
+</ul>
+<h4 id="35_agentic_harness_engineering2026">3.5 Agentic Harness Engineering（2026）<a class="headerlink" href="#35_agentic_harness_engineering2026" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2604.25850">arXiv:2604.25850</a>（Lin et al., 2026）</li>
+<li>三大可观察性：Component / Experience / Decision</li>
+<li>流程：Edit → Prediction → Execution → Measurement → Verification</li>
+<li>结果：Terminal-Bench 2 pass@1 十轮迭代从 69.7% 提升到 77.0%</li>
+<li>同一冻结 harness 迁移到 SWE-bench-verified 仍有效</li>
+</ul>
+<h4 id="36_meta-harness2026">3.6 Meta-Harness（2026）<a class="headerlink" href="#36_meta-harness2026" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2603.28052">arXiv:2603.28052</a>（Lee et al., 2026）</li>
+<li>优化对象是"决定如何优化 harness 的代码"</li>
+<li>Proposer 本身是 coding agent，输出 Pareto frontier 上的 harness 候选</li>
+</ul>
+<h4 id="37_metaskill-evolve2026">3.7 MetaSkill-Evolve（2026）— 递归元技能进化<a class="headerlink" href="#37_metaskill-evolve2026" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2607.05297">arXiv:2607.05297</a>（2026.07）</li>
+<li>核心突破：同时优化 Task Skill 和"如何改进 Skill"的 Meta-Skill</li>
+<li>结果：OfficeQA +23.54pp，SealQA +16.09pp，ALFWorld +1.92pp</li>
+<li>意义：从 self-improvement 走向 recursive self-improvement 的结构性变化</li>
+</ul>
+<h4 id="38_hyperagents2026_agent">3.8 Hyperagents（2026）— 元 Agent 自改进<a class="headerlink" href="#38_hyperagents2026_agent" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2603.19461">arXiv:2603.19461</a>（Zhang et al., 2026）</li>
+<li>核心思想：解耦 task agent 和 meta agent，meta-level modification procedure 本身可编辑</li>
+<li>路线：Task Solver ← Meta Solver ← Meta Meta Solver</li>
+</ul>
+<h4 id="39_continual_harness2026">3.9 Continual Harness（2026）— 在线持续适应<a class="headerlink" href="#39_continual_harness2026" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2605.09998">arXiv:2605.09998</a>（Karten et al., 2026）</li>
+<li>场景：长周期游戏中的 harness 更新 + 策略模型协同学习</li>
+<li>特点：online、reset-free</li>
+</ul>
+<h4 id="310_self-harness2026">3.10 Self-Harness（2026）— 自我弱项挖掘<a class="headerlink" href="#310_self-harness2026" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2606.09498">arXiv:2606.09498</a>（Zhang et al., 2026）</li>
+<li>三阶段：Weakness mining → Bounded harness proposal → Validation</li>
+<li>在 MiniMax M2.5、Qwen3.5-35B-A3B、GLM-5 上学到模型特定的 harness 指令</li>
+</ul>
+<hr />
+<h3 id="rsi_2">四、RSI 综述与理论<a class="headerlink" href="#rsi_2" title="Permanent link">#</a></h3>
+<h4 id="41_rsi">4.1 RSI 综述：从有界自精炼到自主研究循环<a class="headerlink" href="#41_rsi" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2607.07663">arXiv:2607.07663</a>（2026.07）</li>
+<li>统计 2024-2026 年约 1,250 篇 arXiv 论文</li>
+<li>两个分类轴：系统改进什么（behavior/policy/evaluator/research process）× 闭环程度（human-in-loop → fully closed）</li>
+<li>核心贡献：验证层级体系（formal verifier 最强 → intrinsic self-assessment 最弱）</li>
+<li>发现：自改进强度跟验证层级正相关，失败模式（self-confirming loop、model collapse、diversity collapse）源于违反验证层级</li>
+</ul>
+<h4 id="42_agent_what_when_how_where">4.2 自进化 Agent 综述：What, When, How, Where<a class="headerlink" href="#42_agent_what_when_how_where" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2507.21046">arXiv:2507.21046</a>（2025.07）</li>
+<li>三个维度：what to evolve（model/memory/tools/architecture）、when to evolve（intra/inter-test-time）、how to evolve（rewards/feedback/single/multi-agent）</li>
+</ul>
+<h4 id="43_ai_agent">4.3 自进化 AI Agent 综合综述<a class="headerlink" href="#43_ai_agent" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2508.07407">arXiv:2508.07407</a>（2025.08）</li>
+<li>统一框架：System Inputs → Agent System → Environment → Optimisers</li>
+<li>覆盖领域专用进化策略（生物医学、编程、金融）</li>
+</ul>
+<h4 id="44_agent">4.4 自进化编程 Agent 综述<a class="headerlink" href="#44_agent" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2608.03392">arXiv:2608.03392</a>（2026.08）</li>
+<li>对象中心分类法：what evolves（framework/memory/skills/tools/models/collaboration）</li>
+<li>论文合集：<a href="https://github.com/zhouhao1024/Awesome-Self-Evolving-Coding-Agents">github.com/zhouhao1024/Awesome-Self-Evolving-Coding-Agents</a></li>
+</ul>
+<h4 id="45_agent_memory">4.5 Agent Memory 综述：第二半场<a class="headerlink" href="#45_agent_memory" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2602.06052">arXiv:2602.06052</a>（2026.01）</li>
+<li>记忆作为自进化的 substrate：short-term memory gates perception，long-term memory consolidates into reusable knowledge</li>
+</ul>
+<h4 id="46">4.6 内省阈值理论<a class="headerlink" href="#46" title="Permanent link">#</a></h4>
+<ul>
+<li>论文：<a href="https://arxiv.org/abs/2607.04277">arXiv:2607.04277</a>（2026.07）</li>
+<li>类比 von Neumann 自复制自动机复杂度阈值，论证 LLM 需要功能内省才能实现可持续 RSI</li>
+<li>当前 LLM 只有 quasi-introspection，缺少 complete self-access 和 fixed-point iteration</li>
+</ul>
+<hr />
+<h3 id="skill_evolution">五、技能进化 (Skill Evolution)<a class="headerlink" href="#skill_evolution" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>关键贡献</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MetaSkill-Evolve</td>
+<td>2026.07</td>
+<td>双时间尺度元技能递归进化</td>
+<td><a href="https://arxiv.org/abs/2607.05297">2607.05297</a></td>
+</tr>
+<tr>
+<td>SkillZip</td>
+<td>2026.08</td>
+<td>无评估技能压缩，发现可复用结构</td>
+<td><a href="https://arxiv.org/abs/2608.11079">2608.11079</a></td>
+</tr>
+<tr>
+<td>SkillHEX</td>
+<td>2026.08</td>
+<td>假设驱动自主探索与利用</td>
+<td><a href="https://arxiv.org/abs/2608.05628">2608.05628</a></td>
+</tr>
+<tr>
+<td>SkillAudit</td>
+<td>2026.06</td>
+<td>无 ground-truth 的配对轨迹审计</td>
+<td><a href="https://arxiv.org/abs/2606.14239">2606.14239</a></td>
+</tr>
+<tr>
+<td>SkillProx</td>
+<td>2026.08</td>
+<td>近端文本梯度下降的技能进化</td>
+<td><a href="https://arxiv.org/abs/2608.07449">2608.07449</a></td>
+</tr>
+<tr>
+<td>SoK: Agentic Skills</td>
+<td>2026.02</td>
+<td>技能形式化分类，超越 tool use</td>
+<td><a href="https://arxiv.org/abs/2602.20867">2602.20867</a></td>
+</tr>
+<tr>
+<td>Learning Globally Reusable Skills</td>
+<td>2026.08</td>
+<td>编程 Agent 全局可复用技能</td>
+<td><a href="https://arxiv.org/abs/2608.06153">2608.06153</a></td>
+</tr>
+<tr>
+<td>Training Skills Like Parameters</td>
+<td>2026.07</td>
+<td>自监督语义扩散训练技能</td>
+<td><a href="https://arxiv.org/abs/2607.27557">2607.27557</a></td>
+</tr>
+<tr>
+<td>Search2Skill</td>
+<td>2026.08</td>
+<td>Rubric RL 的技能蒸馏</td>
+<td><a href="https://arxiv.org/abs/2608.05245">2608.05245</a></td>
+</tr>
+<tr>
+<td>Emotion2Skill</td>
+<td>2026.08</td>
+<td>模型内部情绪信号驱动技能选择</td>
+<td><a href="https://arxiv.org/abs/2608.09248">2608.09248</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="memory-driven_evolution">六、记忆驱动进化 (Memory-Driven Evolution)<a class="headerlink" href="#memory-driven_evolution" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>关键贡献</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CrystalMem</td>
+<td>2026.07</td>
+<td>知识结晶化的弹性记忆</td>
+<td><a href="https://arxiv.org/abs/2608.00303">2608.00303</a></td>
+</tr>
+<tr>
+<td>Tree-of-Experience</td>
+<td>2026.08</td>
+<td>层次化经验管理</td>
+<td><a href="https://arxiv.org/abs/2608.09044">2608.09044</a></td>
+</tr>
+<tr>
+<td>RoMeRL</td>
+<td>2026.08</td>
+<td>记忆-奖励陷阱平衡，降阶效用状态</td>
+<td><a href="https://arxiv.org/abs/2608.02508">2608.02508</a></td>
+</tr>
+<tr>
+<td>Authority Collapse</td>
+<td>2026.08</td>
+<td>记忆合并边界处的权威崩溃</td>
+<td><a href="https://arxiv.org/abs/2608.01679">2608.01679</a></td>
+</tr>
+<tr>
+<td>Memory→Skills Co-Evolution</td>
+<td>2026.07</td>
+<td>证据驱动的记忆-技能协同进化治理</td>
+<td><a href="https://arxiv.org/abs/2607.16621">2607.16621</a></td>
+</tr>
+<tr>
+<td>Memory Reward Inflation</td>
+<td>2026.06</td>
+<td>自改进中的记忆奖励膨胀</td>
+<td><a href="https://arxiv.org/abs/2608.00017">2608.00017</a></td>
+</tr>
+<tr>
+<td>Critic Experience Bank</td>
+<td>2026.07</td>
+<td>步级置信度估计的自进化</td>
+<td><a href="https://arxiv.org/abs/2607.12397">2607.12397</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="harness_harness_framework_evolution">七、Harness 与框架进化 (Harness &amp; Framework Evolution)<a class="headerlink" href="#harness_harness_framework_evolution" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>关键贡献</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agentic Harness Engineering</td>
+<td>2026.04</td>
+<td>三大可观察性驱动的 harness 自动进化</td>
+<td><a href="https://arxiv.org/abs/2604.25850">2604.25850</a></td>
+</tr>
+<tr>
+<td>Meta-Harness</td>
+<td>2026.03</td>
+<td>harness 优化器的优化</td>
+<td><a href="https://arxiv.org/abs/2603.28052">2603.28052</a></td>
+</tr>
+<tr>
+<td>Self-Harness</td>
+<td>2026.06</td>
+<td>自我弱项挖掘的 propose-validate 循环</td>
+<td><a href="https://arxiv.org/abs/2606.09498">2606.09498</a></td>
+</tr>
+<tr>
+<td>Continual Harness</td>
+<td>2026.05</td>
+<td>在线 reset-free harness 适应</td>
+<td><a href="https://arxiv.org/abs/2605.09998">2605.09998</a></td>
+</tr>
+<tr>
+<td>EvoHarness-RL</td>
+<td>2026.08</td>
+<td>RL 学习自进化运行时 harness</td>
+<td><a href="https://arxiv.org/abs/2608.05446">2608.05446</a></td>
+</tr>
+<tr>
+<td>Living-Harness</td>
+<td>2026.07</td>
+<td>交互式 Agent 进化器</td>
+<td><a href="https://arxiv.org/abs/2607.26598">2607.26598</a></td>
+</tr>
+<tr>
+<td>HarnessBank</td>
+<td>2026.07</td>
+<td>语义基因库搜索 + 门控验证</td>
+<td><a href="https://arxiv.org/abs/2607.13683">2607.13683</a></td>
+</tr>
+<tr>
+<td>MEGA</td>
+<td>2026.08</td>
+<td>智慧图驱动的 Agent 优化基础设施</td>
+<td><a href="https://arxiv.org/abs/2608.10504">2608.10504</a></td>
+</tr>
+<tr>
+<td>Phantom Guardrails</td>
+<td>2026.07</td>
+<td>修复从未发生的失败（假阳性修复）</td>
+<td><a href="https://arxiv.org/abs/2607.13083">2607.13083</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="safety_security">八、安全与攻击 (Safety &amp; Security)<a class="headerlink" href="#safety_security" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>关键贡献</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SkillJack</td>
+<td>2026.08</td>
+<td>自进化 Agent 中的持久技能后门</td>
+<td><a href="https://arxiv.org/abs/2608.03509">2608.03509</a></td>
+</tr>
+<tr>
+<td>Trajectory Poisoning</td>
+<td>2026.08</td>
+<td>经验变指令的轨迹投毒攻击</td>
+<td><a href="https://arxiv.org/abs/2608.05563">2608.05563</a></td>
+</tr>
+<tr>
+<td>Query-Only Backdoor</td>
+<td>2026.08</td>
+<td>仅查询的后门攻击</td>
+<td><a href="https://arxiv.org/abs/2608.08303">2608.08303</a></td>
+</tr>
+<tr>
+<td>Benign Alone, Harmful Together</td>
+<td>2026.08</td>
+<td>经验组合利用</td>
+<td><a href="https://arxiv.org/abs/2608.01759">2608.01759</a></td>
+</tr>
+<tr>
+<td>Self-Evolution Backfires</td>
+<td>2026.08</td>
+<td>技能污染的 pre-commit 门控</td>
+<td><a href="https://arxiv.org/abs/2608.05810">2608.05810</a></td>
+</tr>
+<tr>
+<td>ActBench</td>
+<td>2026.08</td>
+<td>Cowork Agent 行为安全自进化基准</td>
+<td><a href="https://arxiv.org/abs/2608.09476">2608.09476</a></td>
+</tr>
+<tr>
+<td>Agent Skill Security</td>
+<td>2026.07</td>
+<td>技能安全威胁模型综合</td>
+<td><a href="https://arxiv.org/abs/2607.13987">2607.13987</a></td>
+</tr>
+<tr>
+<td>Yesterday's Shield</td>
+<td>2026.08</td>
+<td>自进化安全护栏的生产实践</td>
+<td><a href="https://arxiv.org/abs/2608.08471">2608.08471</a></td>
+</tr>
+<tr>
+<td>Recursive Self-Training Collapse</td>
+<td>2026.06</td>
+<td>AI 审查自己代码时的 rubber-stamp 退化</td>
+<td><a href="https://arxiv.org/abs/2606.28438">2606.28438</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="benchmarks">九、评估基准 (Benchmarks)<a class="headerlink" href="#benchmarks" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>评估维度</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PAST-Bench</td>
+<td>2026.08</td>
+<td>个人 Agent 的 RSI 基础能力</td>
+<td><a href="https://arxiv.org/abs/2608.04003">2608.04003</a></td>
+</tr>
+<tr>
+<td>RSIBench-Data</td>
+<td>2026.07</td>
+<td>数据中心的 RSI 研究</td>
+<td><a href="https://arxiv.org/abs/2607.25886">2607.25886</a></td>
+</tr>
+<tr>
+<td>AgentStream</td>
+<td>2026.07</td>
+<td>流式任务下的自进化表现</td>
+<td><a href="https://arxiv.org/abs/2608.00155">2608.00155</a></td>
+</tr>
+<tr>
+<td>FinEvo-Bench</td>
+<td>2026.08</td>
+<td>金融工作流纵向基准</td>
+<td><a href="https://arxiv.org/abs/2608.06144">2608.06144</a></td>
+</tr>
+<tr>
+<td>Who Grades the Grader?</td>
+<td>2026.07</td>
+<td>评估指标与技能协同进化</td>
+<td><a href="https://arxiv.org/abs/2607.12790">2607.12790</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="rsi_3">十、前沿实验室 RSI 实践<a class="headerlink" href="#rsi_3" title="Permanent link">#</a></h3>
+<blockquote>
+<p>证据分级：A = 官方公开 + 可复现论文/实验；B = 公司公开 thesis/early result</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>机构</th>
+<th>公开 RSI 证据</th>
+<th>主要方向</th>
+<th>证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anthropic</td>
+<td>明确（"When AI builds itself"）</td>
+<td>AI 开发 AI / coding agents</td>
+<td>A</td>
+</tr>
+<tr>
+<td>OpenAI</td>
+<td>明确但有限</td>
+<td>自改进 tax agents / GPT-Red self-play</td>
+<td>A</td>
+</tr>
+<tr>
+<td>Google DeepMind</td>
+<td>强间接</td>
+<td>AlphaEvolve / 算法进化</td>
+<td>A</td>
+</tr>
+<tr>
+<td>Sakana AI</td>
+<td>明确</td>
+<td>AI Scientist / DGM / RSI Lab</td>
+<td>A</td>
+</tr>
+<tr>
+<td>Recursive</td>
+<td>明确</td>
+<td>自动 AI 研究循环</td>
+<td>B+</td>
+</tr>
+<tr>
+<td>Weco AI</td>
+<td>明确</td>
+<td>AIDE²（autoresearch on autoresearch）</td>
+<td>B</td>
+</tr>
+<tr>
+<td>Inherent</td>
+<td>明确 thesis</td>
+<td>递归研究组织</td>
+<td>B</td>
+</tr>
+<tr>
+<td>Ricursive Intelligence</td>
+<td>明确 thesis</td>
+<td>AI ↔ 硬件协同进化</td>
+<td>B</td>
+</tr>
+<tr>
+<td>Ineffable Intelligence</td>
+<td>明确 thesis</td>
+<td>经验驱动持续 RL（David Silver）</td>
+<td>B</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_2">关键事实<a class="headerlink" href="#_2" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Anthropic</strong>：明确表示 "We are not there yet"；AI 完成任务时间跨度约每四个月翻倍；Claude Opus 4.6 达到约 12 小时级 software tasks</li>
+<li><strong>OpenAI GPT-Red</strong>：self-play 自动 red-team，84% attack success（人类 13%），产生的攻击数据用于训练 GPT-5.6</li>
+<li><strong>Google DeepMind AlphaEvolve</strong>：优化过用于训练 Gemini 模型本身的 processes — AI improving infrastructure used to build AI</li>
+<li><strong>Weco AI AIDE²</strong>：8 天内发现比人工构建两年版本更好的 autoresearch harness，宣称 RSI Level-1</li>
+<li><strong>Sakana AI</strong>：AI Scientist + DGM + Digital Red Queen 组合放入 RSI Lab；AI Scientist 已发表于 Nature</li>
+</ul>
+<hr />
+<h3 id="rsi_4">十一、RSI 失败模式<a class="headerlink" href="#rsi_4" title="Permanent link">#</a></h3>
+<h4 id="111_model_collapse">11.1 Model Collapse<a class="headerlink" href="#111_model_collapse" title="Permanent link">#</a></h4>
+<ul>
+<li>模型不断使用自身生成数据训练，缺少外部信息 → 分布坍缩</li>
+<li>AI 自己作为 reviewer 时可能逐渐进入"rubber-stamp"状态（接受率上升但正确率下降）</li>
+</ul>
+<h4 id="112_self-confirming_loop">11.2 Self-Confirming Loop<a class="headerlink" href="#112_self-confirming_loop" title="Permanent link">#</a></h4>
+<ul>
+<li>Evaluator ≈ Generator 时：生成坏想法 → 自评"不错" → 训练坏数据 → 生成更差想法</li>
+<li>核心问题：self-evaluation ≠ reliable evaluation</li>
+</ul>
+<h4 id="113_reward_hacking">11.3 Reward Hacking<a class="headerlink" href="#113_reward_hacking" title="Permanent link">#</a></h4>
+<ul>
+<li>Agent 操纵 evaluator → Score↑ 但 Capability↔</li>
+<li>所有严肃 RSI 系统都需 automated validation、variance checking、reward-hack detection</li>
+</ul>
+<h4 id="114_benchmark_overfitting">11.4 Benchmark Overfitting<a class="headerlink" href="#114_benchmark_overfitting" title="Permanent link">#</a></h4>
+<ul>
+<li>Agent 提升 benchmark ≠ 提升通用智能</li>
+<li>严格 RSI benchmark 应测试：In-Distribution / OOD / Cross-Model / Cross-Task / Cross-Evaluator</li>
+</ul>
+<h4 id="115_diversity_collapse">11.5 Diversity Collapse<a class="headerlink" href="#115_diversity_collapse" title="Permanent link">#</a></h4>
+<ul>
+<li>进化和 RL 循环倾向于利用已知高奖励模式</li>
+<li>需要机制防止种群坍缩为同一方案的变体</li>
+</ul>
+<hr />
+<h3 id="rsi_5">十二、RSI 的核心工程原则<a class="headerlink" href="#rsi_5" title="Permanent link">#</a></h3>
+<h4 id="121_evaluator_generator">12.1 Evaluator &gt; Generator<a class="headerlink" href="#121_evaluator_generator" title="Permanent link">#</a></h4>
+<p>RSI 真正的瓶颈不是"AI 能否产生更好的想法"，而是"AI 能否可靠地知道想法是否更好"。</p>
+<p>验证层级（从强到弱）：
+1. Formal verifier（最强）
+2. Programmatic verifier
+3. External judge
+4. Process reward model
+5. Intrinsic self-assessment（最弱）</p>
+<h4 id="122">12.2 固定资源计量<a class="headerlink" href="#122" title="Permanent link">#</a></h4>
+<p>RSI 必须报告以下指标以区分 Scaling 与 Self-improvement：
+- Capability / FLOPs（固定算力）
+- Capability / WallClock（固定时间）
+- Capability / Dollar（固定成本）
+- Capability / HumanHour（固定人工）
+- Capability / GPU（固定硬件）
+- Capability / ExternalData（固定数据）</p>
+<h4 id="123">12.3 元生产率<a class="headerlink" href="#123" title="Permanent link">#</a></h4>
+<p>$$\text{MetaProductivity} = \frac{\text{ImprovementRate}_{t+1}}{\text{ImprovementRate}_t}$$</p>
+<ul>
+<li>
+<blockquote>
+<p>1：改进过程正在加速（intelligence explosion 的工程指标）</p>
+</blockquote>
+</li>
+<li>= 1：线性迭代</li>
+<li>&lt; 1：递减回报</li>
+</ul>
+<h4 id="124_coding_agent_rsi">12.4 Coding Agent 是 RSI 的最佳实验场<a class="headerlink" href="#124_coding_agent_rsi" title="Permanent link">#</a></h4>
+<p>软件工程同时拥有：可执行性、可验证性、可修改性、可组合性、可持久化、可递归（Agent 可修改运行 Agent 的代码）。</p>
+<h4 id="125_vs">12.5 开放性 vs. 可验证性<a class="headerlink" href="#125_vs" title="Permanent link">#</a></h4>
+<p>RSI 的核心矛盾：越 open-ended 越难验证。固定 workflow 稳定但 improvement space 被人类定义；open-ended workflow 真正自主但难以评估。</p>
+<hr />
+<h3 id="_3">十三、应用领域<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>应用领域</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LinkedIn Customer Support</td>
+<td>2026.08</td>
+<td>客服系统自进化</td>
+<td><a href="https://arxiv.org/abs/2608.10224">2608.10224</a></td>
+</tr>
+<tr>
+<td>Skill-Harness Evolution (Embodied)</td>
+<td>2026.08</td>
+<td>具身 Agent 技能进化</td>
+<td><a href="https://arxiv.org/abs/2608.11350">2608.11350</a></td>
+</tr>
+<tr>
+<td>GUI Visual Grounding</td>
+<td>2026.08</td>
+<td>测试时自进化 GUI 定位</td>
+<td><a href="https://arxiv.org/abs/2608.11191">2608.11191</a></td>
+</tr>
+<tr>
+<td>GeoForge</td>
+<td>2026.08</td>
+<td>地球观测推理</td>
+<td><a href="https://arxiv.org/abs/2608.10494">2608.10494</a></td>
+</tr>
+<tr>
+<td>A-SR (Symbolic Regression)</td>
+<td>2026.08</td>
+<td>符号回归</td>
+<td><a href="https://arxiv.org/abs/2608.04872">2608.04872</a></td>
+</tr>
+<tr>
+<td>A/B Agent</td>
+<td>2026.08</td>
+<td>工业 A/B 测试策略迭代</td>
+<td><a href="https://arxiv.org/abs/2608.04625">2608.04625</a></td>
+</tr>
+<tr>
+<td>SciToolAgent-Evo</td>
+<td>2026.07</td>
+<td>科学工具获取</td>
+<td><a href="https://arxiv.org/abs/2607.28692">2607.28692</a></td>
+</tr>
+<tr>
+<td>Self-Evolving Coding Agents</td>
+<td>2026.08</td>
+<td>编程 Agent 综述</td>
+<td><a href="https://arxiv.org/abs/2608.03392">2608.03392</a></td>
+</tr>
+<tr>
+<td>Clinical Systems</td>
+<td>2026.07</td>
+<td>临床医学自进化</td>
+<td><a href="https://arxiv.org/abs/2607.11175">2607.11175</a></td>
+</tr>
+<tr>
+<td>WebGrader</td>
+<td>2026.08</td>
+<td>Web 开发自进化评分器</td>
+<td><a href="https://arxiv.org/abs/2608.06474">2608.06474</a></td>
+</tr>
+<tr>
+<td>VASO</td>
+<td>2026.06</td>
+<td>Physical AI 可验证技能</td>
+<td><a href="https://arxiv.org/abs/2606.05395">2606.05395</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="_4">十四、技术演化路径<a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
+<pre><code>Prompt Engineering → Context Engineering → Harness Engineering → Meta-Harness Engineering
+
+2022: STaR
+2023: Self-Refine / Reflexion / Voyager / Eureka
+2024: AI Scientist / SWE Agents / Gödel Agent
+2025: AI Scientist-v2 / AlphaEvolve / DGM / Absolute Zero / ACE
+2026: AutoResearch / Harness Evolution / MCE / MetaSkill-Evolve / Hyperagents / AIDE²
+Future: Self-improving Researcher → AI-designed Successor → Open-ended RSI
+</code></pre>
+<p>优化对象的演化：</p>
+<pre><code>Answer → Agent → Agent Generator → AI Research Process → AI Improvement Process
+</code></pre>
+<hr />
+<h3 id="_5">十五、论文总索引<a class="headerlink" href="#_5" title="Permanent link">#</a></h3>
+<h4 id="6">综述（6 篇）<a class="headerlink" href="#6" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A Survey of Self-Evolving Agents: What, When, How, Where</td>
+<td>2025.07</td>
+<td><a href="https://arxiv.org/abs/2507.21046">2507.21046</a></td>
+</tr>
+<tr>
+<td>A Comprehensive Survey of Self-Evolving AI Agents</td>
+<td>2025.08</td>
+<td><a href="https://arxiv.org/abs/2508.07407">2508.07407</a></td>
+</tr>
+<tr>
+<td>Recursive Self-Improvement in AI: From Bounded Self-Refinement to Autonomous Research Loops</td>
+<td>2026.07</td>
+<td><a href="https://arxiv.org/abs/2607.07663">2607.07663</a></td>
+</tr>
+<tr>
+<td>A Survey of Agent Memory: Towards Self-Evolving and Long-Horizon Agents</td>
+<td>2026.01</td>
+<td><a href="https://arxiv.org/abs/2602.06052">2602.06052</a></td>
+</tr>
+<tr>
+<td>Self-Evolving Coding Agents</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.03392">2608.03392</a></td>
+</tr>
+<tr>
+<td>The Path to Self-Evolving Clinical Systems</td>
+<td>2026.07</td>
+<td><a href="https://arxiv.org/abs/2607.11175">2607.11175</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="8">基础工作（8 篇）<a class="headerlink" href="#8" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Voyager</td>
+<td>2023.05</td>
+<td><a href="https://arxiv.org/abs/2305.16291">2305.16291</a></td>
+</tr>
+<tr>
+<td>Reflexion</td>
+<td>2023.03</td>
+<td><a href="https://arxiv.org/abs/2303.11366">2303.11366</a></td>
+</tr>
+<tr>
+<td>Self-Refine</td>
+<td>2023.03</td>
+<td><a href="https://arxiv.org/abs/2303.17651">2303.17651</a></td>
+</tr>
+<tr>
+<td>STaR</td>
+<td>2022.03</td>
+<td><a href="https://arxiv.org/abs/2203.14465">2203.14465</a></td>
+</tr>
+<tr>
+<td>Self-Rewarding Language Models</td>
+<td>2024.01</td>
+<td><a href="https://arxiv.org/abs/2401.10020">2401.10020</a></td>
+</tr>
+<tr>
+<td>Gödel Agent</td>
+<td>2024.10</td>
+<td><a href="https://arxiv.org/abs/2410.04444">2410.04444</a></td>
+</tr>
+<tr>
+<td>ExpeL</td>
+<td>2023.08</td>
+<td><a href="https://arxiv.org/abs/2308.10379">2308.10379</a></td>
+</tr>
+<tr>
+<td>Absolute Zero</td>
+<td>2025.05</td>
+<td><a href="https://arxiv.org/abs/2505.03335">2505.03335</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="rsi_10">现代 RSI 核心（10 篇）<a class="headerlink" href="#rsi_10" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The AI Scientist</td>
+<td>2024.08</td>
+<td><a href="https://arxiv.org/abs/2408.06292">2408.06292</a></td>
+</tr>
+<tr>
+<td>AI Scientist-v2</td>
+<td>2025.04</td>
+<td><a href="https://arxiv.org/abs/2504.08066">2504.08066</a></td>
+</tr>
+<tr>
+<td>Darwin Gödel Machine</td>
+<td>2025.05</td>
+<td><a href="https://arxiv.org/abs/2505.22954">2505.22954</a></td>
+</tr>
+<tr>
+<td>Agentic Context Engineering</td>
+<td>2025.10</td>
+<td><a href="https://huggingface.co/papers/2510.04618">2510.04618</a></td>
+</tr>
+<tr>
+<td>Meta Context Engineering</td>
+<td>2026.01</td>
+<td><a href="https://arxiv.org/abs/2601.21557">2601.21557</a></td>
+</tr>
+<tr>
+<td>Agentic Harness Engineering</td>
+<td>2026.04</td>
+<td><a href="https://arxiv.org/abs/2604.25850">2604.25850</a></td>
+</tr>
+<tr>
+<td>Meta-Harness</td>
+<td>2026.03</td>
+<td><a href="https://arxiv.org/abs/2603.28052">2603.28052</a></td>
+</tr>
+<tr>
+<td>MetaSkill-Evolve</td>
+<td>2026.07</td>
+<td><a href="https://arxiv.org/abs/2607.05297">2607.05297</a></td>
+</tr>
+<tr>
+<td>Hyperagents</td>
+<td>2026.03</td>
+<td><a href="https://arxiv.org/abs/2603.19461">2603.19461</a></td>
+</tr>
+<tr>
+<td>Continual Harness</td>
+<td>2026.05</td>
+<td><a href="https://arxiv.org/abs/2605.09998">2605.09998</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="10">技能进化（10 篇）<a class="headerlink" href="#10" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MetaSkill-Evolve</td>
+<td>2026.07</td>
+<td><a href="https://arxiv.org/abs/2607.05297">2607.05297</a></td>
+</tr>
+<tr>
+<td>SkillZip</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.11079">2608.11079</a></td>
+</tr>
+<tr>
+<td>SkillHEX</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.05628">2608.05628</a></td>
+</tr>
+<tr>
+<td>SkillAudit</td>
+<td>2026.06</td>
+<td><a href="https://arxiv.org/abs/2606.14239">2606.14239</a></td>
+</tr>
+<tr>
+<td>SkillProx</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.07449">2608.07449</a></td>
+</tr>
+<tr>
+<td>SoK: Agentic Skills</td>
+<td>2026.02</td>
+<td><a href="https://arxiv.org/abs/2602.20867">2602.20867</a></td>
+</tr>
+<tr>
+<td>Learning Globally Reusable Skills</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.06153">2608.06153</a></td>
+</tr>
+<tr>
+<td>Training Skills Like Parameters</td>
+<td>2026.07</td>
+<td><a href="https://arxiv.org/abs/2607.27557">2607.27557</a></td>
+</tr>
+<tr>
+<td>Search2Skill</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.05245">2608.05245</a></td>
+</tr>
+<tr>
+<td>Emotion2Skill</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.09248">2608.09248</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="7">记忆驱动（7 篇）<a class="headerlink" href="#7" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CrystalMem</td>
+<td>2026.07</td>
+<td><a href="https://arxiv.org/abs/2608.00303">2608.00303</a></td>
+</tr>
+<tr>
+<td>Tree-of-Experience</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.09044">2608.09044</a></td>
+</tr>
+<tr>
+<td>RoMeRL</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.02508">2608.02508</a></td>
+</tr>
+<tr>
+<td>Authority Collapse</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.01679">2608.01679</a></td>
+</tr>
+<tr>
+<td>Memory→Skills Co-Evolution</td>
+<td>2026.07</td>
+<td><a href="https://arxiv.org/abs/2607.16621">2607.16621</a></td>
+</tr>
+<tr>
+<td>Memory Reward Inflation</td>
+<td>2026.06</td>
+<td><a href="https://arxiv.org/abs/2608.00017">2608.00017</a></td>
+</tr>
+<tr>
+<td>Critic Experience Bank</td>
+<td>2026.07</td>
+<td><a href="https://arxiv.org/abs/2607.12397">2607.12397</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="9">安全与攻击（9 篇）<a class="headerlink" href="#9" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SkillJack</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.03509">2608.03509</a></td>
+</tr>
+<tr>
+<td>Trajectory Poisoning</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.05563">2608.05563</a></td>
+</tr>
+<tr>
+<td>Query-Only Backdoor</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.08303">2608.08303</a></td>
+</tr>
+<tr>
+<td>Benign Alone, Harmful Together</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.01759">2608.01759</a></td>
+</tr>
+<tr>
+<td>Self-Evolution Backfires</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.05810">2608.05810</a></td>
+</tr>
+<tr>
+<td>ActBench</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.09476">2608.09476</a></td>
+</tr>
+<tr>
+<td>Agent Skill Security</td>
+<td>2026.07</td>
+<td><a href="https://arxiv.org/abs/2607.13987">2607.13987</a></td>
+</tr>
+<tr>
+<td>Yesterday's Shield</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.08471">2608.08471</a></td>
+</tr>
+<tr>
+<td>Recursive Self-Training Collapse</td>
+<td>2026.06</td>
+<td><a href="https://arxiv.org/abs/2606.28438">2606.28438</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="5">理论与极限（5 篇）<a class="headerlink" href="#5" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Self-Reference in LLMs: Introspection Threshold</td>
+<td>2026.07</td>
+<td><a href="https://arxiv.org/abs/2607.04277">2607.04277</a></td>
+</tr>
+<tr>
+<td>SARSI: Self-Aware Recursively Self-Improving Agents</td>
+<td>2026.07</td>
+<td><a href="https://arxiv.org/abs/2607.12254">2607.12254</a></td>
+</tr>
+<tr>
+<td>Beyond Capability Boundary: Zeroth-Order Optimization</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.09292">2608.09292</a></td>
+</tr>
+<tr>
+<td>Rethinking Self-Evolving Agents</td>
+<td>2026.08</td>
+<td><a href="https://arxiv.org/abs/2608.09629">2608.09629</a></td>
+</tr>
+<tr>
+<td>Frontis-MA1: AI4AI Model for RSI in MLE</td>
+<td>2026.07</td>
+<td><a href="https://arxiv.org/abs/2607.28568">2607.28568</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_6">其他重要工作<a class="headerlink" href="#_6" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>论文</th>
+<th>年份</th>
+<th>关键贡献</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Symbolic Learning Enables Self-Evolving Agents</td>
+<td>2024.06</td>
+<td>符号学习自进化</td>
+<td><a href="https://arxiv.org/abs/2406.18532">2406.18532</a></td>
+</tr>
+<tr>
+<td>OPD-Evolver</td>
+<td>2026.06</td>
+<td>策略蒸馏驱动的整体 Agent 进化</td>
+<td><a href="https://arxiv.org/abs/2606.17628">2606.17628</a></td>
+</tr>
+<tr>
+<td>Self-evolving LLM agents with in-distribution Optimization</td>
+<td>2026.06</td>
+<td>分布内优化</td>
+<td><a href="https://arxiv.org/abs/2606.07367">2606.07367</a></td>
+</tr>
+<tr>
+<td>DataEvolver</td>
+<td>2026.06</td>
+<td>多级自进化数据准备</td>
+<td><a href="https://arxiv.org/abs/2606.07001">2606.07001</a></td>
+</tr>
+<tr>
+<td>Reward-Free Evolving Agents</td>
+<td>2026.07</td>
+<td>配对验证器实现无奖励进化</td>
+<td><a href="https://arxiv.org/abs/2607.14408">2607.14408</a></td>
+</tr>
+<tr>
+<td>SERPO</td>
+<td>2026.07</td>
+<td>自进化 rubric 策略优化</td>
+<td><a href="https://arxiv.org/abs/2607.26873">2607.26873</a></td>
+</tr>
+<tr>
+<td>Teaching LLMs to Self-Evolve</td>
+<td>2026.07</td>
+<td>RL 培养核心元技能</td>
+<td><a href="https://arxiv.org/abs/2607.21971">2607.21971</a></td>
+</tr>
+<tr>
+<td>Knowledge-Centric Self-Improvement</td>
+<td>2026.07</td>
+<td>知识中心的自我改进</td>
+<td><a href="https://arxiv.org/abs/2607.19592">2607.19592</a></td>
+</tr>
+<tr>
+<td>SWE-RL</td>
+<td>2025.12</td>
+<td>Self-play 训练软件 Agent</td>
+<td><a href="https://arxiv.org/abs/2512.18552">2512.18552</a></td>
+</tr>
+<tr>
+<td>One Recipe, Many Harnesses</td>
+<td>2026.08</td>
+<td>自进化跨语言/模型编码</td>
+<td><a href="https://arxiv.org/abs/2608.10178">2608.10178</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="_7">十六、延伸阅读<a class="headerlink" href="#_7" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="https://lilianweng.github.io/posts/2026-07-04-harness/">Lilian Weng: Harness Engineering for Self-Improvement</a>（2026.07）</li>
+<li><a href="https://artifocial.com/blog/rsi-workshop-2026-mar-18">Artifocial: From Self-Play to Self-Research (RSI Workshop 解读)</a>（2026.03）</li>
+<li><a href="https://github.com/natnew/awesome-recursive-self-improvement">Awesome Recursive Self-Improvement</a></li>
+<li><a href="https://github.com/zhouhao1024/Awesome-Self-Evolving-Coding-Agents">Awesome Self-Evolving Coding Agents</a></li>
+<li><a href="https://recursive-workshop.github.io/">ICLR 2026 RSI Workshop</a></li>
+<li>→ 相关文档：<a href="./TTT.md">测试时训练 (TTT)</a>、<a href="../Memory/">Agent记忆与知识自进化</a>、<a href="./LongContext.md">长上下文</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Product/" class="btn btn-neutral float-left" title="Product"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../VibeCoding/" class="btn btn-neutral float-right" title="VibeCoding">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Product/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../VibeCoding/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

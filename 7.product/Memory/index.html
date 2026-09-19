@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Memory - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Memory";
+        var mkdocs_page_input_path = "7.product/Memory.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Memory</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">一、综述与概念框架</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">两大流派</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">记忆的分类（认知科学映射）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">二、记忆架构与开源框架</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">应用驱动：基础工作</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">模型驱动：改造模型内部结构</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">认知架构与理论框架</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">记忆架构创新</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">开源记忆框架</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_10">三、知识自进化 = 店铺记忆</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">知识自进化的四个环节（对应店铺经营）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#self-evolving_memory">自进化记忆 (Self-Evolving Memory)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#knowledge-centric_self-improvement">知识中心式自改进 (Knowledge-Centric Self-Improvement)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#skill_self-evolution">技能自进化 (Skill Self-Evolution)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">经验学习与反思</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_13">联邦知识进化</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_14">四、记忆的写入、检索与遗忘</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_15">记忆写入与检索</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_16">记忆遗忘与冲突</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_17">记忆安全</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_18">五、记忆评估基准</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_19">主流基准</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_20">最新基准</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_21">六、持续学习与终身记忆</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_22">七、业界产品级方案</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_23">八、知识自进化可借鉴方案总结</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#a">路线 A：技能库自进化（程序记忆路线）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#b">路线 B：经验蒸馏自进化（情景→语义记忆路线）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#c">路线 C：知识结晶化（记忆压缩路线）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_24">关键设计决策</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">7.product</li>
+      <li class="breadcrumb-item active">Memory</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="agent">Agent 记忆与知识自进化<a class="headerlink" href="#agent" title="Permanent link">#</a></h2>
+<blockquote>
+<p>记忆是 Agent 的核心模块：没有记忆的 agent 是无状态的函数调用器，有记忆的 agent 才是持续进化的智能体。知识自进化本质上是"记忆的主动写入+组织+检索+更新"，类似于店铺在日常经营中沉淀 know-how。</p>
+</blockquote>
+<hr />
+<h3 id="_1">一、综述与概念框架<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<ul>
+<li>[2025.12] <a href="https://arxiv.org/abs/2512.13564">Memory in the Age of AI Agents</a> <strong>最新最全综述</strong>，46 位作者。三维框架：Forms（记忆形态：Token级/参数化/潜在）、Functions（记忆功能：事实型/经验型/工作型）、Dynamics（记忆动态：形成/演化/检索）。明确区分 agent memory 与 RAG、Context Engineering 的概念边界。开源 <a href="https://github.com/Shichun-Liu/Agent-Memory-Paper-List">论文列表</a></li>
+<li>[2024.04] <a href="https://arxiv.org/abs/2404.13501">大模型智能体记忆机制综述</a> 经典综述。参数化记忆 vs 上下文记忆。六大操作：巩固/更新/索引/遗忘/检索/压缩</li>
+<li>[2025.05] <a href="https://arxiv.org/abs/2605.06716">From Storage to Experience: A Survey on the Evolution of LLM Agent Memory Mechanisms</a> 记忆机制演进综述。从简单存储到经验学习</li>
+<li>[2025.08] <a href="https://arxiv.org/abs/2507.21046">A Survey of Self-Evolving Agents: On Path to Artificial Super Intelligence</a> 自进化 agent 综述</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.06663">The Horizon Gap: Planning, Memory, Execution, Training, and Evaluation for Long-Horizon LLM Agents</a> 长程 agent 的规划-记忆-执行-训练-评估全景</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.10113">Dynamic Agent Skills: A Lifecycle Survey and Taxonomy of Evolving Skill Libraries</a> 技能库生命周期综述：技能的创建、检索、演化、废弃</li>
+</ul>
+<h4 id="_2">两大流派<a class="headerlink" href="#_2" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>模型驱动派</th>
+<th>应用驱动派</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代表</td>
+<td>Memorizing Transformers, MemoryLLM, Titans, WISE</td>
+<td>MemGPT, Mem0, Zep, MemOS, MIRIX</td>
+</tr>
+<tr>
+<td>核心思路</td>
+<td>改造模型内部结构</td>
+<td>应用层记忆管理</td>
+</tr>
+<tr>
+<td>优势</td>
+<td>性能上限高、读取效率高</td>
+<td>落地快、易扩展、模型无关</td>
+</tr>
+<tr>
+<td>劣势</td>
+<td>研发成本高、需重新训练</td>
+<td>依赖底层模型、可能有延迟</td>
+</tr>
+<tr>
+<td>适合</td>
+<td>算法创新</td>
+<td>工程落地</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_3">记忆的分类（认知科学映射）<a class="headerlink" href="#_3" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>记忆类型</th>
+<th>定义</th>
+<th>Agent 对应</th>
+<th>店铺类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>短期/工作记忆</td>
+<td>当前任务的临时上下文</td>
+<td>context window / scratchpad</td>
+<td>正在服务的这桌客人</td>
+</tr>
+<tr>
+<td>情景记忆 (Episodic)</td>
+<td>具体事件的经验</td>
+<td>trajectory 存储、过往对话记录</td>
+<td>昨天某个客人的特殊要求</td>
+</tr>
+<tr>
+<td>语义记忆 (Semantic)</td>
+<td>抽象知识和事实</td>
+<td>知识库、用户画像、规则</td>
+<td>"这家店的主打菜是什么"</td>
+</tr>
+<tr>
+<td>程序记忆 (Procedural)</td>
+<td>如何做某事的技能</td>
+<td>skill library、代码片段、工作流</td>
+<td>后厨的标准操作手册</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="_4">二、记忆架构与开源框架<a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
+<h4 id="_5">应用驱动：基础工作<a class="headerlink" href="#_5" title="Permanent link">#</a></h4>
+<ul>
+<li>[2023.04] <a href="https://arxiv.org/abs/2304.03442">Generative Agents: Interactive Simulacra of Human Behavior</a> Stanford。记忆流 (Memory Stream) + 反思 (Reflection) + 规划。检索三标准：Recency（新近性）、Importance（重要性）、Relevance（相关性）。<strong>情景记忆+反思机制的奠基工作</strong></li>
+<li>[2023.05] <a href="https://arxiv.org/abs/2305.16291">Voyager: An Open-Ended Embodied Agent with Large Language Models</a> Minecraft 终身学习 agent。三大组件：自动课程、技能库、迭代提示。<strong>技能库是程序记忆的典范</strong>：agent 将成功行为序列编码为可复用代码，存入技能库供后续调用</li>
+<li>[2023.10] <a href="https://arxiv.org/abs/2310.08560">MemGPT: Towards LLMs as Operating Systems</a> UC Berkeley。将 LLM 视为操作系统，虚拟内存管理：主上下文（Main Context）+ 外部存储（External Context），LLM 自主决定 swap in/out。分层：System Instructions / Working Context / FIFO。<strong>开源为 <a href="https://github.com/letta-ai/letta">Letta</a></strong></li>
+<li>[2023.05] <a href="https://arxiv.org/abs/2305.10250">MemoryBank: Enhancing Large Language Models with Long-Term Memory</a> <strong>遗忘曲线先驱</strong>。三层存储：In-Depth Memory（详细对话+时间戳）、Hierarchical Event Summary（层次化摘要）、Dynamic Personality Understanding（用户个性动态评估）。借鉴艾宾浩斯遗忘曲线实现记忆遗忘</li>
+<li>[2024.05] <a href="https://arxiv.org/abs/2405.14831">HippoRAG: Neurobiologically Inspired Long-Term Memory</a> NeurIPS 2024。模拟人脑海马体：海马索引（Personalized PageRank）+ 新皮层存储（知识图谱）+ 模式分离。多跳问答超越传统 RAG 20%+</li>
+<li>[2024.09] <a href="https://arxiv.org/abs/2409.09908">A-MEM: Agentic Memory for LLM Agents</a> <strong>卡片笔记法（Zettelkasten）</strong>。每个记忆是知识卡片：原始内容+时间戳+关键词+标签+上下文+链接集合。通过链接建立记忆网络，LOCOMO 上优于 MemGPT 和 MemoryBank</li>
+<li>[2025.01] <a href="https://arxiv.org/abs/2501.13956">Zep: A Temporal Knowledge Graph Architecture for Agent Memory</a> 时序知识图谱记忆层。三层图结构：情境子图（Episodic）→ 语义子图（Semantic）→ 社区子图（Community）。记忆去重+时间边失效机制。DMR 基准上超越 MemGPT</li>
+<li>[2025.04] <a href="https://arxiv.org/abs/2504.19413">Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory</a> <strong>生产级首选</strong>。两种实现：Mem0（向量检索）和 Mem0-G（图增强）。记忆生成=上下文感知（当前问答+最近 M 条+会话 Summary），记忆更新=检索相似 N 条→LLM 判断增/改/删。冲突检测标记无效而非物理删除。LOCOMO 综合 SOTA</li>
+<li>[2025.05] <a href="https://arxiv.org/abs/2505.22101">MemOS: A Memory OS for AI System</a> 记忆张素（亿元天使轮）。<strong>记忆操作系统</strong>。三类记忆：纯文本（显式长期）、激活（隐式短期 KV-Cache）、参数（隐式长期）。动态转换：纯文本→激活（预生成 KV-Cache 降低 TTFT）、纯文本/激活→参数（蒸馏/LoRA 固化）、参数→纯文本（卸载过时知识）。统一抽象 MemCube，LOCOMO SOTA</li>
+<li>[2025.07] <a href="https://arxiv.org/abs/2507.07957">MIRIX: Multi-Agent Memory System for LLM-Based Agents</a> <strong>多模块记忆</strong>。借鉴人类记忆分工，6 个记忆组件+Multi-Agent 架构管理。元记忆管理器路由→对应记忆管理器→两阶段检索（粗检索摘要→详细搜索）</li>
+<li>[2024.08] <a href="https://arxiv.org/abs/2408.16967">MemLong: Memory-Augmented Retrieval for Long Context Modeling</a> 检索记忆模块+可控注意力，超长文本处理</li>
+</ul>
+<h4 id="_6">模型驱动：改造模型内部结构<a class="headerlink" href="#_6" title="Permanent link">#</a></h4>
+<ul>
+<li>[2022.03] <a href="https://arxiv.org/abs/2203.08913">Memorizing Transformers</a> Google。<strong>模型驱动开山之作</strong>。首次在 Transformer 中引入外部记忆：每个 token 存入外部记忆库，推理时 KNN 检索相关历史，融合外部记忆和内部注意力</li>
+<li>[2024.02] <a href="https://arxiv.org/abs/2402.04624">MemoryLLM: Towards Self-Updatable Large Language Models</a> ICML 2024。每层 Transformer 插入可更新的 Memory Tokens：固定参数（预训练）+ Memory Tokens（可读写）。Read/Write Gates 控制更新，遗忘控制对抗灾难性遗忘</li>
+<li>[2024.07] <a href="https://arxiv.org/abs/2407.01178">Memory³: Language Modeling with Explicit Memory</a> 三层显式记忆：感知记忆（原始输入）→ 短期记忆（工作上下文）→ 长期记忆（知识存储），每层不同编码和检索策略</li>
+<li>[2024.05] <a href="https://arxiv.org/abs/2405.14768">WISE: Rethinking the Knowledge Memory for Lifelong Model Editing</a> 浙江大学。双参数体系：主记忆（预训练知识冻结）+ 侧记忆（后续编辑可更新）。避免灾难性遗忘。开源 <a href="https://github.com/zjunlp/EasyEdit">EasyEdit</a></li>
+<li>[2024.12] <a href="https://arxiv.org/abs/2501.00663">Titans: Learning to Memorize at Test Time</a> Google。<strong>学习遗忘</strong>。三个门控：存储门控（什么值得记）、遗忘门控（何时清理）、检索门控（调用哪些）。测试时学习（Test-Time Learning），Surprise 指标（梯度误差）决定新颖性。处理 2M+ 上下文</li>
+</ul>
+<h4 id="_7">认知架构与理论框架<a class="headerlink" href="#_7" title="Permanent link">#</a></h4>
+<ul>
+<li>[2023.09] <a href="https://arxiv.org/abs/2309.02427">CoALA: Cognitive Architectures for Language Agents</a> 将 agent 记忆正式结构化为四类：Working Memory（工作记忆）、Episodic Memory（情景记忆）、Semantic Memory（语义记忆）、Procedural Memory（程序记忆）。<strong>统一了所有论文的术语，理解 Agent 架构的通用蓝图</strong></li>
+<li>[2024.04] <a href="https://arxiv.org/abs/2404.13501">大模型智能体记忆机制综述</a> 经典综述。记忆分类：参数化记忆 vs 上下文记忆。六大操作：巩固（Consolidation）、更新（Update）、索引（Indexing）、遗忘（Forgetting）、检索（Retrieval）、压缩（Compression）。开源 <a href="https://github.com/nuster1128/LLM_Agent_Memory_Survey">论文列表</a></li>
+<li><a href="https://github.com/patrick-tssn/Awesome-Multimodal-Memory">多模态记忆综述</a> 400+ 篇多模态记忆论文：视觉记忆、机器人记忆、多模态上下文建模</li>
+</ul>
+<h4 id="_8">记忆架构创新<a class="headerlink" href="#_8" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.26637">Filesystem-Based Memory for LLM Agents</a> 将记忆组织为文件系统：目录树+markdown 文件，agent 自己读写重组。研究了文件系统作为记忆媒介的组织、演化和可持续性</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.24097">MemChain: Learning Interpretable Memory Traces</a> 记忆链：不只检索记忆作为证据，还学习可解释的记忆追踪路径</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.13884">Experience Memory Graph: One-Shot Error Correction for Agents</a> 经验记忆图：将过往错误和修正编码为图结构，实现一次性错误纠正</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.27415">Bridging Inference-Time Scaling and Episodic Memory with Action-Centric Graphs</a> 以动作为中心的记忆图，连接推理时扩展和情景记忆，避免无状态重复搜索</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.01708">PGMem: Tightly Coupled Persona-Memory Graph for Lifelong Personalized Agents</a> 人格-记忆紧密耦合图：不把人格存为扁平 profile，而是与事件关联，解决人格与事件脱节问题</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.29824">Neural Procedural Memory: Empowering LLM Agents with Implicit Activation Steering</a> 神经程序记忆：不依赖文本检索，通过隐式激活引导来调用程序性知识</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.15778">DYNA: Dynamic Episodic Memory Networks for Temporal Knowledge Graphs</a> 动态情景记忆网络，用 时序知识图谱增强冻结的 LLM</li>
+</ul>
+<h4 id="_9">开源记忆框架<a class="headerlink" href="#_9" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>核心隐喻</th>
+<th>记忆类型</th>
+<th>仓库</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/mem0ai/mem0">mem0</a></td>
+<td>知识图谱</td>
+<td>图增强记忆，增/改/删 pipeline</td>
+<td>29k+ stars</td>
+</tr>
+<tr>
+<td><a href="https://github.com/letta-ai/letta">Letta (MemGPT)</a></td>
+<td>操作系统</td>
+<td>分层（RAM/Disk），虚拟内存分页</td>
+<td>22k+ stars</td>
+</tr>
+<tr>
+<td><a href="https://github.com/getzep/zep">Zep</a></td>
+<td>时间图谱</td>
+<td>时序知识图谱，自研 Graphiti 引擎</td>
+<td>3k+ stars</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MemTensor/MemOS">MemOS</a></td>
+<td>记忆OS</td>
+<td>三类记忆动态转换，MemCube 统一抽象</td>
+<td>-</td>
+</tr>
+<tr>
+<td><a href="https://github.com/OSU-NLP-Group/HippoRAG">HippoRAG</a></td>
+<td>海马体</td>
+<td>神经生物学启发，PPR+知识图谱</td>
+<td>1k+ stars</td>
+</tr>
+<tr>
+<td><a href="https://github.com/langchain-ai/langmem">LangMem (LangChain)</a></td>
+<td>-</td>
+<td>写入/修订/删除，与 LangGraph 集成</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="_10">三、知识自进化 = 店铺记忆<a class="headerlink" href="#_10" title="Permanent link">#</a></h3>
+<blockquote>
+<p>核心观点：知识自进化本质上就是 agent 的"店铺记忆"——在日常运行中主动积累经验、组织知识、检测冲突、更新认知。</p>
+</blockquote>
+<h4 id="_11">知识自进化的四个环节（对应店铺经营）<a class="headerlink" href="#_11" title="Permanent link">#</a></h4>
+<ol>
+<li><strong>经验积累</strong>（写入记忆）：agent 执行任务 → 记录 trajectory → 提取可复用知识</li>
+<li>店铺类比：每天接待客人，记录什么做法有效</li>
+<li><strong>知识组织</strong>（记忆管理）：将碎片化经验结构化为可检索的知识</li>
+<li>店铺类比：把零散经验整理成操作手册</li>
+<li><strong>知识复用</strong>（记忆检索）：新任务来时，检索相关经验指导决策</li>
+<li>店铺类比：遇到类似客人，参考过去的成功经验</li>
+<li><strong>知识更新</strong>（记忆演化）：发现旧知识过时或错误时，更新或遗忘</li>
+<li>店铺类比：菜单变了，更新操作手册，废弃旧做法</li>
+</ol>
+<h4 id="self-evolving_memory">自进化记忆 (Self-Evolving Memory)<a class="headerlink" href="#self-evolving_memory" title="Permanent link">#</a></h4>
+<ul>
+<li>[2025.11] <a href="https://arxiv.org/abs/2511.20857">Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory</a> 自进化记忆基准。评估 agent 在测试时通过记忆管理实现持续学习的能力</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2608.00303">CrystalMem: Elastic Memory for Self-Evolving LLM Agents via Knowledge Crystallization</a> 知识结晶化：将松散经验结晶为紧凑知识。发现记忆配额压缩后能力不会自动恢复，提出弹性记忆架构</li>
+<li>[2026.04] <a href="https://arxiv.org/abs/2604.13085">Adaptive Memory Crystallization (AMC)</a> 自适应记忆结晶：渐进式经验合并的持续 RL 记忆架构</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.02508">RoMeRL: Balancing Feedback Coverage and the Memory-Reward Trap</a> 自进化记忆的两大挑战：(1) 轨迹索引效用随历史增长而分散；(2) 记忆本身成为 reward hack 目标。提出降阶效用状态</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.21125">Causal-AgentIR: Self-Evolving Causal Memory for Adaptive Image Restoration Agents</a> 因果记忆：不只是存什么，还存因果关系，实现自适应记忆</li>
+</ul>
+<h4 id="knowledge-centric_self-improvement">知识中心式自改进 (Knowledge-Centric Self-Improvement)<a class="headerlink" href="#knowledge-centric_self-improvement" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.19592">Knowledge-Centric Self-Improvement</a> <strong>关键论文</strong>。提出从 agent-centric 到 knowledge-centric 的范式转变：不是改进 agent 本身（prompt/workflow/harness），而是改进 agent 使用的知识。知识可迁移、可审计、可组合</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.02139">Self-Improving LLMs via Progressive Experience Evolution</a> 渐进式经验进化：将短暂交互经验转化为持久模型能力</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.07663">Recursive Self-Improvement in AI: From Bounded Self-Refinement to Autonomous Research Loops</a> 递归自改进全景：从有界自精炼到自主研究循环</li>
+</ul>
+<h4 id="skill_self-evolution">技能自进化 (Skill Self-Evolution)<a class="headerlink" href="#skill_self-evolution" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.05297">MetaSkill-Evolve: Recursive Self-Improvement via Two-Timescale Meta-Skill Evolution</a> 元技能进化：双层时间尺度的递归自改进，技能本身也在演化</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.07449">SkillProx: Self-Evolving Agent Skills via Proximal Textual Gradient Descent</a> 近端文本梯度下降优化技能，轻量级可复用</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.26784">SkillRise: Agentic RL for Cross-Task Skill Evolution</a> 跨任务技能进化的 agentic RL</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.05604">SkillZip: Contract-Preserving Graph Compression for Scalable Skill Libraries</a> 技能库压缩：保持执行契约的前提下压缩技能上下文</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.06196">Comparative Approaches to Agent Retrieval over Large Skill Libraries</a> 大规模技能库的检索策略</li>
+<li>[2026.05] <a href="https://arxiv.org/abs/2605.27955">Skill-as-Pseudocode: Refactoring Skill Libraries to Pseudocode</a> 技能从自由文本重构为伪代码，减少每次检索后的推理开销</li>
+</ul>
+<h4 id="_12">经验学习与反思<a class="headerlink" href="#_12" title="Permanent link">#</a></h4>
+<ul>
+<li>[2023.03] <a href="https://arxiv.org/abs/2303.11366">Reflexion: Language Agents with Verbal Reinforcement Learning</a> 语言强化学习：agent 执行→反思失败原因→将教训存入记忆→下次避免。<strong>最经典的"从失败中学习并记忆"方案</strong></li>
+<li>[2023.08] <a href="https://arxiv.org/abs/2308.10144">ExpeL: LLM Agents Are Experiential Learners</a> 经验学习者：从 trajectory 中提取 insights 和 rules，形成可复用的经验知识</li>
+<li>[2023.10] <a href="https://arxiv.org/abs/2310.12823">AgentTuning: Enabling Generalized Agent Abilities for LLMs</a> 通过 agent 任务微调赋予 LLM 通用 agent 能力</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.24428">Escaping the Self-Confirmation Trap: An Execute-Distill-Verify Paradigm</a> 自确认陷阱：同一 agent 执行+总结会导致自我确认偏差。提出执行-蒸馏-验证分离范式</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.14159">MemoHarness: Agent Harnesses That Learn from Experience</a> harness 本身从经验中学习：不只是 agent 改进，管理 agent 的框架也在改进</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.21051">Sample-Efficient Learning from Agent Experience</a> 从 agent 自身经验中高效学习，减少环境交互成本</li>
+</ul>
+<h4 id="_13">联邦知识进化<a class="headerlink" href="#_13" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.21361">FedAgentKE: Federated Semantic Knowledge Evolution for Heterogeneous Agents</a> 多个异构 agent 的联邦知识进化：不只是单 agent 进化，多个 agent 共享和进化知识</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.16851">AgentBrew: Lifelong Knowledge Brewing from Strong Teachers to Weak LLM Agents</a> 知识酿造：将 teacher agent 的交互经验蒸馏为 student 的持久外部记忆</li>
+</ul>
+<hr />
+<h3 id="_14">四、记忆的写入、检索与遗忘<a class="headerlink" href="#_14" title="Permanent link">#</a></h3>
+<h4 id="_15">记忆写入与检索<a class="headerlink" href="#_15" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2608.03463">LeanMem: Simple and Efficient Long-Term Memory for LLM Agents</a> 简洁高效的长时记忆：针对异构对话内容设计差异化摘要和检索</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.17879">Exploratory and Assimilating Reflection: Reflective Recall Cycle</a> 探索-同化反思循环：不只是检索记忆，还通过反思改进检索</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.20553">CMI-Mem: Generalizable Long-Term Memory Management via CMI-Augmented RL</a> 用 RL 管理记忆：不依赖 LLM 判断，用强化学习训练记忆管理策略</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2606.25161">TRUSTMEM: Learning Trustworthy Memory Consolidation</a> 可信记忆合并：学习何时写入、修订、删除记忆</li>
+</ul>
+<h4 id="_16">记忆遗忘与冲突<a class="headerlink" href="#_16" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.08032">What to Keep, What to Forget: A Rate-Distortion View of Memory Compaction</a> <strong>信息论视角</strong>：用率失真理论分析记忆压缩，什么该留什么该忘</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.20954">Learning What Not to Forget: Long-Horizon Agent Memory from a Few Kilobytes</a> 只用几 KB 学习参数就能决定长程记忆中什么不能忘</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.15903">Control-Plane Placement Shapes Forgetting</a> 13 种系统配置的架构研究：记忆管道中 LLM 的位置决定遗忘模式</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.29279">Manufactured Confidence: How Memory Consolidation Turns Hearsay into Confident Facts</a> 记忆合并的风险：将随口一说变成"确信事实"。mem0/LangMem 等都有此问题</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.01679">When Memory Becomes Authority: Benchmarking Authority Collapse</a> 记忆合并边界处的"权威坍缩"：合并后的记忆被过度信任</li>
+</ul>
+<h4 id="_17">记忆安全<a class="headerlink" href="#_17" title="Permanent link">#</a></h4>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.15657">Do Agents Dream of False Memories? Black-box Visual Attacks on Long-term Memory</a> 多模态 agent 的虚假记忆注入攻击</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.17619">Insecure Coding Preferences in Long-Term Memory</a> 不安全编码偏好被存入记忆后的安全风险</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.05563">When Experience Becomes Instruction: Trajectory Poisoning in Self-Evolving Agent Skill Systems</a> 技能自进化系统的轨迹投毒攻击</li>
+</ul>
+<hr />
+<h3 id="_18">五、记忆评估基准<a class="headerlink" href="#_18" title="Permanent link">#</a></h3>
+<h4 id="_19">主流基准<a class="headerlink" href="#_19" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>LOCOMO</strong> 长对话记忆评测。Mem0/MemGPT/Zep/A-MEM 等均在 LOCOMO 上对比。Mem0 综合 SOTA，MemOS SOTA</li>
+<li><strong>LongMemEval</strong> 企业级长期记忆评测。Zep 准确度提升 18.5%</li>
+<li><strong>DMR Benchmark</strong> 动态记忆检索评测。Zep 94.8% vs MemGPT 93.4%</li>
+<li><strong>MemoryBench</strong> 多任务记忆能力评测</li>
+</ul>
+<h4 id="_20">最新基准<a class="headerlink" href="#_20" title="Permanent link">#</a></h4>
+<ul>
+<li>[2025.11] <a href="https://arxiv.org/abs/2511.20857">Evo-Memory</a> 自进化记忆基准：评估测试时学习</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.21962">Ground Truth First</a> 纵向评估工具：先有 ground truth 再生成对话，避免标签错误</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.12893">MemOps: Benchmarking Lifecycle Memory Operations</a> 记忆生命周期操作基准：不只测问答，测写入/修订/删除全流程</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.16716">RECON: Benchmarking Agent Memory for Compositional Reasoning</a> 组合推理记忆基准</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.24368">Keep It InMind: Benchmarking the Implicit-Association Blind Spot</a> 隐式关联盲区：需要的记忆不一定和查询相似</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.04095">FinPerMA: Personalized-Memory Benchmark for Financial Agents</a> 金融场景个性化记忆基准</li>
+<li>[2026.08] <a href="https://arxiv.org/abs/2608.01149">PATH-Bench: Path-Dependent Evaluation of Lifelong Agents</a> 路径依赖评估：经验积累的路径影响 agent 最终能力</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.23127">AFTER: Managing Procedural Memory in LLM Agents</a> 程序记忆基准：382 个企业任务，6 种角色，22 项程序技能</li>
+</ul>
+<hr />
+<h3 id="_21">六、持续学习与终身记忆<a class="headerlink" href="#_21" title="Permanent link">#</a></h3>
+<ul>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.07847">When Does Continual Learning Require Learning</a> 质问持续学习的本质：LLM 时代，多少"持续学习"其实是上下文管理而非真正学习</li>
+<li>[2026.07] <a href="https://arxiv.org/abs/2607.23837">Latent-LoRA: Compact Latent-Space Adapters with Gradient-Free Routing for Continual Learning</a> 潜空间适配器的持续学习：无梯度路由分配不同任务</li>
+<li>[2026.06] <a href="https://arxiv.org/abs/2606.24901">LLM Evolution as an Industry-Scale Ecosystem</a> 工业级 LLM 持续学习的生命周期视角</li>
+<li>[2026.05] <a href="https://arxiv.org/abs/2605.28303">From Fact Overwriting to Knowledge Evolution: Causal Editing via On-Policy Self-Distillation</a> 从事实覆写到知识进化：因果编辑替代暴力注入</li>
+</ul>
+<hr />
+<h3 id="_22">七、业界产品级方案<a class="headerlink" href="#_22" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>产品</th>
+<th>记忆机制</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAI ChatGPT Memory</td>
+<td>跨会话用户偏好记忆</td>
+<td>用户可查看/删除，分 saved memories 和 chat history 两类</td>
+</tr>
+<tr>
+<td>Claude (Anthropic)</td>
+<td>项目级记忆</td>
+<td>Projects 中的知识库+上下文，不跨项目</td>
+</tr>
+<tr>
+<td>Google Gemini Memory</td>
+<td>用户偏好+历史</td>
+<td>跨对话记忆，可管理</td>
+</tr>
+<tr>
+<td>mem0</td>
+<td>开源记忆层</td>
+<td>提取-存储-检索 pipeline，支持多种后端</td>
+</tr>
+<tr>
+<td>Letta (MemGPT)</td>
+<td>虚拟内存分页</td>
+<td>LLM as OS，主上下文+外部存储</td>
+</tr>
+<tr>
+<td>Zep</td>
+<td>时序知识图谱</td>
+<td>对话→知识图谱三元组，时间推理</td>
+</tr>
+<tr>
+<td>LangMem</td>
+<td>LangChain 记忆工具</td>
+<td>写入/修订/删除操作，与 LangGraph 集成</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="_23">八、知识自进化可借鉴方案总结<a class="headerlink" href="#_23" title="Permanent link">#</a></h3>
+<blockquote>
+<p>针对你正在做的"知识自进化"，以下是最直接可借鉴的方案路线：</p>
+</blockquote>
+<h4 id="a">路线 A：技能库自进化（程序记忆路线）<a class="headerlink" href="#a" title="Permanent link">#</a></h4>
+<p>参考 Voyager → MetaSkill-Evolve → SkillProx 路线：
+1. agent 执行任务，记录成功 trajectory
+2. 从 trajectory 中提取可复用技能（代码/自然语言指令）
+3. 技能存入库，新任务时检索相关技能
+4. 技能使用后根据反馈迭代优化
+5. 定期压缩技能库（SkillZip），废弃低效技能</p>
+<h4 id="b">路线 B：经验蒸馏自进化（情景→语义记忆路线）<a class="headerlink" href="#b" title="Permanent link">#</a></h4>
+<p>参考 ExpeL → Reflexion → Knowledge-Centric Self-Improvement 路线：
+1. agent 执行任务，记录成功/失败 trajectory
+2. 反思失败原因，提取教训（Reflexion 式）
+3. 从多次经验中归纳通用 insights 和 rules（ExpeL 式）
+4. 将 insights 组织为可检索的知识库（知识中心式）
+5. 新任务时检索相关 knowledge 指导决策
+6. 检测知识冲突，更新过时知识</p>
+<h4 id="c">路线 C：知识结晶化（记忆压缩路线）<a class="headerlink" href="#c" title="Permanent link">#</a></h4>
+<p>参考 CrystalMem → AMC → Rate-Distortion 路线：
+1. 原始经验以情景记忆形式存储（详细 trajectory）
+2. 定期"结晶化"：将松散经验压缩为紧凑知识
+3. 用率失真理论指导压缩（什么该留什么该忘）
+4. 结晶后的知识可跨任务复用
+5. 处理记忆配额波动（弹性记忆）</p>
+<h4 id="_24">关键设计决策<a class="headerlink" href="#_24" title="Permanent link">#</a></h4>
+<ol>
+<li><strong>记忆存什么</strong>：trajectory 原文 vs 提炼后的 insights？前者保真但冗余，后者紧凑但可能丢失上下文</li>
+<li><strong>记忆怎么检索</strong>：向量相似度 vs 图遍历 vs LLM 判断？各有利弊</li>
+<li><strong>记忆何时更新</strong>：实时 vs 批量？实时开销大，批量可能用过时知识</li>
+<li><strong>记忆冲突怎么解决</strong>：覆盖 vs 保留多版本 vs 时间戳优先？</li>
+<li><strong>记忆安全</strong>：如何防止错误经验/投毒轨迹污染知识库？</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Context/" class="btn btn-neutral float-left" title="Context"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../NovelGenerator/" class="btn btn-neutral float-right" title="NovelGenerator">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Context/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../NovelGenerator/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

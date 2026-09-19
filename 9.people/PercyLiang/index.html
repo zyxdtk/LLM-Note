@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>PercyLiang - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "PercyLiang";
+        var mkdocs_page_input_path = "9.people/PercyLiang.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">PercyLiang</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1_percy_liang">1. Percy Liang 是谁</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_1">自述研究方向</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 核心贡献：五条主线</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#foundation_model">主线一：命名了"Foundation Model"（基础模型）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#helm">主线二：HELM — 最系统的大模型评估体系</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#foundation_model_transparency_index_fmti">主线三：Foundation Model Transparency Index (FMTI) — 透明度运动</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">主线四：记忆化、版权与安全</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vla_agent">主线五：机器人 VLA 与 Agent</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3_marin">3. Marin：激进开放的模型开发</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">核心理念</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">开放生态四要素</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#marin">Marin 的工作流程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#marin_1">Marin 的成果</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">为什么重要</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cs336language_models_from_scratch">CS336：Language Models from Scratch</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4_simile">4. Simile：模拟人类行为的基础模型</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">使命</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#percy_liang">Percy Liang 的定位</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">融资与商业化</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">技术路线</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generative_agents">与 Generative Agents 的关系</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5_crfmstanford">5. CRFM：Stanford 基础模型研究中心</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">四大支柱</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#crfm">CRFM 的项目</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6_percy_liang">6. Percy Liang 的学术谱系</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#2026">当前学生/博后（2026）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">知名校友</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7_2025-2026">7. 近期研究动态（2025-2026 最新）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_11">训练技术</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_12">经济与社会</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8_percy_liang">8. Percy Liang 的独特定位</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#9">9. 与已有文档的交叉引用</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#10_40">10. 论文索引（精选 40 篇）</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">9.people</li>
+      <li class="breadcrumb-item active">PercyLiang</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="percy_liang_stanford_crfm">Percy Liang 与 Stanford CRFM<a class="headerlink" href="#percy_liang_stanford_crfm" title="Permanent link">#</a></h2>
+<blockquote>
+<p>起因：用户对 Percy Liang 的推文和他在做的工作感兴趣。本文整理他的学术轨迹、核心项目、研究方向和影响力。
+来源：arXiv 论文搜索（57 篇）、Stanford 主页、CRFM 官网、CS336 课程页面、X/Twitter 推文（via r.jina.ai 镜像）、Simile 官网、Marin 官网。</p>
+</blockquote>
+<hr />
+<script>
+  document.querySelectorAll('a[href^="http"]').forEach(a => {
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+  });
+</script>
+
+<h3 id="1_percy_liang">1. Percy Liang 是谁<a class="headerlink" href="#1_percy_liang" title="Permanent link">#</a></h3>
+<ul>
+<li><strong>职位</strong>：Stanford 大学计算机科学教授（兼统计学），Gates 366</li>
+<li><strong>创建</strong>：Stanford <a href="https://crfm.stanford.edu/">CRFM</a>（Center for Research on Foundation Models，基础模型研究中心）</li>
+<li><strong>教学</strong>：<a href="https://stanford-cs336.github.io/">CS336</a> "Language Models from Scratch"（与 Tatsunori Hashimoto 共同授课）</li>
+<li><strong>创建</strong>：Marin（开放模型开发项目，<a href="https://marin.community/">marin.community</a>）、CodaLab Worksheets（实验管理平台）</li>
+<li><strong>关联</strong>：<a href="https://www.together.ai/">Together AI</a>（X 资料页标注）、<a href="https://simile.ai/">Simile</a>（创始人 Joon Sung Park 是他的博士生）</li>
+<li><strong>X/Twitter</strong>：<a href="https://x.com/percyliang">@percyliang</a>，1,327 posts，2009 年 10 月加入，Stanford CA</li>
+<li><strong>主页</strong>：<a href="https://cs.stanford.edu/~pliang/">https://cs.stanford.edu/~pliang/</a></li>
+</ul>
+<h4 id="_1">自述研究方向<a class="headerlink" href="#_1" title="Permanent link">#</a></h4>
+<p>他的 Stanford 主页上写了几句话，很能反映他的哲学：</p>
+<blockquote>
+<p>"I am drawn to simple things, want to understand things deeply, and like to build useful systems. I am interested in fundamental questions around learning and intelligence. How well can we learn in the data-limited, infinite compute regime? How do we model interestingness and curiosity? How can we push the frontier of human knowledge?"</p>
+</blockquote>
+<p>翻译：我偏爱简洁的东西，想深入理解事物，喜欢构建有用的系统。我对学习和智能的根本问题感兴趣：在数据有限、算力无限的 regime 下我们能学得多好？如何建模有趣性和好奇心？如何推动人类知识前沿？</p>
+<hr />
+<h3 id="2">2. 核心贡献：五条主线<a class="headerlink" href="#2" title="Permanent link">#</a></h3>
+<p>Percy Liang 的工作横跨技术、评估、安全、政策和教育五个维度。下面按主线梳理。</p>
+<h4 id="foundation_model">主线一：命名了"Foundation Model"（基础模型）<a class="headerlink" href="#foundation_model" title="Permanent link">#</a></h4>
+<p><strong>论文</strong>：On the Opportunities and Risks of Foundation Models
+<strong>作者</strong>：Rishi Bommasani, Drew Hudson, Ehsan Adeli, Russ Altman, Simran Arora, Sydney von Arx, ..., Percy Liang (100+ 作者)
+<strong>时间</strong>：2021.08
+<strong>arXiv</strong>：<a href="https://arxiv.org/abs/2108.07258">https://arxiv.org/abs/2108.07258</a></p>
+<p>这篇论文创造了"Foundation Model"这个术语，定义了"在广域数据上大规模训练、可适配多种下游任务的模型"这一范式。论文不是技术论文，而是一篇 200+ 页的立场文件，涵盖了技术基础、应用、社会影响三个维度。</p>
+<p>意义：在 GPT-3 之后、ChatGPT 之前，这篇论文给了整个领域一个概念框架。后来所有人讨论 GPT/Claude/Gemini 都在用他定义的术语。</p>
+<p><strong>后续衍生工作</strong>：
+- Ecosystem Graphs (<a href="https://arxiv.org/abs/2303.15772">arXiv:2303.15772</a>)：追踪基础模型的社会足迹——谁训练了模型、谁部署、谁依赖
+- Foundation Models and Fair Use (<a href="https://arxiv.org/abs/2303.15715">arXiv:2303.15715</a>)：基础模型与版权合理使用
+- Picking on the Same Person (<a href="https://arxiv.org/abs/2211.13972">arXiv:2211.13972</a>)：算法单一文化导致结果同质化</p>
+<h4 id="helm">主线二：HELM — 最系统的大模型评估体系<a class="headerlink" href="#helm" title="Permanent link">#</a></h4>
+<p>这是 Percy Liang 影响力最大的工程贡献。</p>
+<p><strong>原始 HELM</strong>：<a href="https://crfm.stanford.edu/helm/">Holistic Evaluation of Language Models</a>
+<strong>时间</strong>：2022.11
+<strong>arXiv</strong>：<a href="https://arxiv.org/abs/2211.09110">https://arxiv.org/abs/2211.09110</a>
+<strong>作者</strong>：Percy Liang, Rishi Bommasani, Tony Lee, Dimitris Tsipras, Dilara Soylu, Michihiro Yasunaga, et al.</p>
+<p>HELM 的核心理念：不只看模型在某个基准上的分数，而是"整体评估"——准确性、鲁棒性、公平性、偏见、毒性、效率等多维度。HELM 成为 2023-2024 年最权威的 LLM 排行榜之一。</p>
+<p><strong>HELM 扩展为全模态评估体系</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>评估</th>
+<th>全称</th>
+<th>对象</th>
+<th>arXiv</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HELM</td>
+<td>Holistic Evaluation of Language Models</td>
+<td>文本 LLM</td>
+<td>2211.09110</td>
+</tr>
+<tr>
+<td>VHELM</td>
+<td>Holistic Evaluation of Vision Language Models</td>
+<td>视觉语言模型</td>
+<td>2410.07112</td>
+</tr>
+<tr>
+<td>AHELM</td>
+<td>Holistic Evaluation of Audio-Language Models</td>
+<td>音频语言模型</td>
+<td>2508.21376</td>
+</tr>
+<tr>
+<td>HELM-T2I</td>
+<td>Holistic Evaluation of Text-To-Image Models</td>
+<td>文生图模型</td>
+<td>2311.04287</td>
+</tr>
+<tr>
+<td>Image2Struct</td>
+<td>Benchmarking Structure Extraction for VLMs</td>
+<td>VLM 结构提取</td>
+<td>2410.22456</td>
+</tr>
+<tr>
+<td>MedHELM</td>
+<td>Holistic Evaluation of LLMs for Medical Tasks</td>
+<td>医疗 LLM</td>
+<td>2505.23802</td>
+</tr>
+<tr>
+<td>EconEvals</td>
+<td>Economic Evaluations of Language Models</td>
+<td>经济价值评估</td>
+<td>2607.19375</td>
+</tr>
+</tbody>
+</table>
+<p><strong>最新评估方向（2025-2026）</strong>：</p>
+<ul>
+<li><strong>UQ (Unsolved Questions)</strong> (<a href="https://arxiv.org/abs/2508.17580">arXiv:2508.17580</a>)：用"未解决的问题"做基准——题目必须对前沿模型有挑战性，同时反映真实世界用途</li>
+<li><strong>HAL (Holistic Agent Leaderboard)</strong> (<a href="https://arxiv.org/abs/2510.11977">arXiv:2510.11977</a>)：Agent 评估缺少基础设施，HAL 填补这个空白</li>
+<li><strong>BountyBench</strong> (<a href="https://arxiv.org/abs/2505.15216">arXiv:2505.15216</a>)：用真实网络安全系统评估 AI 攻防能力，以美元影响量化</li>
+<li><strong>Best Practices for Agentic Benchmarks</strong> (<a href="https://arxiv.org/abs/2507.02825">arXiv:2507.02825</a>)：建立 Agent 基准的最佳实践</li>
+</ul>
+<h4 id="foundation_model_transparency_index_fmti">主线三：Foundation Model Transparency Index (FMTI) — 透明度运动<a class="headerlink" href="#foundation_model_transparency_index_fmti" title="Permanent link">#</a></h4>
+<p><strong>论文</strong>：The Foundation Model Transparency Index
+<strong>时间</strong>：2023.10（首发），2024.07（年度更新），2025.12（最新）
+<strong>arXiv</strong>：<a href="https://arxiv.org/abs/2310.12941">https://arxiv.org/abs/2310.12941</a></p>
+<p>FMTI 是一个年度指数，给 OpenAI、Google、Anthropic、Meta 等基础模型开发商打"透明度分数"。评估维度包括：训练数据来源、模型架构、训练计算、评估方法、下游使用等。</p>
+<p><strong>系列论文</strong>：
+- The Foundation Model Transparency Index (2023, <a href="https://arxiv.org/abs/2310.12941">arXiv:2310.12941</a>)
+- Foundation Model Transparency Reports (2024.02, <a href="https://arxiv.org/abs/2402.16268">arXiv:2402.16268</a>)
+- The 2024 Foundation Model Transparency Index (2024.07, <a href="https://arxiv.org/abs/2407.12929">arXiv:2407.12929</a>)
+- The 2025 Foundation Model Transparency Index (2025.12, <a href="https://arxiv.org/abs/2512.10169">arXiv:2512.10169</a>)
+- On the Societal Impact of Open Foundation Models (2024.02, <a href="https://arxiv.org/abs/2403.07918">arXiv:2403.07918</a>)
+- Language model developers should report train-test overlap (2024.10, <a href="https://arxiv.org/abs/2410.08385">arXiv:2410.08385</a>)
+- The Responsible Foundation Model Development Cheatsheet (2024.06, <a href="https://arxiv.org/abs/2406.16746">arXiv:2406.16746</a>)</p>
+<p>意义：这个指数直接影响了 AI 政策讨论。OpenAI、Google 等公司开始公开更多信息，部分原因是 FMTI 把不透明量化了。</p>
+<h4 id="_2">主线四：记忆化、版权与安全<a class="headerlink" href="#_2" title="Permanent link">#</a></h4>
+<p>这是 Percy Liang 近年最活跃的研究方向，直接关联当前 AI 法律争议。</p>
+<p><strong>记忆化提取系列</strong>：
+- Extracting memorized pieces of (copyrighted) books from open-weight LLMs (2025.05, <a href="https://arxiv.org/abs/2505.12546">arXiv:2505.12546</a>) — 从开源权重模型中提取受版权保护的书籍片段
+- Extracting books from production language models (2026.01, <a href="https://arxiv.org/abs/2601.02671">arXiv:2601.02671</a>) — 从生产级模型中提取书籍
+- Extractable Memorization From First Principles (2026.07, <a href="https://arxiv.org/abs/2607.12649">arXiv:2607.12649</a>) — 从第一性原理定义"可提取记忆化"
+- Estimating near-verbatim extraction risk (2026.03, <a href="https://arxiv.org/abs/2603.24917">arXiv:2603.24917</a>) — 用解码约束束搜索估计近似逐字提取风险
+- Blackbox Model Provenance via Palimpsestic Membership Inference (2025.10, <a href="https://arxiv.org/abs/2510.19796">arXiv:2510.19796</a>) — 通过"羊皮纸式"成员推断证明模型血缘</p>
+<p><strong>安全与缺陷报告</strong>：
+- FLARE-AI: Flaw Reporting for AI (2026.06, <a href="https://arxiv.org/abs/2606.31567">arXiv:2606.31567</a>) — 部署 AI 系统的缺陷报告框架
+- DelusionEval (2026.08, <a href="https://arxiv.org/abs/2608.05004">arXiv:2608.05004</a>) — 测量 AI 聊天机器人的妄想关联行为
+- SpecEval (2025.09, <a href="https://arxiv.org/abs/2509.02464">arXiv:2509.02464</a>) — 评估模型是否遵守自己发布的行为规范
+- AIR-Bench 2024 (2024.07, <a href="https://arxiv.org/abs/2407.17436">arXiv:2407.17436</a>) — 基于法规和政策的安全基准
+- DTap (2026.05, <a href="https://arxiv.org/abs/2605.04808">arXiv:2605.04808</a>) — Agent 红队测试平台
+- In-House Evaluation Is Not Enough (2025.03, <a href="https://arxiv.org/abs/2503.16861">arXiv:2503.16861</a>) — 呼吁第三方缺陷披露
+- Auditing Prompt Caching (2025.02, <a href="https://arxiv.org/abs/2502.07776">arXiv:2502.07776</a>) — Prompt 缓存引入时序侧信道风险
+- AILuminate v1.0 (2025.02, <a href="https://arxiv.org/abs/2503.05731">arXiv:2503.05731</a>) — MLCommons 的 AI 风险与可靠性基准
+- AI Audits Under Constraints (2025.09, <a href="https://arxiv.org/abs/2509.05627">arXiv:2509.05627</a>) — 资源约束下的 AI 审计 scaling law</p>
+<h4 id="vla_agent">主线五：机器人 VLA 与 Agent<a class="headerlink" href="#vla_agent" title="Permanent link">#</a></h4>
+<p>Percy Liang 近两年在 Physical AI 方向也很活跃，主要与 Chelsea Finn 合作。</p>
+<p><strong>机器人/VLA</strong>：
+- Fine-Tuning Vision-Language-Action Models (2025.02, <a href="https://arxiv.org/abs/2502.19645">arXiv:2502.19645</a>) — VLA 微调的速度与成功率优化
+- RoboArena (2025.06, <a href="https://arxiv.org/abs/2506.18123">arXiv:2506.18123</a>) — 分布式真实世界机器人策略评估
+- WorldGym (2025.06, <a href="https://arxiv.org/abs/2506.00613">arXiv:2506.00613</a>) — 用世界模型做策略评估环境
+- RoboReward (2026.01, <a href="https://arxiv.org/abs/2601.00675">arXiv:2601.00675</a>) — 通用视觉语言奖励模型
+- Cosmos Policy (2026.01, <a href="https://arxiv.org/abs/2601.16163">arXiv:2601.16163</a>) — 微调视频模型做视觉运动控制
+- VLAW (2026.02, <a href="https://arxiv.org/abs/2602.12063">arXiv:2602.12063</a>) — VLA 策略与世界模型迭代共提升</p>
+<p><strong>Agent（非物理）</strong>：
+- Reinforcement Learning for MLE Agents (2025.09, <a href="https://arxiv.org/abs/2509.01684">arXiv:2509.01684</a>) — 用 RL 让 ML 工程 Agent 从经验中学习
+- MLE-Dojo (2025.05, <a href="https://arxiv.org/abs/2505.07782">arXiv:2505.07782</a>) — ML 工程 Agent 的 Gym 式训练环境
+- MLE-Smith (2025.10, <a href="https://arxiv.org/abs/2510.07307">arXiv:2510.07307</a>) — 自动化多 Agent 管线扩展 MLE 任务
+- Comparing AI Agents to Cybersecurity Professionals (2025.12, <a href="https://arxiv.org/abs/2512.09882">arXiv:2512.09882</a>) — AI Agent vs 人类安全专家的真实渗透测试对比</p>
+<hr />
+<h3 id="3_marin">3. Marin：激进开放的模型开发<a class="headerlink" href="#3_marin" title="Permanent link">#</a></h3>
+<p>Percy Liang 创建了 Marin 项目（<a href="https://marin.community/">marin.community</a>），践行他称为"激进开放"（radical openness）的模型开发理念。</p>
+<h4 id="_3">核心理念<a class="headerlink" href="#_3" title="Permanent link">#</a></h4>
+<p>Marin 超越了 open-weight（开放权重）和 open-source（开放源码）：</p>
+<blockquote>
+<p>"What would truly open-source AI look like? Not just open weights, open code/data, but <em>open development</em>, where the entire research and development process is public <em>and</em> anyone can contribute. We built Marin, an open lab, to fulfill this vision."（2025.05.19 置顶推文）</p>
+</blockquote>
+<p>所有实验——无论成功还是失败——都预注册并实时公开。任何人都能看到和参与。</p>
+<h4 id="_4">开放生态四要素<a class="headerlink" href="#_4" title="Permanent link">#</a></h4>
+<p>2026.07.25 推文，Percy Liang 提出了开放生态的四层框架：</p>
+<blockquote>
+<p>"The most important word here is <em>ecosystem</em>. It's not just about having an open-weight model. Open-weight models are a means to an end. To have a truly strong, open ecosystem, we need four critical frontier-level ingredients: open-weight models, open training datasets, open software stacks, and open process knowledge."</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>含义</th>
+<th>现状</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open-weight models</td>
+<td>开放模型权重</td>
+<td>Llama/Qwen/GLM 等已做到</td>
+</tr>
+<tr>
+<td>Open training datasets</td>
+<td>开放训练数据集</td>
+<td>少数做到（如 NVIDIA Nemotron）</td>
+</tr>
+<tr>
+<td>Open software stacks</td>
+<td>开放软件栈</td>
+<td>部分做到（vLLM/Levanter 等）</td>
+</tr>
+<tr>
+<td>Open process knowledge</td>
+<td>开放过程知识</td>
+<td><strong>几乎没人做，Marin 填补这个空白</strong></td>
+</tr>
+</tbody>
+</table>
+<p>他特别称赞了 NVIDIA Nemotron 超越了开放权重，还发布了代码和数据集。Marin 进一步开放"过程知识"——不只是怎么训练一个模型，而是如何迭代地改进和塑造模型：如何设计 scaling law 和评估来指导架构和数据消融。</p>
+<p>他把这四个要素称为"可再生资源"（renewable resources），而算力是"可消耗资源"（consumable resources）。开放生态的价值是让每个人能最高效地把算力转化为符合自己需求和价值观的模型。</p>
+<h4 id="marin">Marin 的工作流程<a class="headerlink" href="#marin" title="Permanent link">#</a></h4>
+<p>Marin 把 GitHub 改造为 AI 实验平台：</p>
+<ol>
+<li>在 GitHub 上创建 issue 预注册实验（假设、目标）</li>
+<li>提交 PR，包含可复现实验的代码</li>
+<li>社区专家审查 PR</li>
+<li>代码定义的 provenance graph 被执行，结果汇总到 WandB 报告</li>
+<li>所有实验（成功和失败的）都公开</li>
+</ol>
+<h4 id="marin_1">Marin 的成果<a class="headerlink" href="#marin_1" title="Permanent link">#</a></h4>
+<p><strong>Marin-8B</strong>（2025.05 发布）：
+- Marin-8B-Base：在 19 个基准中的 14 个上击败 Llama 3.1 8B
+- Marin-8B-Instruct：在 Together AI 上可调用
+- 从零训练，全流程公开</p>
+<p><strong>Marin 535B-A23B</strong>（2026.08.21 启动训练，最新）：</p>
+<p>这是 Marin 迄今为止最大的训练运行。推文原文：</p>
+<blockquote>
+<p>"🚢 Marin 535B-A23B started training this week! As usual, the whole process is open. Voyage plan: pretraining (80%) + midtraining (20%) on 18.75T tokens on 11 x GB200 NVL72 for ~3 months (2.7e24 FLOPs). Post-training will follow."</p>
+</blockquote>
+<p>关键参数：
+- <strong>模型</strong>：535B 总参数，23B 激活参数（MoE 架构）
+- <strong>数据</strong>：18.75T tokens
+- <strong>硬件</strong>：11 x GB200 NVL72
+- <strong>时长</strong>：约 3 个月
+- <strong>计算量</strong>：2.7e24 FLOPs
+- <strong>阶段</strong>：预训练 80% + 中期训练 20%，后训练随后</p>
+<p>scaling ladder（用于调试和预测）：
+1. 1.6B-A61M（48B tokens）
+2. 27.7B-A1.2B（926B tokens）
+3. 535B-A23B（18.75T tokens）← hero run</p>
+<p>全部实时公开：
+- 数据构成：<a href="https://storage.googleapis.com/marin-public/">storage.googleapis.com/marin-public/...</a>
+- 实时训练：<a href="https://wandb.ai/marin-community/marin_moe">wandb.ai/marin-community/marin_moe</a>
+- 完整细节：<a href="https://github.com/marin-community/marin/issues/8435">github.com/marin-community/marin/issues/8435</a></p>
+<h4 id="_5">为什么重要<a class="headerlink" href="#_5" title="Permanent link">#</a></h4>
+<p>当前大模型开发的黑箱问题是：OpenAI/Anthropic 只发布最终结果，不公开失败实验和试错过程。Marin 试图证明：完全透明的开发流程也能产出高质量模型。</p>
+<p>Marin 还提供分析工具：
+- Perplexity Gap Dashboard（困惑度差距看板）
+- PPL Circuit Coverage Dashboard
+- Scaling Laws Explorer（Scaling Law 探索器）
+- Speedrun Leaderboard（训练算法速度排行榜：谁能最快降低 validation loss）</p>
+<h4 id="cs336language_models_from_scratch">CS336：Language Models from Scratch<a class="headerlink" href="#cs336language_models_from_scratch" title="Permanent link">#</a></h4>
+<p>Percy Liang 和 Tatsunori Hashimoto 共同教授 CS336，这是 Stanford 最火的课之一。</p>
+<p>课程理念：类比操作系统课让学生从零写一个 OS，CS336 让学生从零构建一个语言模型——数据收集清洗、Transformer 构建、训练、评估、部署全流程。</p>
+<ul>
+<li>2024 年首次开设，已开 3 届（2024/2025/2026 Spring）</li>
+<li>YouTube 有完整课程录像</li>
+<li>成为全球学习 LLM 工程的事实标准课程</li>
+<li>课程产出工具如 Gigatoken（500-1000x 快于 HuggingFace，100x 快于 tiktoken 的分词器）</li>
+</ul>
+<hr />
+<h3 id="4_simile">4. Simile：模拟人类行为的基础模型<a class="headerlink" href="#4_simile" title="Permanent link">#</a></h3>
+<p>Percy Liang 的博士生 Joon Sung Park（2025 年毕业，共同导师 Michael Bernstein）创立了 Simile，Percy Liang 深度参与。</p>
+<h4 id="_6">使命<a class="headerlink" href="#_6" title="Permanent link">#</a></h4>
+<blockquote>
+<p>"Our mission is to simulate all eight billion people on earth, accurately and honestly."</p>
+<p>"Our ambition is to build a foundation model that can predict what anyone will do in any situation."</p>
+</blockquote>
+<p>Simile 要建一个能预测"任何人在任何情况下会做什么"的基础模型——本质是用 LLM 模拟人类行为。</p>
+<h4 id="percy_liang">Percy Liang 的定位<a class="headerlink" href="#percy_liang" title="Permanent link">#</a></h4>
+<p>2026.07.30 推文：</p>
+<blockquote>
+<p>"It's time to scale that Simile. Our ambition is to build a foundation model that can predict what anyone will do in any situation. Research-wise, Simile in 2026 for simulation is like OpenAI in 2019 for AI assistants - signs of life, a path to scaling, yet still many open [questions]."</p>
+</blockquote>
+<p>他把 Simile 在 2026 年的位置类比为 OpenAI 在 2019 年——已看到希望，有 scaling 路径，但还有很多开放问题。</p>
+<h4 id="_7">融资与商业化<a class="headerlink" href="#_7" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Series B</strong>：$200M，$2B 估值（2026.07.30）</li>
+<li><strong>领投</strong>：Greenoaks、Index Ventures</li>
+<li><strong>跟投</strong>：Hanabi、Bain Capital Ventures、A*、Factory、CVS Health Ventures、Definition</li>
+<li><strong>成立仅 5 个月</strong>，收入增长 5 倍，50+ 员工</li>
+<li><strong>客户</strong>：CVS Health、Gallup、Itaú、Deloitte、Wealthfront、Suntory、Garnett Station Partners</li>
+<li><strong>产品</strong>：人类行为基础模型 + 置信度模型（预测每次模拟的准确度）+ 预测未来的产品</li>
+</ul>
+<h4 id="_8">技术路线<a class="headerlink" href="#_8" title="Permanent link">#</a></h4>
+<p>从 Simile 官网和推文推断：
+- 基于角色/人口属性生成模拟人类行为
+- 置信度模型：预测每次模拟的准确性（可验证的预测）
+- 已运行数千万次模拟
+- 面向企业：产品发布策略、客户体验优化、新市场进入</p>
+<h4 id="generative_agents">与 Generative Agents 的关系<a class="headerlink" href="#generative_agents" title="Permanent link">#</a></h4>
+<p>Simile 的技术源头是 Joon Sung Park 在 Stanford 的工作——Generative Agents（生成式智能体，用 LLM 模拟人类行为的小镇实验）。Percy Liang 是这个方向的推动者之一。Simile 把学术研究变成了商业产品。</p>
+<hr />
+<h3 id="5_crfmstanford">5. CRFM：Stanford 基础模型研究中心<a class="headerlink" href="#5_crfmstanford" title="Permanent link">#</a></h3>
+<p>Percy Liang 创建并领导的 CRFM（Center for Research on Foundation Models）是 Stanford HAI 下的跨学科中心。</p>
+<h4 id="_9">四大支柱<a class="headerlink" href="#_9" title="Permanent link">#</a></h4>
+<ol>
+<li><strong>Technical foundations（技术基础）</strong>：数据、系统、架构、训练、适配、推理、可解释性、评估、新范式</li>
+<li><strong>Beneficial applications（有益应用）</strong>：法律、音乐、机器人、生物医学等垂直领域</li>
+<li><strong>Societal impact（社会影响）</strong>：透明度、供应链、开放性、版权、隐私、系统性风险</li>
+<li><strong>AI policy（AI 政策）</strong>：支持多辖区政府制定循证政策</li>
+</ol>
+<h4 id="crfm">CRFM 的项目<a class="headerlink" href="#crfm" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>HELM</strong>：评估体系</li>
+<li><strong>Levanter</strong>：开源模型训练框架</li>
+<li><strong>FMTI</strong>：透明度指数</li>
+<li><strong>Ecosystem Graphs</strong>：模型生态图谱</li>
+<li><strong>Openness</strong>：开放性研究</li>
+<li><strong>Policy</strong>：政策支持</li>
+</ul>
+<hr />
+<h3 id="6_percy_liang">6. Percy Liang 的学术谱系<a class="headerlink" href="#6_percy_liang" title="Permanent link">#</a></h3>
+<p>他的学生和博后遍布 AI 领域核心位置，影响力辐射极广。</p>
+<h4 id="2026">当前学生/博后（2026）<a class="headerlink" href="#2026" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>共同导师</th>
+<th>研究方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rohith Kuditipudi</td>
+<td>John Duchi</td>
+<td>模型溯源</td>
+</tr>
+<tr>
+<td>Steven Cao</td>
+<td>Gregory Valiant</td>
+<td>理论</td>
+</tr>
+<tr>
+<td>Ahmed Ahmed</td>
+<td>Sanmi Koyejo</td>
+<td>记忆化/安全</td>
+</tr>
+<tr>
+<td>Moo Jin Kim</td>
+<td>Chelsea Finn</td>
+<td>机器人/VLA</td>
+</tr>
+<tr>
+<td>Ken Liu</td>
+<td>Sanmi Koyejo</td>
+<td>评估</td>
+</tr>
+<tr>
+<td>Suhas Kotha</td>
+<td>Tatsunori Hashimoto</td>
+<td>预训练/微调</td>
+</tr>
+<tr>
+<td>Anne Ouyang</td>
+<td>Azalia Mirhoseini</td>
+<td>系统</td>
+</tr>
+<tr>
+<td>Kaiyue Wen</td>
+<td>Tengyu Ma</td>
+<td>优化器</td>
+</tr>
+<tr>
+<td>Marina Zhang</td>
+<td>Carlos Guestrin</td>
+<td></td>
+</tr>
+<tr>
+<td>Tanishq Kumar</td>
+<td>Tatsunori Hashimoto</td>
+<td>Scaling Laws for Precision</td>
+</tr>
+<tr>
+<td>Tony Lee</td>
+<td></td>
+<td>HELM/多模态评估</td>
+</tr>
+<tr>
+<td>Michael Ryan</td>
+<td>Diyi Yang</td>
+<td></td>
+</tr>
+<tr>
+<td>A. Feder Cooper (博后)</td>
+<td>Dan Ho</td>
+<td>记忆化/版权</td>
+</tr>
+<tr>
+<td>Morris Yau (博后)</td>
+<td>Chris Ré</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_10">知名校友<a class="headerlink" href="#_10" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>毕业时间</th>
+<th>现在位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tatsunori Hashimoto</td>
+<td>博后 2019</td>
+<td>Stanford 教授（共同授课 CS336）</td>
+</tr>
+<tr>
+<td>Jacob Steinhardt</td>
+<td>博士 2018</td>
+<td>UC Berkeley 教授，Transluce 创始人</td>
+</tr>
+<tr>
+<td>Rishi Bommasani</td>
+<td>博士 2025</td>
+<td>Stanford HAI 高级研究学者</td>
+</tr>
+<tr>
+<td>Joon Sung Park</td>
+<td>博士 2025</td>
+<td>Simile 创始人/CEO（Multi-Agent 仿真）</td>
+</tr>
+<tr>
+<td>Sherry Yang</td>
+<td>博后 2025</td>
+<td>NYU 教授</td>
+</tr>
+<tr>
+<td>Xiang Lisa Li</td>
+<td>博士 2025</td>
+<td>UW 教授</td>
+</tr>
+<tr>
+<td>Nelson Liu</td>
+<td>博士 2025</td>
+<td>OpenAI</td>
+</tr>
+<tr>
+<td>Yann Dubois</td>
+<td>博士 2025</td>
+<td>OpenAI</td>
+</tr>
+<tr>
+<td>Sidd Karamcheti</td>
+<td>博士 2025</td>
+<td>Georgia Tech 教授</td>
+</tr>
+<tr>
+<td>Shiori Sagawa</td>
+<td>博士 2024</td>
+<td>OpenAI</td>
+</tr>
+<tr>
+<td>John Hewitt</td>
+<td>博士 2024</td>
+<td>Columbia 教授</td>
+</tr>
+<tr>
+<td>Mina Lee</td>
+<td>博士 2023</td>
+<td>U Chicago 教授</td>
+</tr>
+<tr>
+<td>Aditi Raghunathan</td>
+<td>博士 2021</td>
+<td>CMU 教授</td>
+</tr>
+<tr>
+<td>Pang Wei Koh</td>
+<td>博士 2022</td>
+<td>UW 教授</td>
+</tr>
+<tr>
+<td>Robin Jia</td>
+<td>博士 2020</td>
+<td>USC 教授</td>
+</tr>
+<tr>
+<td>Pranav Rajpurkar</td>
+<td>博士 2021</td>
+<td>Harvard 教授</td>
+</tr>
+<tr>
+<td>Chris Donahue</td>
+<td>博后 2022</td>
+<td>CMU 教授</td>
+</tr>
+<tr>
+<td>Sarah Cen</td>
+<td>博后 2025</td>
+<td>CMU 教授</td>
+</tr>
+<tr>
+<td>Roy Frostig</td>
+<td>博士 2016</td>
+<td>Google，JAX 共同创建者</td>
+</tr>
+<tr>
+<td>Yuhuai (Tony) Wu</td>
+<td>博后 2023</td>
+<td>xAI 联合创始人</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="7_2025-2026">7. 近期研究动态（2025-2026 最新）<a class="headerlink" href="#7_2025-2026" title="Permanent link">#</a></h3>
+<p>从 arXiv 最新论文看，Percy Liang 当前最活跃的方向：</p>
+<h4 id="_11">训练技术<a class="headerlink" href="#_11" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Hyperball Optimizer</strong> (2026.06, <a href="https://arxiv.org/abs/2606.16899">arXiv:2606.16899</a>)：Muon 等矩阵优化器在大规模时收益缩小的分析与改进</li>
+<li><strong>Synthetic Megadocs</strong> (2026.03, <a href="https://arxiv.org/abs/2603.18534">arXiv:2603.18534</a>)：用合成大文档做数据高效的预训练</li>
+<li><strong>Replaying Pre-training Data</strong> (2026.03, <a href="https://arxiv.org/abs/2603.04964">arXiv:2603.04964</a>)：微调时回放预训练数据提升效果</li>
+<li><strong>Self-Verified Distillation</strong> (2026.05, <a href="https://arxiv.org/abs/2605.26132">arXiv:2605.26132</a>)：模型用未标注 prompt 自我蒸馏，不需要外部教师</li>
+</ul>
+<h4 id="_12">经济与社会<a class="headerlink" href="#_12" title="Permanent link">#</a></h4>
+<ul>
+<li><strong>Economic Evaluations</strong> (2026.06, <a href="https://arxiv.org/abs/2607.19375">arXiv:2607.19375</a>)：评估语言模型执行经济价值任务的能力</li>
+<li><strong>Algorithmic Monocultures in Hiring</strong> (2026.05, <a href="https://arxiv.org/abs/2605.27371">arXiv:2605.27371</a>)：招聘算法单一文化的影响</li>
+<li><strong>FLARE-AI</strong> (2026.06, <a href="https://arxiv.org/abs/2606.31567">arXiv:2606.31567</a>)：AI 缺陷报告生态系统</li>
+</ul>
+<hr />
+<h3 id="8_percy_liang">8. Percy Liang 的独特定位<a class="headerlink" href="#8_percy_liang" title="Permanent link">#</a></h3>
+<p>在整个 AI 学术界，Percy Liang 的定位很独特：</p>
+<ol>
+<li><strong>他既是技术研究者也是政策推动者</strong>：不只是发论文，FMTI 直接影响政策，AI 审计/版权研究直接介入法律争议</li>
+<li><strong>他建立了评估基础设施</strong>：HELM 系列成为行业标准，不是单篇论文而是持续运营的平台</li>
+<li><strong>他践行"激进开放"</strong>：Marin 不只是开放权重，是开放整个开发过程。Marin 535B-A23B 训练实时在 wandb 上公开，这在业界是独一无二的</li>
+<li><strong>他通过教育扩大影响</strong>：CS336 培养了大量懂 LLM 工程的学生</li>
+<li><strong>他的学术谱系覆盖了半个 AI 学术界</strong>：学生分布在 Stanford/Berkeley/CMU/UW/USC/OpenAI/Google/xAI 等核心位置</li>
+<li><strong>他通过创业扩大影响</strong>：Simile 把 Generative Agents 研究变成商业产品，5 个月做到 $2B 估值；Marin-8B 在 Together AI 上部署</li>
+</ol>
+<p>与唐杰的对比：
+- 唐杰：从学术到工业，GLM 系列是产品，Scaling Law 是技术主张，核心是"参数到阈值后转 post-training 旋钮"
+- Percy Liang：从学术到基础设施+政策+开放生态，HELM/FMTI/Marin 是公共产品，不追求自己的模型超越 GPT，而是让整个生态更透明更可评估。但他也在通过 Marin 535B 证明：开放流程也能训练前沿模型</p>
+<p>与 Ilya Sutskever 的对比：
+- Ilya：从 Scale 转向持续学习（TTT），走神秘路线，SSI 不公开技术细节
+- Percy Liang：走完全相反的路线——最大化透明，Marin 把所有失败实验都公开，用开放对抗黑箱</p>
+<hr />
+<h3 id="9">9. 与已有文档的交叉引用<a class="headerlink" href="#9" title="Permanent link">#</a></h3>
+<ul>
+<li><strong><a href="../../4.text-model/ScalingLaws/">ScalingLaws.md</a></strong>：Percy Liang 的学生 Tanishq Kumar 是 "Scaling Laws for Precision"（<a href="https://arxiv.org/abs/2411.04330">arXiv:2411.04330</a>）的第一作者，那篇论文正是我们 ScalingLaws.md 第 6 章的核心论文</li>
+<li><strong><a href="../../8.tutorial/AGI-Feynman/">AGI-Feynman.md</a></strong>：Percy Liang 的"Foundation Model"定义和 FMTI 透明度运动，是 AGI 治理层面的重要工作</li>
+<li><strong><a href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI-Feynman.md</a></strong>：Percy Liang 近期在 VLA 方向的工作（VLAW/RoboReward/Cosmos Policy）与 Physical AI 直接相关</li>
+<li><strong><a href="../../7.product/SelfEvolving/">SelfEvolving.md</a></strong>：Self-Verified Distillation（<a href="https://arxiv.org/abs/2605.26132">arXiv:2605.26132</a>）是自进化方向的最新工作——模型只用未标注 prompt 自我提升</li>
+</ul>
+<hr />
+<h3 id="10_40">10. 论文索引（精选 40 篇）<a class="headerlink" href="#10_40" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>arXiv</th>
+<th>时间</th>
+<th>方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>On the Opportunities and Risks of Foundation Models</td>
+<td><a href="https://arxiv.org/abs/2108.07258">2108.07258</a></td>
+<td>2021.08</td>
+<td>Foundation Model 定义</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Holistic Evaluation of Language Models (HELM)</td>
+<td><a href="https://arxiv.org/abs/2211.09110">2211.09110</a></td>
+<td>2022.11</td>
+<td>评估</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Picking on the Same Person (Algorithmic Monoculture)</td>
+<td><a href="https://arxiv.org/abs/2211.13972">2211.13972</a></td>
+<td>2022.11</td>
+<td>社会影响</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Deep Bidirectional Language-Knowledge Graph Pretraining</td>
+<td><a href="https://arxiv.org/abs/2210.09338">2210.09338</a></td>
+<td>2022.10</td>
+<td>技术</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Ecosystem Graphs: The Social Footprint of Foundation Models</td>
+<td><a href="https://arxiv.org/abs/2303.15772">2303.15772</a></td>
+<td>2023.03</td>
+<td>生态</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Foundation Models and Fair Use</td>
+<td><a href="https://arxiv.org/abs/2303.15715">2303.15715</a></td>
+<td>2023.03</td>
+<td>版权</td>
+</tr>
+<tr>
+<td>7</td>
+<td>FlexGen: High-Throughput LLM Inference</td>
+<td><a href="https://arxiv.org/abs/2303.06865">2303.06865</a></td>
+<td>2023.03</td>
+<td>推理</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Holistic Evaluation of Text-To-Image Models</td>
+<td><a href="https://arxiv.org/abs/2311.04287">2311.04287</a></td>
+<td>2023.11</td>
+<td>评估</td>
+</tr>
+<tr>
+<td>9</td>
+<td>The Foundation Model Transparency Index (FMTI)</td>
+<td><a href="https://arxiv.org/abs/2310.12941">2310.12941</a></td>
+<td>2023.10</td>
+<td>透明度</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Designing and Interpreting Probes with Control Tasks</td>
+<td><a href="https://arxiv.org/abs/1909.03368">1909.03368</a></td>
+<td>2019.09</td>
+<td>可解释性</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Why Overparameterization Exacerbates Spurious Correlations</td>
+<td><a href="https://arxiv.org/abs/2005.04345">2005.04345</a></td>
+<td>2020.05</td>
+<td>公平性</td>
+</tr>
+<tr>
+<td>12</td>
+<td>The 2024 Foundation Model Transparency Index</td>
+<td><a href="https://arxiv.org/abs/2407.12929">2407.12929</a></td>
+<td>2024.07</td>
+<td>透明度</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Foundation Model Transparency Reports</td>
+<td><a href="https://arxiv.org/abs/2402.16268">2402.16268</a></td>
+<td>2024.02</td>
+<td>透明度</td>
+</tr>
+<tr>
+<td>14</td>
+<td>On the Societal Impact of Open Foundation Models</td>
+<td><a href="https://arxiv.org/abs/2403.07918">2403.07918</a></td>
+<td>2024.02</td>
+<td>社会影响</td>
+</tr>
+<tr>
+<td>15</td>
+<td>The Responsible Foundation Model Development Cheatsheet</td>
+<td><a href="https://arxiv.org/abs/2406.16746">2406.16746</a></td>
+<td>2024.06</td>
+<td>开发实践</td>
+</tr>
+<tr>
+<td>16</td>
+<td>AIR-Bench 2024: Safety Benchmark</td>
+<td><a href="https://arxiv.org/abs/2407.17436">2407.17436</a></td>
+<td>2024.07</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Language model developers should report train-test overlap</td>
+<td><a href="https://arxiv.org/abs/2410.08385">2410.08385</a></td>
+<td>2024.10</td>
+<td>透明度</td>
+</tr>
+<tr>
+<td>18</td>
+<td>VHELM: Holistic Evaluation of Vision Language Models</td>
+<td><a href="https://arxiv.org/abs/2410.07112">2410.07112</a></td>
+<td>2024.10</td>
+<td>评估</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Image2Struct: Benchmarking Structure Extraction for VLMs</td>
+<td><a href="https://arxiv.org/abs/2410.22456">2410.22456</a></td>
+<td>2024.10</td>
+<td>评估</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Decentralized Training of Foundation Models</td>
+<td><a href="https://arxiv.org/abs/2206.01288">2206.01288</a></td>
+<td>2022.06</td>
+<td>训练</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Fine-Tuning Vision-Language-Action Models</td>
+<td><a href="https://arxiv.org/abs/2502.19645">2502.19645</a></td>
+<td>2025.02</td>
+<td>机器人</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Auditing Prompt Caching in Language Model APIs</td>
+<td><a href="https://arxiv.org/abs/2502.07776">2502.07776</a></td>
+<td>2025.02</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>23</td>
+<td>AILuminate: AI Risk and Reliability Benchmark</td>
+<td><a href="https://arxiv.org/abs/2503.05731">2503.05731</a></td>
+<td>2025.02</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>24</td>
+<td>In-House Evaluation Is Not Enough</td>
+<td><a href="https://arxiv.org/abs/2503.16861">2503.16861</a></td>
+<td>2025.03</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Reliable and Efficient Amortized Model-based Evaluation</td>
+<td><a href="https://arxiv.org/abs/2503.13335">2503.13335</a></td>
+<td>2025.03</td>
+<td>评估</td>
+</tr>
+<tr>
+<td>26</td>
+<td>Extracting memorized pieces of (copyrighted) books</td>
+<td><a href="https://arxiv.org/abs/2505.12546">2505.12546</a></td>
+<td>2025.05</td>
+<td>记忆化/版权</td>
+</tr>
+<tr>
+<td>27</td>
+<td>MLE-Dojo: Interactive Environments for LLM Agents</td>
+<td><a href="https://arxiv.org/abs/2505.07782">2505.07782</a></td>
+<td>2025.05</td>
+<td>Agent</td>
+</tr>
+<tr>
+<td>28</td>
+<td>BountyBench: AI Agent Attackers and Defenders</td>
+<td><a href="https://arxiv.org/abs/2505.15216">2505.15216</a></td>
+<td>2025.05</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>29</td>
+<td>MedHELM: Holistic Evaluation for Medical Tasks</td>
+<td><a href="https://arxiv.org/abs/2505.23802">2505.23802</a></td>
+<td>2025.05</td>
+<td>评估</td>
+</tr>
+<tr>
+<td>30</td>
+<td>RoboArena: Distributed Real-World Robot Evaluation</td>
+<td><a href="https://arxiv.org/abs/2506.18123">2506.18123</a></td>
+<td>2025.06</td>
+<td>机器人</td>
+</tr>
+<tr>
+<td>31</td>
+<td>WorldGym: World Model as Environment for Policy Evaluation</td>
+<td><a href="https://arxiv.org/abs/2506.00613">2506.00613</a></td>
+<td>2025.06</td>
+<td>机器人</td>
+</tr>
+<tr>
+<td>32</td>
+<td>Best Practices for Agentic Benchmarks</td>
+<td><a href="https://arxiv.org/abs/2507.02825">2507.02825</a></td>
+<td>2025.07</td>
+<td>评估</td>
+</tr>
+<tr>
+<td>33</td>
+<td>UQ: Assessing Language Models on Unsolved Questions</td>
+<td><a href="https://arxiv.org/abs/2508.17580">2508.17580</a></td>
+<td>2025.08</td>
+<td>评估</td>
+</tr>
+<tr>
+<td>34</td>
+<td>AHELM: Holistic Evaluation of Audio-Language Models</td>
+<td><a href="https://arxiv.org/abs/2508.21376">2508.21376</a></td>
+<td>2025.08</td>
+<td>评估</td>
+</tr>
+<tr>
+<td>35</td>
+<td>SpecEval: Model Adherence to Behavior Specifications</td>
+<td><a href="https://arxiv.org/abs/2509.02464">2509.02464</a></td>
+<td>2025.09</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>36</td>
+<td>RL for Machine Learning Engineering Agents</td>
+<td><a href="https://arxiv.org/abs/2509.01684">2509.01684</a></td>
+<td>2025.09</td>
+<td>Agent</td>
+</tr>
+<tr>
+<td>37</td>
+<td>AI Audits Under Resource Constraints</td>
+<td><a href="https://arxiv.org/abs/2509.05627">2509.05627</a></td>
+<td>2025.09</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>38</td>
+<td>HAL: Holistic Agent Leaderboard</td>
+<td><a href="https://arxiv.org/abs/2510.11977">2510.11977</a></td>
+<td>2025.10</td>
+<td>评估</td>
+</tr>
+<tr>
+<td>39</td>
+<td>MLE-Smith: Scaling MLE Tasks</td>
+<td><a href="https://arxiv.org/abs/2510.07307">2510.07307</a></td>
+<td>2025.10</td>
+<td>Agent</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Blackbox Model Provenance</td>
+<td><a href="https://arxiv.org/abs/2510.19796">2510.19796</a></td>
+<td>2025.10</td>
+<td>记忆化</td>
+</tr>
+<tr>
+<td>41</td>
+<td>Comparing AI Agents to Cybersecurity Professionals</td>
+<td><a href="https://arxiv.org/abs/2512.09882">2512.09882</a></td>
+<td>2025.12</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>42</td>
+<td>The 2025 Foundation Model Transparency Index</td>
+<td><a href="https://arxiv.org/abs/2512.10169">2512.10169</a></td>
+<td>2025.12</td>
+<td>透明度</td>
+</tr>
+<tr>
+<td>43</td>
+<td>Self-Verified Distillation</td>
+<td><a href="https://arxiv.org/abs/2605.26132">2605.26132</a></td>
+<td>2026.05</td>
+<td>训练</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Algorithmic Monocultures in Hiring</td>
+<td><a href="https://arxiv.org/abs/2605.27371">2605.27371</a></td>
+<td>2026.05</td>
+<td>社会影响</td>
+</tr>
+<tr>
+<td>45</td>
+<td>DTap: Red-Teaming Platform for AI Agents</td>
+<td><a href="https://arxiv.org/abs/2605.04808">2605.04808</a></td>
+<td>2026.05</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>46</td>
+<td>FLARE-AI: Flaw Reporting for AI</td>
+<td><a href="https://arxiv.org/abs/2606.31567">2606.31567</a></td>
+<td>2026.06</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>47</td>
+<td>Hyperball Optimizer</td>
+<td><a href="https://arxiv.org/abs/2606.16899">2606.16899</a></td>
+<td>2026.06</td>
+<td>训练</td>
+</tr>
+<tr>
+<td>48</td>
+<td>Economic Evaluations of Language Models</td>
+<td><a href="https://arxiv.org/abs/2607.19375">2607.19375</a></td>
+<td>2026.06</td>
+<td>评估</td>
+</tr>
+<tr>
+<td>49</td>
+<td>Extractable Memorization From First Principles</td>
+<td><a href="https://arxiv.org/abs/2607.12649">2607.12649</a></td>
+<td>2026.07</td>
+<td>记忆化</td>
+</tr>
+<tr>
+<td>50</td>
+<td>DelusionEval: Measuring Delusion-Linked Behaviors</td>
+<td><a href="https://arxiv.org/abs/2608.05004">2608.05004</a></td>
+<td>2026.08</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>51</td>
+<td>Extracting books from production language models</td>
+<td><a href="https://arxiv.org/abs/2601.02671">2601.02671</a></td>
+<td>2026.01</td>
+<td>记忆化/版权</td>
+</tr>
+<tr>
+<td>52</td>
+<td>Estimating near-verbatim extraction risk</td>
+<td><a href="https://arxiv.org/abs/2603.24917">2603.24917</a></td>
+<td>2026.03</td>
+<td>记忆化</td>
+</tr>
+<tr>
+<td>53</td>
+<td>Synthetic Megadocs for Pre-training</td>
+<td><a href="https://arxiv.org/abs/2603.18534">2603.18534</a></td>
+<td>2026.03</td>
+<td>训练</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Replaying pre-training data improves fine-tuning</td>
+<td><a href="https://arxiv.org/abs/2603.04964">2603.04964</a></td>
+<td>2026.03</td>
+<td>训练</td>
+</tr>
+<tr>
+<td>55</td>
+<td>VLAW: VLA Policy and World Model Co-Improvement</td>
+<td><a href="https://arxiv.org/abs/2602.12063">2602.12063</a></td>
+<td>2026.02</td>
+<td>机器人</td>
+</tr>
+<tr>
+<td>56</td>
+<td>Cosmos Policy: Fine-Tuning Video Models for Robotics</td>
+<td><a href="https://arxiv.org/abs/2601.16163">2601.16163</a></td>
+<td>2026.01</td>
+<td>机器人</td>
+</tr>
+<tr>
+<td>57</td>
+<td>RoboReward: Vision-Language Reward Models for Robotics</td>
+<td><a href="https://arxiv.org/abs/2601.00675">2601.00675</a></td>
+<td>2026.01</td>
+<td>机器人</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Cosmos-Interview/" class="btn btn-neutral float-left" title="Cosmos Interview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../PhysicalAI-Landscape/" class="btn btn-neutral float-right" title="PhysicalAI Landscape">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Cosmos-Interview/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../PhysicalAI-Landscape/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

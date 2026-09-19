@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>AGI Feynman - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "AGI Feynman";
+        var mkdocs_page_input_path = "8.tutorial/AGI-Feynman.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">AGI Feynman</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#agi_1">一、AGI 到底是什么——先解决定义问题</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">二、逐维度盘点——我们在哪里</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">三、三块短板为什么是连在一起的</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#agi_2">四、通往 AGI 的五条路线</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#scale_openai">路线一：Scale 上去（OpenAI 原教旨路线）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#agent">路线二：Agent 化</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#physical_ai_ai_nvidia_tesla">路线三：Physical AI + AI 融合（NVIDIA / Tesla）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rldeepmind_ineffable_intelligence">路线四：经验驱动 RL（DeepMind / Ineffable Intelligence）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">路线五：脑启发 / 新架构</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#agi_3">五、哪条路线最可能到达 AGI</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#agi_4">六、AGI 真正缺的是什么</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">缺失一：持续学习的能力</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">缺失二：世界模型</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">缺失三：自主目标设定</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">七、总结</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">延伸阅读</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">8.tutorial</li>
+      <li class="breadcrumb-item active">AGI Feynman</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="agi">AGI 费曼学习笔记<a class="headerlink" href="#agi" title="Permanent link">#</a></h2>
+<blockquote>
+<p>本文档用费曼学习法组织——从定义出发，逐层拆解 AGI 的现状、路线和缺失。
+配套文档：<a href="../../4.text-model/TTT/">TTT.md</a>、<a href="../../7.product/SelfEvolving/">SelfEvolving.md</a>、<a href="../PhysicalAI-Feynman/">PhysicalAI-Feynman.md</a></p>
+</blockquote>
+<hr />
+<h3 id="agi_1">一、AGI 到底是什么——先解决定义问题<a class="headerlink" href="#agi_1" title="Permanent link">#</a></h3>
+<p>每个人说 AGI 的时候，说的不是同一件事：</p>
+<pre><code>定义 A：AGI = 能做人类能做的所有事（能力定义）
+定义 B：AGI = 能做大多数有经济价值的事（经济定义）
+定义 C：AGI = 能自主学习和改进的系统（学习定义）
+</code></pre>
+<p>2026 年的大模型在三个定义上差距极大：</p>
+<pre><code>定义 A（能力）：GPT-5.2 / Claude Opus 4.6 在很多认知任务上已超过人类平均水平。
+  但不会开车、不会做饭、不会修水管。
+
+定义 B（经济）：已替代大量文案、客服、初级编程工作。
+  但替代不了水管工、厨师、外科医生。
+
+定义 C（学习）：能通过 few-shot 学习新任务，但还不能自主发现新技能。
+  Self-evolving agent 在起步阶段但远未成熟。
+</code></pre>
+<p>所以"AGI 来了吗"真正的问题不是"来了没有"，而是"你用哪个定义"。</p>
+<p>更好用的框架：不要问"是不是 AGI"，问"在哪些维度上达到人类水平了"。</p>
+<hr />
+<h3 id="_1">二、逐维度盘点——我们在哪里<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<pre><code>维度                     AI 现状(2026.08)      人类水平      差距
+────────────────────────────────────────────────────────────
+文本理解与生成            超越人类平均水平       —            已过
+编程（已知问题）          接近高级工程师         —            基本到了
+数学推理                  超过大多数人类         顶尖数学家    接近
+科学知识广度              远超任何单个人类       —            已过
+长程规划                  弱                     强            大
+多步推理（&gt;10步）         中等                   强            中等
+创造性思维                模仿型强，原创型弱      强            中等
+物理世界操作              极弱                   强            巨大
+自主学习新技能            极弱                   强            巨大
+跨模态推理                中等                   强            中等
+情感与社会智能            模仿型                 真实           中等
+持续记忆                  差（跨会话遗忘）       强            大
+</code></pre>
+<p>AI 在"知识"和"推理"维度上已经很强，但在三个维度上严重落后：</p>
+<ol>
+<li>物理世界操作（Physical AI 还在 ChatGPT 前夜）</li>
+<li>自主学习新技能（self-evolving 刚起步）</li>
+<li>持续记忆（跨会话、跨天、跨月记住经验）</li>
+</ol>
+<hr />
+<h3 id="_2">三、三块短板为什么是连在一起的<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<p>人类学习走路的闭环：</p>
+<pre><code>物理世界操作 → 获得反馈 → 持续记忆 → 调整策略 → 再次操作
+     ↑                                              │
+     └──────────────────────────────────────────────┘
+</code></pre>
+<p>AI 目前每一步都断：
+- LLM 不能操作物理世界（没有身体）
+- 不能获得真实的物理反馈（摔了不知道疼）
+- 不能持续记住昨天的经验（每次对话从零开始）
+- 不能自主调整策略（需要人类标注或人类设计训练流程）</p>
+<p>AGI 不是一个纯软件问题。没有物理交互、没有持续记忆、没有自主学习能力，再大的模型也只是"一个非常博学但不能成长的脑子"。</p>
+<p>这就是为什么 OpenAI、Anthropic、Google 都在做机器人——不是因为想造机器人卖钱，而是因为 AGI 的瓶颈不在文本能力上，在物理交互和持续学习上。</p>
+<hr />
+<h3 id="agi_2">四、通往 AGI 的五条路线<a class="headerlink" href="#agi_2" title="Permanent link">#</a></h3>
+<h4 id="scale_openai">路线一：Scale 上去（OpenAI 原教旨路线）<a class="headerlink" href="#scale_openai" title="Permanent link">#</a></h4>
+<p>核心信念：只要模型足够大、数据足够多、算力足够强，AGI 会自然涌现。</p>
+<p>2025 年开始碰到墙：
+- 文本数据快用完了（互联网高质量文本 ~15-20 万亿 token，GPT-5 级别已用几万亿）
+- 收益递减（GPT-4→GPT-5 的提升不如 GPT-3→GPT-4）
+- 有些能力不是 scale 能解决的（给 GPT-5 机械臂不会因为参数变大就学会抓杯子）</p>
+<h4 id="agent">路线二：Agent 化<a class="headerlink" href="#agent" title="Permanent link">#</a></h4>
+<p>核心信念：AGI 不是一个大模型，而是一个系统。模型 + 记忆 + 工具 + 规划 + 自进化。</p>
+<p>单个 LLM 再强也不是 AGI。AGI 需要一个能持续运行、积累经验、改进自己的系统。</p>
+<p>代表：ACE、Meta-Harness、Darwin Gödel Machine、ALMA。</p>
+<p>关键瓶颈：评估——怎么知道 agent 真的变好了，而不是自我确认的幻觉？</p>
+<h4 id="physical_ai_ai_nvidia_tesla">路线三：Physical AI + AI 融合（NVIDIA / Tesla）<a class="headerlink" href="#physical_ai_ai_nvidia_tesla" title="Permanent link">#</a></h4>
+<p>核心信念：没有身体的智能不是真正的智能。人类智能从物理交互中进化出来。</p>
+<p>黄仁勋说 Physical AI 是 AI 的下一个前沿。Musk 把 Optimus 看得比 FSD 更重要。</p>
+<p>最慢——Physical AI 还在 ChatGPT 前夜，数据量差 LLM 1500 万倍。</p>
+<h4 id="rldeepmind_ineffable_intelligence">路线四：经验驱动 RL（DeepMind / Ineffable Intelligence）<a class="headerlink" href="#rldeepmind_ineffable_intelligence" title="Permanent link">#</a></h4>
+<p>核心信念：不应主要依赖人类数据，应通过自主与环境交互来学习。</p>
+<pre><code>传统 LLM：人类数据 → 训练 → 模型（上限是人类知识）
+经验驱动 RL：环境 → 交互 → 反馈 → 学习 → 模型（上限是环境复杂度）
+</code></pre>
+<p>David Silver（AlphaGo/AlphaZero）：AI 应该通过 experience 而不是人类数据来持续学习。</p>
+<p>瓶颈：样本效率——AlphaGo 可以下一亿局棋，机器人不能摔一亿次。</p>
+<h4 id="_3">路线五：脑启发 / 新架构<a class="headerlink" href="#_3" title="Permanent link">#</a></h4>
+<p>核心信念：Transformer 不是终点。真正的 AGI 可能需要新架构。</p>
+<p>Transformer 的根本局限：
+- 没有持续学习（训练完就冻结）
+- 没有工作记忆（context window 是临时缓冲，不是真正的记忆）
+- 没有因果推理（只是模式匹配，不理解因果）</p>
+<p>TTT layers、Titans 是这条路的前哨——给模型加上持续学习和长期记忆。</p>
+<hr />
+<h3 id="agi_3">五、哪条路线最可能到达 AGI<a class="headerlink" href="#agi_3" title="Permanent link">#</a></h3>
+<p>没有一条路线能单独到达。最可能的路径是几条路线交汇：</p>
+<pre><code>Scale 提供基础能力（已经基本到位）
+  +
+Agent 化提供系统级持续运行（正在做）
+  +
+Physical AI 提供物理世界锚点（还需要 3-5 年）
+  +
+RL 提供超越人类数据的学习能力（还需要突破样本效率）
+  =
+可能的 AGI
+</code></pre>
+<p>用 RSI 综述的结论：
+- 已经发生的：AI 辅助 AI 开发
+- 正在发生的：有限形式的递归自改进（bounded RSI）
+- 尚未证明的：开放式自主 RSI</p>
+<p>用 Anthropic 的话说："We are not there yet."</p>
+<hr />
+<h3 id="agi_4">六、AGI 真正缺的是什么<a class="headerlink" href="#agi_4" title="Permanent link">#</a></h3>
+<p>不是数据、不是算力、不是模型大小。是三样东西：</p>
+<h4 id="_4">缺失一：持续学习的能力<a class="headerlink" href="#_4" title="Permanent link">#</a></h4>
+<p>当前所有大模型都是"训练完就冻结"的。要学新东西，必须重新训练或微调。</p>
+<p>人类不是这样——今天学一个新概念，明天就能用，不需要"重新训练大脑"。</p>
+<p>TTT 在试图解决（推理时更新参数），但还远远不够。真正的持续学习需要：
+- 不忘记旧知识（避免灾难性遗忘）
+- 能整合新知识到已有知识体系
+- 能判断哪些新信息值得记住</p>
+<h4 id="_5">缺失二：世界模型<a class="headerlink" href="#_5" title="Permanent link">#</a></h4>
+<p>LLM 有语言模型但没有世界模型。它能说"杯子掉到地上会碎"，但不是真的理解重力和脆性——只是见过太多类似文本。</p>
+<p>真正的 AGI 需要：不只是知道"什么跟什么一起出现"，而是理解"为什么"。</p>
+<p>Cosmos 在做这件事——给 AI 一个物理世界的模型。但世界模型还远没成熟。</p>
+<h4 id="_6">缺失三：自主目标设定<a class="headerlink" href="#_6" title="Permanent link">#</a></h4>
+<p>当前所有 AI 系统都是被动的——人给它一个任务，它执行。没有 AI 能自己决定"我应该学什么"。</p>
+<p>人类会自己好奇、自己探索、自己设定目标。一个不会自己产生目标的系统，无论多强都只是工具，不是 general intelligence。</p>
+<p>这一条可能是最难的——不是技术问题，是科学问题。我们连人类的目标设定机制都没搞清楚。</p>
+<hr />
+<h3 id="_7">七、总结<a class="headerlink" href="#_7" title="Permanent link">#</a></h3>
+<p>AGI 不是"更聪明的大模型"。</p>
+<p>AGI 是一个能持续学习、有世界模型、能自主设定目标的系统。</p>
+<p>我们在"知识"和"推理"上接近了，但在"持续学习"、"物理交互"和"自主目标"上还差很远。</p>
+<p>最可能的路径不是某一条路线单独突破，而是 Scale + Agent + Physical AI + RL 几条路线交汇。</p>
+<p>时间线：如果各条路线保持当前速度，交汇点大概在 2028-2032 年之间。这不是预测，是线性外推。实际可能更快（突破性发现）也可能更慢（意料之外的墙）。</p>
+<hr />
+<h3 id="_8">延伸阅读<a class="headerlink" href="#_8" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="../../4.text-model/TTT/">TTT.md</a> — 测试时训练（持续学习的技术路径）</li>
+<li><a href="../../7.product/SelfEvolving/">SelfEvolving.md</a> — 自进化 Agent（RSI 路径）</li>
+<li><a href="../PhysicalAI-Feynman/">PhysicalAI-Feynman.md</a> — Physical AI 费曼学习笔记</li>
+<li><a href="../../9.people/PhysicalAI-Landscape/">PhysicalAI-Landscape.md</a> — Physical AI 全景</li>
+<li><a href="../../9.people/Cosmos-Interview/">Cosmos-Interview.md</a> — 英伟达刘洺堉访谈</li>
+<li><a href="../../4.text-model/LongContext/">LongContext.md</a> — 长上下文注意力优化</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../7.product/VibeCoding/" class="btn btn-neutral float-left" title="VibeCoding"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../PhysicalAI-Feynman/" class="btn btn-neutral float-right" title="PhysicalAI Feynman">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../7.product/VibeCoding/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../PhysicalAI-Feynman/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
