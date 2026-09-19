@@ -14,6 +14,9 @@
 
 ### 2.1. DeepSeek
 
+- [2026.06] [DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence](https://arxiv.org/abs/2606.19348) Manifold-constrained Hyper-Connections、混合注意力(CSA+HCA)、Muon优化器，面向百万token上下文
+    - Hyper-Connections (HC/mHC): DeepSeek 内部技术报告，未公开。后续第三方扩展：[xHC (arXiv:2607.14530)](https://arxiv.org/abs/2607.14530)、[Stream Collapse Analysis (arXiv:2606.03483)](https://arxiv.org/abs/2606.03483)
+    - DSA (DeepSeek Sparse Attention): 来自 DeepSeek-V3.2，无独立论文。后续优化：[LongCat Sparse Attention (arXiv:2608.01662)](https://arxiv.org/abs/2608.01662)、[PIVOT (arXiv:2607.24593)](https://arxiv.org/abs/2607.24593)
 - [2024.12] [DeepSeek-V3 Technical Report](https://arxiv.org/pdf/2412.19437)/[github:DeepSeek-V3](https://github.com/deepseek-ai/DeepSeek-V3) MLA、MOE、MTP、GRPO等
 - [2024.05] [DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model](https://arxiv.org/abs/2405.04434)
     - [工业界主流大语言模型后训练(Post-Training)技术总结](https://zhuanlan.zhihu.com/p/987052830)
@@ -32,10 +35,22 @@
 
 ### 2.4. 智谱AI
 
+- [2026.02] [GLM-5: from Vibe Coding to Agentic Engineering](https://arxiv.org/abs/2602.15763) 从 Vibe Coding 到智能体工程
 - [2024.07] [ChatGLM: A Family of Large Language Models from GLM-130B to GLM-4 All Tools](https://arxiv.org/pdf/2406.12793)
-    - [GLM-4](https://github.com/THUDM/GLM-4) 
+    - [GLM-4](https://github.com/THUDM/GLM-4)
+- 注：GLM-5.1/5.2 暂无独立技术报告
 
-### 2.5. 字节
+### 2.5. Moonshot (Kimi)
+
+- [2025.07] [Kimi K2: Open Agentic Intelligence](https://arxiv.org/abs/2507.20534) MoE架构，Muon优化器实践(QK-Clip)
+- 注：Kimi K3 暂无技术报告
+
+### 2.6. MiniMax
+
+- [2026.05] [The MiniMax-M2 Series: Mini Activations Unleashing Max Real-World Intelligence](https://arxiv.org/abs/2605.26494) MoE，229.9B总参数/9.8B激活，面向agentic部署
+- 注：MiniMax-M3 暂无技术报告
+
+### 2.7. 字节
 
 - [ByteDance-Seed/seed-oss](https://github.com/ByteDance-Seed/seed-oss)
 
@@ -53,6 +68,7 @@
 - 数据去重 
 - 文本标准化（大小写、标点等）
 - 数据增强
+    - [2024.12] [How to Synthesize Text Data without Model Collapse?](https://arxiv.org/abs/2412.14689) 合成数据比例与模型性能负相关，提出避免model collapse的合成数据策略
     - [2024.04] [Fewer Truncations Improve Language Modeling](https://arxiv.org/abs/2404.10830)
     - [2022.07] [Efficient Training of Language Models to Fill in the Middle](https://arxiv.org/abs/2207.14255)
 
@@ -127,11 +143,14 @@ between Human and Machine Translation](https://arxiv.org/pdf/1609.08144) 基于l
 
 ### 3.5. 训练策略
 
-- [2025.02] [Muon is Scalable for LLM Training](https://arxiv.org/abs/2502.16982)
-    - [KellerJordan/Muon](https://github.com/KellerJordan/Muon)
-    - [muon](https://kellerjordan.github.io/posts/muon/)
-
-- 优化器选择（Adam/AdamW/LAMB）
+- 优化器
+    - [2025.02] [Muon is Scalable for LLM Training](https://arxiv.org/abs/2502.16982) Muon优化器规模化训练
+        - [KellerJordan/Muon](https://github.com/KellerJordan/Muon) 原始Muon (博客)
+        - [muon blog](https://kellerjordan.github.io/posts/muon/)
+    - [2025.07] [Kimi K2: Open Agentic Intelligence](https://arxiv.org/abs/2507.20534) Moonshot Muon工程实践(QK-Clip)
+    - [2026.01] [Convergence of Muon with Newton-Schulz](https://arxiv.org/abs/2601.19156) Muon+Newton-Schulz收敛性理论分析
+    - [2026.05] [MONA: Muon Optimizer with Nesterov Acceleration](https://arxiv.org/abs/2605.26842) Muon+Nesterov加速
+    - 优化器选择（Adam/AdamW/LAMB）
 - 学习率调度（线性预热+余弦衰减）
 - 批次策略（动态批处理/梯度累积）
 - 混合精度训练（FP16/BF16）
@@ -162,6 +181,7 @@ between Human and Machine Translation](https://arxiv.org/pdf/1609.08144) 基于l
 - 课程学习（Curriculum Learning）
 - 模型增长（渐进式训练）
 - 知识蒸馏（Teacher-Student）
+    - [2023.06] [On-Policy Distillation of Language Models: Learning from Self-Generated Mistakes](https://arxiv.org/abs/2306.13649) GKD：学生模型在自生成序列上训练，解决训练/推理分布不匹配问题
 - 持续预训练
 
 
