@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 # LLM-Note 一键启动脚本
 # 用法: ./start.sh [端口]     默认端口 8600
+#       ./start.sh build      # 构建静态站点到 site/（GitHub Pages 用）
 set -euo pipefail
 cd "$(dirname "$0")"
+
+# ── 0. 构建模式（静态站点，GitHub Pages 用）──────────────────────────
+if [ "${1:-}" = "build" ]; then
+    shift
+    exec uv run mkdocs build "$@"
+fi
 
 PORT="${1:-8600}"
 URL="http://localhost:${PORT}/"
@@ -16,7 +23,7 @@ if ! command -v uv >/dev/null 2>&1; then
     exit 1
 fi
 
-# ── 2. 同步依赖（首次运行会安装 mkdocs 到 .venv）────────────────────
+# ── 2. 同步依赖（首次运行会安装 mkdocs 及分析依赖到 .venv）───────────
 uv sync --quiet
 
 # ── 3. 端口已被占用则直接复用，不重复启动 ────────────────────────────

@@ -1,0 +1,1610 @@
+{
+  "qwen/qwen-2.5-72b-instruct": [
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen-2.5-72b-instruct",
+      "context_length": 32768,
+      "quantization": "fp8",
+      "prompt_price": "0.00000036",
+      "completion_price": "0.0000004",
+      "p50_latency_ms": 722.0,
+      "p90_latency_ms": 2487.4000000000033,
+      "p50_throughput_tps": 20.0,
+      "request_count": 3389
+    }
+  ],
+  "qwen/qwen-2.5-7b-instruct": [
+    {
+      "provider": "Phala",
+      "variant": "qwen/qwen-2.5-7b-instruct",
+      "context_length": 32768,
+      "quantization": "unknown",
+      "prompt_price": "0.0000001",
+      "completion_price": "0.0000002",
+      "p50_latency_ms": null,
+      "p90_latency_ms": null,
+      "p50_throughput_tps": null,
+      "request_count": null
+    }
+  ],
+  "qwen/qwen-2.5-coder-32b-instruct": [
+    {
+      "provider": "Cloudflare",
+      "variant": "qwen/qwen-2.5-coder-32b-instruct",
+      "context_length": 32768,
+      "quantization": "unknown",
+      "prompt_price": "0.00000066",
+      "completion_price": "0.000001",
+      "p50_latency_ms": 1357.0,
+      "p90_latency_ms": 1942.0,
+      "p50_throughput_tps": 32.0,
+      "request_count": 86
+    }
+  ],
+  "qwen/qwen-plus": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen-plus-2025-01-25",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.00000026",
+      "completion_price": "0.00000078",
+      "p50_latency_ms": 653.0,
+      "p90_latency_ms": 1399.0,
+      "p50_throughput_tps": 50.0,
+      "request_count": 365
+    }
+  ],
+  "qwen/qwen2.5-vl-72b-instruct": [
+    {
+      "provider": "Parasail",
+      "variant": "qwen/qwen2.5-vl-72b-instruct",
+      "context_length": 128000,
+      "quantization": "fp8",
+      "prompt_price": "0.0000008",
+      "completion_price": "0.000001",
+      "p50_latency_ms": 749.0,
+      "p90_latency_ms": 1621.6,
+      "p50_throughput_tps": 36.0,
+      "request_count": 1663
+    }
+  ],
+  "qwen/qwen3-14b": [
+    {
+      "provider": "NextBit",
+      "variant": "qwen/qwen3-14b-04-28",
+      "context_length": 40960,
+      "quantization": "int4",
+      "prompt_price": "0.0000001",
+      "completion_price": "0.00000022",
+      "p50_latency_ms": 1419.0,
+      "p90_latency_ms": 1560.4,
+      "p50_throughput_tps": 71.0,
+      "request_count": 387
+    },
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3-14b-04-28",
+      "context_length": 40960,
+      "quantization": "fp8",
+      "prompt_price": "0.00000012",
+      "completion_price": "0.00000024",
+      "p50_latency_ms": 203.0,
+      "p90_latency_ms": 1004.0,
+      "p50_throughput_tps": 95.0,
+      "request_count": 1851
+    }
+  ],
+  "qwen/qwen3-235b-a22b-2507": [
+    {
+      "provider": "GMICloud",
+      "variant": "qwen/qwen3-235b-a22b-07-25",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000000875",
+      "completion_price": "0.00000035",
+      "p50_latency_ms": null,
+      "p90_latency_ms": null,
+      "p50_throughput_tps": null,
+      "request_count": null
+    },
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3-235b-a22b-07-25",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000009",
+      "completion_price": "0.00000055",
+      "p50_latency_ms": 376.0,
+      "p90_latency_ms": 959.0,
+      "p50_throughput_tps": 28.0,
+      "request_count": 22332
+    },
+    {
+      "provider": "Parasail",
+      "variant": "qwen/qwen3-235b-a22b-07-25",
+      "context_length": 131072,
+      "quantization": "fp8",
+      "prompt_price": "0.00000014",
+      "completion_price": "0.0000008",
+      "p50_latency_ms": 465.0,
+      "p90_latency_ms": 867.0,
+      "p50_throughput_tps": 38.0,
+      "request_count": 16552
+    },
+    {
+      "provider": "Venice",
+      "variant": "qwen/qwen3-235b-a22b-07-25",
+      "context_length": 128000,
+      "quantization": "fp8",
+      "prompt_price": "0.00000015",
+      "completion_price": "0.00000075",
+      "p50_latency_ms": 575.0,
+      "p90_latency_ms": 895.0,
+      "p50_throughput_tps": 29.0,
+      "request_count": 4032
+    }
+  ],
+  "qwen/qwen3-235b-a22b-thinking-2507": [
+    {
+      "provider": "Venice",
+      "variant": "qwen/qwen3-235b-a22b-thinking-2507",
+      "context_length": 128000,
+      "quantization": "fp8",
+      "prompt_price": "0.00000045",
+      "completion_price": "0.0000035",
+      "p50_latency_ms": 461.0,
+      "p90_latency_ms": 1065.0,
+      "p50_throughput_tps": 123.0,
+      "request_count": 571
+    }
+  ],
+  "qwen/qwen3-30b-a3b": [
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3-30b-a3b-04-28",
+      "context_length": 40960,
+      "quantization": "fp8",
+      "prompt_price": "0.00000012",
+      "completion_price": "0.0000005",
+      "p50_latency_ms": 621.0,
+      "p90_latency_ms": 921.0,
+      "p50_throughput_tps": 88.0,
+      "request_count": 5521
+    }
+  ],
+  "qwen/qwen3-30b-a3b-instruct-2507": [
+    {
+      "provider": "DekaLLM",
+      "variant": "qwen/qwen3-30b-a3b-instruct-2507",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.00000009",
+      "completion_price": "0.0000003",
+      "p50_latency_ms": 424.0,
+      "p90_latency_ms": 908.2000000000003,
+      "p50_throughput_tps": 76.0,
+      "request_count": 888
+    },
+    {
+      "provider": "SiliconFlow",
+      "variant": "qwen/qwen3-30b-a3b-instruct-2507",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000009",
+      "completion_price": "0.0000003",
+      "p50_latency_ms": 1001.0,
+      "p90_latency_ms": 1421.1000000000004,
+      "p50_throughput_tps": 31.0,
+      "request_count": 5690
+    },
+    {
+      "provider": "Nebius",
+      "variant": "qwen/qwen3-30b-a3b-instruct-2507",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000001",
+      "completion_price": "0.0000003",
+      "p50_latency_ms": 228.0,
+      "p90_latency_ms": 875.6000000000004,
+      "p50_throughput_tps": 161.0,
+      "request_count": 4693
+    }
+  ],
+  "qwen/qwen3-32b": [
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3-32b-04-28",
+      "context_length": 40960,
+      "quantization": "fp8",
+      "prompt_price": "0.00000008",
+      "completion_price": "0.00000028",
+      "p50_latency_ms": 362.0,
+      "p90_latency_ms": 1020.0,
+      "p50_throughput_tps": 40.0,
+      "request_count": 21365
+    },
+    {
+      "provider": "Tenstorrent",
+      "variant": "qwen/qwen3-32b-04-28",
+      "context_length": 20000,
+      "quantization": "fp8",
+      "prompt_price": "0.00000014",
+      "completion_price": "0.0000004",
+      "p50_latency_ms": 1394.0,
+      "p90_latency_ms": 1915.4,
+      "p50_throughput_tps": 6.0,
+      "request_count": 457
+    },
+    {
+      "provider": "SiliconFlow",
+      "variant": "qwen/qwen3-32b-04-28",
+      "context_length": 131072,
+      "quantization": "fp8",
+      "prompt_price": "0.00000014",
+      "completion_price": "0.00000057",
+      "p50_latency_ms": 1478.5,
+      "p90_latency_ms": 6682.5,
+      "p50_throughput_tps": 18.0,
+      "request_count": 46
+    }
+  ],
+  "qwen/qwen3-coder": [
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3-coder-480b-a35b-07-25",
+      "context_length": 262144,
+      "quantization": "fp4",
+      "prompt_price": "0.0000003",
+      "completion_price": "0.000001",
+      "p50_latency_ms": 543.0,
+      "p90_latency_ms": 944.2,
+      "p50_throughput_tps": 84.0,
+      "request_count": 629
+    },
+    {
+      "provider": "Venice",
+      "variant": "qwen/qwen3-coder-480b-a35b-07-25",
+      "context_length": 256000,
+      "quantization": "fp8",
+      "prompt_price": "0.00000035",
+      "completion_price": "0.0000015",
+      "p50_latency_ms": 564.5,
+      "p90_latency_ms": 1277.1000000000015,
+      "p50_throughput_tps": 57.0,
+      "request_count": 90
+    }
+  ],
+  "qwen/qwen3-coder-30b-a3b-instruct": [
+    {
+      "provider": "SiliconFlow",
+      "variant": "qwen/qwen3-coder-30b-a3b-instruct",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000007",
+      "completion_price": "0.00000028",
+      "p50_latency_ms": 1093.0,
+      "p90_latency_ms": 1919.599999999999,
+      "p50_throughput_tps": 32.0,
+      "request_count": 617
+    },
+    {
+      "provider": "Amazon Bedrock",
+      "variant": "qwen/qwen3-coder-30b-a3b-instruct",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.00000015",
+      "completion_price": "0.0000006",
+      "p50_latency_ms": 650.5,
+      "p90_latency_ms": 1036.3000000000002,
+      "p50_throughput_tps": 131.0,
+      "request_count": 828
+    }
+  ],
+  "qwen/qwen3-coder-flash": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3-coder-flash",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.000000195",
+      "completion_price": "0.000000975",
+      "p50_latency_ms": 847.5,
+      "p90_latency_ms": 985.4000000000001,
+      "p50_throughput_tps": 72.0,
+      "request_count": 174
+    }
+  ],
+  "qwen/qwen3-coder-next": [
+    {
+      "provider": "Parasail",
+      "variant": "qwen/qwen3-coder-next-2025-02-03",
+      "context_length": 262144,
+      "quantization": "bf16",
+      "prompt_price": "0.00000012",
+      "completion_price": "0.0000008",
+      "p50_latency_ms": 674.5,
+      "p90_latency_ms": 1272.6,
+      "p50_throughput_tps": 64.0,
+      "request_count": 1122
+    }
+  ],
+  "qwen/qwen3-next-80b-a3b-instruct": [
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3-next-80b-a3b-instruct-2509",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000009",
+      "completion_price": "0.0000011",
+      "p50_latency_ms": 722.0,
+      "p90_latency_ms": 1620.5,
+      "p50_throughput_tps": 81.0,
+      "request_count": 1112
+    },
+    {
+      "provider": "Parasail",
+      "variant": "qwen/qwen3-next-80b-a3b-instruct-2509",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000001",
+      "completion_price": "0.0000011",
+      "p50_latency_ms": 468.0,
+      "p90_latency_ms": 941.4000000000005,
+      "p50_throughput_tps": 122.0,
+      "request_count": 1955
+    }
+  ],
+  "qwen/qwen3-vl-235b-a22b-instruct": [
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3-vl-235b-a22b-instruct",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000002",
+      "completion_price": "0.00000088",
+      "p50_latency_ms": 1960.5,
+      "p90_latency_ms": 6613.4,
+      "p50_throughput_tps": 10.0,
+      "request_count": 5434
+    },
+    {
+      "provider": "Venice",
+      "variant": "qwen/qwen3-vl-235b-a22b-instruct",
+      "context_length": 128000,
+      "quantization": "fp8",
+      "prompt_price": "0.00000021",
+      "completion_price": "0.0000019",
+      "p50_latency_ms": 1814.5,
+      "p90_latency_ms": 6247.700000000015,
+      "p50_throughput_tps": 40.0,
+      "request_count": 30
+    },
+    {
+      "provider": "Parasail",
+      "variant": "qwen/qwen3-vl-235b-a22b-instruct",
+      "context_length": 131072,
+      "quantization": "fp8",
+      "prompt_price": "0.00000021",
+      "completion_price": "0.0000019",
+      "p50_latency_ms": 1262.0,
+      "p90_latency_ms": 4064.300000000004,
+      "p50_throughput_tps": 27.0,
+      "request_count": 18680
+    }
+  ],
+  "qwen/qwen3-vl-30b-a3b-instruct": [
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3-vl-30b-a3b-instruct",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000015",
+      "completion_price": "0.0000006",
+      "p50_latency_ms": 1038.0,
+      "p90_latency_ms": 2832.9000000000005,
+      "p50_throughput_tps": 22.0,
+      "request_count": 62322
+    },
+    {
+      "provider": "Novita",
+      "variant": "qwen/qwen3-vl-30b-a3b-instruct",
+      "context_length": 131072,
+      "quantization": "bf16",
+      "prompt_price": "0.0000002",
+      "completion_price": "0.0000007",
+      "p50_latency_ms": 4101.0,
+      "p90_latency_ms": 17824.0,
+      "p50_throughput_tps": 19.0,
+      "request_count": 46
+    },
+    {
+      "provider": "SiliconFlow",
+      "variant": "qwen/qwen3-vl-30b-a3b-instruct",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000029",
+      "completion_price": "0.000001",
+      "p50_latency_ms": 2034.0,
+      "p90_latency_ms": 4163.0,
+      "p50_throughput_tps": 13.5,
+      "request_count": 11
+    }
+  ],
+  "qwen/qwen3-vl-30b-a3b-thinking": [
+    {
+      "provider": "SiliconFlow",
+      "variant": "qwen/qwen3-vl-30b-a3b-thinking",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000029",
+      "completion_price": "0.000001",
+      "p50_latency_ms": 2647.5,
+      "p90_latency_ms": 3787.4000000000005,
+      "p50_throughput_tps": 40.0,
+      "request_count": 18
+    }
+  ],
+  "qwen/qwen3-vl-8b-instruct": [
+    {
+      "provider": "Parasail",
+      "variant": "qwen/qwen3-vl-8b-instruct",
+      "context_length": 262144,
+      "quantization": "bf16",
+      "prompt_price": "0.00000025",
+      "completion_price": "0.00000075",
+      "p50_latency_ms": null,
+      "p90_latency_ms": null,
+      "p50_throughput_tps": null,
+      "request_count": null
+    }
+  ],
+  "qwen/qwen3.5-122b-a10b": [
+    {
+      "provider": "SiliconFlow",
+      "variant": "qwen/qwen3.5-122b-a10b-20260224",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000026",
+      "completion_price": "0.00000208",
+      "p50_latency_ms": 1081.5,
+      "p90_latency_ms": 2091.0,
+      "p50_throughput_tps": 55.5,
+      "request_count": 76
+    },
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.5-122b-a10b-20260224",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.00000026",
+      "completion_price": "0.00000208",
+      "p50_latency_ms": 778.0,
+      "p90_latency_ms": 1592.1,
+      "p50_throughput_tps": 93.0,
+      "request_count": 2480
+    },
+    {
+      "provider": "AtlasCloud",
+      "variant": "qwen/qwen3.5-122b-a10b-20260224",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000003",
+      "completion_price": "0.0000024",
+      "p50_latency_ms": 1036.0,
+      "p90_latency_ms": 1986.0,
+      "p50_throughput_tps": 92.0,
+      "request_count": 21
+    },
+    {
+      "provider": "Novita",
+      "variant": "qwen/qwen3.5-122b-a10b-20260224",
+      "context_length": 262144,
+      "quantization": "bf16",
+      "prompt_price": "0.0000004",
+      "completion_price": "0.0000032",
+      "p50_latency_ms": 1063.0,
+      "p90_latency_ms": 4335.000000000003,
+      "p50_throughput_tps": 82.0,
+      "request_count": 23
+    }
+  ],
+  "qwen/qwen3.5-27b": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.5-27b-20260224",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.000000195",
+      "completion_price": "0.00000156",
+      "p50_latency_ms": 942.0,
+      "p90_latency_ms": 4103.5,
+      "p50_throughput_tps": 83.0,
+      "request_count": 206
+    },
+    {
+      "provider": "SiliconFlow",
+      "variant": "qwen/qwen3.5-27b-20260224",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000025",
+      "completion_price": "0.000002",
+      "p50_latency_ms": 1329.0,
+      "p90_latency_ms": 9222.5,
+      "p50_throughput_tps": 26.0,
+      "request_count": 6
+    },
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3.5-27b-20260224",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000026",
+      "completion_price": "0.0000026",
+      "p50_latency_ms": 470.0,
+      "p90_latency_ms": 1220.0,
+      "p50_throughput_tps": 72.0,
+      "request_count": 21
+    },
+    {
+      "provider": "AtlasCloud",
+      "variant": "qwen/qwen3.5-27b-20260224",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000027",
+      "completion_price": "0.00000216",
+      "p50_latency_ms": 2168.0,
+      "p90_latency_ms": 3218.6000000000004,
+      "p50_throughput_tps": 46.0,
+      "request_count": 17
+    },
+    {
+      "provider": "Phala",
+      "variant": "qwen/qwen3.5-27b-20260224",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.0000003",
+      "completion_price": "0.0000024",
+      "p50_latency_ms": 1449.5,
+      "p90_latency_ms": 1684.3,
+      "p50_throughput_tps": 27.0,
+      "request_count": 2
+    },
+    {
+      "provider": "Novita",
+      "variant": "qwen/qwen3.5-27b-20260224",
+      "context_length": 262144,
+      "quantization": "bf16",
+      "prompt_price": "0.0000003",
+      "completion_price": "0.0000024",
+      "p50_latency_ms": 1861.0,
+      "p90_latency_ms": 8076.1,
+      "p50_throughput_tps": 67.0,
+      "request_count": 60
+    }
+  ],
+  "qwen/qwen3.5-35b-a3b": [
+    {
+      "provider": "Darkbloom",
+      "variant": "qwen/qwen3.5-35b-a3b-20260224",
+      "context_length": 262144,
+      "quantization": "fp4",
+      "prompt_price": "0.000000065",
+      "completion_price": "0.00000075",
+      "p50_latency_ms": 3336.0,
+      "p90_latency_ms": 11397.800000000001,
+      "p50_throughput_tps": 69.0,
+      "request_count": 1369
+    },
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3.5-35b-a3b-20260224",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000014",
+      "completion_price": "0.000001",
+      "p50_latency_ms": 603.0,
+      "p90_latency_ms": 930.0,
+      "p50_throughput_tps": 34.0,
+      "request_count": 5745
+    },
+    {
+      "provider": "Parasail",
+      "variant": "qwen/qwen3.5-35b-a3b-20260224",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000015",
+      "completion_price": "0.000001",
+      "p50_latency_ms": 808.0,
+      "p90_latency_ms": 2154.8,
+      "p50_throughput_tps": 137.5,
+      "request_count": 377
+    },
+    {
+      "provider": "Venice",
+      "variant": "qwen/qwen3.5-35b-a3b-20260224",
+      "context_length": 256000,
+      "quantization": "unknown",
+      "prompt_price": "0.00000015",
+      "completion_price": "0.000001",
+      "p50_latency_ms": 1842.0,
+      "p90_latency_ms": 2525.6,
+      "p50_throughput_tps": 122.0,
+      "request_count": 29
+    },
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.5-35b-a3b-20260224",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.0000001625",
+      "completion_price": "0.0000013",
+      "p50_latency_ms": 603.0,
+      "p90_latency_ms": 1839.4,
+      "p50_throughput_tps": 132.0,
+      "request_count": 17
+    },
+    {
+      "provider": "AtlasCloud",
+      "variant": "qwen/qwen3.5-35b-a3b-20260224",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.000000225",
+      "completion_price": "0.0000018",
+      "p50_latency_ms": 1799.0,
+      "p90_latency_ms": 2142.2,
+      "p50_throughput_tps": 69.0,
+      "request_count": 3
+    },
+    {
+      "provider": "SiliconFlow",
+      "variant": "qwen/qwen3.5-35b-a3b-20260224",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000024",
+      "completion_price": "0.0000018",
+      "p50_latency_ms": 2062.0,
+      "p90_latency_ms": 4285.0,
+      "p50_throughput_tps": 45.0,
+      "request_count": 7
+    }
+  ],
+  "qwen/qwen3.5-397b-a17b": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.5-397b-a17b-20260216",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.00000039",
+      "completion_price": "0.00000234",
+      "p50_latency_ms": 1183.0,
+      "p90_latency_ms": 3892.4,
+      "p50_throughput_tps": 44.5,
+      "request_count": 100
+    },
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3.5-397b-a17b-20260216",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000045",
+      "completion_price": "0.000003",
+      "p50_latency_ms": 690.0,
+      "p90_latency_ms": 3509.0,
+      "p50_throughput_tps": 40.0,
+      "request_count": 1261
+    },
+    {
+      "provider": "Parasail",
+      "variant": "qwen/qwen3.5-397b-a17b-20260216",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000005",
+      "completion_price": "0.0000036",
+      "p50_latency_ms": 808.0,
+      "p90_latency_ms": 1785.399999999999,
+      "p50_throughput_tps": 50.0,
+      "request_count": 265
+    },
+    {
+      "provider": "DigitalOcean",
+      "variant": "qwen/qwen3.5-397b-a17b-20260216",
+      "context_length": 131072,
+      "quantization": "unknown",
+      "prompt_price": "0.00000055",
+      "completion_price": "0.0000035",
+      "p50_latency_ms": 1402.0,
+      "p90_latency_ms": 2540.0000000000005,
+      "p50_throughput_tps": 7.0,
+      "request_count": 357
+    },
+    {
+      "provider": "Phala",
+      "variant": "qwen/qwen3.5-397b-a17b-20260216",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.00000055",
+      "completion_price": "0.0000035",
+      "p50_latency_ms": 1802.5,
+      "p90_latency_ms": 7579.5,
+      "p50_throughput_tps": 49.0,
+      "request_count": 326
+    },
+    {
+      "provider": "AtlasCloud",
+      "variant": "qwen/qwen3.5-397b-a17b-20260216",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000055",
+      "completion_price": "0.0000035",
+      "p50_latency_ms": 1033.5,
+      "p90_latency_ms": 1497.1000000000004,
+      "p50_throughput_tps": 35.0,
+      "request_count": 342
+    },
+    {
+      "provider": "StreamLake",
+      "variant": "qwen/qwen3.5-397b-a17b-20260216",
+      "context_length": 256000,
+      "quantization": "unknown",
+      "prompt_price": "0.0000006",
+      "completion_price": "0.0000036",
+      "p50_latency_ms": 2719.0,
+      "p90_latency_ms": 4733.6,
+      "p50_throughput_tps": 25.0,
+      "request_count": 55
+    },
+    {
+      "provider": "GMICloud",
+      "variant": "qwen/qwen3.5-397b-a17b-20260216",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000006",
+      "completion_price": "0.0000036",
+      "p50_latency_ms": 1877.0,
+      "p90_latency_ms": 5307.2,
+      "p50_throughput_tps": 58.0,
+      "request_count": 39
+    },
+    {
+      "provider": "Novita",
+      "variant": "qwen/qwen3.5-397b-a17b-20260216",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.0000006",
+      "completion_price": "0.0000036",
+      "p50_latency_ms": 2192.0,
+      "p90_latency_ms": 3507.000000000001,
+      "p50_throughput_tps": 25.0,
+      "request_count": 107
+    },
+    {
+      "provider": "Venice",
+      "variant": "qwen/qwen3.5-397b-a17b-20260216",
+      "context_length": 128000,
+      "quantization": "unknown",
+      "prompt_price": "0.00000075",
+      "completion_price": "0.0000045",
+      "p50_latency_ms": 968.5,
+      "p90_latency_ms": 1490.400000000001,
+      "p50_throughput_tps": 39.0,
+      "request_count": 194
+    }
+  ],
+  "qwen/qwen3.5-9b": [
+    {
+      "provider": "PrimeIntellect",
+      "variant": "qwen/qwen3.5-9b-20260310",
+      "context_length": 262144,
+      "quantization": "bf16",
+      "prompt_price": "0.000000018",
+      "completion_price": "0.000000027",
+      "p50_latency_ms": 442.0,
+      "p90_latency_ms": 1633.8000000000002,
+      "p50_throughput_tps": 60.0,
+      "request_count": 5953
+    },
+    {
+      "provider": "Darkbloom",
+      "variant": "qwen/qwen3.5-9b-20260310",
+      "context_length": 262144,
+      "quantization": "fp4",
+      "prompt_price": "0.00000008",
+      "completion_price": "0.00000013",
+      "p50_latency_ms": 2229.5,
+      "p90_latency_ms": 3082.8,
+      "p50_throughput_tps": 68.0,
+      "request_count": 62
+    },
+    {
+      "provider": "SiliconFlow",
+      "variant": "qwen/qwen3.5-9b-20260310",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000001",
+      "completion_price": "0.00000015",
+      "p50_latency_ms": 1685.0,
+      "p90_latency_ms": 4477.500000000001,
+      "p50_throughput_tps": 57.0,
+      "request_count": 208
+    },
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3.5-9b-20260310",
+      "context_length": 262144,
+      "quantization": "bf16",
+      "prompt_price": "0.0000001",
+      "completion_price": "0.00000015",
+      "p50_latency_ms": 522.0,
+      "p90_latency_ms": 1123.0,
+      "p50_throughput_tps": 49.0,
+      "request_count": 3589
+    },
+    {
+      "provider": "Parasail",
+      "variant": "qwen/qwen3.5-9b-20260310",
+      "context_length": 262144,
+      "quantization": "bf16",
+      "prompt_price": "0.0000001",
+      "completion_price": "0.00000025",
+      "p50_latency_ms": 164.0,
+      "p90_latency_ms": 199.0,
+      "p50_throughput_tps": 88.0,
+      "request_count": 15353
+    },
+    {
+      "provider": "Together",
+      "variant": "qwen/qwen3.5-9b-20260310",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.00000017",
+      "completion_price": "0.00000025",
+      "p50_latency_ms": 296.0,
+      "p90_latency_ms": 700.3999999999996,
+      "p50_throughput_tps": 84.0,
+      "request_count": 4784
+    }
+  ],
+  "qwen/qwen3.5-flash-02-23": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.5-flash-20260224",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.000000065",
+      "completion_price": "0.00000026",
+      "p50_latency_ms": 503.0,
+      "p90_latency_ms": 1065.7000000000016,
+      "p50_throughput_tps": 80.0,
+      "request_count": 36480
+    }
+  ],
+  "qwen/qwen3.5-plus-02-15": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.5-plus-20260216",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.00000026",
+      "completion_price": "0.00000156",
+      "p50_latency_ms": 1112.0,
+      "p90_latency_ms": 1615.0,
+      "p50_throughput_tps": 61.0,
+      "request_count": 151
+    }
+  ],
+  "qwen/qwen3.5-plus-20260420": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.5-plus-20260420",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.0000003",
+      "completion_price": "0.0000018",
+      "p50_latency_ms": 998.0,
+      "p90_latency_ms": 5774.6,
+      "p50_throughput_tps": 94.0,
+      "request_count": 27
+    }
+  ],
+  "qwen/qwen3.6-27b": [
+    {
+      "provider": "Reka",
+      "variant": "qwen/qwen3.6-27b-20260422",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.0000002",
+      "completion_price": "0.000003",
+      "p50_latency_ms": 592.5,
+      "p90_latency_ms": 1494.6000000000004,
+      "p50_throughput_tps": 77.0,
+      "request_count": 174
+    },
+    {
+      "provider": "Chutes",
+      "variant": "qwen/qwen3.6-27b-20260422",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000025",
+      "completion_price": "0.000002",
+      "p50_latency_ms": 12244.0,
+      "p90_latency_ms": 21807.4,
+      "p50_throughput_tps": 20.0,
+      "request_count": 69
+    },
+    {
+      "provider": "SiliconFlow",
+      "variant": "qwen/qwen3.6-27b-20260422",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000003",
+      "completion_price": "0.0000032",
+      "p50_latency_ms": 1056.0,
+      "p90_latency_ms": 1209.3999999999999,
+      "p50_throughput_tps": 30.0,
+      "request_count": 12
+    },
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3.6-27b-20260422",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000032",
+      "completion_price": "0.0000032",
+      "p50_latency_ms": 561.0,
+      "p90_latency_ms": 2068.0,
+      "p50_throughput_tps": 70.0,
+      "request_count": 370
+    },
+    {
+      "provider": "Phala",
+      "variant": "qwen/qwen3.6-27b-20260422",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.00000032",
+      "completion_price": "0.00000325",
+      "p50_latency_ms": 1432.0,
+      "p90_latency_ms": 10015.0,
+      "p50_throughput_tps": 32.0,
+      "request_count": 41
+    },
+    {
+      "provider": "Venice",
+      "variant": "qwen/qwen3.6-27b-20260422",
+      "context_length": 256000,
+      "quantization": "fp8",
+      "prompt_price": "0.000000325",
+      "completion_price": "0.00000325",
+      "p50_latency_ms": 503.0,
+      "p90_latency_ms": 1374.2,
+      "p50_throughput_tps": 29.0,
+      "request_count": 538
+    },
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.6-27b-20260422",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.00000045",
+      "completion_price": "0.0000027",
+      "p50_latency_ms": 869.0,
+      "p90_latency_ms": 1722.0,
+      "p50_throughput_tps": 56.0,
+      "request_count": 23
+    }
+  ],
+  "qwen/qwen3.6-35b-a3b": [
+    {
+      "provider": "Darkbloom",
+      "variant": "qwen/qwen3.6-35b-a3b-20260415",
+      "context_length": 262144,
+      "quantization": "fp4",
+      "prompt_price": "0.00000005",
+      "completion_price": "0.0000007",
+      "p50_latency_ms": 2469.5,
+      "p90_latency_ms": 4697.5,
+      "p50_throughput_tps": 42.0,
+      "request_count": 304
+    },
+    {
+      "provider": "AkashML",
+      "variant": "qwen/qwen3.6-35b-a3b-20260415",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000001",
+      "completion_price": "0.0000009",
+      "p50_latency_ms": 854.5,
+      "p90_latency_ms": 1657.5,
+      "p50_throughput_tps": 79.0,
+      "request_count": 5476
+    },
+    {
+      "provider": "Parasail",
+      "variant": "qwen/qwen3.6-35b-a3b-20260415",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000001",
+      "completion_price": "0.0000009",
+      "p50_latency_ms": 819.0,
+      "p90_latency_ms": 1328.0,
+      "p50_throughput_tps": 44.0,
+      "request_count": 110807
+    },
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3.6-35b-a3b-20260415",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000001",
+      "completion_price": "0.00000095",
+      "p50_latency_ms": 836.5,
+      "p90_latency_ms": 2682.5000000000027,
+      "p50_throughput_tps": 79.0,
+      "request_count": 4318
+    },
+    {
+      "provider": "CoreWeave",
+      "variant": "qwen/qwen3.6-35b-a3b-20260415",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000001",
+      "completion_price": "0.00000095",
+      "p50_latency_ms": 594.0,
+      "p90_latency_ms": 3500.6000000000004,
+      "p50_throughput_tps": 117.0,
+      "request_count": 2518
+    },
+    {
+      "provider": "DekaLLM",
+      "variant": "qwen/qwen3.6-35b-a3b-20260415",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.0000001",
+      "completion_price": "0.000001",
+      "p50_latency_ms": 1018.0,
+      "p90_latency_ms": 2412.6,
+      "p50_throughput_tps": 40.0,
+      "request_count": 3815
+    },
+    {
+      "provider": "Venice",
+      "variant": "qwen/qwen3.6-35b-a3b-20260415",
+      "context_length": 256000,
+      "quantization": "fp8",
+      "prompt_price": "0.0000001",
+      "completion_price": "0.000001",
+      "p50_latency_ms": 979.0,
+      "p90_latency_ms": 1229.4,
+      "p50_throughput_tps": 67.0,
+      "request_count": 109
+    },
+    {
+      "provider": "Phala",
+      "variant": "qwen/qwen3.6-35b-a3b-20260415",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.0000002",
+      "completion_price": "0.00000127",
+      "p50_latency_ms": 1671.0,
+      "p90_latency_ms": 3631.4000000000005,
+      "p50_throughput_tps": 37.0,
+      "request_count": 5453
+    },
+    {
+      "provider": "SiliconFlow",
+      "variant": "qwen/qwen3.6-35b-a3b-20260415",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000024",
+      "completion_price": "0.0000018",
+      "p50_latency_ms": 2339.5,
+      "p90_latency_ms": 8646.900000000001,
+      "p50_throughput_tps": 25.5,
+      "request_count": 84
+    },
+    {
+      "provider": "AtlasCloud",
+      "variant": "qwen/qwen3.6-35b-a3b-20260415",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000025",
+      "completion_price": "0.00000125",
+      "p50_latency_ms": 416.0,
+      "p90_latency_ms": 2133.2,
+      "p50_throughput_tps": 103.0,
+      "request_count": 19
+    }
+  ],
+  "qwen/qwen3.6-flash": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.6-flash",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.0000001875",
+      "completion_price": "0.000001125",
+      "p50_latency_ms": 577.0,
+      "p90_latency_ms": 1013.6999999999998,
+      "p50_throughput_tps": 69.0,
+      "request_count": 5664
+    }
+  ],
+  "qwen/qwen3.6-plus": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.6-plus-04-02",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.000000325",
+      "completion_price": "0.00000195",
+      "p50_latency_ms": 979.5,
+      "p90_latency_ms": 1811.5999999999995,
+      "p50_throughput_tps": 45.0,
+      "request_count": 1628
+    }
+  ],
+  "qwen/qwen3.7-flash": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.7-flash-20260727",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.00000003",
+      "completion_price": "0.00000013",
+      "p50_latency_ms": 695.0,
+      "p90_latency_ms": 1362.9000000000005,
+      "p50_throughput_tps": 57.0,
+      "request_count": 193769
+    }
+  ],
+  "qwen/qwen3.7-max": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.7-max-20260520",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.000001475",
+      "completion_price": "0.000004425",
+      "p50_latency_ms": 1130.0,
+      "p90_latency_ms": 2358.0,
+      "p50_throughput_tps": 66.0,
+      "request_count": 389
+    }
+  ],
+  "qwen/qwen3.7-plus": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.7-plus-20260602",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.00000032",
+      "completion_price": "0.00000128",
+      "p50_latency_ms": 1853.0,
+      "p90_latency_ms": 7098.900000000001,
+      "p50_throughput_tps": 51.0,
+      "request_count": 3592
+    },
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.7-plus-20260602:batch",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.00000023",
+      "completion_price": "0.00000092",
+      "p50_latency_ms": null,
+      "p90_latency_ms": null,
+      "p50_throughput_tps": null,
+      "request_count": null
+    }
+  ],
+  "qwen/qwen3.7-plus:batch": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.7-plus-20260602:batch",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.00000023",
+      "completion_price": "0.00000092",
+      "p50_latency_ms": null,
+      "p90_latency_ms": null,
+      "p50_throughput_tps": null,
+      "request_count": null
+    },
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.7-plus-20260602",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.00000032",
+      "completion_price": "0.00000128",
+      "p50_latency_ms": null,
+      "p90_latency_ms": null,
+      "p50_throughput_tps": null,
+      "request_count": null
+    }
+  ],
+  "qwen/qwen3.8-2.4t-a95b": [
+    {
+      "provider": "Novita",
+      "variant": "qwen/qwen3.8-2.4t-a95b-20260812",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.000002",
+      "completion_price": "0.000006",
+      "p50_latency_ms": 2086.0,
+      "p90_latency_ms": 3827.0000000000005,
+      "p50_throughput_tps": 33.0,
+      "request_count": 257
+    },
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.8-2.4t-a95b-20260812",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.000002",
+      "completion_price": "0.000006",
+      "p50_latency_ms": 1547.0,
+      "p90_latency_ms": 2314.6,
+      "p50_throughput_tps": 41.0,
+      "request_count": 273
+    },
+    {
+      "provider": "SiliconFlow",
+      "variant": "qwen/qwen3.8-2.4t-a95b-20260812",
+      "context_length": 1048576,
+      "quantization": "fp8",
+      "prompt_price": "0.000002",
+      "completion_price": "0.000006",
+      "p50_latency_ms": 1748.5,
+      "p90_latency_ms": 4074.600000000003,
+      "p50_throughput_tps": 37.0,
+      "request_count": 104
+    },
+    {
+      "provider": "Venice",
+      "variant": "qwen/qwen3.8-2.4t-a95b-20260812",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.000002",
+      "completion_price": "0.000006",
+      "p50_latency_ms": 658.0,
+      "p90_latency_ms": 3399.6000000000004,
+      "p50_throughput_tps": 84.0,
+      "request_count": 59
+    },
+    {
+      "provider": "Together",
+      "variant": "qwen/qwen3.8-2.4t-a95b-20260812",
+      "context_length": 1010000,
+      "quantization": "unknown",
+      "prompt_price": "0.000002",
+      "completion_price": "0.000006",
+      "p50_latency_ms": 919.5,
+      "p90_latency_ms": 2642.4,
+      "p50_throughput_tps": 117.0,
+      "request_count": 250
+    }
+  ],
+  "qwen/qwen3.8-27b": [
+    {
+      "provider": "PrimeIntellect",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 131072,
+      "quantization": "fp8",
+      "prompt_price": "0.000000015",
+      "completion_price": "0.000000802",
+      "p50_latency_ms": 1122.0,
+      "p90_latency_ms": 11707.400000000001,
+      "p50_throughput_tps": 15.0,
+      "request_count": 2207
+    },
+    {
+      "provider": "Darkbloom",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "fp4",
+      "prompt_price": "0.000000035",
+      "completion_price": "0.0000015",
+      "p50_latency_ms": 590.0,
+      "p90_latency_ms": 3170.200000000006,
+      "p50_throughput_tps": 52.0,
+      "request_count": 5815
+    },
+    {
+      "provider": "Chutes",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.000000039",
+      "completion_price": "0.00000125",
+      "p50_latency_ms": 2553.0,
+      "p90_latency_ms": 5030.600000000002,
+      "p50_throughput_tps": 28.0,
+      "request_count": 8270
+    },
+    {
+      "provider": "Near AI",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000004",
+      "completion_price": "0.00000135",
+      "p50_latency_ms": 1674.5,
+      "p90_latency_ms": 9823.900000000001,
+      "p50_throughput_tps": 41.0,
+      "request_count": 8704
+    },
+    {
+      "provider": "Ionstream",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000004",
+      "completion_price": "0.00000195",
+      "p50_latency_ms": 1055.0,
+      "p90_latency_ms": 33756.0,
+      "p50_throughput_tps": 37.0,
+      "request_count": 439
+    },
+    {
+      "provider": "Reka",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000004",
+      "completion_price": "0.0000022",
+      "p50_latency_ms": 623.0,
+      "p90_latency_ms": 3545.200000000006,
+      "p50_throughput_tps": 27.0,
+      "request_count": 6485
+    },
+    {
+      "provider": "Modal",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.00000004",
+      "completion_price": "0.0000023",
+      "p50_latency_ms": 3020.5,
+      "p90_latency_ms": 4411.900000000001,
+      "p50_throughput_tps": 9.0,
+      "request_count": 28925
+    },
+    {
+      "provider": "DekaLLM",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.00000004",
+      "completion_price": "0.0000025",
+      "p50_latency_ms": 1810.0,
+      "p90_latency_ms": 14897.0,
+      "p50_throughput_tps": 46.0,
+      "request_count": 2601
+    },
+    {
+      "provider": "Wafer",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000006",
+      "completion_price": "0.0000023",
+      "p50_latency_ms": 1172.5,
+      "p90_latency_ms": 10949.600000000006,
+      "p50_throughput_tps": 40.0,
+      "request_count": 7308
+    },
+    {
+      "provider": "DeepInfra",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "bf16",
+      "prompt_price": "0.00000015",
+      "completion_price": "0.000001875",
+      "p50_latency_ms": 1007.0,
+      "p90_latency_ms": 8359.000000000011,
+      "p50_throughput_tps": 23.0,
+      "request_count": 24254
+    },
+    {
+      "provider": "Tenstorrent",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "fp4",
+      "prompt_price": "0.00000015",
+      "completion_price": "0.000002",
+      "p50_latency_ms": 3825.0,
+      "p90_latency_ms": 34529.0,
+      "p50_throughput_tps": 26.0,
+      "request_count": 691
+    },
+    {
+      "provider": "Mancer 2",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000018",
+      "completion_price": "0.0000025",
+      "p50_latency_ms": 1224.0,
+      "p90_latency_ms": 2117.6000000000004,
+      "p50_throughput_tps": 34.0,
+      "request_count": 198
+    },
+    {
+      "provider": "ModelRun",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "fp4",
+      "prompt_price": "0.0000002",
+      "completion_price": "0.0000025",
+      "p50_latency_ms": 185.0,
+      "p90_latency_ms": 4828.400000000025,
+      "p50_throughput_tps": 48.0,
+      "request_count": 9343
+    },
+    {
+      "provider": "Phala",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.0000002",
+      "completion_price": "0.0000025",
+      "p50_latency_ms": 2093.0,
+      "p90_latency_ms": 7148.800000000001,
+      "p50_throughput_tps": 53.0,
+      "request_count": 844
+    },
+    {
+      "provider": "AkashML",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.000000225",
+      "completion_price": "0.00000198",
+      "p50_latency_ms": 852.0,
+      "p90_latency_ms": 6426.0,
+      "p50_throughput_tps": 40.0,
+      "request_count": 1056
+    },
+    {
+      "provider": "Parasail",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000024",
+      "completion_price": "0.0000022",
+      "p50_latency_ms": 2652.0,
+      "p90_latency_ms": 16482.000000000007,
+      "p50_throughput_tps": 22.0,
+      "request_count": 3124
+    },
+    {
+      "provider": "CoreWeave",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.0000004",
+      "completion_price": "0.000003",
+      "p50_latency_ms": 2575.0,
+      "p90_latency_ms": 13812.4,
+      "p50_throughput_tps": 19.0,
+      "request_count": 1733
+    },
+    {
+      "provider": "Novita",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.00000042",
+      "completion_price": "0.000003",
+      "p50_latency_ms": 3472.0,
+      "p90_latency_ms": 18373.899999999998,
+      "p50_throughput_tps": 39.0,
+      "request_count": 15934
+    },
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.000000425",
+      "completion_price": "0.00000255",
+      "p50_latency_ms": 2613.0,
+      "p90_latency_ms": 51696.00000000002,
+      "p50_throughput_tps": 39.0,
+      "request_count": 159
+    },
+    {
+      "provider": "Cloudflare",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "unknown",
+      "prompt_price": "0.00000045",
+      "completion_price": "0.0000032",
+      "p50_latency_ms": 400.0,
+      "p90_latency_ms": 4666.0,
+      "p50_throughput_tps": 34.0,
+      "request_count": 31
+    },
+    {
+      "provider": "Venice",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 262144,
+      "quantization": "fp8",
+      "prompt_price": "0.00000045",
+      "completion_price": "0.0000032",
+      "p50_latency_ms": 611.0,
+      "p90_latency_ms": 1797.2000000000007,
+      "p50_throughput_tps": 53.0,
+      "request_count": 43
+    },
+    {
+      "provider": "Cerebras",
+      "variant": "qwen/qwen3.8-27b-20260814",
+      "context_length": 65536,
+      "quantization": "fp16",
+      "prompt_price": "0.00000099",
+      "completion_price": "0.00000149",
+      "p50_latency_ms": 255.0,
+      "p90_latency_ms": 589.5999999999999,
+      "p50_throughput_tps": 540.0,
+      "request_count": 1423
+    }
+  ],
+  "qwen/qwen3.8-flash": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.8-flash-20260826",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.00000015",
+      "completion_price": "0.00000047",
+      "p50_latency_ms": 1460.0,
+      "p90_latency_ms": 3720.7000000000016,
+      "p50_throughput_tps": 56.0,
+      "request_count": 16907
+    }
+  ],
+  "qwen/qwen3.8-max-0902": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.8-max-20260902",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.000002",
+      "completion_price": "0.000006",
+      "p50_latency_ms": 4160.0,
+      "p90_latency_ms": 13161.0,
+      "p50_throughput_tps": 30.0,
+      "request_count": 3946
+    }
+  ],
+  "qwen/qwen3.8-max-prime": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.8-max-prime-20260923",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.000004",
+      "completion_price": "0.000012",
+      "p50_latency_ms": 1269.5,
+      "p90_latency_ms": 5079.100000000001,
+      "p50_throughput_tps": 84.0,
+      "request_count": 184
+    }
+  ],
+  "qwen/qwen3.8-omni-flash": [
+    {
+      "provider": "Alibaba",
+      "variant": "qwen/qwen3.8-omni-flash-20260918",
+      "context_length": 1000000,
+      "quantization": "unknown",
+      "prompt_price": "0.00000015",
+      "completion_price": "0.00000047",
+      "p50_latency_ms": 3310.0,
+      "p90_latency_ms": 12357.400000000001,
+      "p50_throughput_tps": 66.0,
+      "request_count": 6750
+    }
+  ]
+}

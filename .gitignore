@@ -5,3 +5,6 @@ site/
 .joycode/
 __pycache__/
 .trae/
+# pricing intermediate data
+data/**/interim/
+.DS_Store
