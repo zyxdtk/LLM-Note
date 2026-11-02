@@ -1,5 +1,7 @@
 site_name: 大模型笔记
 theme: readthedocs
+extra_css:
+  - css/custom.css
 markdown_extensions:
   - toc:
       permalink: "#"

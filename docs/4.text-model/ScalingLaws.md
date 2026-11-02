@@ -541,6 +541,7 @@ Pre-training data ──→ Base model size ──→ Compute/forward pass
 - **TTT-Feynman.md**：Test-time scaling（推理时多采样/搜索）与 TTT（测试时训练）不同但相关。前者不改参数，后者改参数。Roberts 的 T² scaling law 连接了两者。
 - **[SSI-Ilya.md](../9.people/SSI-Ilya.md)**：Ilya 从 Scale 转向持续学习。唐杰的推文从另一个角度验证了这个转向：Scale 的参数维度到阈值了，新维度是 post-training。
 - **PostTraining.md**（4.text-model/）：本文可与已有的 post-training 文档互补，前者聚焦技术方法，本文聚焦 scaling law 演进。
+- **ScalingEconomics.md**（4.text-model/）：本文的经济学配对篇，把每个旋钮翻译成钱——训练 CapEx、推理 OpEx、收入阶跃函数三本账，外加大模型 vs 垂类小模型的选型矩阵与 ROI 模板。本文第 3 节（过训练）的经济动因、第 5 节（MoE）的成本解耦、第 10 节（旋钮轮转）的资本逻辑在该篇展开。该篇 2.5-2.7 另有效率系数 κ、数据获取阶梯与全成本模型，第 5 节为主要玩家的经济账对比，第 6 章为开源 vs 闭源的全生命周期 ROI 实算。
 
 ---
 
