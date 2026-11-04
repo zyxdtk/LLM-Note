@@ -1,0 +1,4 @@
+/* 正文填满左侧导航之外的整个区域（覆盖 readthedocs 主题默认的 max-width: 800px 阅读宽度限制） */
+.wy-nav-content {
+  max-width: none;
+}

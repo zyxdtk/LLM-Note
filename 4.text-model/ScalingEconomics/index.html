@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>ScalingEconomics - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "ScalingEconomics";
+        var mkdocs_page_input_path = "4.text-model/ScalingEconomics.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2.compute</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute/GPU-Price/">GPU Price</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute/LLM-Pricing/">LLM Pricing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/inference-perf-theory/">Inference perf theory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">ScalingEconomics</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#0">0. 核心论点</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 理论层：四个经济学事实</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11">1.1 幂律 = 边际收益递减的数学表达</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12_chinchilla">1.2 Chinchilla 是"训练最优"，真实世界是"全生命周期最优"</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13_moe">1.3 MoE 把"能力"和"成本"解耦成两个变量</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#14">1.4 能力 → 收入的映射是阶跃函数，不是线性函数</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 框架层：三本账与全成本系数</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21_acapex">2.1 账本 A：训练（CapEx）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22_bopex">2.2 账本 B：推理（OpEx）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23_c">2.3 账本 C：收入（最容易被忽略的非线性）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#24_tco">2.4 三本账合并：TCO 视角</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#25">2.5 效率系数 κ 与数据获取阶梯</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_1">数据获取阶梯</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#26">2.6 全成本模型：实验系数、人力系数与七项补充</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_2">实验系数：失败金字塔</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_3">人力系数：与其他系数的边际替代</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_4">其余必须入账的七项</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#27">2.7 统一图景：κ 竞争</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3. 回答两个战略问题</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31_scaling">3.1 大小到瓶颈了吗？还会 scaling 吗？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32">3.2 未来是综合大模型还是垂类小模型？</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4_roi">4. 应用层：选型矩阵与 ROI 模板</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41">4.1 模型选型二维矩阵（质量阈值 × 调用量）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42">4.2 自建垂类小模型的三个前提（同时满足才动手）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#43_roi_pipeline">4.3 ROI 计算模板（六步，可对接挖掘 pipeline）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5">5. 案例研究：主要玩家的经济账</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#51">5.1 样本与口径</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#52">5.2 海外四家</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#53">5.3 两个特殊样本</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#54">5.4 中国三系</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#55">5.5 横向对比表</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#56">5.6 四种商业模式闭环</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#57_vs">5.7 框架预测 vs 已发生事实</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#58">5.8 对业务方（自建垂类视角）的启示</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6_roi_vs">6. 全生命周期 ROI 实算：开源 vs 闭源</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#61">6.1 口径</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#62">6.2 生产者侧：闭源模型，单代旗舰的单位经济是正的</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#63_roi">6.3 生产者侧：开源模型，直接 ROI 全部为负</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#64">6.4 消费者侧：标准化部署场景（本章核心）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#65">6.5 实算对框架的回验</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#66">6.6 结论</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#67">6.7 实证附录：开源模型训练成本明细（论文披露）</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">主表：预训练与后训练</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#tulu_3olmo_2_arxiv241115124">后训练参照：Tülu 3（OLMo 2 采用的开源后训练配方，arXiv:2411.15124）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_6">五个观察</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_7">与本框架的连接</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#68_h200_202610">6.8 实测对比：开源模型推理成本全谱系（H200 基准，2026.10）</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_8">口径与公式</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#200b13">表一：旗舰组（总参 ≥ 200B，13 型）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#moe_21-125b9">表二：效率组（小激活 MoE，总参 21-125B，9 型）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#dense30b5">表三：小模型组（dense，总参≈激活，&lt;30B，5 型）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_9">十二个观察</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_10">与本框架的连接</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7">7. 数字口径</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8">8. 与已有文档的交叉引用</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LLM-Judge/">LLM Judge</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">4.text model</li>
+      <li class="breadcrumb-item active">ScalingEconomics</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="scaling_roi">Scaling 经济学：训练成本、推理成本与收入的 ROI 框架<a class="headerlink" href="#scaling_roi" title="Permanent link">#</a></h2>
+<blockquote>
+<p>起因：与 <a href="../ScalingLaws/">ScalingLaws.md</a> 配对。技术侧笔记回答"有哪些旋钮、每个旋钮的技术依据"；本文回答"每个旋钮值多少钱"——把 scaling 的技术叙事翻译成 CapEx / OpEx / 收入三本账与全成本系数（κ），并回答两个战略问题：模型大小是否到了瓶颈、未来是综合大模型还是垂类小模型。</p>
+</blockquote>
+<hr />
+<h3 id="0">0. 核心论点<a class="headerlink" href="#0" title="Permanent link">#</a></h3>
+<ol>
+<li><strong>"模型大小到瓶颈"是伪问题的表述方式。</strong> 真问题是：每一美元买到的新能力增量在哪个旋钮上最大。参数轴的边际 $ 收益递减是幂律的数学必然，所以行业把增量预算搬去了别的轴（RL post-training、推理时计算、agent 系统层）。scaling 会继续，但 scaling 的定义已经变了。</li>
+<li><strong>"综合大模型 vs 垂类小模型"是假二元。</strong> 收敛中的产业结构是两层：大模型是能力工厂（资本品），小模型是部署载体（消费品）。要算的不是"选哪个"，是"处在产业链哪一层、流量分母够不够"。</li>
+<li><strong>真实成本是全成本，算力只是最可见的一项。</strong> 数据（获取阶梯）、实验（失败金字塔）、人力（边际替代）、风险（期望损失）都应入账；同等效果下系数越低效率越高（κ，见 2.5），一切模型竞争最终都是 κ 竞争。</li>
+</ol>
+<hr />
+<h3 id="1">1. 理论层：四个经济学事实<a class="headerlink" href="#1" title="Permanent link">#</a></h3>
+<h4 id="11">1.1 幂律 = 边际收益递减的数学表达<a class="headerlink" href="#11" title="Permanent link">#</a></h4>
+<ul>
+<li>L ≈ A·C^(-α)，loss 对算力是对数线性：算力乘 10，loss 只降一个固定比例</li>
+<li>推论一：每代保持同等 loss 降幅，算力必须指数增长（历史节奏约 4~10x/年有效算力，来自硬件迭代 + 资本开支增长）</li>
+<li>推论二：每一档同等提升的价格标签指数式变贵 → 决策变量从"能不能"变成"值不值"</li>
+<li>这就是为什么 scaling 的问题最终是 ROI 问题</li>
+</ul>
+<h4 id="12_chinchilla">1.2 Chinchilla 是"训练最优"，真实世界是"全生命周期最优"<a class="headerlink" href="#12_chinchilla" title="Permanent link">#</a></h4>
+<p>Chinchilla 优化的目标函数里只有训练成本，模型训完就评估。但部署世界里训练是 CapEx（一次性），推理是 OpEx（每次调用都在付）。</p>
+<p>算例（量级示意）：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数值</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-4 级训练</td>
+<td>~$50-100M</td>
+<td>~2e25 FLOPs；H100 $2/GPU·hr、40% MFU</td>
+</tr>
+<tr>
+<td>高流量推理</td>
+<td>~$210 万/天</td>
+<td>10 亿次调用/日 × 700 token × $3/1M 混合价</td>
+</tr>
+<tr>
+<td>两年生命周期推理</td>
+<td>~$15 亿</td>
+<td>730 天累计</td>
+</tr>
+<tr>
+<td>推理 : 训练</td>
+<td>≈ 15 : 1</td>
+<td>高流量模型</td>
+</tr>
+</tbody>
+</table>
+<p>推论：</p>
+<ul>
+<li>最优模型大小不是技术常数，是 <strong>流量 × 单价 × 生命周期</strong> 的函数</li>
+<li>高流量模型的 TCO 里训练成本摊薄为噪声；低流量场景自训模型是灾难（固定成本没有分母）</li>
+<li>类比：租车 vs 买车。没有流量分母，租（API）优于买（自训）</li>
+<li>这正是 <a href="../ScalingLaws/">ScalingLaws.md</a> 第 3 节（过训练）发生的经济原因：Llama 2 的 290 TPP、Gemma 2 的 889 TPP 不是技术偏好，是 TCO 结构决定的</li>
+</ul>
+<h4 id="13_moe">1.3 MoE 把"能力"和"成本"解耦成两个变量<a class="headerlink" href="#13_moe" title="Permanent link">#</a></h4>
+<ul>
+<li>总参数 = 知识容量（CapEx 侧，装多少）</li>
+<li>激活参数 = 单位推理成本（OpEx 侧，想多远）</li>
+<li>DeepSeek V3：671B 总参数 / 37B 激活，官方训练成本 $5.576M——同代能力比 GPT-4 时代便宜约一个量级</li>
+<li>推论："变大"和"变贵"脱钩了。前沿可以继续加大总参数（装知识），只要激活参数被按住</li>
+<li>所以"大小是否瓶颈"要拆开答：总参数没瓶颈（装知识还有空间）；激活参数受推理经济学约束；真正的稀缺资源变成了高质量数据和 RL 环境（对应 ScalingLaws.md 第 5、10 节）</li>
+</ul>
+<h4 id="14">1.4 能力 → 收入的映射是阶跃函数，不是线性函数<a class="headerlink" href="#14" title="Permanent link">#</a></h4>
+<pre><code>收入
+ │              ┌──────────── 同质化区：增量质量 ≈ 0 增量收入
+ │              │             （过阈值后比价）
+ │           ┌──┘
+ │           │ ← 阈值：跨过去解锁整条产品线（0→1）
+ │        ┌──┘
+ └────────┘
+   不可用区：收入 = 0（任务不可用，客户直接不用）
+ └────────────────────────────────→ 模型能力
+</code></pre>
+<ul>
+<li>阈值之下：收入 = 0</li>
+<li>跨过阈值：解锁产品线。大模型的边际价值高度集中在"还没跨阈值的最后几个点"</li>
+<li>阈值之上：同质化比价。小模型的机会全在"已跨阈值的长尾"</li>
+<li>这条曲线是"要不要继续 scaling"的真正决策函数，榜单分数不是</li>
+</ul>
+<hr />
+<h3 id="2">2. 框架层：三本账与全成本系数<a class="headerlink" href="#2" title="Permanent link">#</a></h3>
+<h4 id="21_acapex">2.1 账本 A：训练（CapEx）<a class="headerlink" href="#21_acapex" title="Permanent link">#</a></h4>
+<pre><code>C_train ≈ 6 × N_active × D（FLOPs）× $/FLOP
+</code></pre>
+<ul>
+<li>$/FLOP：H100 租金 $2/GPU·hr @ 40% MFU ≈ 4e14 FLOP/s → 约 1.4e-18 美元/FLOP</li>
+<li>算例：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>训练 FLOPs</th>
+<th>估算成本</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-4 级</td>
+<td>~2e25</td>
+<td>$50-100M</td>
+<td>2023，公开推算</td>
+</tr>
+<tr>
+<td>Llama 3.1 405B</td>
+<td>~3.8e25</td>
+<td>~$60M+</td>
+<td>30.84M H100·hr</td>
+</tr>
+<tr>
+<td>DeepSeek V3</td>
+<td>~3-4e24</td>
+<td>$5.576M</td>
+<td>官方数：MoE + FP8 + 工程</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>前沿能力的单位成本在按代际通缩（~10x/代），这不是"scaling 到头"，是 scaling 的工程化红利</li>
+<li>分摊口径：C_train ÷ 生命周期总 token。高流量下摊到每 1M token 不足 1 美分；低流量下它就是全部成本——这决定了"自训还是租"</li>
+<li>口径提醒：本账本只含最终 run 的算力；全成本口径（数据/实验/人力/RL 环境）见 2.5-2.7，DeepSeek $5.576M 的口径真相见 2.5</li>
+</ul>
+<h4 id="22_bopex">2.2 账本 B：推理（OpEx）<a class="headerlink" href="#22_bopex" title="Permanent link">#</a></h4>
+<ul>
+<li>每 token 成本 ≈ 2 × N_active × $/FLOP（吞吐模式）；物理底见 <a href="../../3.infra/inference-perf-theory/">inference-perf-theory.md</a>（decode 带宽受限：TPOT_min = 权重字节 ÷ 带宽）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>档位</th>
+<th>成本价（每 1M token）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>30B 激活级</td>
+<td>~$0.1-0.5</td>
+<td>批量吞吐模式，mini 档</td>
+</tr>
+<tr>
+<td>300B 激活级</td>
+<td>~$5-15</td>
+<td>frontier 档</td>
+</tr>
+<tr>
+<td>推理模型</td>
+<td>再 ×5-20</td>
+<td>thinking token 乘数</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>mini 与 frontier 之间 ~100x 价差的结构分解：激活参数比（~20x）× thinking 乘数（~5x）× 利用率与毛利差异。是物理结构决定的，不是定价任性</li>
+<li>价格通缩：同级能力市场价约两年降 ~100x（GPT-4 输出价 $60/1M → mini 级 $0.6/1M），"单位智能价格"按摩尔节奏通缩</li>
+<li>Jevons 悖论：单价降 → 可用场景爆炸 → 推理总开销反而涨。"模型变小"与"推理市场变大"同时成立</li>
+<li>test-time compute 的经济学本质：把训练时的一次性 CapEx 换成每次调用的可变 OpEx，给了一个新的"花钱买能力"的入口（对应 ScalingLaws.md 第 4.2 节）</li>
+<li>RL 训练中的 rollout 同样是推理形态的成本，账本 A/B 的边界在 RL 时代正在重新划分，见 2.6 第 6 条</li>
+</ul>
+<h4 id="23_c">2.3 账本 C：收入（最容易被忽略的非线性）<a class="headerlink" href="#23_c" title="Permanent link">#</a></h4>
+<p>三种收入结构：</p>
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th>特征</th>
+<th>典型场景</th>
+<th>谁赚钱</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>门槛型（winner-take-most）</td>
+<td>能力不够客户直接不用</td>
+<td>agent 编程、长程规划、20 步推理链</td>
+<td>大模型：最难 20% 任务 + 首发窗口定价权</td>
+</tr>
+<tr>
+<td>同质型（比价）</td>
+<td>过阈值后质量无差异</td>
+<td>分类、抽取、摘要、RAG 问答</td>
+<td>小模型：成本领先者</td>
+</tr>
+<tr>
+<td>教师型（隐形 B2B）</td>
+<td>大模型给小模型产数据/蒸馏/奖励标注</td>
+<td>合成数据、蒸馏教师、judge</td>
+<td>大模型当"小模型的工厂"</td>
+</tr>
+</tbody>
+</table>
+<p>决策规则：</p>
+<pre><code>用大模型 iff ΔRev（被大模型救回的那部分流量的价值） &gt; ΔCost（大小价差 × 全部流量）
+</code></pre>
+<ul>
+<li>分子只算"小模型失败、大模型成功"的流量 × 单 query 价值</li>
+<li>常见错误：分子用全量流量 × 质量差，会高估大模型收益一个量级</li>
+</ul>
+<h4 id="24_tco">2.4 三本账合并：TCO 视角<a class="headerlink" href="#24_tco" title="Permanent link">#</a></h4>
+<pre><code>TCO = C_train 分摊 + C_post-train 分摊 + C_inference（高流量下占 90%+）+ 数据成本 + 运维
+</code></pre>
+<ul>
+<li>训练侧的"贵"从来不是大厂的问题（有流量分母）；问题是能不能赚回门槛型收入</li>
+<li>推理侧的"贵"是所有部署方的问题；所以所有优化（蒸馏、量化、级联、路由）都在攻这一项</li>
+<li>本节是第一近似；数据、实验、人力、风险的完整口径见 2.5-2.7</li>
+</ul>
+<h4 id="25">2.5 效率系数 κ 与数据获取阶梯<a class="headerlink" href="#25" title="Permanent link">#</a></h4>
+<p>三本账只算了最可见的项（算力）。真实成本里，数据、实验、人力的占比可能更高。把所有成本归一到"单位能力"上，得到效率系数：</p>
+<pre><code>κ_train = 全成本 ÷ Δ能力
+        = (算力 + 数据 + 实验摊销 + 人力 + 资产摊销 + 风险期望) ÷ 能力增量
+
+κ_serve = 全链路服务成本 ÷ 有效查询(成功且被用户接受；失败重试不进分母)
+</code></pre>
+<p>同等效果下 κ 越低，效率越高。κ 是公平比较"谁的美元变成能力"的唯一口径——公开的"训练成本"几乎都犯同一个口径错误：DeepSeek 的 $5.576M 只是最终一次 run 的算力，论文脚注自己写明不含前期研究与消融。那是边际成本，不是 κ。</p>
+<h5 id="_1">数据获取阶梯<a class="headerlink" href="#_1" title="Permanent link">#</a></h5>
+<p>数据成本不是单一数字，是一条按获取方式分档的阶梯：</p>
+<table>
+<thead>
+<tr>
+<th>档位</th>
+<th>边际成本</th>
+<th>质量上限</th>
+<th>前提资产</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>人工标注</td>
+<td>$0.5-5/条（简单），$10-100+/条（专家域）</td>
+<td>最可控，线性扩展</td>
+<td>标注团队/外包</td>
+</tr>
+<tr>
+<td>规则/模板合成</td>
+<td>~$0.001-0.01/条</td>
+<td>规则设计者水平</td>
+<td>领域知识</td>
+</tr>
+<tr>
+<td>蒸馏强模型</td>
+<td>教师推理费（500 token 样本 @ mini 档约 $0.0003/条）</td>
+<td>= 教师水平</td>
+<td>强模型（自研或 API）</td>
+</tr>
+<tr>
+<td>线上产品回流</td>
+<td>≈ 0（边际）</td>
+<td>on-policy 溢价：就是部署分布上的数据</td>
+<td>线上产品 + 清洗管线</td>
+</tr>
+<tr>
+<td>可验证环境（RLVR）</td>
+<td>≈ 0（每条奖励：单测/答案对错）</td>
+<td>环境保真度</td>
+<td>沙箱/引擎/真机</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>蒸馏 vs 人工的量级：100 万条 500-token 样本，蒸馏约 $300，人工 $50 万起——三个数量级的价差，但蒸馏质量被教师封顶</li>
+<li><strong>产品回流的精确表述</strong>：(a) 订阅收入覆盖 serving 成本，推理不再是纯支出；(b) 会话本身就是训练素材的生成过程，一次投入两次产出。两个修正：隐式信号（点击/采纳/编辑/停留）→ 训练信号的转换需要奖励模型 + 清洗管线（固定成本）；合规与脱敏是持续开销。所以是<strong>边际免费，不是零成本</strong></li>
+<li><strong>阶梯的结构性规律：越便宜的档位，前提是先拥有越贵的资产。</strong> 教师档要有强模型，回流档要有产品，环境档要有 infra。数据系数是资产存量的函数，不是自由选择——这解释了为什么有产品的公司天然数据成本低</li>
+<li>推论（反直觉的定价行为）：大厂慷慨的免费额度 = 数据采购预算，烧 OpEx 买 on-policy 数据</li>
+<li>Physical AI 站在阶梯最贵的位置：真机数据采集成本远超一切文本档位</li>
+</ul>
+<h4 id="26">2.6 全成本模型：实验系数、人力系数与七项补充<a class="headerlink" href="#26" title="Permanent link">#</a></h4>
+<h5 id="_2">实验系数：失败金字塔<a class="headerlink" href="#_2" title="Permanent link">#</a></h5>
+<ul>
+<li>每个最终 run 底下压着消融与失败分支：Chinchilla 拟合用 400+ 个模型，MoE scaling 论文普遍 300+（索引见 ScalingLaws.md 第 13 节）；经验量级：实验：最终 ≈ 3-10x 算力</li>
+<li>scaling law 本身是实验系数的压缩技术：用小 run 买信息、外推大 run，把"实验一遍"降为"拟合一条曲线"。Gadre 2024（过训练区域可靠外推，arXiv:2403.08540）在这个框架里的准确位置：把实验系数砍了一个量级</li>
+<li>配方折旧：FP8/MoE 工程一年内变行业标准，效率优势的半衰期约 12-18 个月（论文、挖人、开源三条侵蚀路径）→ 系数优势要求持续创新，或结构性资产（数据回流、自研芯片）</li>
+</ul>
+<h5 id="_3">人力系数：与其他系数的边际替代<a class="headerlink" href="#_3" title="Permanent link">#</a></h5>
+<ul>
+<li>一个研究员的价值 = 他压低的其他系数：年薪 $1M 的人，只要在 $100M 的 run 上省 2% 算力、或砍掉一次失败 run，就回本</li>
+<li>人力与算力在边际上可替代，存在最优配比</li>
+<li>国别劳动套利（同等算法人才薪酬差 2-5x）是 κ 国别差的来源之一，不只是算法差异</li>
+</ul>
+<h5 id="_4">其余必须入账的七项<a class="headerlink" href="#_4" title="Permanent link">#</a></h5>
+<ol>
+<li><strong>eval/质检成本</strong>：效果可测性是 κ 的前置成本——"同等效果"测不准，所有系数比较都是自欺。垃圾 eval → 错误信号 → 整个 RL run 报废，是最贵的隐性失败（评估走向经济价值量化的意义，见 PercyLiang.md 的 EconEvals）</li>
+<li><strong>部署侧隐性成本</strong>：集成、护栏、监控、失败兜底。真实自动化是混合系统：模型失败的流量转人工，人工兜底成本必须进 κ_serve。自动化边界 = 混合成本曲线的最优点——fail-loud@node + fail-soft@batch 的哲学本质上就是在管理这项成本</li>
+<li><strong>利用率与峰值税</strong>：自建集群按峰值容量付费，流量有峰谷；API 厂商把 N 个客户的峰谷池化。同样的硬件和模型，自建的有效 $/token 更高——这是"小规模用 API"的结构性原因，比"训练贵"重要</li>
+<li><strong>时间与折旧</strong>：模型是折旧资产（能力通胀，今天的前沿 ≈ 三年后的 mini）；训练周期 3-12 个月，期间目标在移动。市场移动快时买（API），稳定时建</li>
+<li><strong>风险成本</strong>：训练 run 失败（第 3 周 loss spike 报废几千万美元）、供应商 sunset（API 模型下线）、供应链中断。按期望损失进 κ</li>
+<li><strong>RL 拆账</strong>：账本 A 应拆为 C_pretrain + C_RL，其中 C_RL = 环境 CapEx + rollout 推理费 + 奖励模型训练与服务。rollout 是推理形态的成本——RL 训练账单里越来越大的一块是"生成 token 的钱"，o 系/GLM-5.3 时代 RL 算力已与预训练可比（见 ScalingLaws.md 第 7-8 节）</li>
+<li><strong>知识所在地原理</strong>：蒸馏只能搬运教师已有的公开能力；私有知识（自己的客服日志、业务数据）任何教师都不存在，只能走标注/产品回流。这是垂类模型存在的根本原因——第一支柱是私有知识，第二支柱是专业化增益（窄分布上，蒸馏出的专用小模型可以反超教师，因为容量全部给了单一分布）。"垂类护城河在数据飞轮"由此获得成本侧的严格证明</li>
+</ol>
+<h4 id="27">2.7 统一图景：κ 竞争<a class="headerlink" href="#27" title="Permanent link">#</a></h4>
+<ul>
+<li>所有 AI 竞争都是 κ 竞争：训练侧比"钱变能力的效率"，服务侧比"能力变钱的效率"</li>
+<li>每个系数都有自己的获取技术在进步：算法效率约 8-16 个月翻倍（Erdil &amp; Besiroglu，arXiv:2212.05853，不同修订版口径）、数据沿获取阶梯下行、scaling law 压实验、工具压人力 → κ 整体通缩，与账本 B 的 Jevons 悖论是同一枚硬币</li>
+<li>"哪个系数剩余空间最大，增量投资就去哪"——这是 ScalingLaws.md 第 10 节旋钮轮转在成本空间的镜像。技术叙事与成本叙事在此汇合</li>
+</ul>
+<hr />
+<h3 id="3">3. 回答两个战略问题<a class="headerlink" href="#3" title="Permanent link">#</a></h3>
+<h4 id="31_scaling">3.1 大小到瓶颈了吗？还会 scaling 吗？<a class="headerlink" href="#31_scaling" title="Permanent link">#</a></h4>
+<ul>
+<li>参数旋钮：边际 $ 收益递减 + 数据墙（高质量公网文本十几 T token 量级，重复数据按幂律衰减收益）。递减是真的，但没有停——前沿仍在 1e26+ FLOPs 量级往上走</li>
+<li>scaling 换轴：增量预算从"预训练一次成型"搬到 RL 后训练（ScalingLaws.md 第 7-8 节，GLM-5.3 受控实验）、推理时计算、agent 系统层。每次"最值得转的旋钮"都不是上一个——经济逻辑（资本流向边际收益最大的轴）和技术逻辑（旋钮剩余空间）在这里是同一句话</li>
+<li>真正的天花板不是技术，是宏观 ROI 验证周期：行业年 capex 数千亿美元 vs AI 直接收入百亿美元级，比值悬而未决。收入验证跟上 → 继续；跟不上 → 消化期回调（资本周期，不是终局）</li>
+<li>Ilya 的"从规模化时代迈向研究时代"（见 <a href="../../9.people/SSI-Ilya/">SSI-Ilya.md</a>）与唐杰的"旋钮轮转"是同一判断的两种表述：参数轴的油水在变薄，下一个突破来自别的轴</li>
+<li>判断：总参数继续涨（知识容量），激活参数被推理经济学按住，增量投入流向 RL 环境、数据质量、推理时计算</li>
+</ul>
+<h4 id="32">3.2 未来是综合大模型还是垂类小模型？<a class="headerlink" href="#32" title="Permanent link">#</a></h4>
+<p>收敛中的双层产业结构（不是预测，是正在发生）：</p>
+<ul>
+<li>上层：少数前沿 MoE = 能力工厂。资本密集、规模效应强、赢者通吃倾向；产品是"能力"本身（教师、合成数据、最难任务、首发窗口）</li>
+<li>下层：海量蒸馏/微调小模型 = 部署载体。任务分布窄 → 95% 质量 × 1-10% 成本，外加低延迟、私有化、合规、可控</li>
+<li>两层之间是传送带：蒸馏、合成数据、路由/级联——这条传送带本身就是生意</li>
+<li>时间维度：能力通胀，今天的前沿 ≈ 三年后的商品 mini。所以垂类小模型的护城河不在模型（会被追平），在数据飞轮 + 任务理解 + eval 体系</li>
+<li>对知识挖掘/agent 工程的落位：大模型当离线工厂（标注、挖掘、合成、judge），小模型当在线载体（蒸馏/微调后承载高频流量）</li>
+</ul>
+<hr />
+<h3 id="4_roi">4. 应用层：选型矩阵与 ROI 模板<a class="headerlink" href="#4_roi" title="Permanent link">#</a></h3>
+<h4 id="41">4.1 模型选型二维矩阵（质量阈值 × 调用量）<a class="headerlink" href="#41" title="Permanent link">#</a></h4>
+<pre><code>                      高质量阈值
+                          │
+     直接调 API 大模型     │     级联 cascade
+     （租，别自建）       │     （小模型主力 + 大模型兜底）
+   ───────────────────────┼───────────────────────
+     等/用商品 mini        │     自蒸馏垂类小模型
+   （能力通胀会送上门）   │     （ROI 最优区：价差×量 &gt; 蒸馏成本）
+                          │
+                      低质量阈值
+        低调用量 ←────────┴────────→ 高调用量
+</code></pre>
+<p>矩阵之外还有一条时间轴：模型是折旧资产（能力通胀，今天的前沿 ≈ 三年后的 mini），训练周期本身 3-12 个月、期间目标在移动。市场移动快时买（API），市场稳定时建（蒸馏/自训）。</p>
+<h4 id="42">4.2 自建垂类小模型的三个前提（同时满足才动手）<a class="headerlink" href="#42" title="Permanent link">#</a></h4>
+<ol>
+<li>私有数据飞轮已经在转（标注/挖掘产出持续回流）</li>
+<li>任务分布稳定（不会三个月变一次）</li>
+<li>量够大：升级流量 × 价差 &gt; 蒸馏 + 维护成本（经验上日百万级 token 调用是起步线）</li>
+</ol>
+<h4 id="43_roi_pipeline">4.3 ROI 计算模板（六步，可对接挖掘 pipeline）<a class="headerlink" href="#43_roi_pipeline" title="Permanent link">#</a></h4>
+<ol>
+<li>用大模型离线把 query 按难度分桶（mining/eval 基建可做）</li>
+<li>每桶测四个数：小模型成功率 s_s、大模型成功率 s_b、单 query 价值 v、桶流量 q</li>
+<li>级联总成本 = Σ q_i × [(1-p_i)·c_s + p_i·c_b]；p_i 是升级率，是成本旋钮</li>
+<li>级联总收益 = Σ q_i × (s_b - s_s) × v_i；只算被救回的流量</li>
+<li>解出 break-even 的 p 和 v</li>
+<li>每季度重算：c_b 以约 10x/两年的速度通缩，今天不划算的升级率，明年可能就划算。这是动态决策，不是一次性架构选型</li>
+</ol>
+<hr />
+<h3 id="5">5. 案例研究：主要玩家的经济账<a class="headerlink" href="#5" title="Permanent link">#</a></h3>
+<p>把第 2 章的框架套到真实公司/团队上。目的不是精确审计——数字全部是公开报道口径——是验证框架的解释力，并看清各家到底站在哪个系数上竞争。</p>
+<h4 id="51">5.1 样本与口径<a class="headerlink" href="#51" title="Permanent link">#</a></h4>
+<ul>
+<li>样本 9 家，按战略位置分层：海外全栈（OpenAI、Google、Anthropic、Meta）、特殊样本（xAI、DeepSeek）、中国系（字节豆包、阿里 Qwen、智谱 GLM）</li>
+<li>数字截至 2025 中-2026 初的财报、融资公告、技术报告与主流媒体报道；量级供框架演示</li>
+<li>落选说明：百度（先发但战略摇摆，B 端转 C 端反复）、腾讯混元（依托微信分发的跟随者）、Mistral（主权 AI 利基，已转向企业/国防）——分别是三种典型位置的弱化版，不单独开账</li>
+<li>本章为公司层定性账；单模型层的全生命周期 ROI 量化实算见第 6 章</li>
+</ul>
+<h4 id="52">5.2 海外四家<a class="headerlink" href="#52" title="Permanent link">#</a></h4>
+<p><strong>OpenAI：资本-产品飞轮的标准样本</strong></p>
+<ul>
+<li>供血：累计融资 $60B 级（2025.03 软银领投 $40B，估值 $300B）；Stargate 计划 $500B 量级（软银/甲骨文/MGX 合资，多年口径）；微软深度绑定（Azure 采购承诺 + 分成，报道口径 20% 级）</li>
+<li>烧钱：GPT-4 级训练 ~$100M；GPT-5 代际单 run 传闻 $500M-1B（含实验）；年推理开销数十亿美元级</li>
+<li>收入：ARR ~$13B（2025 中），ChatGPT 周活 7 亿+，订阅占大头</li>
+<li>收入结构：门槛型（能力首发窗口）+ 同质型（订阅/API），教师型（GPT 系当蒸馏教师）刚起步</li>
+<li>数据档位：产品回流（阶梯第 4 档），免费层是"免费额度=数据采购预算"的最典型实践</li>
+<li>κ 特征：训练侧 κ 不占优（capex 最重），但流量分母全球最大，资产摊销摊得最薄。风险：收入/烧钱比仍 &lt;1，是第 3.1 节"宏观 ROI 验证期"的头条样本</li>
+</ul>
+<p><strong>Google：唯一每个系数都有结构性优势的玩家</strong></p>
+<ul>
+<li>供血：广告主业现金流（年利润千亿美元级），2025 capex 指引 ~$75B，2026 更高</li>
+<li>算力系数：自研 TPU（v5e → Trillium → Ironwood），自用单 token 成本显著低于租 GPU（幅度各方估算不一）</li>
+<li>数据系数：Search/YouTube/Android 全分发面，AI Overviews 月触达 15 亿+用户</li>
+<li>收入：间接变现为主——云收入两位数增长 + 搜索护城河；模型本身不背收入指标</li>
+<li>κ 特征：算力、数据、分发三个系数同时占优，且"输得起"（模型业务失败不伤主业）。全行业唯一不需要靠卖模型收回训练成本的玩家</li>
+</ul>
+<p><strong>Anthropic：门槛型收入纯度最高</strong></p>
+<ul>
+<li>供血：累计融资 $30B 级（2025.09 估值 $183B）；算力绑定 AWS Rainier（50 万 Trainium2）换折扣</li>
+<li>收入：ARR 从 2024 底 ~$1B 涨到 2025 中 ~$5B 级；绝大部分来自 API/企业；Claude Code 单产品年化数亿美元级（2025 中报道）</li>
+<li>收入结构：门槛型为主（代码、agent、企业工作流——能力不够客户直接不用），正好落在第 1.4 节阶跃曲线最陡的一段</li>
+<li>κ 特征：单 token 变现率全行业最高，对资本的依赖相对低；放弃了分发规模，换 B 端纯度</li>
+</ul>
+<p><strong>Meta：生态防御补贴</strong></p>
+<ul>
+<li>供血：广告主业，2025 capex 指引 $66-72B</li>
+<li>模型直接收入：≈0（Llama 全开源）</li>
+<li>花钱方式：$14.3B 收 Scale AI 49%（2025.06，买标注产能 + Alexandr Wang 本人）；数十亿美元级重组超级智能实验室，天价挖人</li>
+<li>算的账：防御账——开源把能力层商品化（commoditize your complement），防止能力层被单一供应商收税，保住广告毛利</li>
+<li>κ 特征：人力系数逆势抬升（主动买最贵的人），训练一掷千金；换的是"模型层不可被卡脖子"的期权价值</li>
+</ul>
+<h4 id="53">5.3 两个特殊样本<a class="headerlink" href="#53" title="Permanent link">#</a></h4>
+<p><strong>xAI：算力与数据的特权者，收入闭环最弱</strong></p>
+<ul>
+<li>CapEx：Colossus 一期 10 万 H100 用 122 天建成（2024.12）；Grok 3 宣称 2 亿 GPU 时（约 10x+ 于 GPT-4 代际估算）；融资 ~$12B 级，2025.03 与 X 合并（合并口径 xAI $80B / X $33B）</li>
+<li>数据特权：X 全量实时语料（独家回流档），特斯拉视频流（Physical AI 期权）</li>
+<li>收入：X Premium 订阅 + API，相对投入是零头</li>
+<li>κ 特征：极端的"资本换期权"，赌的不是 ROI 是战略卡位；手握数据系数优势，但没有把回流变成深度产品的能力（X 的用户面 ≠ ChatGPT 的使用深度）</li>
+</ul>
+<p><strong>DeepSeek：效率系数的极限证明</strong></p>
+<ul>
+<li>团队：~150 人（V3 时代），本土年轻研究员为主，无天价挖人</li>
+<li>训练：V3 最终 run $5.576M（MLA + MoE + FP8 + 自研 infra）；硬件是幻方 2021 年囤的万卡 A100 + 后续 H800——自有存量，折旧口径与租用完全不同</li>
+<li>供血：幻方量化利润，无外部 VC。这是它能极致压 κ 的制度条件：不背 ROI 验证压力</li>
+<li>定价：V3 API $0.27/$1.10 每 M（输入/输出），R1 $0.55/$2.19——o1 输出价的 1/27；R1 推理毛利率理论值 +545%（官方论文口径，假设算力全部按租价卖出）</li>
+<li>影响：2025.01.27 R1 发布次日 NVDA 单日 -17%（~$6000 亿市值，美股史上最大单日蒸发）。市场用股价承认了第 2.5 节的论点：边际训练成本 ≠ κ，效率可以击穿"capex 即护城河"的叙事</li>
+<li>κ 特征：实验系数 + 人力系数全球公开样本最优；短板是收入闭环——证明了效率换得到生存权和行业话语权，换不到定价权（定价权在门槛型收入手里，第 2.3 节）</li>
+</ul>
+<h4 id="54">5.4 中国三系<a class="headerlink" href="#54" title="Permanent link">#</a></h4>
+<p><strong>字节豆包：把"免费额度=数据采购"打到极致</strong></p>
+<ul>
+<li>分发：豆包 app 国内 AI 应用 MAU 第一（亿级，2025）</li>
+<li>价格战：2024.05 火山引擎把主力模型降到 ¥0.0008/千 token（官方宣称比行业均价低 99.3%），此后全行业跟进——第 2.2 节"单位智能价格通缩"的主动制造者</li>
+<li>供血：广告主业 + 国内最大 AI capex（2025 估算 RMB 160B 量级）</li>
+<li>κ 特征：数据系数最强（回流规模最大）+ 算力绝对量大；逻辑是把模型亏损当获客成本与数据采购预算，赌 Jevons——token 越便宜，火山云与字节生态赚得越多</li>
+</ul>
+<p><strong>阿里 Qwen：开源当云的漏斗</strong></p>
+<ul>
+<li>开源：Qwen 系列是 HF 衍生模型最多的家族（10 万+ 衍生，2025 年超过 Llama，官方口径）</li>
+<li>供血：2025.02 宣布三年 RMB 3800 亿 AI 基建投入</li>
+<li>变现：阿里云百炼——权重免费，推理/微调/企业服务收钱；财报口径 AI 相关产品收入连续多季三位数增长</li>
+<li>κ 特征：典型"部署载体层"打法：不抢能力工厂的定价权，赚所有人部署时的水钱；电商（交易/客服）是私有回流数据</li>
+</ul>
+<p><strong>智谱 GLM：学研人力红利 + 政府资本</strong></p>
+<ul>
+<li>出身：清华 KEG（唐杰团队）；GLM-5.3 是 post-training 旋钮的受控实验样本（ScalingLaws.md 第 8 节）</li>
+<li>供血：2025 年多地国资注入（杭州/珠海/成都等，累计 RMB 十亿级），无 mega VC；已启动 IPO 辅导（2025）</li>
+<li>收入：ToB/ToG 项目 + MaaS，2024 口径 RMB 数亿级——体量小，但 B/G 路径清晰</li>
+<li>κ 特征：人力系数继承学研红利；资金成本含非市场成分（自主可控的战略价值），按纯商业 κ 算不公平，按"国家级选项"算才对</li>
+</ul>
+<h4 id="55">5.5 横向对比表<a class="headerlink" href="#55" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>CapEx/供血</th>
+<th>团队规模</th>
+<th>数据档位</th>
+<th>最强系数</th>
+<th>收入结构</th>
+<th>战略位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAI</td>
+<td>融资 $60B 级 + Stargate 计划</td>
+<td>~3000</td>
+<td>回流（对话产品）</td>
+<td>资产摊销（流量分母最大）</td>
+<td>订阅+API：门槛+同质</td>
+<td>工厂+载体兼得</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>capex ~$75B（主业供血）</td>
+<td>DeepMind 数千</td>
+<td>回流（15 亿用户面）</td>
+<td>算力（TPU）+分发</td>
+<td>间接（云+搜索）</td>
+<td>全栈，输得起</td>
+</tr>
+<tr>
+<td>Anthropic</td>
+<td>融资 $30B 级</td>
+<td>~2000</td>
+<td>公开+企业私有</td>
+<td>收入纯度（门槛型）</td>
+<td>API/企业为主</td>
+<td>门槛型工厂</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>capex $66-72B</td>
+<td>重组中，目标千级</td>
+<td>回流+标注采购</td>
+<td>资本与人力购买力</td>
+<td>≈0（防御账）</td>
+<td>商品化互补品</td>
+</tr>
+<tr>
+<td>xAI</td>
+<td>自建 Colossus + 融资 $12B 级</td>
+<td>千级</td>
+<td>X 独家回流</td>
+<td>算力+数据特权</td>
+<td>弱</td>
+<td>期权型卡位</td>
+</tr>
+<tr>
+<td>DeepSeek</td>
+<td>幻方利润</td>
+<td>~150</td>
+<td>公网+自建存量</td>
+<td>实验+人力</td>
+<td>≈0（API 低价卖）</td>
+<td>效率范式输出</td>
+</tr>
+<tr>
+<td>字节</td>
+<td>RMB 160B 级（估算）</td>
+<td>大</td>
+<td>回流（规模最大）</td>
+<td>数据+分发</td>
+<td>云+生态间接</td>
+<td>载体层霸主</td>
+</tr>
+<tr>
+<td>Qwen</td>
+<td>三年 RMB 3800 亿</td>
+<td>大</td>
+<td>回流（电商）</td>
+<td>开源漏斗</td>
+<td>云水钱</td>
+<td>部署载体层</td>
+</tr>
+<tr>
+<td>智谱</td>
+<td>国资注入</td>
+<td>~千</td>
+<td>公开+ToB</td>
+<td>人力（学研）+政策</td>
+<td>B/G 项目</td>
+<td>区域+自主可控</td>
+</tr>
+</tbody>
+</table>
+<h4 id="56">5.6 四种商业模式闭环<a class="headerlink" href="#56" title="Permanent link">#</a></h4>
+<ol>
+<li><strong>资本-产品飞轮</strong>（OpenAI、Google、字节）：产品回流数据 + 收入反哺 capex，门槛型与同质型混合收入；护城河 = 流量分母</li>
+<li><strong>主业补贴防御</strong>（Meta、Qwen）：模型业务本身不赚钱，价值 = 保护或撬动主业（广告毛利、云水钱）。开源是武器——"谁为开源买单"的两个答案：广告商和云客户（DeepSeek 是第三个答案：量化基金的战略投资，买人才品牌与影响力）</li>
+<li><strong>效率套利</strong>（DeepSeek、Mistral、智谱）：κ 压到极限，换生存权与话语权，不追定价权</li>
+<li><strong>企业深耕</strong>（Anthropic）：放弃分发规模，换单 token 最高变现与最低资本依赖</li>
+</ol>
+<h4 id="57_vs">5.7 框架预测 vs 已发生事实<a class="headerlink" href="#57_vs" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>框架论断</th>
+<th>出处</th>
+<th>事实核对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jevons：单价降 → 调用量爆炸</td>
+<td>2.2</td>
+<td>中国价格战后火山/阿里云 token 调用量涨数十倍、云 AI 收入连续多季高增长 ✓</td>
+</tr>
+<tr>
+<td>免费额度 = 数据采购预算</td>
+<td>2.5</td>
+<td>豆包免费策略、ChatGPT 免费层 ✓</td>
+</tr>
+<tr>
+<td>边际成本 ≠ κ</td>
+<td>2.5</td>
+<td>R1 击穿"capex 即护城河"，NVDA 单日 -17% ✓</td>
+</tr>
+<tr>
+<td>能力通胀：模型是折旧资产</td>
+<td>2.6 第 4 条</td>
+<td>开源权重 6-12 个月追平闭源上一代（Qwen/DeepSeek/Llama 节奏）✓</td>
+</tr>
+<tr>
+<td>系数轮转：投资流向剩余空间最大的系数</td>
+<td>2.7</td>
+<td>2023 卷算力 → 2024 卷数据（标注/合成）→ 2025 卷 RL 环境 → 2026 卷 agent 与分发 ✓</td>
+</tr>
+<tr>
+<td>产品回流 = 最便宜的数据档</td>
+<td>2.5</td>
+<td>有产品的公司（字节/OpenAI/Google）与无产品实验室的投入产出比持续拉开 ✓（进行中）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="58">5.8 对业务方（自建垂类视角）的启示<a class="headerlink" href="#58" title="Permanent link">#</a></h4>
+<p>以客服/知识挖掘类业务为例（正是产品回流档的持有者）：</p>
+<ul>
+<li>你的数据系数天然在第 4 档：线上会话回流，推理成本由业务承担——按第 2.6 节知识所在地原理，这是别人买不到的档位</li>
+<li>教师档受限：最强闭源教师对你贵且有合规风险；开源教师（Qwen/DeepSeek/GLM 级）对抽取/判别类任务已够用——蒸馏成本三个数量级低于人工标注（2.5）</li>
+<li>c_s 在通缩：价格战让 API 单价每 1-2 年降一个量级，级联的 break-even 升级率每季度都在变好（4.3 第 6 步）</li>
+<li>唯一不可被复制的系数优势是私有知识的挖掘质量：模型会被追平，飞轮不会——这决定了投入应该优先给数据管线而不是模型本身</li>
+</ul>
+<hr />
+<h3 id="6_roi_vs">6. 全生命周期 ROI 实算：开源 vs 闭源<a class="headerlink" href="#6_roi_vs" title="Permanent link">#</a></h3>
+<p>第 5 章是公司层的定性账。本章下钻到单模型层，把生命周期 ROI 算成数字。方法：可验证锚点（API 牌价、GPU 租金、官方披露的训练成本）用实数；不可验证的（任务质量、业务价值）作为参数显式标出——套用时按 4.3 模板实测替换。</p>
+<h4 id="61">6.1 口径<a class="headerlink" href="#61" title="Permanent link">#</a></h4>
+<ul>
+<li>对象：单代模型，不是公司。生命周期 = 发布到被下一代替代（闭源旗舰约 12-24 个月，由能力通胀决定，2.6 第 4 条）</li>
+<li>两个视角：</li>
+<li>生产者 ROI =（模型直接归因收入 − 全成本）÷ 全成本</li>
+<li>消费者 ROI（部署方）=（业务价值 − 全成本）÷ 全成本，用标准化场景计算</li>
+<li>可验证锚点：API 官网牌价（2025-2026）、H100 租金 $2/GPU·hr、Llama/DeepSeek 官方训练披露</li>
+<li>参数假设（正文标 ⚠）：任务质量、流量结构、单 query 业务价值</li>
+</ul>
+<h4 id="62">6.2 生产者侧：闭源模型，单代旗舰的单位经济是正的<a class="headerlink" href="#62" title="Permanent link">#</a></h4>
+<p>先验证 1.2 的"训练摊销是噪声"：GPT-4 训练 ~$100M，生命周期服务量估 1-3T tokens，摊销 &lt; $0.0001/1M token——比推理成本（$10-20/1M）小四个数量级。所以单代模型 ROI 几乎完全由"推理毛利 × 量"决定。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>训练成本</th>
+<th>生命周期归因收入（估）</th>
+<th>推理毛利（估）</th>
+<th>单代直接 ROI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-4（2023.03-2024.05 旗舰期）</td>
+<td>~$100M（实验 3-10x 另计）</td>
+<td>$2-3B（2023 收入 $1.6B + 2024 上半年，ChatGPT 订阅 + API 归因）</td>
+<td>牌价 $30/$60，成本估 $10-20/1M → 毛利 50-70%</td>
+<td>正，量级 +100% 以上（误差大，方向可靠）</td>
+</tr>
+<tr>
+<td>GPT-4o-mini</td>
+<td>&lt;$10M（小模型 + 蒸馏）</td>
+<td>未拆分；承载量最大的一档</td>
+<td>牌价 $0.15/$0.60 → 毛利 50%+</td>
+<td>单位经济最好的一档</td>
+</tr>
+<tr>
+<td>Claude Sonnet 系（3.5→4.5）</td>
+<td>$50-300M/代</td>
+<td>Anthropic ARR $1B→$5B 的主力（2024 末→2025 中）</td>
+<td>牌价 $3/$15 → 毛利 ~50-60%（报道口径）</td>
+<td>正</td>
+</tr>
+<tr>
+<td>Gemini Flash 系</td>
+<td>未披露</td>
+<td>云拉动，不直接归因</td>
+<td>定价最激进</td>
+<td>不适用（见 5.2 Google 条目）</td>
+</tr>
+</tbody>
+</table>
+<p>结论：闭源旗舰与中端模型本身是赚钱的；"AI 公司亏损"亏在管线 capex（下一代训练 + 实验金字塔）与获客——这是再投资，不是单位经济为负。两者在财务上必须分开看，混在一起是常见的分析错误。</p>
+<h4 id="63_roi">6.3 生产者侧：开源模型，直接 ROI 全部为负<a class="headerlink" href="#63_roi" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>训练成本</th>
+<th>直接收入</th>
+<th>直接 ROI</th>
+<th>回收路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Llama 3.1 家族</td>
+<td>405B 单 run $62M（官方 30.84M H100·hr）；家族全成本 $200-500M（3-10x 规则）</td>
+<td>0</td>
+<td>−100%</td>
+<td>防御 + 广告系统增益（Meta 口径：AI 推荐改进值 $B 级）</td>
+</tr>
+<tr>
+<td>DeepSeek V3</td>
+<td>$5.576M（官方边际）；全成本估 $30-60M</td>
+<td>未公开（API + app；理论推理毛利 +545%）</td>
+<td>推理为正；全周期覆盖全成本大概率成立，量级不可考</td>
+<td>品牌与人才（见 5.3）</td>
+</tr>
+<tr>
+<td>Qwen 系</td>
+<td>未披露</td>
+<td>权重 0；云拉动三位数增长</td>
+<td>不可归因</td>
+<td>云水钱（见 5.4）</td>
+</tr>
+</tbody>
+</table>
+<p>结论与 5.6 一致：开源的直接账全是亏的，回收全在体系外。开源不是商业模式，是补贴模式。单模型层的论文披露明细（DeepSeek V3 / Llama 3.1 / MiMo 系 / OLMo 2）见 6.7。</p>
+<h4 id="64">6.4 消费者侧：标准化部署场景（本章核心）<a class="headerlink" href="#64" title="Permanent link">#</a></h4>
+<p>场景设定（参数可替换）：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>流量</td>
+<td>100M tokens/天（输入 80M + 输出 20M）</td>
+<td>参数</td>
+</tr>
+<tr>
+<td>周期</td>
+<td>24 个月（730 天，累计 73B tokens）</td>
+<td>参数</td>
+</tr>
+<tr>
+<td>质量假设 ⚠</td>
+<td>闭源旗舰 92% / 闭源 mini 88% / 开源 70B 微调后 85% / 蒸馏 32B 80%（任务成功率）</td>
+<td>假设，须按 4.3 实测</td>
+</tr>
+<tr>
+<td>单 query 价值 ⚠</td>
+<td>v（参数化，下文解临界值）</td>
+<td>假设</td>
+</tr>
+<tr>
+<td>每 query token</td>
+<td>~100（即 33M queries/天）</td>
+<td>参数</td>
+</tr>
+</tbody>
+</table>
+<p>五个选项的 24 个月全成本（牌价与租金为 2025-2026 实数）：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>计算式</th>
+<th>24 个月总成本</th>
+<th>折合每 1M token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A 闭源旗舰 API（Sonnet 级 $3/$15）</td>
+<td>58.4B×$3/M + 14.6B×$15/M</td>
+<td>$394k</td>
+<td>$5.40</td>
+</tr>
+<tr>
+<td>B 闭源 mini API（$0.15/$0.60）</td>
+<td>同上</td>
+<td>$17.5k</td>
+<td>$0.24</td>
+</tr>
+<tr>
+<td>C 开源 API（DeepSeek V3 $0.27/$1.10）</td>
+<td>同上</td>
+<td>$31.8k</td>
+<td>$0.44</td>
+</tr>
+<tr>
+<td>D 开源自部署 70B FP8</td>
+<td>见下</td>
+<td>$260-610k</td>
+<td>~$5.5</td>
+</tr>
+<tr>
+<td>E 蒸馏 32B 自部署</td>
+<td>见下</td>
+<td>$180-440k</td>
+<td>$2.5-6.0</td>
+</tr>
+</tbody>
+</table>
+<p>自部署 D 的算力推算：</p>
+<pre><code>持续算力 = 2×70e9 FLOPs/token × 73e9 tokens ÷ 6.3e7 s ≈ 1.6e14 FLOP/s ≈ 0.4×H100(40% MFU)
+峰值/冗余/KV/长上下文系数 4-8x → 4-8×H100 → 租金 $140-280k/24mo
++ 微调与数据 $30-80k（一次性；有产品回流数据飞轮时大幅降低，见 2.5 阶梯第 4 档）
++ 人力 0.3-0.5 FTE MLOps × 24mo = $90-250k
+合计 $260-610k（E 档：算力减半、蒸馏训练 $20-50k、人力同 → $180-440k）
+</code></pre>
+<p>三个结论：</p>
+<ol>
+<li><strong>劳动力主导</strong>：0.3-0.5 个 FTE 的 MLOps 比全部 GPU 租金还贵——这是 2.6 第 2 条（部署隐性成本）在真实数字里的样子。有平台团队摊薄（边际人力 ≈ 0）时此项大减，那是大厂自部署的前提条件</li>
+<li><strong>break-even 规模</strong>（按 D 中位 ~$400k 算）：</li>
+<li>vs 旗舰 API（$5.4/1M）：~100M tokens/天——正好是本场景规模。即这个量级上自部署 70B 与旗舰 API 成本打平，但质量低 7pp（⚠ 假设），只有质量门槛 ≤ 85% 时才成立</li>
+<li>vs 开源 API（$0.44/1M）：~1.3B tokens/天</li>
+<li>vs mini API（$0.24/1M）：~2.3B tokens/天——超大规模平台且人力 ≈ 0 才谈得上</li>
+<li><strong>2023 年的直觉已反转</strong>：2023 年 mid 档 API $10-60/1M，自部署在千万 token/天量级就打平；两年价格通缩 ~100x（2.2）把 break-even 推到十亿级。Jevons 的消费者侧镜像：API 单价崩得比自部署效率涨得快</li>
+</ol>
+<p>质量修正（决定 A vs B 选择的临界值）：</p>
+<pre><code>(q_A − q_B) × 33M × v* = (c_A − c_B) = $516/天
+v* ≈ 0.04 × 33e6 ÷ 516 ≈ $0.0004/query
+</code></pre>
+<ul>
+<li>客服/企业场景：一次成功解决通常值 $0.1-1（省下的人工）→ v &gt;&gt; v* → 质量优先，选旗舰</li>
+<li>低价值流量（闲聊、预筛、粗排）→ mini 统治</li>
+<li>这就是 1.4 阶跃函数在每 1M token 上的微观形态</li>
+</ul>
+<h4 id="65">6.5 实算对框架的回验<a class="headerlink" href="#65" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>框架论断</th>
+<th>本章实证</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.2 训练摊销是噪声</td>
+<td>GPT-4 $100M ÷ 1-3T tokens &lt; $0.0001/1M，比推理小四个数量级 ✓</td>
+</tr>
+<tr>
+<td>2.6 第 2 条部署隐性成本</td>
+<td>劳动力成本 &gt; 全部 GPU 租金 ✓</td>
+</tr>
+<tr>
+<td>2.6 第 3 条利用率峰值税</td>
+<td>API 池化优势持续到十亿 token/天 ✓</td>
+</tr>
+<tr>
+<td>2.2 价格通缩</td>
+<td>break-even 两年外移 ~100x，"自部署更便宜"的直觉已过期 ✓</td>
+</tr>
+</tbody>
+</table>
+<h4 id="66">6.6 结论<a class="headerlink" href="#66" title="Permanent link">#</a></h4>
+<ul>
+<li>生产者：闭源单代模型 ROI 为正（推理毛利 × 量），亏损在管线再投资；开源直接 ROI 全负，是补贴不是生意</li>
+<li>消费者：mini 档 API（$0.24/1M）是纯成本统治者；自部署的正当理由只剩合规/隐私/时延/控制 + 平台团队边际 ≈ 0 + 超大规模流量</li>
+<li>质量参数决定选项：用 4.3 六步模板实测 q 与 v，别用榜单——每 1M token 省的钱和每 1% 成功率赚的钱，只有在自己的任务分布上才能算清</li>
+</ul>
+<hr />
+<h4 id="67">6.7 实证附录：开源模型训练成本明细（论文披露）<a class="headerlink" href="#67" title="Permanent link">#</a></h4>
+<p>本节数字取自各家技术报告/论文原文（arXiv HTML 版，2026.10 检索）。【官】=论文明确披露；【估】=按 6·N_active·D FLOPs 与 H100 $2/hr、40% MFU 折算的租金等价（硬件未披露时）。</p>
+<h5 id="_5">主表：预训练与后训练<a class="headerlink" href="#_5" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>模型（发布）</th>
+<th>架构（总/激活）</th>
+<th>预训练 tokens</th>
+<th>预训练成本</th>
+<th>后训练成本</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DeepSeek V3（2024.12）</td>
+<td>671B / 37B</td>
+<td>14.8T</td>
+<td>$5.33M【官：2.664M H800·hr】</td>
+<td>$0.25M【官：上下文扩展 $0.238M + 后训练 $0.01M】</td>
+<td>后训练/预训练 = 0.2%</td>
+</tr>
+<tr>
+<td>Llama 3.1 405B（2024.07）</td>
+<td>405B dense</td>
+<td>15T+</td>
+<td>~$62M【官：30.84M H100·hr】</td>
+<td>未单独披露</td>
+<td>家族另有 8B/70B</td>
+</tr>
+<tr>
+<td>MiMo-7B（2025.04）</td>
+<td>7B dense</td>
+<td>25T</td>
+<td>~$1.5M【估】</td>
+<td>SFT 500K 样本；RL 130K 可验证题（数学 100K+代码 30K），未折币</td>
+<td>TPP 3571；RL 引擎实验用 256×H20</td>
+</tr>
+<tr>
+<td>MiMo-V2.6-Pro（2026.10）</td>
+<td>1.02T / 42B</td>
+<td>30T</td>
+<td>~$10.6M【估】</td>
+<td><strong>$2.6M【官：RL 后训练，单 run 数千 GPU】</strong></td>
+<td>后训练/预训练 ≈ 25%</td>
+</tr>
+<tr>
+<td>MiMo-V2.6-Flash（2026.10）</td>
+<td>310B / 15B</td>
+<td>48T</td>
+<td>~$6.0M【估】</td>
+<td><strong>$0.9M【官】</strong></td>
+<td>TPP 3200；后训练占比 ≈ 15%</td>
+</tr>
+<tr>
+<td>OLMo 2 7B（2024.11）</td>
+<td>7B dense</td>
+<td>4.05T（3.9T 预训练）</td>
+<td>~$0.25M【估】</td>
+<td>Tülu 3 配方；预训练占训练 FLOPs 90-95%【官】</td>
+<td>数据/检查点/训练日志全开源</td>
+</tr>
+<tr>
+<td>OLMo 2 13B</td>
+<td>13B</td>
+<td>5.6T</td>
+<td>~$0.6M【估】</td>
+<td>同上</td>
+<td></td>
+</tr>
+<tr>
+<td>OLMo 2 32B（2025.04）</td>
+<td>32B</td>
+<td>6.6T</td>
+<td>~$1.6M【估】；最终为 4 变体平均（模型汤），总算力约 ×4</td>
+<td>同上</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="tulu_3olmo_2_arxiv241115124">后训练参照：Tülu 3（OLMo 2 采用的开源后训练配方，arXiv:2411.15124）<a class="headerlink" href="#tulu_3olmo_2_arxiv241115124" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>披露</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SFT</td>
+<td>4-16 个 8×H100 节点，2 epochs</td>
+</tr>
+<tr>
+<td>DPO</td>
+<td>单节点 ~4 小时（受控实验）</td>
+</tr>
+<tr>
+<td>PPO（被弃用）</td>
+<td>双节点 ~28 小时——GPU 时约为 DPO 的 14 倍，是转向 RLVR 的直接动因</td>
+</tr>
+<tr>
+<td>RLVR</td>
+<td>8B 30 万 episodes / 70B 10 万；vLLM+Ray 异步基建；可验证奖励替代奖励模型</td>
+</tr>
+</tbody>
+</table>
+<h5 id="_6">五个观察<a class="headerlink" href="#_6" title="Permanent link">#</a></h5>
+<ol>
+<li><strong>后训练占比 18 个月涨了两个数量级</strong>：DeepSeek V3 的 0.2%【官/官】→ MiMo-V2.6 的 15-25%【官/估】。唐杰旋钮轮转在账本上的直接投影，2.6 第 6 条（RL 拆账）的实证</li>
+<li><strong>RL 的 token 单价是预训练的 ~75 倍</strong>：MiMo-V2.6-Pro 预训练 ~$0.35/1M token（$10.6M ÷ 30T）；RL ~$26/1M（$2.6M ÷ ~100B：每步 25K 序列、2.7-3.7B token × 30 步）。RL 只消耗预训练 0.3% 的 token 量，却花 25% 的钱——贵在长上下文（最高 1M）、rollout 的推理形态、判题算力和策略更新的重复前向。论文把 RL 成本拆成 训练/rollout/判题 三项（图 3），"判题算力"首次成为独立成本项</li>
+<li><strong>RL 选芯片按推理经济学</strong>：MiMo-7B 的 RL 基建实验用 H20（高显存带宽、低算力的推理型芯片）——rollout 是推理形态的成本，选卡不按训练算力选</li>
+<li><strong>失败成本也被披露</strong>：MiMo-V2.6 公布 30 步训练的中断时间线（显存双位错误、K8s 崩溃、MoE 负载不均 OOM）——实验系数的微观样本；开源训练动态让失败成本第一次可从外部考证</li>
+<li><strong>TPP 分化</strong>：MiMo 系把小模型过训练到 3200-3571 TPP（推理经济学最优），OLMo 2 学术口径 189-557 TPP（接近 Chinchilla 复现逻辑）——同一个市场里，产品逻辑和复现逻辑选了不同的最优解（1.2 的两面）</li>
+</ol>
+<h5 id="_7">与本框架的连接<a class="headerlink" href="#_7" title="Permanent link">#</a></h5>
+<ul>
+<li>OLMo 系是"实验系数可考证"的唯一样本：数据、检查点、训练日志全开源；Olmo 3（arXiv:2512.13961）更进一步——每个阶段、每个检查点、每个数据点、每个依赖全放。2.6 的实验系数第一次可以从外部审计</li>
+<li>所有【官】数字仍是最终 run 的边际口径（2.5 的口径警告不变）；MiMo-V2.6 "in a single run" 的措辞本身就是对这一点的承认</li>
+</ul>
+<hr />
+<h4 id="68_h200_202610">6.8 实测对比：开源模型推理成本全谱系（H200 基准，2026.10）<a class="headerlink" href="#68_h200_202610" title="Permanent link">#</a></h4>
+<p>6.7 看训练侧的账，本节看推理侧的账。27 个当前热门开源型号（0.8B → 2.78T），规格全部实时核验：总参数取 HF safetensors API 实数，激活参数与架构取各家 README/config。标记口径：【官】=README/config 明示；【计】=从官方 config 推算（官方未标注）；【系】=沿用同系列上一代官方口径。成本为公式推算，非引擎实测。</p>
+<h5 id="_8">口径与公式<a class="headerlink" href="#_8" title="Permanent link">#</a></h5>
+<ul>
+<li>基准硬件 H200 SXM：141GB HBM3e / 4.8 TB/s / FP8 dense 1979 TFLOPS；租金假设 $2.5/卡·hr（全表线性缩放，$2 则 ×0.8）。带宽勘误：本库此前误记 3.36 TB/s，已修（<a href="../../3.infra/inference-perf-theory/">inference-perf-theory.md</a> 同步修正）</li>
+<li>统一 FP8 部署口径（原生 FP8 仓库或官方/社区量化版）；BF16-only 部署则权重、卡数、单流成本全部 ×2</li>
+<li>吞吐模式（大 batch decode，算力受限，MFU=15%）：$ /1M 输出 token ≈ 0.0047 × N_active(B)。即 2.2 的 2·N_active·$/FLOP 代入 H200 数值；MoE decode 实测 MFU 通常 10-25%，取中</li>
+<li>单流模式（batch=1，带宽受限）：$ /1M ≈ 0.145 × 权重GB；TPOT_min = 权重GB ÷ (4.8 × 卡数) ms</li>
+<li>最少卡数 = ⌈权重GB × 1.08 ÷ 141⌉，再取 TP/EP 友好值（2/4/8/16/24）</li>
+<li>未计项：prefill（每 token 便宜 10-50 倍）、KV cache 显存挤占、峰谷 idle、牌价毛利</li>
+</ul>
+<h5 id="200b13">表一：旗舰组（总参 ≥ 200B，13 型）<a class="headerlink" href="#200b13" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>总参</th>
+<th>激活</th>
+<th>FP8权重</th>
+<th>H200卡数</th>
+<th>吞吐$/1M</th>
+<th>单流$/1M</th>
+<th>单流tok/s</th>
+<th>架构要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kimi-K3</td>
+<td>2.78T</td>
+<td>104B【官】</td>
+<td>2.78TB</td>
+<td>24（3节点）</td>
+<td>0.49</td>
+<td>402</td>
+<td>41</td>
+<td>KDA线性+门控MLA（69+24层），896专家选16，原生多模态，1M ctx</td>
+</tr>
+<tr>
+<td>LongCat-2.0</td>
+<td>1.78T（官1.6T）</td>
+<td>~48B【官】</td>
+<td>1.78TB</td>
+<td>16（2节点）</td>
+<td>0.23</td>
+<td>257</td>
+<td>43</td>
+<td>LSA稀疏注意力（明说改DSA），135B N-gram嵌入；ctx 256K配置/1M训练</td>
+</tr>
+<tr>
+<td>DS-V4-Pro-0813</td>
+<td>1.65T</td>
+<td>49B【官】</td>
+<td>1.65TB</td>
+<td>16（2节点）</td>
+<td>0.23</td>
+<td>239</td>
+<td>47</td>
+<td>FP8原生，61层，1M ctx</td>
+</tr>
+<tr>
+<td>Kimi-K2.6</td>
+<td>1.03T</td>
+<td>32B【官】</td>
+<td>1.03TB</td>
+<td>8（紧）</td>
+<td>0.15</td>
+<td>149</td>
+<td>37</td>
+<td>MLA（K2架构延续），61层</td>
+</tr>
+<tr>
+<td>DS-V4.1-Flash</td>
+<td>763B</td>
+<td>8/16B【官】</td>
+<td>763GB</td>
+<td>8</td>
+<td>0.075</td>
+<td>110</td>
+<td>50</td>
+<td>双档激活（机制未详），FP8原生；吞吐按16B档，8B档减半</td>
+</tr>
+<tr>
+<td>GLM-5.3</td>
+<td>753B</td>
+<td>~44B【计】</td>
+<td>753GB</td>
+<td>8</td>
+<td>0.21</td>
+<td>109</td>
+<td>51</td>
+<td>MLA+DSA式indexer，256专家选8+1共享，FP8原生，1M ctx，与5.2同底座（提升全来自后训练）</td>
+</tr>
+<tr>
+<td>DS-V3.2</td>
+<td>685B</td>
+<td>37B【官】</td>
+<td>685GB</td>
+<td>8</td>
+<td>0.17</td>
+<td>99</td>
+<td>56</td>
+<td>MLA+DSA，FP8原生，160K ctx</td>
+</tr>
+<tr>
+<td>MiniMax-M3</td>
+<td>427B</td>
+<td>23B【官】</td>
+<td>427GB</td>
+<td>4</td>
+<td>0.11</td>
+<td>62</td>
+<td>45</td>
+<td>原生多模态，1M ctx；BF16主仓+MXFP8副仓</td>
+</tr>
+<tr>
+<td>Qwen3.5-397B</td>
+<td>403B</td>
+<td>17B【官】</td>
+<td>403GB</td>
+<td>4</td>
+<td>0.080</td>
+<td>58</td>
+<td>48</td>
+<td>GDN线性混合（15×(3Δ+1门控)）；ctx 262K原生/1M可扩（托管版默认1M）</td>
+</tr>
+<tr>
+<td>GLM-5.3-Flash</td>
+<td>321B</td>
+<td>18B【官】</td>
+<td>321GB</td>
+<td>4</td>
+<td>0.084</td>
+<td>46</td>
+<td>60</td>
+<td>原生多模态，FP8原生</td>
+</tr>
+<tr>
+<td>DS-V4-Flash-0731</td>
+<td>304B</td>
+<td>13B【官】</td>
+<td>304GB</td>
+<td>4</td>
+<td>0.061</td>
+<td>44</td>
+<td>63</td>
+<td>284B骨干，43层，FP8原生，1M ctx</td>
+</tr>
+<tr>
+<td>Hy3（腾讯）</td>
+<td>299B</td>
+<td>21B【官】</td>
+<td>299GB</td>
+<td>4</td>
+<td>0.098</td>
+<td>43</td>
+<td>64</td>
+<td>传统GQA（64头/8KV/80层），256K ctx，+3.8B MTP层</td>
+</tr>
+<tr>
+<td>MiniMax-M2.7</td>
+<td>229B</td>
+<td>~10B【系】</td>
+<td>229GB</td>
+<td>2</td>
+<td>0.047</td>
+<td>33</td>
+<td>42</td>
+<td>FP8原生，62层，200K ctx，256专家选8</td>
+</tr>
+</tbody>
+</table>
+<p>注：总参为 HF safetensors 实数（含嵌入/MTP），官方 backbone 口径更小（V4-Pro 1.6T、V4-Flash 284B、V4.1-Flash 552B）。</p>
+<h5 id="moe_21-125b9">表二：效率组（小激活 MoE，总参 21-125B，9 型）<a class="headerlink" href="#moe_21-125b9" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>总参</th>
+<th>激活</th>
+<th>FP8权重</th>
+<th>卡数</th>
+<th>吞吐$/1M</th>
+<th>单流$/1M</th>
+<th>单流tok/s</th>
+<th>架构要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen3.5-122B-A10B</td>
+<td>125B</td>
+<td>10B【官】</td>
+<td>125GB</td>
+<td>1紧/2</td>
+<td>0.047</td>
+<td>18</td>
+<td>38</td>
+<td>GDN混合，官方FP8/Int4副仓</td>
+</tr>
+<tr>
+<td>gpt-oss-120b（国外参照）</td>
+<td>117B</td>
+<td>5.1B【官】</td>
+<td>117GB*</td>
+<td>1紧</td>
+<td>0.024</td>
+<td>17</td>
+<td>41</td>
+<td>MXFP4原生（实占~61GB），单卡80GB可装</td>
+</tr>
+<tr>
+<td>GLM-4.5-Air</td>
+<td>110B</td>
+<td>12B【官】</td>
+<td>110GB</td>
+<td>1紧</td>
+<td>0.056</td>
+<td>16</td>
+<td>44</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Hunyuan-A13B</td>
+<td>80B</td>
+<td>13B【官】</td>
+<td>80GB</td>
+<td>1</td>
+<td>0.061</td>
+<td>12</td>
+<td>60</td>
+<td>32层，32K ctx</td>
+</tr>
+<tr>
+<td>LongCat-Flash-Lite</td>
+<td>68.5B</td>
+<td>~3B【官】</td>
+<td>69GB</td>
+<td>1</td>
+<td>0.014</td>
+<td>10</td>
+<td>70</td>
+<td>N-gram嵌入&gt;30B，320K ctx</td>
+</tr>
+<tr>
+<td>Kimi-Linear-48B-A3B</td>
+<td>49B</td>
+<td>3B【官】</td>
+<td>49GB</td>
+<td>1</td>
+<td>0.014</td>
+<td>7</td>
+<td>98</td>
+<td>线性注意力，27层</td>
+</tr>
+<tr>
+<td>Qwen3.5-35B-A3B</td>
+<td>36B</td>
+<td>3B【官】</td>
+<td>36GB</td>
+<td>1</td>
+<td>0.014</td>
+<td>5.2</td>
+<td>133</td>
+<td>GDN混合；托管版即Qwen3.5-Flash</td>
+</tr>
+<tr>
+<td>GLM-4.7-Flash</td>
+<td>31B</td>
+<td>~3.6B【计】</td>
+<td>31GB</td>
+<td>1</td>
+<td>0.017</td>
+<td>4.5</td>
+<td>154</td>
+<td>MLA，64专家选4+1共享，47层，200K ctx</td>
+</tr>
+<tr>
+<td>gpt-oss-20b（国外参照）</td>
+<td>21B</td>
+<td>3.6B【官】</td>
+<td>21GB*</td>
+<td>1</td>
+<td>0.017</td>
+<td>3.0</td>
+<td>228</td>
+<td>MXFP4原生（实占~12GB）</td>
+</tr>
+</tbody>
+</table>
+<p>*gpt-oss 列按 FP8 统一口径换算；MXFP4 实占字节约减半，但 Hopper 无 FP4 硬件单元，经反量化内核运行——字节优势保留、算力优势没有（Blackwell 上才兑现）。</p>
+<h5 id="dense30b5">表三：小模型组（dense，总参≈激活，&lt;30B，5 型）<a class="headerlink" href="#dense30b5" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>总参</th>
+<th>FP8权重</th>
+<th>卡数</th>
+<th>吞吐$/1M</th>
+<th>单流$/1M</th>
+<th>单流tok/s（物理下界）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen3.5-27B</td>
+<td>27.8B</td>
+<td>28GB</td>
+<td>1</td>
+<td>0.13</td>
+<td>4.0</td>
+<td>172</td>
+</tr>
+<tr>
+<td>Qwen3.5-9B</td>
+<td>9.7B</td>
+<td>10GB</td>
+<td>1</td>
+<td>0.045</td>
+<td>1.4</td>
+<td>500</td>
+</tr>
+<tr>
+<td>Hunyuan-7B-Instruct</td>
+<td>7.5B</td>
+<td>8GB</td>
+<td>1</td>
+<td>0.035</td>
+<td>1.1</td>
+<td>600</td>
+</tr>
+<tr>
+<td>Qwen3.5-4B</td>
+<td>4.7B</td>
+<td>5GB</td>
+<td>1</td>
+<td>0.022</td>
+<td>0.67</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>Qwen3.5-2B</td>
+<td>2.3B</td>
+<td>2GB</td>
+<td>1</td>
+<td>0.011</td>
+<td>0.33</td>
+<td>2100</td>
+</tr>
+</tbody>
+</table>
+<p>注：Qwen3.5 全族（含 dense）为 GDN 线性注意力混合布局（如 9B：8×(3×(GDN→FFN)+1×(门控注意力→FFN))），KV 极小；262K 原生/1M 可扩；官方另有 GPTQ-Int4 版，字节再减半。Qwen3.5-0.8B：吞吐 $0.004、单流 $0.13/1M。Hunyuan-7B 为 2025 年中代际（混元当前小型号主力在 GGUF 本地生态，翻译特化的 Hy-MT2-7B 下载 62 万）。物理下界不含 3-8ms 框架开销，实际单流约 100-250 tok/s。</p>
+<h5 id="_9">十二个观察<a class="headerlink" href="#_9" title="Permanent link">#</a></h5>
+<p><strong>双重身份的实证（1.3/2.2 的落地）</strong></p>
+<ol>
+<li><strong>两列排序完全不同</strong>：吞吐成本 ∝ 激活参数，单流成本 ∝ 总参数。K3 吞吐榜中游（104B 激活），单流榜断层第一（$402/1M）；M2.7/V4-Flash 吞吐便宜 10 倍，单流只要 $33-44</li>
+<li><strong>全谱系价差收口</strong>：吞吐口径 $0.004（0.8B）→ $0.49（K3）≈ 120 倍；单流口径 $0.13 → $402 ≈ 3100 倍。2.2 的"~100x 结构性价差"在吞吐口径成立，延迟口径再乘 30</li>
+</ol>
+<p><strong>规模侧</strong></p>
+<ol>
+<li><strong>总参竞赛没停，但激活开始通胀</strong>：总参 1.6T-2.8T，全靠更稀疏的路由撑住单位成本（K3：896 选 16）。而 K2 32B → K3 104B（3.25 倍）——3.1"激活参数被推理经济学按住"出现反向支流：前沿开始花激活买能力，K3 吞吐成本已是 M2.7 的 10 倍</li>
+<li><strong>部署门槛两极分化</strong>：K3 三节点、LongCat/V4-Pro 两节点、四家单节点 8 卡、四家半节点 4 卡、M2.7 两卡、效率组与小模型组单卡。"开源旗舰"的入场券从单节点涨到多节点，"能跑"的门槛降到单卡</li>
+<li><strong>梯子完整度是产品哲学分歧</strong>：Qwen 0.8→397B 九档全配（Base/FP8/Int4 全套）；DeepSeek 主动弃小（R1-Distill 后再无小模型，最小开源 763B）——且官方给 Qwen 8B/14B 出 EAGLE3 投机解码草稿头：不做小模型，做小模型的配件，站在所有人的部署链路上</li>
+</ol>
+<p><strong>架构侧</strong></p>
+<ol>
+<li><strong>注意力架构大分流（1M ctx 时代的入场券）</strong>：MLA+稀疏索引成旗舰标配——V3.2 的 DSA、GLM-5.3 的 indexer、LongCat 的 LSA（跨层索引）、K3 的 KDA；Qwen3.5 走 GDN 线性混合；唯一传统 GQA 的 Hy3（8 KV 头，KV 数百 KB/token）长上下文批量并发吃亏。DeepSeek 的 DSA 已被两家魔改跟进</li>
+<li><strong>原生 FP8 成中国旗舰标配</strong>：V3.2/V4 系/GLM-5.3/GLM-5.3-Flash/M2.7 官方 FP8 仓；Qwen3.5 官方 FP8 副仓；M3 官方 MXFP8 副仓</li>
+<li><strong>3.1"换轴"的活样本</strong>：GLM-5.3 官方自述"与 5.2 同底座，全部提升来自后训练"；V4.1-Flash 的 8B/16B 双档激活把"激活数"本身做成成本旋钮——新现象</li>
+</ol>
+<p><strong>小模型侧</strong></p>
+<ol>
+<li><strong>小段位双流派</strong>：dense 快路线（9B：单流物理下界 500 tok/s、吞吐 $0.045）vs 小 MoE 省路线（35B-A3B：吞吐 $0.014、4 倍知识容量、单流慢 4 倍）——dense 用 3 倍吞吐成本换延迟与部署简单性</li>
+<li><strong>~3.6B 激活是全球商品化收敛点</strong>：Qwen 3B、GLM 3.6B【计】、LongCat 2.9-4.5B、Kimi 3B、OpenAI 3.6B——中外五家全落在 3-4.5B 激活/20-70B 总参带。6.4 cascade 模板的 r_small 当期标准答案</li>
+<li><strong>物理公式在 &lt;10B 段失守</strong>：9B 的 TPOT_min 仅 2ms，被 3-8ms 框架/调度开销吃掉（inference-perf-theory 的 fixed-floor pitfall 实证）——小模型延迟瓶颈从"搬权重"转移到"工程开销"</li>
+<li><strong>量化路线参照</strong>：gpt-oss 用 MXFP4 原生走"单卡容量"路线（117B 进单卡 80GB）；Hopper 上字节优势保留、算力优势没有</li>
+</ol>
+<h5 id="_10">与本框架的连接<a class="headerlink" href="#_10" title="Permanent link">#</a></h5>
+<ul>
+<li>本表 = 6.4 cascade 模板的当期选型菜单：r_small/r_big 的价格与卡数直接查表；按"单位智能 $ 通缩 ~10x/2yr"的节奏每季度重算</li>
+<li>dense 模型大 batch 下 MFU 实际可达 30-50%（高于 MoE 的 15% 假设），表三吞吐成本是保守上界</li>
+<li>K3 的激活通胀与 3.1 的判断构成一对张力：若 104B 级激活成为前沿新常态，"激活被按住"需改写为分段表述——商品层按住、前沿层放开</li>
+<li>旗舰组单流 tok/s 收敛在 40-60，印证 inference-perf-theory 的"TPOT 引力井"；小模型组跌破开销地板，是另一口井（工程开销井）</li>
+</ul>
+<hr />
+<h3 id="7">7. 数字口径<a class="headerlink" href="#7" title="Permanent link">#</a></h3>
+<ul>
+<li>训练/推理成本：2025-2026 公开可估算值（DeepSeek V3 技术报告官方数、H100 市场租金 $2/GPU·hr、各家 API 牌价）</li>
+<li>第 6 章实算：锚点（牌价、租金、官方披露）为实数；质量与业务价值为显式标注的假设参数</li>
+<li>公司案例（第 5 节）：财报、融资公告与主流媒体报道口径，截至 2025 中-2026 初；量级供框架演示，精确值随时间漂移</li>
+<li>量级可靠，精确值随时间漂移；套模板时换当期实价</li>
+<li>FLOPs 估算：训练 ≈ 6·N_active·D，decode ≈ 2·N_active/token，均未含注意力开销与长上下文项</li>
+<li>数据获取成本（标注单价、蒸馏样本的 teacher 推理费）为公开牌价/市场价的量级估算</li>
+<li>6.7 论文披露数字：取自 arXiv 2505.07608（MiMo-7B）、2610.11959（MiMo-V2.6）、2501.00656（OLMo 2）、2411.15124（Tülu 3）、2512.13961（Olmo 3）的 HTML 版，2026.10 检索；【估】项按 6·N_active·D 与 $2/hr、40% MFU 折算</li>
+<li>6.8 推理成本对比：模型规格 2026.10.12 实时取自 HF（safetensors 总参 API + 各家 README/config）；成本为口径公式推算而非引擎实测（吞吐 MFU=15%、$2.5/卡·hr、FP8 统一）；【计】=config 推算激活参数，【系】=沿用系列上代口径；各家 2026 当期 API 牌价未核；gpt-oss 按官方 README（117B/5.1B、21B/3.6B）</li>
+</ul>
+<hr />
+<h3 id="8">8. 与已有文档的交叉引用<a class="headerlink" href="#8" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="../ScalingLaws/">ScalingLaws.md</a>：技术侧配对篇。旋钮演进史（Kaplan→Chinchilla→过训练→MoE→post-training）。本文 1.2 对应其第 3 节，1.3 对应其第 5 节，3.1 对应其第 10 节</li>
+<li><a href="../../3.infra/inference-perf-theory/">inference-perf-theory.md</a>：账本 B 的物理底（TPOT = 权重字节 ÷ 带宽、TTFT 计算、六层优化框架、agent 工程实践）</li>
+<li><a href="../../9.people/SSI-Ilya/">SSI-Ilya.md</a>："从规模化时代迈向研究时代"——参数轴收益递减的另一路证词</li>
+<li><a href="../../9.people/PercyLiang/">PercyLiang.md</a>：EconEvals（arXiv:2607.19375）经济价值评估、BountyBench 以美元影响量化——评估体系正从准确率走向经济价值，与账本 C 同向</li>
+<li><a href="../PostTraining/">PostTraining.md</a> / <a href="../PreTraining/">PreTraining.md</a>：本文 3.1"换轴"指向的两条技术线</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../PreTraining/" class="btn btn-neutral float-left" title="PreTraining"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ScalingLaws/" class="btn btn-neutral float-right" title="ScalingLaws">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../PreTraining/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ScalingLaws/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>LLM Judge - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "LLM Judge";
+        var mkdocs_page_input_path = "6.eval/LLM-Judge.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2.compute</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute/GPU-Price/">GPU Price</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute/LLM-Pricing/">LLM Pricing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/inference-perf-theory/">Inference perf theory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingEconomics/">ScalingEconomics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">LLM Judge</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#0">0. 领域概览</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 奠基与范式</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 构建裁判</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21_prompting">2.1 免训练（Prompting）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22_tuning">2.2 训练（Tuning）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3. 聚合与协作</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31">3.1 同模型多采样（降方差）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32">3.2 异构模型共识（降系统偏差）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33">3.3 辩论式</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#34_panel">3.4 Panel 组建与路由</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#35_cascade_deferral">3.5 级联与升级触发（cascade / deferral）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#36">3.6 分歧样本的性质</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4">4. 偏差研究</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41">4.1 偏差类型与测量</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42">4.2 共识的风险（一致性≠正确）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#43">4.3 对抗鲁棒性</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5">5. 元评估（评估裁判本身）</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6">6. 置信度与不确定性</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7">7. 机制要点</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8">8. 实践检查清单</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#9">9. 发展脉络</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">关联</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">6.eval</li>
+      <li class="breadcrumb-item active">LLM Judge</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="llm-as-a-judge">LLM-as-a-Judge<a class="headerlink" href="#llm-as-a-judge" title="Permanent link">#</a></h2>
+<blockquote>
+<p>2026.08.31 | 来源：arXiv 检索（经典奠基 + 2025.11-2026.09 新论文）
+主题：用 LLM 做评估——打分、排序、选择、裁决</p>
+</blockquote>
+<h3 id="0">0. 领域概览<a class="headerlink" href="#0" title="Permanent link">#</a></h3>
+<p>评估一直是 AI/NLP 的核心难题。传统方法（BLEU/ROUGE 等匹配式指标、小模型分类器）在开放式生成场景失效。LLM 的出现催生了 <strong>LLM-as-a-Judge</strong> 范式：用 LLM 对输出做 scoring / ranking / selection。</p>
+<p><strong>I/O 形式空间</strong>（judge LLM J，候选 C₁...Cₙ，结果 R = J(C₁,...,Cₙ)）：</p>
+<table>
+<thead>
+<tr>
+<th>输入格式</th>
+<th>含义</th>
+<th>输出格式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Point-wise (n=1)</td>
+<td>单独评一个候选</td>
+<td>Score</td>
+<td>每个候选一个分数</td>
+</tr>
+<tr>
+<td>Pair-wise (n=2)</td>
+<td>比较两个候选</td>
+<td>Ranking</td>
+<td>候选的全序排列</td>
+</tr>
+<tr>
+<td>List-wise (n&gt;2)</td>
+<td>多个候选一起比较</td>
+<td>Selection</td>
+<td>选出最优的一个或多个</td>
+</tr>
+</tbody>
+</table>
+<p><strong>领域的核心矛盾</strong>：
+1. 单次判定方差大（同模型重采样结果不稳）
+2. 强裁判成本高（逐样本用最强模型不可扩展）
+3. 一致性≠正确（多裁判都同意可能是共享盲区）
+4. 系统性偏差（位置/长度/自我偏好/锚定等，稳定地偏）</p>
+<p>后续研究线（投票聚合、级联升级、偏差去偏、元评估、置信度校准）都是对这四个矛盾的回应。</p>
+<h3 id="1">1. 奠基与范式<a class="headerlink" href="#1" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>核心贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://arxiv.org/abs/2303.16634">G-Eval</a></td>
+<td>2023.03</td>
+<td>首个系统化框架：任务表单填充 + CoT 评分 + 概率加权（token 概率加权平均，非单次采样）。与人工评价相关性超过 BLEU/ROUGE</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://arxiv.org/abs/2306.05685">Judging LLM-as-a-Judge with MT-Bench</a></td>
+<td>2023.06</td>
+<td>领域开山之作。80 道多轮题 + GPT-4 裁判 + Chatbot Arena 验证。<strong>首次系统定义四大偏差</strong>：位置、自增强、冗长、方差</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://arxiv.org/abs/2411.15594">A Survey on LLM-as-a-Judge</a></td>
+<td>2024.11</td>
+<td>综述：多轮/多智能体/集成裁判分类</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://arxiv.org/abs/2411.16594">From Generation to Judgment</a></td>
+<td>2024.11</td>
+<td>综述：what to judge / how to judge / how to benchmark 三维分类法</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2">2. 构建裁判<a class="headerlink" href="#2" title="Permanent link">#</a></h3>
+<h4 id="21_prompting">2.1 免训练（Prompting）<a class="headerlink" href="#21_prompting" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>核心贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>Swapping Operation（MT-Bench §5.2 内）</td>
+<td>2023.06</td>
+<td>pair-wise 交换顺序跑两次，不一致判 tie——位置偏差的标准缓解手段</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Rule Augmentation（综述 §4.2.2 归纳）</td>
+<td>—</td>
+<td>把评分原则/rubric 嵌入 prompt 引导裁判。rubric 质量直接决定裁判质量</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="https://arxiv.org/abs/2609.02942">Rubric Artifacts</a></td>
+<td>2026.08</td>
+<td>警示：看似源于 rubric 推理的判断，部分实为 rubric 存在本身引入的伪影</td>
+</tr>
+</tbody>
+</table>
+<h4 id="22_tuning">2.2 训练（Tuning）<a class="headerlink" href="#22_tuning" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>核心贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8</td>
+<td><a href="https://arxiv.org/abs/2310.17631">JudgeLM</a></td>
+<td>2023.10</td>
+<td>10 万条判定数据微调裁判，研究裁判的 scaling law</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="https://arxiv.org/abs/2310.08491">Prometheus</a></td>
+<td>2023.10</td>
+<td>开源 13B 裁判（GPT-4 反馈训练），direct + pairwise，1-5 分细粒度。自建裁判不依赖 GPT-4 成为可能</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="https://arxiv.org/abs/2405.01535">Prometheus 2</a></td>
+<td>2024.05</td>
+<td>识别"分布不匹配"：开源裁判对自己的参考答案有偏。同时支持两种模式且结论相关性强</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="https://arxiv.org/abs/2504.04953">M-Prometheus</a></td>
+<td>2025.04</td>
+<td>多语言裁判套件</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="https://arxiv.org/abs/2410.03742">Beyond Scalar Reward Model</a></td>
+<td>2024.10</td>
+<td>偏好数据直接训<strong>生成式裁判</strong>（给出推理依据而非单一标量分数）</td>
+</tr>
+<tr>
+<td>13</td>
+<td><a href="https://arxiv.org/abs/2608.24231">RecurSE</a></td>
+<td>2026.08</td>
+<td>无外部标注的有界递归自提升：裁判判候选（Pass 1）+ checker 用元规则审计裁判推理给过程奖励（Pass 2）。接口解耦防 token 复制捷径，给出"何时必须停止"的边界条件</td>
+</tr>
+<tr>
+<td>14</td>
+<td><a href="https://arxiv.org/abs/2609.03432">Decoupled Analysis-Judging</a></td>
+<td>2026.09</td>
+<td>创造力评估：分析（找证据）与打分（下判断）解耦为两阶段，抑制冗长/宽松偏差</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3">3. 聚合与协作<a class="headerlink" href="#3" title="Permanent link">#</a></h3>
+<h4 id="31">3.1 同模型多采样（降方差）<a class="headerlink" href="#31" title="Permanent link">#</a></h4>
+<p>核心洞察：正确推理路径"殊途同归"，错误路径分散。多数投票=经验众数估计，方差随采样数幂律下降。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>核心贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15</td>
+<td><a href="https://arxiv.org/abs/2203.11171">Self-Consistency</a></td>
+<td>2022.03</td>
+<td>多采样+多数投票，奠基</td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="https://arxiv.org/abs/2311.17311">Universal Self-Consistency</a></td>
+<td>2023.11</td>
+<td>扩展到自由文本：用 LLM 判断候选间等价性再投票</td>
+</tr>
+<tr>
+<td>17</td>
+<td><a href="https://arxiv.org/abs/2511.12309">Optimal Self-Consistency (Blend-ASC)</a></td>
+<td>2025.11</td>
+<td>SC 的幂律 scaling 理论；动态分配采样数（简单题少采），省 4.8x</td>
+</tr>
+<tr>
+<td>18</td>
+<td><a href="https://arxiv.org/abs/2606.05054">RISC</a></td>
+<td>2026.06</td>
+<td>答案选择重构为排序问题：LambdaRank + 频率/语义中心性/轨迹一致性特征，找回多数投票丢掉的正确答案</td>
+</tr>
+</tbody>
+</table>
+<h4 id="32">3.2 异构模型共识（降系统偏差）<a class="headerlink" href="#32" title="Permanent link">#</a></h4>
+<p>核心洞察（误差去相关）：独立训练的模型错得不一样，错误答案分散而正确答案聚集。同模型多采样只能降方差，<strong>异构共识才能降系统偏差</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>核心贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>19</td>
+<td><a href="https://arxiv.org/abs/2404.18796">PoLL</a></td>
+<td>2024.04</td>
+<td>一组小异构模型组成陪审团，比单个大裁判更便宜、偏差更低</td>
+</tr>
+<tr>
+<td>20</td>
+<td><a href="https://arxiv.org/abs/2607.10139">LLMs as a Jury</a></td>
+<td>2026.07</td>
+<td>跨模型共识优于 self-consistency 和自评分。给出闭式定律：从 panel 统计量预测共识精度</td>
+</tr>
+</tbody>
+</table>
+<h4 id="33">3.3 辩论式<a class="headerlink" href="#33" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>核心贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21</td>
+<td><a href="https://arxiv.org/abs/2401.05998">Combating Adversarial Attacks with MAD</a></td>
+<td>2024.01</td>
+<td>辩论作为对抗边界输入的二次消解机制</td>
+</tr>
+<tr>
+<td>22</td>
+<td><a href="https://arxiv.org/abs/2511.06396">Safety Eval through MAD</a></td>
+<td>2025.11</td>
+<td>安全评估里用结构化辩论替代昂贵强裁判，按需动用</td>
+</tr>
+<tr>
+<td>23</td>
+<td><a href="https://arxiv.org/abs/2505.19477">Judging with Many Minds</a></td>
+<td>2025.05</td>
+<td>警示：多智能体裁判可能放大而非减少偏差（从众、强势 agent 主导）</td>
+</tr>
+<tr>
+<td>24</td>
+<td><a href="https://arxiv.org/abs/2608.30373">Beyond Consensus: Downward Bias</a></td>
+<td>2026.08</td>
+<td>主观评分上 MAD 共识的 human alignment <strong>不如单 judge</strong>。根因：角色不对称——严格派压分在共识中无法纠正</td>
+</tr>
+<tr>
+<td>25</td>
+<td><a href="https://arxiv.org/abs/2609.08016">Layered Analysis of Disagreement in MAD</a></td>
+<td>2026.09</td>
+<td>MAD 里的"分歧"很大程度是<strong>指令诱发的</strong>：删掉诱发指令后 23.1% 立场回退；语气改变 50.4pp 一致性</td>
+</tr>
+<tr>
+<td>26</td>
+<td><a href="https://arxiv.org/abs/2509.23055">Peacemaker or Troublemaker</a></td>
+<td>2025.09</td>
+<td>谄媚倾向在辩论中是双刃剑：过强从众消灭分歧，过弱无法收敛</td>
+</tr>
+</tbody>
+</table>
+<h4 id="34_panel">3.4 Panel 组建与路由<a class="headerlink" href="#34_panel" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>核心贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>27</td>
+<td><a href="https://arxiv.org/abs/2608.19802">Stopping and Routing LLM Judge Panels</a></td>
+<td>2026.08</td>
+<td>panel 设计形式化：估计每个 judge 的角色（冗余副本/全局补充/切片专家），丢副本、加补充、条件路由专家、增益低于阈值停止</td>
+</tr>
+<tr>
+<td>28</td>
+<td><a href="https://arxiv.org/abs/2609.03953">Beyond Majority Vote</a></td>
+<td>2026.09</td>
+<td>医疗幻觉检测：多候选源（人工+LLM judge）之上的仲裁提升完备性，但不替代专业判断</td>
+</tr>
+</tbody>
+</table>
+<h4 id="35_cascade_deferral">3.5 级联与升级触发（cascade / deferral）<a class="headerlink" href="#35_cascade_deferral" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>核心贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>29</td>
+<td><a href="https://arxiv.org/abs/2305.05176">FrugalGPT</a></td>
+<td>2023.05</td>
+<td>cascade 奠基：便宜模型先答，置信不够才升级贵模型</td>
+</tr>
+<tr>
+<td>30</td>
+<td><a href="https://arxiv.org/abs/2502.09054">Cost-Saving Cascades with Early Abstention</a></td>
+<td>2025.02</td>
+<td>引入"提前弃权"——某些样本干脆不判</td>
+</tr>
+<tr>
+<td>31</td>
+<td><a href="https://arxiv.org/abs/2501.09345">Rational Tuning of Cascades</a></td>
+<td>2025.01</td>
+<td>概率模型联合调各级升级阈值</td>
+</tr>
+<tr>
+<td>32</td>
+<td><a href="https://arxiv.org/abs/2605.17288">Cascade Failure under Attack</a></td>
+<td>2026.05</td>
+<td>对抗输入可专门骗过升级判断，让危险样本不被升级</td>
+</tr>
+<tr>
+<td>33</td>
+<td><a href="https://arxiv.org/abs/2606.15308">Forced Deferral</a></td>
+<td>2026.06</td>
+<td>多模态 cascade 的路由决策本身可被操纵——升级触发器是对抗面</td>
+</tr>
+<tr>
+<td>34</td>
+<td><a href="https://arxiv.org/abs/2607.25018">Conformal Cascade</a></td>
+<td>2026.07</td>
+<td>conformal prediction 预测集大小做升级规则，给出分布无关的有限样本精度保证 ≥1-Kα</td>
+</tr>
+<tr>
+<td>35</td>
+<td><a href="https://arxiv.org/abs/2608.17994">Judge, Retrieve, or Abstain</a></td>
+<td>2026.08</td>
+<td>不确定性守卫：校准阈值使被接受裁决的 FDR ≤ α，带工具增强选项</td>
+</tr>
+<tr>
+<td>36</td>
+<td><a href="https://arxiv.org/abs/2608.26529">Multi-Expert Conformal Risk Control</a></td>
+<td>2026.08</td>
+<td>CRC（弃权控险）+ 多专家聚合（源头净化）；MC3 解决异构 judge 评分尺度不统一</td>
+</tr>
+<tr>
+<td>37</td>
+<td><a href="https://arxiv.org/abs/2608.05064">Certified Deferral for Verbalized Uncertainty</a></td>
+<td>2026.08</td>
+<td>小模型何时该弃权给人类的可证明边界</td>
+</tr>
+</tbody>
+</table>
+<h4 id="36">3.6 分歧样本的性质<a class="headerlink" href="#36" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>核心贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>38</td>
+<td><a href="https://arxiv.org/abs/2502.06207">Is LLM an Overconfident Judge?</a></td>
+<td>2025.02</td>
+<td>LLM 在"标注者本就分歧"的样本上过度自信、抹平本应保留的分歧</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4">4. 偏差研究<a class="headerlink" href="#4" title="Permanent link">#</a></h3>
+<h4 id="41">4.1 偏差类型与测量<a class="headerlink" href="#41" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>偏差类型</th>
+<th>核心发现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>39</td>
+<td>MT-Bench（§1 #2）</td>
+<td>2023.06</td>
+<td>位置/自增强/冗长/方差</td>
+<td>四大偏差的首次系统定义</td>
+</tr>
+<tr>
+<td>40</td>
+<td><a href="https://arxiv.org/abs/2404.04475">Length-Controlled AlpacaEval</a></td>
+<td>2024.04</td>
+<td>冗长</td>
+<td>长度控制胜率（回归调整）替代朴素胜率，解耦"更长=更好"混杂</td>
+</tr>
+<tr>
+<td>41</td>
+<td><a href="https://arxiv.org/abs/2608.18091">Bidirectional Bias: Self- and Other-Labels</a></td>
+<td>2026.06</td>
+<td>自我偏好</td>
+<td>盲评时自我偏好消失；但仅标注"自选/他选"（不出现模型名）就双向偏移：自标高估、他标低估</td>
+</tr>
+<tr>
+<td>42</td>
+<td><a href="https://arxiv.org/abs/2606.20093">Self-Preference Is Weak or Absent</a></td>
+<td>2026.06</td>
+<td>自我偏好（反证）</td>
+<td>可验证任务+真实作者身份下自我偏好弱/不存在。自我偏好是任务依赖的：开放生成强、可验证弱</td>
+</tr>
+<tr>
+<td>43</td>
+<td><a href="https://arxiv.org/abs/2608.25869">Anchoring Bias</a></td>
+<td>2026.08</td>
+<td>锚定</td>
+<td><strong>先前分数哪怕只作为上下文元数据，也系统性锚定判断</strong>（d=0.71，7/8 模型显著，18.5万次评估）</td>
+</tr>
+<tr>
+<td>44</td>
+<td><a href="https://arxiv.org/abs/2608.01666">Style Wins, Substance Loses</a></td>
+<td>2026.08</td>
+<td>风格</td>
+<td>科研想法评估中裁判实际评的是风格表达而非科学实质。Style Bias Index / Substance Recognition Rate 指标</td>
+</tr>
+<tr>
+<td>45</td>
+<td><a href="https://arxiv.org/abs/2606.22329">BabelJudge</a></td>
+<td>2026.06</td>
+<td>语言</td>
+<td>跨语言+agent 轨迹的裁判可靠性测量</td>
+</tr>
+<tr>
+<td>46</td>
+<td><a href="https://arxiv.org/abs/2607.14480">Lower-Resource, Higher Scores</a></td>
+<td>2026.07</td>
+<td>语言</td>
+<td>评估器对高资源语言内容打分系统性更高</td>
+</tr>
+<tr>
+<td>47</td>
+<td><a href="https://arxiv.org/abs/2608.05726">Scoring Bias via RNG</a></td>
+<td>2026.08</td>
+<td>数字偏好</td>
+<td>让 LLM 生成随机数暴露潜在数字偏好，用偏差校正评分 token 概率</td>
+</tr>
+<tr>
+<td>48</td>
+<td><a href="https://arxiv.org/abs/2608.22432">Rank Reversal in Multilingual Judges</a></td>
+<td>2026.08</td>
+<td>语言×排序</td>
+<td>prompt 语言不同导致评估器排序结论翻转</td>
+</tr>
+<tr>
+<td>49</td>
+<td><a href="https://arxiv.org/abs/2608.29517">LLM Judges as Raters</a></td>
+<td>2026.08</td>
+<td>评分者效应</td>
+<td>预注册审计：严重度/光环/信度/版本不稳定（教育测量学视角）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="42">4.2 共识的风险（一致性≠正确）<a class="headerlink" href="#42" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>核心贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>50</td>
+<td><a href="https://arxiv.org/abs/2608.20607">JuryProbe</a></td>
+<td>2026.08</td>
+<td>多 judge 一致可能反映<strong>共享假阴性盲区</strong>而非独立证据（FN 相关性 0.402/0.368，假共识提升 3.13x/18.13x）。共识风险诊断+校准路由</td>
+</tr>
+<tr>
+<td>51</td>
+<td><a href="https://arxiv.org/abs/2609.08826">Anchor-Judge Error Correlation</a></td>
+<td>2026.09</td>
+<td>judge panel 误差分解为质量信号+共模误差；锚定集污染的诊断</td>
+</tr>
+</tbody>
+</table>
+<h4 id="43">4.3 对抗鲁棒性<a class="headerlink" href="#43" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>核心贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>52</td>
+<td>Cascade Failure under Attack（§3.5 #32）</td>
+<td>2026.05</td>
+<td>攻击者构造"稳定一致判错"绕过升级</td>
+</tr>
+<tr>
+<td>53</td>
+<td><a href="https://arxiv.org/abs/2608.31016">LLM Judges Verify Presence, Not Absence</a></td>
+<td>2026.08</td>
+<td>临床场景：LLM 裁判验证"存在"强、验证"缺失"弱（遗漏盲区）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5">5. 元评估（评估裁判本身）<a class="headerlink" href="#5" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>核心贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>54</td>
+<td><a href="https://arxiv.org/abs/2606.19544">Reliability without Validity</a></td>
+<td>2026.06</td>
+<td>21 裁判、54.1 万判定的最大规模元评估。四发现：精确匹配一致率比 kappa 高估 33-41pp；裁判排名跨 benchmark 漂移 14 位；<strong>信度&gt;0.95 与严重位置偏差共存</strong>（一致性-偏差悖论）；单一 pairwise rubric 下冗长偏差其实很小。提出 Minimum Viable Validation Protocol</td>
+</tr>
+<tr>
+<td>55</td>
+<td><a href="https://arxiv.org/abs/2608.14329">Four-Axis Trustworthiness Benchmark</a></td>
+<td>2026.08</td>
+<td>原则性监管场景（"公平/清晰/不误导"）的四轴可信度基准</td>
+</tr>
+<tr>
+<td>56</td>
+<td><a href="https://arxiv.org/abs/2609.00494">Human-Anchored Factuality Evaluation</a></td>
+<td>2026.08</td>
+<td>策略性标注锚定事实性裁判，修正系统性偏差</td>
+</tr>
+<tr>
+<td>57</td>
+<td><a href="https://arxiv.org/abs/2603.04738">IF-RewardBench</a></td>
+<td>2026.03</td>
+<td>指令遵循场景的裁判基准</td>
+</tr>
+<tr>
+<td>58</td>
+<td><a href="https://arxiv.org/abs/2603.12963">Long-form RewardBench</a></td>
+<td>2026.03</td>
+<td>长文本生成的奖励模型评估</td>
+</tr>
+<tr>
+<td>59</td>
+<td><a href="https://arxiv.org/abs/2604.07343">Personalized RewardBench</a></td>
+<td>2026.04</td>
+<td>多元对齐：不同人群偏好下的奖励模型评估</td>
+</tr>
+<tr>
+<td>60</td>
+<td><a href="https://arxiv.org/abs/2609.02246">LLM-as-a-Judge Is Not an Oracle</a></td>
+<td>2026.09</td>
+<td>自改进循环中的裁判需要确定性护栏</td>
+</tr>
+<tr>
+<td>61</td>
+<td><a href="https://arxiv.org/abs/2609.00038">trajectory-judge</a></td>
+<td>2026.08</td>
+<td>只看最终结果的裁判对 agent 轨迹结构性失明</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6">6. 置信度与不确定性<a class="headerlink" href="#6" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>论文</th>
+<th>年份</th>
+<th>核心贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>62</td>
+<td><a href="https://arxiv.org/abs/2604.01457">Wired for Overconfidence</a></td>
+<td>2026.04</td>
+<td>机制可解释性视角：LLM 错误答案上口头置信度虚高的内部表征原因</td>
+</tr>
+<tr>
+<td>63</td>
+<td><a href="https://arxiv.org/abs/2604.22215">Verbal Confidence Saturation</a></td>
+<td>2026.04</td>
+<td>3-9B 小模型口头置信度饱和：天花板&gt;95%，AUROC 接近随机。<strong>小模型自报置信度基本不可用</strong></td>
+</tr>
+<tr>
+<td>64</td>
+<td><a href="https://arxiv.org/abs/2604.24070">Distilling SC into Verbal Confidence</a></td>
+<td>2026.04</td>
+<td>预注册负结果：把 self-consistency 蒸馏成单次口头置信度失败</td>
+</tr>
+<tr>
+<td>65</td>
+<td><a href="https://arxiv.org/abs/2605.12446">ORCE</a></td>
+<td>2026.05</td>
+<td>答案顺序对口头置信度的影响及对齐</td>
+</tr>
+<tr>
+<td>66</td>
+<td><a href="https://arxiv.org/abs/2609.00935">DualStake</a></td>
+<td>2026.09</td>
+<td>deep research agent 的双路置信度校准</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7">7. 机制要点<a class="headerlink" href="#7" title="Permanent link">#</a></h3>
+<p><strong>多采样降方差</strong>：多数投票=众数估计，方差随 n 幂律下降。只解决"不稳定"，不解决"稳定地错"。</p>
+<p><strong>异构共识降系统偏差</strong>：误差去相关是核心机制——独立训练的模型错误分散、正确聚集。闭式定律可从 panel 统计量预测共识精度（LLMs as a Jury）。</p>
+<p><strong>一致性门控是免费置信度信号</strong>：投票一致性天然产出置信信息，无需额外打分模型（vs FrugalGPT 要训打分器）。代价：同参采样的"全一致"含金量低于跨模型一致。</p>
+<p><strong>假共识</strong>：多个裁判一致接受错误结论，可能是独立验证（可信）或共享盲区（不可信）——两者外观相同。区分方法：标注校准探针测 FN-only 相关性（JuryProbe）。</p>
+<p><strong>一致性-偏差悖论</strong>：信度&gt;0.95 与严重偏差可以共存。三票一致完全可能是"稳定地偏"。裁判评估必须同时测 agreement / consistency / bias 三轴，不能只看一致率。</p>
+<p><strong>锚定效应</strong>：先前分数哪怕只作为元数据出现也会牵引判断（d=0.71）。喂历史票据给仲裁的设计，历史分数本身就是锚。</p>
+<p><strong>升级规则的统计保证</strong>：conformal prediction 把"何时接受/何时升级"放进分布无关的有限样本框架（≥1-Kα），替代拍脑袋硬阈值。</p>
+<p><strong>小模型口头置信度不可用</strong>：3-9B 的 verbal confidence 天花板&gt;95%、判别力近随机。需要置信度信号时，用行为信号（多采样一致性）替代自报。</p>
+<h3 id="8">8. 实践检查清单<a class="headerlink" href="#8" title="Permanent link">#</a></h3>
+<p>设计 LLM 裁判流程时：</p>
+<ul>
+<li>[ ] 输入格式选对了吗？point-wise（绝对质量）/ pair-wise（相对比较，受位置偏差影响）/ list-wise</li>
+<li>[ ] 需要降方差还是降系统偏差？同模型多采样只降方差；异构共识才降系统偏差</li>
+<li>[ ] pair-wise 做了 swapping（交换顺序跑两次，不一致判 tie）吗？</li>
+<li>[ ] 打分式裁判测过数字偏好偏差吗？（RNG 方法可检测+校正）</li>
+<li>[ ] 喂给裁判的历史信息会锚定它吗？（隐藏具体分数/做有/无票据 A/B 对照）</li>
+<li>[ ] 多裁判一致时，考虑过共享盲区吗？（高相关模型对的"一致"信息量趋零）</li>
+<li>[ ] 裁判的验证测了三轴（agreement/consistency/bias）还是只看一致率？</li>
+<li>[ ] 长文本/多语言场景下，测过冗长偏差和语言偏差吗？</li>
+<li>[ ] 级联升级的阈值是硬规则还是校准的？要不要统计保证（conformal）？</li>
+<li>[ ] 对抗场景下，升级触发器本身可能被攻击——高风险样本强制走重验证？</li>
+<li>[ ] 用小模型自报置信度做路由？——3-9B 的口头置信度基本没有判别力</li>
+<li>[ ] 分歧样本是被多数票压平了，还是被妥善保留（它们重合于"标注者分歧样本"）？</li>
+</ul>
+<h3 id="9">9. 发展脉络<a class="headerlink" href="#9" title="Permanent link">#</a></h3>
+<pre><code>2022.03  Self-Consistency（多采样投票）
+2023.03  G-Eval（LLM做NLG评估的首个系统框架）
+2023.06  MT-Bench（范式确立：四大偏差定义）
+2023.05  FrugalGPT（级联奠基）
+2023.10  JudgeLM / Prometheus（裁判训练线开启）
+2023.11  Universal SC
+2024.04  PoLL（异构陪审团）
+2024.04  Length-Controlled AlpacaEval（冗长去偏）
+2024.05  Prometheus 2
+2024.10  生成式裁判（Beyond Scalar RM）
+2024.11  两篇领域综述（范式成熟标志）
+2025    ↑ 阈值调优（Rational Tuning）
+        ↑ 弃权（Early Abstention）
+        ↑ 分歧样本性质（Overconfident Judge）
+        ↑ 谄媚对辩论的影响（Peacemaker）
+2026    ↑ 统计保证爆发：Conformal Cascade / Judge-Abstain / Multi-Expert CRC
+        ↑ 共识风险爆发：JuryProbe / Anchor-Judge / Stopping-Routing
+        ↑ 辩论批判性反思：Beyond Consensus / Layered Analysis
+        ↑ 异构共识理论：LLMs as a Jury（误差去相关闭式定律）
+        ↑ 偏差细分化：锚定 / 风格 / 语言 / 数字偏好 / 自我偏好双向性
+        ↑ 元评估规模化：Reliability without Validity（54.1万判定）
+        ↑ 置信度机制化：Wired for Overconfidence / Saturation
+</code></pre>
+<p><strong>两条主趋势</strong>：
+1. <strong>从启发式到统计保证</strong>——升级阈值从拍脑袋→学出来→可证明；裁判验证从一致率→三轴协议
+2. <strong>从"更多裁判更好"到"裁判质量审计"</strong>——从朴素加模型数，到 panel 内冗余/互补/专家角色分析，到共识本身的风险诊断</p>
+<p><strong>一条暗线</strong>：对"一致性"的态度从信任到审视——三票一致可能是把握，也可能是共享盲区或稳定偏差。区分这两者，是当前研究的核心战场。</p>
+<h3 id="_1">关联<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="../Benchmark/">Benchmark.md</a> — 评测基准与榜单</li>
+<li><a href="../Metric/">Metric.md</a> — 评测指标</li>
+<li><a href="../../3.infra/inference-perf-theory/">../3.infra/inference-perf-theory.md</a> — 推理性能分析（多采样/级联的算力成本视角）</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Benchmark/" class="btn btn-neutral float-left" title="Benchmark"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../LMM_Benchmark/" class="btn btn-neutral float-right" title="LMM Benchmark">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Benchmark/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../LMM_Benchmark/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

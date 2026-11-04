@@ -1,0 +1,4364 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>LLM Pricing - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "LLM Pricing";
+        var mkdocs_page_input_path = "2.compute/LLM-Pricing.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2.compute</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../GPU-Price/">GPU Price</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">LLM Pricing</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">方法</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1openrouter_api_269">表 1：OpenRouter API 报价对比（269 个模型，闭源已过滤变体，按厂商分节，节内按最低价口径千请求成本降序）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#qwen_42">Qwen (阿里)（42 个）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deepseek15">DeepSeek（15 个）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#glm_18">GLM (智谱)（18 个）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#minimax9">MiniMax（9 个）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kimi_9">Kimi (月之暗面)（9 个）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7">混元 (腾讯)（7 个）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#claude_anthropic15">Claude (Anthropic)（15 个）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gemini_google28">Gemini (Google)（28 个）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gpt_openai51">GPT (OpenAI)（51 个）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2h200_vs_api_85">表 2：H200 自部署 vs API 最低价（仅参数已公开的开源权重模型，85 个）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#qwen">Qwen (阿里)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#deepseek">DeepSeek</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#glm">GLM (智谱)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#minimax">MiniMax</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kimi">Kimi (月之暗面)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">混元 (腾讯)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">关键结论</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3_api_claude_gemini_gpt96">表 3：闭源模型 API 报价概览（Claude / Gemini / GPT，96 个主流模型）</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">局限与下一步</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/inference-perf-theory/">Inference perf theory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingEconomics/">ScalingEconomics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LLM-Judge/">LLM Judge</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2.compute</li>
+      <li class="breadcrumb-item active">LLM Pricing</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="llm_openrouter_vs_h200">LLM 成本分析（OpenRouter 报价 vs H200 自部署）<a class="headerlink" href="#llm_openrouter_vs_h200" title="Permanent link">#</a></h2>
+<blockquote>
+<p>数据快照：2026-11-01 | 数据源：OpenRouter | 覆盖：Qwen / DeepSeek / GLM / MiniMax / Kimi / 混元（开源，含自部署估算） + Claude / Gemini / GPT（闭源，仅 API 报价）
+目的：为「不同模型成本与收益核算」提供报价基线</p>
+</blockquote>
+<h3 id="_1">方法<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<p><strong>标准化请求</strong>：输入 15k tokens / 输出 100 tokens（长输入短输出，贴近客服 Agent、RAG 摘要等场景）。千请求成本 = <code>15 × 输入$/M + 0.1 × 输出$/M</code>。</p>
+<p><strong>价格口径（重要）</strong>：OpenRouter 同一模型有多个 provider，价差可达一个数量级。</p>
+<ul>
+<li><strong>列表价</strong>：<code>/api/v1/models</code> 返回的官方口径，接近默认路由价（往往偏贵）</li>
+<li><strong>最低价</strong>：全部 provider 中的最低单价，可控路由（指定 provider / 比价调度）能达到的成本下限。本报告主口径</li>
+<li>注意：最低价 provider 多为 fp8/fp4 量化社区端点，稳定性与速度需实测权衡</li>
+</ul>
+<p>延迟/吞吐取各 provider 近 30 分钟 p50 统计中的最优值（样本请求数 &gt; 50）。</p>
+<p><strong>H200 自部署模型 v3</strong>（已经 vLLM/SGLang 实测报告校准）：</p>
+<ul>
+<li>时价 $3.0/h；FP8 推理，权重冗余 5%；显存预留 20% 给 KV cache 与系统</li>
+<li>解码并发感知：batch 由 KV cache 显存预算反推；每 step 字节量 = 激活权重 + Σ各序列 KV 全量（15k 长上下文下 KV 读取占主导）；带宽利用率取 40%（Qwen 官方 SGLang 实测反推 32%，NVIDIA vLLM/H200 实测反推 37~45%）</li>
+<li>prefill 按 MFU 30%（NVIDIA AIConfigurator 实测 TTFT 校准）</li>
+<li><strong>MLA 压缩 KV</strong>（deepseek 全系、kimi-k2 系）：每 token 只存 576 维压缩潜变量（61 层，bf16），15k 上下文单序列 KV 仅 ~1.05GB，比 GQA 同档小一个数量级</li>
+<li><strong>卡数寻优</strong>：prefill GPU·秒与卡数无关（理想 scaling），在 [恰好装下, +3] 区间按每请求成本寻优，仅当收益 &gt;5% 采纳更多卡（修复单卡恰好装下但 KV 预算不足 → batch=1 的病态点）</li>
+<li><strong>DFlash 口径</strong>：块扩散推测解码（Z Lab，已进 SGLang Spec V2），每 step 提交 τ=4 个 token（保守有效值；实测单请求 4~6×）。字节量不变、计算量 ×τ，转为算力瓶颈时加速比自动封顶。DFlash 目前仅有 Qwen 官方 checkpoint，其他家族列为理论参考</li>
+<li>稳态成本摊薄，<strong>理论下界</strong>口径，不含空闲/运维/网络</li>
+</ul>
+<p>参数列为「总参/激活」(B)，<code>-</code> = 闭源或未公开。Claude / Gemini / GPT 闭源模型只做 API 报价，不做自部署估算；闭源厂商表中已剔除 :free / audio / lyria / gpt-oss 等变体，仅保留主流对话模型。</p>
+<h3 id="1openrouter_api_269">表 1：OpenRouter API 报价对比（269 个模型，闭源已过滤变体，按厂商分节，节内按最低价口径千请求成本降序）<a class="headerlink" href="#1openrouter_api_269" title="Permanent link">#</a></h3>
+<p>价格单位 $/M tokens，成本单位 $/千请求。</p>
+<!-- 数据源: data/pricing/processed/pricing_2026-11-01.csv (src/pricing/analyze_pricing.py 生成) -->
+
+<h4 id="qwen_42">Qwen (阿里)（42 个）<a class="headerlink" href="#qwen_42" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: right;">ctx(k)</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: left;">列表价in/out</th>
+<th style="text-align: left;">最低价in/out</th>
+<th style="text-align: right;">$/千req(最低)</th>
+<th style="text-align: right;">$/千req(列表)</th>
+<th style="text-align: right;">prov</th>
+<th style="text-align: right;">p50ms</th>
+<th style="text-align: right;">tps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">qwen3.8-max-prime</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">4/12</td>
+<td style="text-align: left;">4/12</td>
+<td style="text-align: right;">61.2</td>
+<td style="text-align: right;">61.2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">127</td>
+<td style="text-align: right;">84</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.8-max-0902</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/6</td>
+<td style="text-align: left;">2/6</td>
+<td style="text-align: right;">30.6</td>
+<td style="text-align: right;">30.6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">416</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.8-2.4t-a95b</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">2400.0/95.0</td>
+<td style="text-align: left;">2/6</td>
+<td style="text-align: left;">2/6</td>
+<td style="text-align: right;">30.6</td>
+<td style="text-align: right;">30.6</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">658</td>
+<td style="text-align: right;">117</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.7-max</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1.475/4.425</td>
+<td style="text-align: left;">1.475/4.425</td>
+<td style="text-align: right;">22.567</td>
+<td style="text-align: right;">22.57</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">113</td>
+<td style="text-align: right;">66</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen2.5-vl-72b-instruct</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: left;">72.0/72.0</td>
+<td style="text-align: left;">0.8/1</td>
+<td style="text-align: left;">0.8/1</td>
+<td style="text-align: right;">12.1</td>
+<td style="text-align: right;">12.1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">749</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen-2.5-coder-32b-instruct</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">32.5/32.5</td>
+<td style="text-align: left;">0.66/1</td>
+<td style="text-align: left;">0.66/1</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1357</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-235b-a22b-thinking-2507</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: left;">235.0/22.0</td>
+<td style="text-align: left;">0.45/3.5</td>
+<td style="text-align: left;">0.45/3.5</td>
+<td style="text-align: right;">7.1</td>
+<td style="text-align: right;">7.1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">461</td>
+<td style="text-align: right;">123</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.5-397b-a17b</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">397.0/17.0</td>
+<td style="text-align: left;">0.5/3.6</td>
+<td style="text-align: left;">0.39/2.34</td>
+<td style="text-align: right;">6.084</td>
+<td style="text-align: right;">7.86</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen-2.5-72b-instruct</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">72.7/72.7</td>
+<td style="text-align: left;">0.36/0.4</td>
+<td style="text-align: left;">0.36/0.4</td>
+<td style="text-align: right;">5.44</td>
+<td style="text-align: right;">5.44</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">722</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.6-plus</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.325/1.95</td>
+<td style="text-align: left;">0.325/1.95</td>
+<td style="text-align: right;">5.07</td>
+<td style="text-align: right;">5.07</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">98</td>
+<td style="text-align: right;">45</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.5-plus-20260420</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.3/1.8</td>
+<td style="text-align: left;">0.3/1.8</td>
+<td style="text-align: right;">4.68</td>
+<td style="text-align: right;">4.68</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-coder</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">480.0/35.0</td>
+<td style="text-align: left;">0.3/1</td>
+<td style="text-align: left;">0.3/1</td>
+<td style="text-align: right;">4.6</td>
+<td style="text-align: right;">4.6</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">543</td>
+<td style="text-align: right;">84</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-vl-30b-a3b-thinking</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">30.5/3.3</td>
+<td style="text-align: left;">0.29/1</td>
+<td style="text-align: left;">0.29/1</td>
+<td style="text-align: right;">4.45</td>
+<td style="text-align: right;">4.45</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.5-122b-a10b</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">122.0/10.0</td>
+<td style="text-align: left;">0.26/2.08</td>
+<td style="text-align: left;">0.26/2.08</td>
+<td style="text-align: right;">4.108</td>
+<td style="text-align: right;">4.11</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">778</td>
+<td style="text-align: right;">93</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.5-plus-02-15</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.26/1.56</td>
+<td style="text-align: left;">0.26/1.56</td>
+<td style="text-align: right;">4.056</td>
+<td style="text-align: right;">4.06</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1112</td>
+<td style="text-align: right;">61</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen-plus</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.26/0.78</td>
+<td style="text-align: left;">0.26/0.78</td>
+<td style="text-align: right;">3.978</td>
+<td style="text-align: right;">3.98</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">653</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-vl-8b-instruct</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">8.0/8.0</td>
+<td style="text-align: left;">0.25/0.75</td>
+<td style="text-align: left;">0.25/0.75</td>
+<td style="text-align: right;">3.825</td>
+<td style="text-align: right;">3.83</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.7-plus:batch</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.23/0.92</td>
+<td style="text-align: left;">-/-</td>
+<td style="text-align: right;">3.542</td>
+<td style="text-align: right;">3.54</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.7-plus</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.32/1.28</td>
+<td style="text-align: left;">0.23/0.92</td>
+<td style="text-align: right;">3.542</td>
+<td style="text-align: right;">4.93</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1853</td>
+<td style="text-align: right;">51</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.6-27b</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">27.0/27.0</td>
+<td style="text-align: left;">0.45/2.7</td>
+<td style="text-align: left;">0.2/2</td>
+<td style="text-align: right;">3.2</td>
+<td style="text-align: right;">7.02</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">503</td>
+<td style="text-align: right;">77</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-vl-235b-a22b-instruct</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">235.0/22.0</td>
+<td style="text-align: left;">0.21/1.9</td>
+<td style="text-align: left;">0.2/0.88</td>
+<td style="text-align: right;">3.088</td>
+<td style="text-align: right;">3.34</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1262</td>
+<td style="text-align: right;">27</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.5-27b</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">27.0/27.0</td>
+<td style="text-align: left;">0.26/2.6</td>
+<td style="text-align: left;">0.195/1.56</td>
+<td style="text-align: right;">3.081</td>
+<td style="text-align: right;">4.16</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">942</td>
+<td style="text-align: right;">83</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-coder-flash</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">30.5/3.3</td>
+<td style="text-align: left;">0.195/0.975</td>
+<td style="text-align: left;">0.195/0.975</td>
+<td style="text-align: right;">3.022</td>
+<td style="text-align: right;">3.02</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">848</td>
+<td style="text-align: right;">72</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.6-flash</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.188/1.125</td>
+<td style="text-align: left;">0.188/1.125</td>
+<td style="text-align: right;">2.925</td>
+<td style="text-align: right;">2.92</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">577</td>
+<td style="text-align: right;">69</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-vl-30b-a3b-instruct</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">30.5/3.3</td>
+<td style="text-align: left;">0.15/0.6</td>
+<td style="text-align: left;">0.15/0.6</td>
+<td style="text-align: right;">2.31</td>
+<td style="text-align: right;">2.31</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1038</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.8-flash</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.15/0.47</td>
+<td style="text-align: left;">0.15/0.47</td>
+<td style="text-align: right;">2.297</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">146</td>
+<td style="text-align: right;">56</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.8-omni-flash</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.15/0.47</td>
+<td style="text-align: left;">0.15/0.47</td>
+<td style="text-align: right;">2.297</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">331</td>
+<td style="text-align: right;">66</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-coder-next</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.12/0.8</td>
+<td style="text-align: left;">0.12/0.8</td>
+<td style="text-align: right;">1.88</td>
+<td style="text-align: right;">1.88</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">674</td>
+<td style="text-align: right;">64</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-30b-a3b</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: left;">30.5/3.3</td>
+<td style="text-align: left;">0.12/0.5</td>
+<td style="text-align: left;">0.12/0.5</td>
+<td style="text-align: right;">1.85</td>
+<td style="text-align: right;">1.85</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">621</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-14b</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: left;">14.8/14.8</td>
+<td style="text-align: left;">0.12/0.24</td>
+<td style="text-align: left;">0.1/0.22</td>
+<td style="text-align: right;">1.522</td>
+<td style="text-align: right;">1.82</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">203</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen-2.5-7b-instruct</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">7.6/7.6</td>
+<td style="text-align: left;">0.1/0.2</td>
+<td style="text-align: left;">0.1/0.2</td>
+<td style="text-align: right;">1.52</td>
+<td style="text-align: right;">1.52</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-next-80b-a3b-instruct</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">80.0/3.0</td>
+<td style="text-align: left;">0.09/1.1</td>
+<td style="text-align: left;">0.09/1.1</td>
+<td style="text-align: right;">1.46</td>
+<td style="text-align: right;">1.46</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">468</td>
+<td style="text-align: right;">122</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-30b-a3b-instruct-2507</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">30.5/3.3</td>
+<td style="text-align: left;">0.1/0.3</td>
+<td style="text-align: left;">0.09/0.3</td>
+<td style="text-align: right;">1.38</td>
+<td style="text-align: right;">1.53</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">228</td>
+<td style="text-align: right;">161</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-235b-a22b-2507</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">235.0/22.0</td>
+<td style="text-align: left;">0.09/0.55</td>
+<td style="text-align: left;">0.087/0.35</td>
+<td style="text-align: right;">1.347</td>
+<td style="text-align: right;">1.41</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">376</td>
+<td style="text-align: right;">38</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-32b</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: left;">32.8/32.8</td>
+<td style="text-align: left;">0.08/0.28</td>
+<td style="text-align: left;">0.08/0.28</td>
+<td style="text-align: right;">1.228</td>
+<td style="text-align: right;">1.23</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">362</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-coder-30b-a3b-instruct</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">30.5/3.3</td>
+<td style="text-align: left;">0.07/0.28</td>
+<td style="text-align: left;">0.07/0.28</td>
+<td style="text-align: right;">1.078</td>
+<td style="text-align: right;">1.08</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">131</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.5-35b-a3b</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">35.0/3.0</td>
+<td style="text-align: left;">0.14/1</td>
+<td style="text-align: left;">0.065/0.75</td>
+<td style="text-align: right;">1.05</td>
+<td style="text-align: right;">2.2</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">603</td>
+<td style="text-align: right;">138</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.5-flash-02-23</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.065/0.26</td>
+<td style="text-align: left;">0.065/0.26</td>
+<td style="text-align: right;">1.001</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">503</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.6-35b-a3b</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">35.0/3.0</td>
+<td style="text-align: left;">0.1/0.9</td>
+<td style="text-align: left;">0.05/0.7</td>
+<td style="text-align: right;">0.82</td>
+<td style="text-align: right;">1.59</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">594</td>
+<td style="text-align: right;">117</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.7-flash</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.03/0.13</td>
+<td style="text-align: left;">0.03/0.13</td>
+<td style="text-align: right;">0.463</td>
+<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">695</td>
+<td style="text-align: right;">57</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.8-27b</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">27.0/27.0</td>
+<td style="text-align: left;">0.15/1.875</td>
+<td style="text-align: left;">0.015/0.802</td>
+<td style="text-align: right;">0.305</td>
+<td style="text-align: right;">2.44</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">185</td>
+<td style="text-align: right;">54</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.5-9b</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">9.0/9.0</td>
+<td style="text-align: left;">0.17/0.25</td>
+<td style="text-align: left;">0.018/0.027</td>
+<td style="text-align: right;">0.273</td>
+<td style="text-align: right;">2.58</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">164</td>
+<td style="text-align: right;">88</td>
+</tr>
+</tbody>
+</table>
+<h4 id="deepseek15">DeepSeek（15 个）<a class="headerlink" href="#deepseek15" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: right;">ctx(k)</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: left;">列表价in/out</th>
+<th style="text-align: left;">最低价in/out</th>
+<th style="text-align: right;">$/千req(最低)</th>
+<th style="text-align: right;">$/千req(列表)</th>
+<th style="text-align: right;">prov</th>
+<th style="text-align: right;">p50ms</th>
+<th style="text-align: right;">tps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">deepseek-r1-0528</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">163</td>
+<td style="text-align: left;">671.0/37.0</td>
+<td style="text-align: left;">0.5/2.15</td>
+<td style="text-align: left;">0.5/2.15</td>
+<td style="text-align: right;">7.715</td>
+<td style="text-align: right;">7.71</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v3.1-terminus</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">163</td>
+<td style="text-align: left;">671.0/37.0</td>
+<td style="text-align: left;">0.27/1</td>
+<td style="text-align: left;">0.27/1</td>
+<td style="text-align: right;">4.15</td>
+<td style="text-align: right;">4.15</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1839</td>
+<td style="text-align: right;">21</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4-pro</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">1600.0/49.0</td>
+<td style="text-align: left;">1.6/3.2</td>
+<td style="text-align: left;">0.272/0.544</td>
+<td style="text-align: right;">4.131</td>
+<td style="text-align: right;">24.32</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">706</td>
+<td style="text-align: right;">109</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v3.2-exp</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">163</td>
+<td style="text-align: left;">671.0/37.0</td>
+<td style="text-align: left;">0.27/0.41</td>
+<td style="text-align: left;">0.27/0.41</td>
+<td style="text-align: right;">4.091</td>
+<td style="text-align: right;">4.09</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2143</td>
+<td style="text-align: right;">17</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-chat</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">163</td>
+<td style="text-align: left;">671.0/37.0</td>
+<td style="text-align: left;">0.257/1.029</td>
+<td style="text-align: left;">0.256/0.712</td>
+<td style="text-align: right;">3.911</td>
+<td style="text-align: right;">3.96</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1749</td>
+<td style="text-align: right;">35</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-chat-v3-0324</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">163</td>
+<td style="text-align: left;">685.0/37.0</td>
+<td style="text-align: left;">0.29/1.14</td>
+<td style="text-align: left;">0.25/1</td>
+<td style="text-align: right;">3.85</td>
+<td style="text-align: right;">4.46</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-chat-v3.1</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">163</td>
+<td style="text-align: left;">671.0/37.0</td>
+<td style="text-align: left;">0.25/0.95</td>
+<td style="text-align: left;">0.25/0.95</td>
+<td style="text-align: right;">3.845</td>
+<td style="text-align: right;">3.85</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">299</td>
+<td style="text-align: right;">98</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4-flash-vision-exp</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">284.0/13.0</td>
+<td style="text-align: left;">0.216/0.647</td>
+<td style="text-align: left;">0.216/0.647</td>
+<td style="text-align: right;">3.299</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1916</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v3.2</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">163</td>
+<td style="text-align: left;">671.0/37.0</td>
+<td style="text-align: left;">0.26/0.38</td>
+<td style="text-align: left;">0.209/0.31</td>
+<td style="text-align: right;">3.163</td>
+<td style="text-align: right;">3.94</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">579</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4-pro-0813</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">1600.0/49.0</td>
+<td style="text-align: left;">0.115/4</td>
+<td style="text-align: left;">0.103/0.851</td>
+<td style="text-align: right;">1.638</td>
+<td style="text-align: right;">2.12</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">252</td>
+<td style="text-align: right;">144</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4.1-flash:batch</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">284.0/13.0</td>
+<td style="text-align: left;">0.05/0.15</td>
+<td style="text-align: left;">-/-</td>
+<td style="text-align: right;">0.765</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4-flash-0731</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">284.0/13.0</td>
+<td style="text-align: left;">0.119/0.238</td>
+<td style="text-align: left;">0.043/0.133</td>
+<td style="text-align: right;">0.664</td>
+<td style="text-align: right;">1.81</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">298</td>
+<td style="text-align: right;">188</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4-flash</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">284.0/13.0</td>
+<td style="text-align: left;">0.091/0.182</td>
+<td style="text-align: left;">0.038/0.08</td>
+<td style="text-align: right;">0.577</td>
+<td style="text-align: right;">1.38</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">295</td>
+<td style="text-align: right;">177</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4.1-flash-1017</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">284.0/13.0</td>
+<td style="text-align: left;">0.15/0.6</td>
+<td style="text-align: left;">0.035/0.15</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">2.31</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">218</td>
+<td style="text-align: right;">299</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4.1-flash</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">284.0/13.0</td>
+<td style="text-align: left;">0.045/0.5</td>
+<td style="text-align: left;">0.004/0.15</td>
+<td style="text-align: right;">0.072</td>
+<td style="text-align: right;">0.72</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">242</td>
+<td style="text-align: right;">239</td>
+</tr>
+</tbody>
+</table>
+<h4 id="glm_18">GLM (智谱)（18 个）<a class="headerlink" href="#glm_18" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: right;">ctx(k)</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: left;">列表价in/out</th>
+<th style="text-align: left;">最低价in/out</th>
+<th style="text-align: right;">$/千req(最低)</th>
+<th style="text-align: right;">$/千req(列表)</th>
+<th style="text-align: right;">prov</th>
+<th style="text-align: right;">p50ms</th>
+<th style="text-align: right;">tps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">glm-5.3-prime</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">744.0/40.0</td>
+<td style="text-align: left;">2.8/8.8</td>
+<td style="text-align: left;">2.8/8.8</td>
+<td style="text-align: right;">42.88</td>
+<td style="text-align: right;">42.88</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">879</td>
+<td style="text-align: right;">101</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5-turbo</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: left;">744.0/40.0</td>
+<td style="text-align: left;">1.2/4</td>
+<td style="text-align: left;">1.2/4</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4228</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5v-turbo</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">202</td>
+<td style="text-align: left;">744.0/40.0</td>
+<td style="text-align: left;">1.2/4</td>
+<td style="text-align: left;">1.2/4</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">915</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.1</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: left;">744.0/40.0</td>
+<td style="text-align: left;">1.4/4.4</td>
+<td style="text-align: left;">0.899/2.825</td>
+<td style="text-align: right;">13.764</td>
+<td style="text-align: right;">21.44</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">696</td>
+<td style="text-align: right;">63</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-4.5</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: left;">355.0/32.0</td>
+<td style="text-align: left;">0.6/2.2</td>
+<td style="text-align: left;">0.6/2.2</td>
+<td style="text-align: right;">9.22</td>
+<td style="text-align: right;">9.22</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4164</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: left;">744.0/40.0</td>
+<td style="text-align: left;">1/3.2</td>
+<td style="text-align: left;">0.6/1.92</td>
+<td style="text-align: right;">9.192</td>
+<td style="text-align: right;">15.32</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">687</td>
+<td style="text-align: right;">115</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-4.5v</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">106.0/12.0</td>
+<td style="text-align: left;">0.6/1.8</td>
+<td style="text-align: left;">0.6/1.8</td>
+<td style="text-align: right;">9.18</td>
+<td style="text-align: right;">9.18</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.3:batch</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">744.0/40.0</td>
+<td style="text-align: left;">0.45/2</td>
+<td style="text-align: left;">-/-</td>
+<td style="text-align: right;">6.95</td>
+<td style="text-align: right;">6.95</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-4.7</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: left;">355.0/32.0</td>
+<td style="text-align: left;">0.6/2.2</td>
+<td style="text-align: left;">0.4/1.75</td>
+<td style="text-align: right;">6.175</td>
+<td style="text-align: right;">9.22</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1118</td>
+<td style="text-align: right;">34</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-4.6</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: left;">355.0/32.0</td>
+<td style="text-align: left;">0.5/2</td>
+<td style="text-align: left;">0.4/1.6</td>
+<td style="text-align: right;">6.16</td>
+<td style="text-align: right;">7.7</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">816</td>
+<td style="text-align: right;">51</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.3-flashx</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">320.0/18.0</td>
+<td style="text-align: left;">0.37/1.25</td>
+<td style="text-align: left;">0.37/1.25</td>
+<td style="text-align: right;">5.675</td>
+<td style="text-align: right;">5.67</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">148</td>
+<td style="text-align: right;">93</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-4.6v</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: left;">355.0/32.0</td>
+<td style="text-align: left;">0.3/0.9</td>
+<td style="text-align: left;">0.3/0.9</td>
+<td style="text-align: right;">4.59</td>
+<td style="text-align: right;">4.59</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">264</td>
+<td style="text-align: right;">27</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-4.5-air</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: left;">106.0/12.0</td>
+<td style="text-align: left;">0.13/0.85</td>
+<td style="text-align: left;">0.13/0.85</td>
+<td style="text-align: right;">2.035</td>
+<td style="text-align: right;">2.04</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">628</td>
+<td style="text-align: right;">77</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.3</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">744.0/40.0</td>
+<td style="text-align: left;">0.08/3.6</td>
+<td style="text-align: left;">0.07/0.88</td>
+<td style="text-align: right;">1.137</td>
+<td style="text-align: right;">1.56</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">285</td>
+<td style="text-align: right;">146</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-4.7-flash</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: left;">355.0/32.0</td>
+<td style="text-align: left;">0.06/0.4</td>
+<td style="text-align: left;">0.061/0.4</td>
+<td style="text-align: right;">0.948</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">298</td>
+<td style="text-align: right;">56</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.3-flash:batch</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">320.0/18.0</td>
+<td style="text-align: left;">0.05/0.18</td>
+<td style="text-align: left;">-/-</td>
+<td style="text-align: right;">0.768</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.3-flash</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">320.0/18.0</td>
+<td style="text-align: left;">0.029/0.092</td>
+<td style="text-align: left;">0.029/0.092</td>
+<td style="text-align: right;">0.437</td>
+<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">345</td>
+<td style="text-align: right;">158</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.2</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">744.0/40.0</td>
+<td style="text-align: left;">0.006/6.8</td>
+<td style="text-align: left;">0.006/0.594</td>
+<td style="text-align: right;">0.149</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">357</td>
+<td style="text-align: right;">195</td>
+</tr>
+</tbody>
+</table>
+<h4 id="minimax9">MiniMax（9 个）<a class="headerlink" href="#minimax9" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: right;">ctx(k)</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: left;">列表价in/out</th>
+<th style="text-align: left;">最低价in/out</th>
+<th style="text-align: right;">$/千req(最低)</th>
+<th style="text-align: right;">$/千req(列表)</th>
+<th style="text-align: right;">prov</th>
+<th style="text-align: right;">p50ms</th>
+<th style="text-align: right;">tps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">minimax-m1</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">456.0/45.9</td>
+<td style="text-align: left;">0.55/2.2</td>
+<td style="text-align: left;">0.4/2.2</td>
+<td style="text-align: right;">6.22</td>
+<td style="text-align: right;">8.47</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m2.1</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: left;">230.0/10.0</td>
+<td style="text-align: left;">0.3/1.2</td>
+<td style="text-align: left;">0.3/1.2</td>
+<td style="text-align: right;">4.62</td>
+<td style="text-align: right;">4.62</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1549</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m2-her</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">230.0/10.0</td>
+<td style="text-align: left;">0.3/1.2</td>
+<td style="text-align: left;">0.3/1.2</td>
+<td style="text-align: right;">4.62</td>
+<td style="text-align: right;">4.62</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">74</td>
+<td style="text-align: right;">44</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m2.5</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: left;">230.0/10.0</td>
+<td style="text-align: left;">0.27/0.95</td>
+<td style="text-align: left;">0.27/0.95</td>
+<td style="text-align: right;">4.145</td>
+<td style="text-align: right;">4.14</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">657</td>
+<td style="text-align: right;">118</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m2</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: left;">230.0/10.0</td>
+<td style="text-align: left;">0.255/1.02</td>
+<td style="text-align: left;">0.255/1.02</td>
+<td style="text-align: right;">3.927</td>
+<td style="text-align: right;">3.93</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m3</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">456.0/23.0</td>
+<td style="text-align: left;">0.3/1.2</td>
+<td style="text-align: left;">0.224/0.88</td>
+<td style="text-align: right;">3.448</td>
+<td style="text-align: right;">4.62</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">372</td>
+<td style="text-align: right;">156</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m2.7</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: left;">230.0/10.0</td>
+<td style="text-align: left;">0.3/1.2</td>
+<td style="text-align: left;">0.21/0.84</td>
+<td style="text-align: right;">3.234</td>
+<td style="text-align: right;">4.62</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">189</td>
+<td style="text-align: right;">291</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-01</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">456.0/45.9</td>
+<td style="text-align: left;">0.2/1.1</td>
+<td style="text-align: left;">0.2/1.1</td>
+<td style="text-align: right;">3.11</td>
+<td style="text-align: right;">3.11</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m3.1-flash</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">456.0/23.0</td>
+<td style="text-align: left;">0.15/0.6</td>
+<td style="text-align: left;">0.05/0.2</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">2.31</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">395</td>
+<td style="text-align: right;">227</td>
+</tr>
+</tbody>
+</table>
+<h4 id="kimi_9">Kimi (月之暗面)（9 个）<a class="headerlink" href="#kimi_9" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: right;">ctx(k)</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: left;">列表价in/out</th>
+<th style="text-align: left;">最低价in/out</th>
+<th style="text-align: right;">$/千req(最低)</th>
+<th style="text-align: right;">$/千req(列表)</th>
+<th style="text-align: right;">prov</th>
+<th style="text-align: right;">p50ms</th>
+<th style="text-align: right;">tps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">kimi-k3:batch</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">2800.0/104.0</td>
+<td style="text-align: left;">2.28/11.4</td>
+<td style="text-align: left;">-/-</td>
+<td style="text-align: right;">35.34</td>
+<td style="text-align: right;">35.34</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k3.1-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">3000.0/104.0</td>
+<td style="text-align: left;">2/10</td>
+<td style="text-align: left;">2/10</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6414</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k2.7-code</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">1000.0/32.0</td>
+<td style="text-align: left;">0.6/3.5</td>
+<td style="text-align: left;">0.6/3</td>
+<td style="text-align: right;">9.3</td>
+<td style="text-align: right;">9.35</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">665</td>
+<td style="text-align: right;">167</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k2-0905</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">1000.0/32.0</td>
+<td style="text-align: left;">0.6/2.5</td>
+<td style="text-align: left;">0.6/2.5</td>
+<td style="text-align: right;">9.25</td>
+<td style="text-align: right;">9.25</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">856</td>
+<td style="text-align: right;">38</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k2-thinking</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">1000.0/32.0</td>
+<td style="text-align: left;">0.6/2.5</td>
+<td style="text-align: left;">0.6/2.5</td>
+<td style="text-align: right;">9.25</td>
+<td style="text-align: right;">9.25</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1872</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k2</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: left;">1000.0/32.0</td>
+<td style="text-align: left;">0.57/2.3</td>
+<td style="text-align: left;">0.57/2.3</td>
+<td style="text-align: right;">8.78</td>
+<td style="text-align: right;">8.78</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1396</td>
+<td style="text-align: right;">38</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k2.5</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">1000.0/32.0</td>
+<td style="text-align: left;">0.5/2.5</td>
+<td style="text-align: left;">0.49/2.5</td>
+<td style="text-align: right;">7.6</td>
+<td style="text-align: right;">7.75</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">666</td>
+<td style="text-align: right;">98</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k2.6</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">1000.0/32.0</td>
+<td style="text-align: left;">0.65/3.41</td>
+<td style="text-align: left;">0.39/1.64</td>
+<td style="text-align: right;">6.006</td>
+<td style="text-align: right;">10.09</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">342</td>
+<td style="text-align: right;">78</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k3</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">2800.0/104.0</td>
+<td style="text-align: left;">0.192/15</td>
+<td style="text-align: left;">0.149/7.15</td>
+<td style="text-align: right;">2.95</td>
+<td style="text-align: right;">4.38</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">768</td>
+<td style="text-align: right;">75</td>
+</tr>
+</tbody>
+</table>
+<h4 id="7">混元 (腾讯)（7 个）<a class="headerlink" href="#7" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: right;">ctx(k)</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: left;">列表价in/out</th>
+<th style="text-align: left;">最低价in/out</th>
+<th style="text-align: right;">$/千req(最低)</th>
+<th style="text-align: right;">$/千req(列表)</th>
+<th style="text-align: right;">prov</th>
+<th style="text-align: right;">p50ms</th>
+<th style="text-align: right;">tps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">hy4-preview</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">770.0/49.0</td>
+<td style="text-align: left;">0.834/2.501</td>
+<td style="text-align: left;">0.834/2.501</td>
+<td style="text-align: right;">12.76</td>
+<td style="text-align: right;">12.76</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">916</td>
+<td style="text-align: right;">99</td>
+</tr>
+<tr>
+<td style="text-align: left;">hy3-preview</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">295.0/21.0</td>
+<td style="text-align: left;">0.18/0.6</td>
+<td style="text-align: left;">0.18/0.6</td>
+<td style="text-align: right;">2.76</td>
+<td style="text-align: right;">2.76</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3906</td>
+<td style="text-align: right;">81</td>
+</tr>
+<tr>
+<td style="text-align: left;">hunyuan-a13b-instruct</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: left;">80.0/13.0</td>
+<td style="text-align: left;">0.14/0.57</td>
+<td style="text-align: left;">0.14/0.57</td>
+<td style="text-align: right;">2.157</td>
+<td style="text-align: right;">2.16</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">968</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">hy3</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">295.0/21.0</td>
+<td style="text-align: left;">0.132/0.528</td>
+<td style="text-align: left;">0.132/0.528</td>
+<td style="text-align: right;">2.033</td>
+<td style="text-align: right;">2.03</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1396</td>
+<td style="text-align: right;">57</td>
+</tr>
+<tr>
+<td style="text-align: left;">hy-mt2-7b</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">7.0/7.0</td>
+<td style="text-align: left;">0.074/0.295</td>
+<td style="text-align: left;">0.074/0.295</td>
+<td style="text-align: right;">1.139</td>
+<td style="text-align: right;">1.14</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">hy-mt2-30b-a3b</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">30.0/3.0</td>
+<td style="text-align: left;">0.074/0.295</td>
+<td style="text-align: left;">0.074/0.295</td>
+<td style="text-align: right;">1.139</td>
+<td style="text-align: right;">1.14</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">495</td>
+<td style="text-align: right;">117</td>
+</tr>
+<tr>
+<td style="text-align: left;">hy-mt2-1.8b</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">1.8/1.8</td>
+<td style="text-align: left;">0.044/0.177</td>
+<td style="text-align: left;">0.044/0.177</td>
+<td style="text-align: right;">0.678</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">545</td>
+<td style="text-align: right;">173</td>
+</tr>
+</tbody>
+</table>
+<h4 id="claude_anthropic15">Claude (Anthropic)（15 个）<a class="headerlink" href="#claude_anthropic15" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: right;">ctx(k)</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: left;">列表价in/out</th>
+<th style="text-align: left;">最低价in/out</th>
+<th style="text-align: right;">$/千req(最低)</th>
+<th style="text-align: right;">$/千req(列表)</th>
+<th style="text-align: right;">prov</th>
+<th style="text-align: right;">p50ms</th>
+<th style="text-align: right;">tps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">claude-opus-4.1</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">15/75</td>
+<td style="text-align: left;">7.5/37.5</td>
+<td style="text-align: right;">116.25</td>
+<td style="text-align: right;">232.5</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">459</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-fable-5</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">10/50</td>
+<td style="text-align: left;">5/25</td>
+<td style="text-align: right;">77.5</td>
+<td style="text-align: right;">155</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">367</td>
+<td style="text-align: right;">53</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-fable-5.1</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">10/50</td>
+<td style="text-align: left;">5/25</td>
+<td style="text-align: right;">77.5</td>
+<td style="text-align: right;">155</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1971</td>
+<td style="text-align: right;">61</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-opus-4.8</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">5/25</td>
+<td style="text-align: left;">2.5/12.5</td>
+<td style="text-align: right;">38.75</td>
+<td style="text-align: right;">77.5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">694</td>
+<td style="text-align: right;">74</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-opus-4.5</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">5/25</td>
+<td style="text-align: left;">2.5/12.5</td>
+<td style="text-align: right;">38.75</td>
+<td style="text-align: right;">77.5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">988</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-opus-4.6</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">5/25</td>
+<td style="text-align: left;">2.5/12.5</td>
+<td style="text-align: right;">38.75</td>
+<td style="text-align: right;">77.5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1115</td>
+<td style="text-align: right;">51</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-opus-5</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">5/25</td>
+<td style="text-align: left;">2.5/12.5</td>
+<td style="text-align: right;">38.75</td>
+<td style="text-align: right;">77.5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2048</td>
+<td style="text-align: right;">64</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-opus-4.7</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">5/25</td>
+<td style="text-align: left;">2.5/12.5</td>
+<td style="text-align: right;">38.75</td>
+<td style="text-align: right;">77.5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">67</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-opus-5.5</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">4/20</td>
+<td style="text-align: left;">2/10</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">2509</td>
+<td style="text-align: right;">85</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-sonnet-4.5</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">3/15</td>
+<td style="text-align: left;">1.5/7.5</td>
+<td style="text-align: right;">23.25</td>
+<td style="text-align: right;">46.5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">902</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-sonnet-4.6</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">3/15</td>
+<td style="text-align: left;">1.5/7.5</td>
+<td style="text-align: right;">23.25</td>
+<td style="text-align: right;">46.5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">646</td>
+<td style="text-align: right;">77</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-sonnet-5.5</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/10</td>
+<td style="text-align: left;">1/5</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1486</td>
+<td style="text-align: right;">106</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-sonnet-5</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/10</td>
+<td style="text-align: left;">1/5</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1098</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-haiku-4.5</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1/5</td>
+<td style="text-align: left;">0.5/2.5</td>
+<td style="text-align: right;">7.75</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">382</td>
+<td style="text-align: right;">89</td>
+</tr>
+<tr>
+<td style="text-align: left;">claude-haiku-5.5</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.1/0.5</td>
+<td style="text-align: left;">0.05/0.25</td>
+<td style="text-align: right;">0.775</td>
+<td style="text-align: right;">1.55</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">897</td>
+<td style="text-align: right;">163</td>
+</tr>
+</tbody>
+</table>
+<h4 id="gemini_google28">Gemini (Google)（28 个）<a class="headerlink" href="#gemini_google28" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: right;">ctx(k)</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: left;">列表价in/out</th>
+<th style="text-align: left;">最低价in/out</th>
+<th style="text-align: right;">$/千req(最低)</th>
+<th style="text-align: right;">$/千req(列表)</th>
+<th style="text-align: right;">prov</th>
+<th style="text-align: right;">p50ms</th>
+<th style="text-align: right;">tps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">gemini-3-pro-image</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/12</td>
+<td style="text-align: left;">2/12</td>
+<td style="text-align: right;">31.2</td>
+<td style="text-align: right;">31.2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">23951</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3-pro-image-preview</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/12</td>
+<td style="text-align: left;">2/12</td>
+<td style="text-align: right;">31.2</td>
+<td style="text-align: right;">31.2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3.1-pro-preview-customtools</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/12</td>
+<td style="text-align: left;">2/12</td>
+<td style="text-align: right;">31.2</td>
+<td style="text-align: right;">31.2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-nano-banana-2.1</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1.5/7.5</td>
+<td style="text-align: left;">1.5/7.5</td>
+<td style="text-align: right;">23.25</td>
+<td style="text-align: right;">23.25</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">16888</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-2.5-pro-preview</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1.25/10</td>
+<td style="text-align: left;">1.25/10</td>
+<td style="text-align: right;">19.75</td>
+<td style="text-align: right;">19.75</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2899</td>
+<td style="text-align: right;">55</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-2.5-pro</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1.25/10</td>
+<td style="text-align: left;">1.25/10</td>
+<td style="text-align: right;">19.75</td>
+<td style="text-align: right;">19.75</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2899</td>
+<td style="text-align: right;">55</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3.1-pro-preview</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/12</td>
+<td style="text-align: left;">1/6</td>
+<td style="text-align: right;">15.6</td>
+<td style="text-align: right;">31.2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2926</td>
+<td style="text-align: right;">101</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-4-argon</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/10</td>
+<td style="text-align: left;">1/5</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4614</td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3.5-flash</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1.5/9</td>
+<td style="text-align: left;">0.75/4.5</td>
+<td style="text-align: right;">11.7</td>
+<td style="text-align: right;">23.4</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">916</td>
+<td style="text-align: right;">165</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemma-2-27b-it</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">27.0/27.0</td>
+<td style="text-align: left;">0.65/0.65</td>
+<td style="text-align: left;">0.65/0.65</td>
+<td style="text-align: right;">9.815</td>
+<td style="text-align: right;">9.81</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3.1-flash-image</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.5/3</td>
+<td style="text-align: left;">0.5/3</td>
+<td style="text-align: right;">7.8</td>
+<td style="text-align: right;">7.8</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">9895</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3.1-flash-image-preview</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.5/3</td>
+<td style="text-align: left;">0.5/3</td>
+<td style="text-align: right;">7.8</td>
+<td style="text-align: right;">7.8</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">15738</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3.6-flash</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.75/3.75</td>
+<td style="text-align: left;">0.375/1.875</td>
+<td style="text-align: right;">5.812</td>
+<td style="text-align: right;">11.62</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2164</td>
+<td style="text-align: right;">142</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3.8-flash</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.825/4.125</td>
+<td style="text-align: left;">0.375/1.875</td>
+<td style="text-align: right;">5.812</td>
+<td style="text-align: right;">12.79</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2483</td>
+<td style="text-align: right;">76</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3.7-flash</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.75/3.75</td>
+<td style="text-align: left;">0.375/1.875</td>
+<td style="text-align: right;">5.812</td>
+<td style="text-align: right;">11.62</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1962</td>
+<td style="text-align: right;">99</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-2.5-flash</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.3/2.5</td>
+<td style="text-align: left;">0.3/2.5</td>
+<td style="text-align: right;">4.75</td>
+<td style="text-align: right;">4.75</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">961</td>
+<td style="text-align: right;">64</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-2.5-flash-image</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.3/2.5</td>
+<td style="text-align: left;">0.3/2.5</td>
+<td style="text-align: right;">4.75</td>
+<td style="text-align: right;">4.75</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">11856</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3.1-flash-lite-image</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.25/1.5</td>
+<td style="text-align: left;">0.25/1.5</td>
+<td style="text-align: right;">3.9</td>
+<td style="text-align: right;">3.9</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4816</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3.1-flash-lite-preview</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.25/1.5</td>
+<td style="text-align: left;">0.25/1.5</td>
+<td style="text-align: right;">3.9</td>
+<td style="text-align: right;">3.9</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">721</td>
+<td style="text-align: right;">203</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3-flash-preview</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.5/3</td>
+<td style="text-align: left;">0.25/1.5</td>
+<td style="text-align: right;">3.9</td>
+<td style="text-align: right;">7.8</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1365</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemma-4-31b-it</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">31.0/31.0</td>
+<td style="text-align: left;">0.2/0.4</td>
+<td style="text-align: left;">0/0</td>
+<td style="text-align: right;">3.04</td>
+<td style="text-align: right;">3.04</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">202</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3.5-flash-lite</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.3/2.5</td>
+<td style="text-align: left;">0.15/1.25</td>
+<td style="text-align: right;">2.375</td>
+<td style="text-align: right;">4.75</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1156</td>
+<td style="text-align: right;">172</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-3.1-flash-lite</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.25/1.5</td>
+<td style="text-align: left;">0.125/0.75</td>
+<td style="text-align: right;">1.95</td>
+<td style="text-align: right;">3.9</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">657</td>
+<td style="text-align: right;">189</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemini-2.5-flash-lite</td>
+<td style="text-align: left;">omni</td>
+<td style="text-align: right;">1048</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.1/0.4</td>
+<td style="text-align: left;">0.1/0.4</td>
+<td style="text-align: right;">1.54</td>
+<td style="text-align: right;">1.54</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">753</td>
+<td style="text-align: right;">107</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemma-3-27b-it</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: left;">27.0/27.0</td>
+<td style="text-align: left;">0.08/0.35</td>
+<td style="text-align: left;">0.08/0.16</td>
+<td style="text-align: right;">1.216</td>
+<td style="text-align: right;">1.24</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">56</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemma-4-26b-a4b-it</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: left;">26.0/4.0</td>
+<td style="text-align: left;">0.068/0.225</td>
+<td style="text-align: left;">0/0</td>
+<td style="text-align: right;">1.035</td>
+<td style="text-align: right;">1.03</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">281</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemma-3-12b-it</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: left;">12.0/12.0</td>
+<td style="text-align: left;">0.05/0.15</td>
+<td style="text-align: left;">0.05/0.15</td>
+<td style="text-align: right;">0.765</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1257</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr>
+<td style="text-align: left;">gemma-3-4b-it</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: left;">4.0/4.0</td>
+<td style="text-align: left;">0.05/0.1</td>
+<td style="text-align: left;">0.04/0.05</td>
+<td style="text-align: right;">0.605</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1116</td>
+<td style="text-align: right;">48</td>
+</tr>
+</tbody>
+</table>
+<h4 id="gpt_openai51">GPT (OpenAI)（51 个）<a class="headerlink" href="#gpt_openai51" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: right;">ctx(k)</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: left;">列表价in/out</th>
+<th style="text-align: left;">最低价in/out</th>
+<th style="text-align: right;">$/千req(最低)</th>
+<th style="text-align: right;">$/千req(列表)</th>
+<th style="text-align: right;">prov</th>
+<th style="text-align: right;">p50ms</th>
+<th style="text-align: right;">tps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">gpt-4</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">30/60</td>
+<td style="text-align: left;">30/60</td>
+<td style="text-align: right;">456</td>
+<td style="text-align: right;">456</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">589</td>
+<td style="text-align: right;">81</td>
+</tr>
+<tr>
+<td style="text-align: left;">o3-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">20/80</td>
+<td style="text-align: left;">20/80</td>
+<td style="text-align: right;">308</td>
+<td style="text-align: right;">308</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.4-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">30/180</td>
+<td style="text-align: left;">15/90</td>
+<td style="text-align: right;">234</td>
+<td style="text-align: right;">468</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.5-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">30/180</td>
+<td style="text-align: left;">15/90</td>
+<td style="text-align: right;">234</td>
+<td style="text-align: right;">468</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.2-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">21/168</td>
+<td style="text-align: left;">10.5/84</td>
+<td style="text-align: right;">165.9</td>
+<td style="text-align: right;">331.8</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5-image</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">10/10</td>
+<td style="text-align: left;">10/10</td>
+<td style="text-align: right;">151</td>
+<td style="text-align: right;">151</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.4-image-2</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">272</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">8/15</td>
+<td style="text-align: left;">8/15</td>
+<td style="text-align: right;">121.5</td>
+<td style="text-align: right;">121.5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">83581</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">15/120</td>
+<td style="text-align: left;">7.5/60</td>
+<td style="text-align: right;">118.5</td>
+<td style="text-align: right;">237</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-chat-latest</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">5/30</td>
+<td style="text-align: left;">5/30</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1034</td>
+<td style="text-align: right;">94</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-6-astra-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">10/50</td>
+<td style="text-align: left;">5/25</td>
+<td style="text-align: right;">77.5</td>
+<td style="text-align: right;">155</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5658</td>
+<td style="text-align: right;">54</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-6-astra</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">10/50</td>
+<td style="text-align: left;">5/25</td>
+<td style="text-align: right;">77.5</td>
+<td style="text-align: right;">155</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1835</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-4o-2024-05-13</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">5/15</td>
+<td style="text-align: left;">5/15</td>
+<td style="text-align: right;">76.5</td>
+<td style="text-align: right;">76.5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1364</td>
+<td style="text-align: right;">42</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-3.5-turbo-16k</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">3/4</td>
+<td style="text-align: left;">3/4</td>
+<td style="text-align: right;">45.4</td>
+<td style="text-align: right;">45.4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.5</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">5/30</td>
+<td style="text-align: left;">2.5/15</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2026</td>
+<td style="text-align: right;">59</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-4o-2024-11-20</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2.5/10</td>
+<td style="text-align: left;">2.5/10</td>
+<td style="text-align: right;">38.5</td>
+<td style="text-align: right;">38.5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">536</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-4o-2024-08-06</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2.5/10</td>
+<td style="text-align: left;">2.5/10</td>
+<td style="text-align: right;">38.5</td>
+<td style="text-align: right;">38.5</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">543</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5-image-mini</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2.5/2</td>
+<td style="text-align: left;">2.5/2</td>
+<td style="text-align: right;">37.7</td>
+<td style="text-align: right;">37.7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">37968</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.6-sol</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">4/20</td>
+<td style="text-align: left;">2/10</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2963</td>
+<td style="text-align: right;">138</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.6-sol-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">4/20</td>
+<td style="text-align: left;">2/10</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5149</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.3-codex</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1.75/14</td>
+<td style="text-align: left;">1.75/14</td>
+<td style="text-align: right;">27.65</td>
+<td style="text-align: right;">27.65</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1956</td>
+<td style="text-align: right;">92</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.2-codex</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1.75/14</td>
+<td style="text-align: left;">1.75/14</td>
+<td style="text-align: right;">27.65</td>
+<td style="text-align: right;">27.65</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.2-chat</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1.75/14</td>
+<td style="text-align: left;">1.75/14</td>
+<td style="text-align: right;">27.65</td>
+<td style="text-align: right;">27.65</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.1-codex</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1.25/10</td>
+<td style="text-align: left;">1.25/10</td>
+<td style="text-align: right;">19.75</td>
+<td style="text-align: right;">19.75</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.1-codex-max</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1.25/10</td>
+<td style="text-align: left;">1.25/10</td>
+<td style="text-align: right;">19.75</td>
+<td style="text-align: right;">19.75</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.4</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2.5/15</td>
+<td style="text-align: left;">1.25/7.5</td>
+<td style="text-align: right;">19.5</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-4o</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2.5/10</td>
+<td style="text-align: left;">1.25/5</td>
+<td style="text-align: right;">19.25</td>
+<td style="text-align: right;">38.5</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">571</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.6-terra-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/12</td>
+<td style="text-align: left;">1/6</td>
+<td style="text-align: right;">15.6</td>
+<td style="text-align: right;">31.2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">271</td>
+<td style="text-align: right;">73</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.6-terra</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/12</td>
+<td style="text-align: left;">1/6</td>
+<td style="text-align: right;">15.6</td>
+<td style="text-align: right;">31.2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1669</td>
+<td style="text-align: right;">85</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-6-sol-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/10</td>
+<td style="text-align: left;">1/5</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-6-sol</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/10</td>
+<td style="text-align: left;">1/5</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1108</td>
+<td style="text-align: right;">76</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-6.1-sol-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/10</td>
+<td style="text-align: left;">1/5</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-6.1-sol</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/10</td>
+<td style="text-align: left;">1/5</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">3042</td>
+<td style="text-align: right;">51</td>
+</tr>
+<tr>
+<td style="text-align: left;">o3</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/8</td>
+<td style="text-align: left;">1/4</td>
+<td style="text-align: right;">15.4</td>
+<td style="text-align: right;">30.8</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2385</td>
+<td style="text-align: right;">118</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-4.1</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1047</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">2/8</td>
+<td style="text-align: left;">1/4</td>
+<td style="text-align: right;">15.4</td>
+<td style="text-align: right;">30.8</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">828</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-3.5-turbo-0613</td>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1/2</td>
+<td style="text-align: left;">1/2</td>
+<td style="text-align: right;">15.2</td>
+<td style="text-align: right;">15.2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">453</td>
+<td style="text-align: right;">91</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.2</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1.75/14</td>
+<td style="text-align: left;">0.875/7</td>
+<td style="text-align: right;">13.825</td>
+<td style="text-align: right;">27.65</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">2202</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.1</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1.25/10</td>
+<td style="text-align: left;">0.625/5</td>
+<td style="text-align: right;">9.875</td>
+<td style="text-align: right;">19.75</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">843</td>
+<td style="text-align: right;">105</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1.25/10</td>
+<td style="text-align: left;">0.625/5</td>
+<td style="text-align: right;">9.875</td>
+<td style="text-align: right;">19.75</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3042</td>
+<td style="text-align: right;">84</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-6.1-terra</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1/5</td>
+<td style="text-align: left;">0.5/2.5</td>
+<td style="text-align: right;">7.75</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">186</td>
+<td style="text-align: right;">62</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-6.1-terra-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1/5</td>
+<td style="text-align: left;">0.5/2.5</td>
+<td style="text-align: right;">7.75</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.4-mini</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.75/4.5</td>
+<td style="text-align: left;">0.375/2.25</td>
+<td style="text-align: right;">5.85</td>
+<td style="text-align: right;">11.7</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">143</td>
+<td style="text-align: right;">116</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.1-codex-mini</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.25/2</td>
+<td style="text-align: left;">0.25/2</td>
+<td style="text-align: right;">3.95</td>
+<td style="text-align: right;">3.95</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">312</td>
+<td style="text-align: right;">64</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-4.1-mini</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1047</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.4/1.6</td>
+<td style="text-align: left;">0.2/0.8</td>
+<td style="text-align: right;">3.08</td>
+<td style="text-align: right;">6.16</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">857</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5-mini</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.25/2</td>
+<td style="text-align: left;">0.125/1</td>
+<td style="text-align: right;">1.975</td>
+<td style="text-align: right;">3.95</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1677</td>
+<td style="text-align: right;">98</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.4-nano</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.2/1.25</td>
+<td style="text-align: left;">0.1/0.625</td>
+<td style="text-align: right;">1.562</td>
+<td style="text-align: right;">3.12</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1575</td>
+<td style="text-align: right;">45</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.6-luna-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.2/1.2</td>
+<td style="text-align: left;">0.1/0.6</td>
+<td style="text-align: right;">1.56</td>
+<td style="text-align: right;">3.12</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5.6-luna</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.2/1.2</td>
+<td style="text-align: left;">0.1/0.6</td>
+<td style="text-align: right;">1.56</td>
+<td style="text-align: right;">3.12</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1522</td>
+<td style="text-align: right;">132</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-6-luna</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.1/0.5</td>
+<td style="text-align: left;">0.05/0.25</td>
+<td style="text-align: right;">0.775</td>
+<td style="text-align: right;">1.55</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1183</td>
+<td style="text-align: right;">72</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-6-luna-pro</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1050</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.1/0.5</td>
+<td style="text-align: left;">0.05/0.25</td>
+<td style="text-align: right;">0.775</td>
+<td style="text-align: right;">1.55</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">9288</td>
+<td style="text-align: right;">102</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-4.1-nano</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">1047</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.1/0.4</td>
+<td style="text-align: left;">0.05/0.2</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">1.54</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1139</td>
+<td style="text-align: right;">81</td>
+</tr>
+<tr>
+<td style="text-align: left;">gpt-5-nano</td>
+<td style="text-align: left;">VLM</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">0.05/0.4</td>
+<td style="text-align: left;">0.025/0.2</td>
+<td style="text-align: right;">0.395</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1745</td>
+<td style="text-align: right;">171</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2h200_vs_api_85">表 2：H200 自部署 vs API 最低价（仅参数已公开的开源权重模型，85 个）<a class="headerlink" href="#2h200_vs_api_85" title="Permanent link">#</a></h3>
+<p><code>API加价倍数</code> = API 每请求成本 ÷ 自部署理论成本。<strong>&gt;1 表示自建更便宜，&lt;1 表示 API 更便宜。</strong> <code>并发</code>为 KV 显存预算反推的解码并发数。AR = 自回归解码，DFlash = 块扩散推测解码（τ=4）。</p>
+<!-- 数据源: data/pricing/processed/selfhost_h200_2026-11-01.csv (src/pricing/selfhost_h200.py 生成) -->
+
+<h4 id="qwen">Qwen (阿里)<a class="headerlink" href="#qwen" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: right;">卡数</th>
+<th style="text-align: right;">并发</th>
+<th style="text-align: right;">TTFT(s)</th>
+<th style="text-align: right;">AR tps</th>
+<th style="text-align: right;">DFlash tps</th>
+<th style="text-align: right;">自建$/千req(AR)</th>
+<th style="text-align: right;">自建(DFlash)</th>
+<th style="text-align: right;">API$/千req</th>
+<th style="text-align: right;">加价(AR)</th>
+<th style="text-align: right;">加价(DFlash)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">qwen-2.5-7b-instruct</td>
+<td style="text-align: left;">7.6/7.6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">121</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">2080</td>
+<td style="text-align: right;">8321</td>
+<td style="text-align: right;">0.078</td>
+<td style="text-align: right;">0.078</td>
+<td style="text-align: right;">1.52</td>
+<td style="text-align: right;">19.39</td>
+<td style="text-align: right;">19.39</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-vl-8b-instruct</td>
+<td style="text-align: left;">8/8</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">7704</td>
+<td style="text-align: right;">30815</td>
+<td style="text-align: right;">0.097</td>
+<td style="text-align: right;">0.097</td>
+<td style="text-align: right;">3.825</td>
+<td style="text-align: right;">39.27</td>
+<td style="text-align: right;">39.39</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.5-9b</td>
+<td style="text-align: left;">9/9</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">798</td>
+<td style="text-align: right;">3190</td>
+<td style="text-align: right;">0.104</td>
+<td style="text-align: right;">0.093</td>
+<td style="text-align: right;">0.273</td>
+<td style="text-align: right;">2.61</td>
+<td style="text-align: right;">2.94</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-14b</td>
+<td style="text-align: left;">14.8/14.8</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">677</td>
+<td style="text-align: right;">2707</td>
+<td style="text-align: right;">0.153</td>
+<td style="text-align: right;">0.153</td>
+<td style="text-align: right;">1.522</td>
+<td style="text-align: right;">9.97</td>
+<td style="text-align: right;">9.97</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.5-27b</td>
+<td style="text-align: left;">27/27</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">491</td>
+<td style="text-align: right;">1962</td>
+<td style="text-align: right;">0.278</td>
+<td style="text-align: right;">0.278</td>
+<td style="text-align: right;">3.081</td>
+<td style="text-align: right;">11.07</td>
+<td style="text-align: right;">11.07</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.6-27b</td>
+<td style="text-align: left;">27/27</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">491</td>
+<td style="text-align: right;">1962</td>
+<td style="text-align: right;">0.278</td>
+<td style="text-align: right;">0.278</td>
+<td style="text-align: right;">3.2</td>
+<td style="text-align: right;">11.49</td>
+<td style="text-align: right;">11.49</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.8-27b</td>
+<td style="text-align: left;">27/27</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">491</td>
+<td style="text-align: right;">1962</td>
+<td style="text-align: right;">0.278</td>
+<td style="text-align: right;">0.278</td>
+<td style="text-align: right;">0.305</td>
+<td style="text-align: right;">1.1</td>
+<td style="text-align: right;">1.1</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-30b-a3b</td>
+<td style="text-align: left;">30.5/3.3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">1250</td>
+<td style="text-align: right;">5001</td>
+<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">1.85</td>
+<td style="text-align: right;">27.74</td>
+<td style="text-align: right;">54.41</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-vl-30b-a3b-thinking</td>
+<td style="text-align: left;">30.5/3.3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">1250</td>
+<td style="text-align: right;">5001</td>
+<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">4.45</td>
+<td style="text-align: right;">66.72</td>
+<td style="text-align: right;">130.88</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-coder-30b-a3b-instruct</td>
+<td style="text-align: left;">30.5/3.3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">1250</td>
+<td style="text-align: right;">5001</td>
+<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">1.078</td>
+<td style="text-align: right;">16.16</td>
+<td style="text-align: right;">31.71</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-coder-flash</td>
+<td style="text-align: left;">30.5/3.3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">1250</td>
+<td style="text-align: right;">5001</td>
+<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">3.022</td>
+<td style="text-align: right;">45.31</td>
+<td style="text-align: right;">88.9</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-vl-30b-a3b-instruct</td>
+<td style="text-align: left;">30.5/3.3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">1250</td>
+<td style="text-align: right;">5001</td>
+<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">2.31</td>
+<td style="text-align: right;">34.63</td>
+<td style="text-align: right;">67.94</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-30b-a3b-instruct-2507</td>
+<td style="text-align: left;">30.5/3.3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">1250</td>
+<td style="text-align: right;">5001</td>
+<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">0.034</td>
+<td style="text-align: right;">1.38</td>
+<td style="text-align: right;">20.69</td>
+<td style="text-align: right;">40.59</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen-2.5-coder-32b-instruct</td>
+<td style="text-align: left;">32.5/32.5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">346</td>
+<td style="text-align: right;">1382</td>
+<td style="text-align: right;">0.335</td>
+<td style="text-align: right;">0.335</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">29.83</td>
+<td style="text-align: right;">29.83</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-32b</td>
+<td style="text-align: left;">32.8/32.8</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">0.41</td>
+<td style="text-align: right;">339</td>
+<td style="text-align: right;">1357</td>
+<td style="text-align: right;">0.338</td>
+<td style="text-align: right;">0.338</td>
+<td style="text-align: right;">1.228</td>
+<td style="text-align: right;">3.63</td>
+<td style="text-align: right;">3.63</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.5-35b-a3b</td>
+<td style="text-align: left;">35/3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">1252</td>
+<td style="text-align: right;">5009</td>
+<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">1.05</td>
+<td style="text-align: right;">15.77</td>
+<td style="text-align: right;">33.98</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.6-35b-a3b</td>
+<td style="text-align: left;">35/3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">1252</td>
+<td style="text-align: right;">5009</td>
+<td style="text-align: right;">0.067</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">0.82</td>
+<td style="text-align: right;">12.31</td>
+<td style="text-align: right;">26.54</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen2.5-vl-72b-instruct</td>
+<td style="text-align: left;">72/72</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.89</td>
+<td style="text-align: right;">126</td>
+<td style="text-align: right;">505</td>
+<td style="text-align: right;">0.743</td>
+<td style="text-align: right;">0.743</td>
+<td style="text-align: right;">12.1</td>
+<td style="text-align: right;">16.3</td>
+<td style="text-align: right;">16.3</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen-2.5-72b-instruct</td>
+<td style="text-align: left;">72.7/72.7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">502</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">5.44</td>
+<td style="text-align: right;">7.26</td>
+<td style="text-align: right;">7.26</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-next-80b-a3b-instruct</td>
+<td style="text-align: left;">80/3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">4716</td>
+<td style="text-align: right;">18865</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">1.46</td>
+<td style="text-align: right;">47.25</td>
+<td style="text-align: right;">47.25</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.5-122b-a10b</td>
+<td style="text-align: left;">122/10</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">7660</td>
+<td style="text-align: right;">30641</td>
+<td style="text-align: right;">0.121</td>
+<td style="text-align: right;">0.121</td>
+<td style="text-align: right;">4.108</td>
+<td style="text-align: right;">33.87</td>
+<td style="text-align: right;">33.87</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-vl-235b-a22b-instruct</td>
+<td style="text-align: left;">235/22</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">227</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">5146</td>
+<td style="text-align: right;">20586</td>
+<td style="text-align: right;">0.267</td>
+<td style="text-align: right;">0.267</td>
+<td style="text-align: right;">3.088</td>
+<td style="text-align: right;">11.57</td>
+<td style="text-align: right;">11.57</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-235b-a22b-thinking-2507</td>
+<td style="text-align: left;">235/22</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">227</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">5146</td>
+<td style="text-align: right;">20586</td>
+<td style="text-align: right;">0.267</td>
+<td style="text-align: right;">0.267</td>
+<td style="text-align: right;">7.1</td>
+<td style="text-align: right;">26.6</td>
+<td style="text-align: right;">26.6</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-235b-a22b-2507</td>
+<td style="text-align: left;">235/22</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">227</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">5146</td>
+<td style="text-align: right;">20586</td>
+<td style="text-align: right;">0.267</td>
+<td style="text-align: right;">0.267</td>
+<td style="text-align: right;">1.347</td>
+<td style="text-align: right;">5.05</td>
+<td style="text-align: right;">5.05</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.5-397b-a17b</td>
+<td style="text-align: left;">397/17</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">197</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">6038</td>
+<td style="text-align: right;">24152</td>
+<td style="text-align: right;">0.206</td>
+<td style="text-align: right;">0.206</td>
+<td style="text-align: right;">6.084</td>
+<td style="text-align: right;">29.51</td>
+<td style="text-align: right;">29.51</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3-coder</td>
+<td style="text-align: left;">480/35</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">104</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">3705</td>
+<td style="text-align: right;">14820</td>
+<td style="text-align: right;">0.425</td>
+<td style="text-align: right;">0.425</td>
+<td style="text-align: right;">4.6</td>
+<td style="text-align: right;">10.83</td>
+<td style="text-align: right;">10.83</td>
+</tr>
+<tr>
+<td style="text-align: left;">qwen3.8-2.4t-a95b</td>
+<td style="text-align: left;">2400/95</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">10339</td>
+<td style="text-align: right;">41355</td>
+<td style="text-align: right;">1.153</td>
+<td style="text-align: right;">1.153</td>
+<td style="text-align: right;">30.6</td>
+<td style="text-align: right;">26.55</td>
+<td style="text-align: right;">26.55</td>
+</tr>
+</tbody>
+</table>
+<h4 id="deepseek">DeepSeek<a class="headerlink" href="#deepseek" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: right;">卡数</th>
+<th style="text-align: right;">并发</th>
+<th style="text-align: right;">TTFT(s)</th>
+<th style="text-align: right;">AR tps</th>
+<th style="text-align: right;">DFlash tps</th>
+<th style="text-align: right;">自建$/千req(AR)</th>
+<th style="text-align: right;">自建(DFlash)</th>
+<th style="text-align: right;">API$/千req</th>
+<th style="text-align: right;">加价(AR)</th>
+<th style="text-align: right;">加价(DFlash)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">deepseek-v4-flash</td>
+<td style="text-align: left;">284/13</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">13902</td>
+<td style="text-align: right;">55609</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.577</td>
+<td style="text-align: right;">3.66</td>
+<td style="text-align: right;">3.66</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4-flash-0731</td>
+<td style="text-align: left;">284/13</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">13902</td>
+<td style="text-align: right;">55609</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.664</td>
+<td style="text-align: right;">4.21</td>
+<td style="text-align: right;">4.21</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4-flash-vision-exp</td>
+<td style="text-align: left;">284/13</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">13902</td>
+<td style="text-align: right;">55609</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">3.299</td>
+<td style="text-align: right;">20.92</td>
+<td style="text-align: right;">20.92</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4.1-flash</td>
+<td style="text-align: left;">284/13</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">13902</td>
+<td style="text-align: right;">55609</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.072</td>
+<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">0.46</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4.1-flash-1017</td>
+<td style="text-align: left;">284/13</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">13902</td>
+<td style="text-align: right;">55609</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">3.42</td>
+<td style="text-align: right;">3.42</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4.1-flash:batch</td>
+<td style="text-align: left;">284/13</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">13902</td>
+<td style="text-align: right;">55609</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.072</td>
+<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">0.46</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-chat</td>
+<td style="text-align: left;">671/37</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">187</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">12269</td>
+<td style="text-align: right;">49076</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">3.911</td>
+<td style="text-align: right;">8.71</td>
+<td style="text-align: right;">8.71</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-chat-v3.1</td>
+<td style="text-align: left;">671/37</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">187</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">12269</td>
+<td style="text-align: right;">49076</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">3.845</td>
+<td style="text-align: right;">8.57</td>
+<td style="text-align: right;">8.57</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-r1-0528</td>
+<td style="text-align: left;">671/37</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">187</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">12269</td>
+<td style="text-align: right;">49076</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">7.715</td>
+<td style="text-align: right;">17.19</td>
+<td style="text-align: right;">17.19</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v3.1-terminus</td>
+<td style="text-align: left;">671/37</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">187</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">12269</td>
+<td style="text-align: right;">49076</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">4.15</td>
+<td style="text-align: right;">9.24</td>
+<td style="text-align: right;">9.24</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v3.2</td>
+<td style="text-align: left;">671/37</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">187</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">12269</td>
+<td style="text-align: right;">49076</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">3.163</td>
+<td style="text-align: right;">7.05</td>
+<td style="text-align: right;">7.05</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v3.2-exp</td>
+<td style="text-align: left;">671/37</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">187</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">12269</td>
+<td style="text-align: right;">49076</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">4.091</td>
+<td style="text-align: right;">9.11</td>
+<td style="text-align: right;">9.11</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-chat-v3-0324</td>
+<td style="text-align: left;">685/37</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">12114</td>
+<td style="text-align: right;">48456</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">0.449</td>
+<td style="text-align: right;">3.85</td>
+<td style="text-align: right;">8.58</td>
+<td style="text-align: right;">8.58</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4-pro</td>
+<td style="text-align: left;">1600/49</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">118</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">20907</td>
+<td style="text-align: right;">78468</td>
+<td style="text-align: right;">0.595</td>
+<td style="text-align: right;">0.595</td>
+<td style="text-align: right;">4.131</td>
+<td style="text-align: right;">6.95</td>
+<td style="text-align: right;">6.95</td>
+</tr>
+<tr>
+<td style="text-align: left;">deepseek-v4-pro-0813</td>
+<td style="text-align: left;">1600/49</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">118</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">20907</td>
+<td style="text-align: right;">78468</td>
+<td style="text-align: right;">0.595</td>
+<td style="text-align: right;">0.595</td>
+<td style="text-align: right;">1.638</td>
+<td style="text-align: right;">2.75</td>
+<td style="text-align: right;">2.75</td>
+</tr>
+</tbody>
+</table>
+<h4 id="glm">GLM (智谱)<a class="headerlink" href="#glm" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: right;">卡数</th>
+<th style="text-align: right;">并发</th>
+<th style="text-align: right;">TTFT(s)</th>
+<th style="text-align: right;">AR tps</th>
+<th style="text-align: right;">DFlash tps</th>
+<th style="text-align: right;">自建$/千req(AR)</th>
+<th style="text-align: right;">自建(DFlash)</th>
+<th style="text-align: right;">API$/千req</th>
+<th style="text-align: right;">加价(AR)</th>
+<th style="text-align: right;">加价(DFlash)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">glm-4.5-air</td>
+<td style="text-align: left;">106/12</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">6014</td>
+<td style="text-align: right;">24058</td>
+<td style="text-align: right;">0.146</td>
+<td style="text-align: right;">0.146</td>
+<td style="text-align: right;">2.035</td>
+<td style="text-align: right;">13.98</td>
+<td style="text-align: right;">13.98</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-4.5v</td>
+<td style="text-align: left;">106/12</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">6014</td>
+<td style="text-align: right;">24058</td>
+<td style="text-align: right;">0.146</td>
+<td style="text-align: right;">0.146</td>
+<td style="text-align: right;">9.18</td>
+<td style="text-align: right;">63.05</td>
+<td style="text-align: right;">63.05</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.3-flashx</td>
+<td style="text-align: left;">320/18</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">115</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">3029</td>
+<td style="text-align: right;">12114</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.218</td>
+<td style="text-align: right;">5.675</td>
+<td style="text-align: right;">25.78</td>
+<td style="text-align: right;">25.98</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.3-flash:batch</td>
+<td style="text-align: left;">320/18</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">115</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">3029</td>
+<td style="text-align: right;">12114</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.218</td>
+<td style="text-align: right;">0.437</td>
+<td style="text-align: right;">1.98</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.3-flash</td>
+<td style="text-align: left;">320/18</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">115</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">3029</td>
+<td style="text-align: right;">12114</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.218</td>
+<td style="text-align: right;">0.437</td>
+<td style="text-align: right;">1.98</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-4.5</td>
+<td style="text-align: left;">355/32</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">2561</td>
+<td style="text-align: right;">10246</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">9.22</td>
+<td style="text-align: right;">23.75</td>
+<td style="text-align: right;">23.75</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-4.6</td>
+<td style="text-align: left;">355/32</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">2561</td>
+<td style="text-align: right;">10246</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">6.16</td>
+<td style="text-align: right;">15.87</td>
+<td style="text-align: right;">15.87</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-4.6v</td>
+<td style="text-align: left;">355/32</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">2561</td>
+<td style="text-align: right;">10246</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">4.59</td>
+<td style="text-align: right;">11.82</td>
+<td style="text-align: right;">11.82</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-4.7</td>
+<td style="text-align: left;">355/32</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">2561</td>
+<td style="text-align: right;">10246</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">6.175</td>
+<td style="text-align: right;">15.91</td>
+<td style="text-align: right;">15.91</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-4.7-flash</td>
+<td style="text-align: left;">355/32</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">2561</td>
+<td style="text-align: right;">10246</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">0.948</td>
+<td style="text-align: right;">2.44</td>
+<td style="text-align: right;">2.44</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.3-prime</td>
+<td style="text-align: left;">744/40</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">2403</td>
+<td style="text-align: right;">9612</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">42.88</td>
+<td style="text-align: right;">88.36</td>
+<td style="text-align: right;">88.36</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5-turbo</td>
+<td style="text-align: left;">744/40</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">2403</td>
+<td style="text-align: right;">9612</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">37.91</td>
+<td style="text-align: right;">37.91</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.2</td>
+<td style="text-align: left;">744/40</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">2403</td>
+<td style="text-align: right;">9612</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">0.149</td>
+<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">0.31</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.1</td>
+<td style="text-align: left;">744/40</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">2403</td>
+<td style="text-align: right;">9612</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">13.764</td>
+<td style="text-align: right;">28.36</td>
+<td style="text-align: right;">28.36</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.3:batch</td>
+<td style="text-align: left;">744/40</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">2403</td>
+<td style="text-align: right;">9612</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">1.137</td>
+<td style="text-align: right;">2.34</td>
+<td style="text-align: right;">2.34</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5</td>
+<td style="text-align: left;">744/40</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">2403</td>
+<td style="text-align: right;">9612</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">9.192</td>
+<td style="text-align: right;">18.94</td>
+<td style="text-align: right;">18.94</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5.3</td>
+<td style="text-align: left;">744/40</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">2403</td>
+<td style="text-align: right;">9612</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">1.137</td>
+<td style="text-align: right;">2.34</td>
+<td style="text-align: right;">2.34</td>
+</tr>
+<tr>
+<td style="text-align: left;">glm-5v-turbo</td>
+<td style="text-align: left;">744/40</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">2403</td>
+<td style="text-align: right;">9612</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">0.485</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">37.91</td>
+<td style="text-align: right;">37.91</td>
+</tr>
+</tbody>
+</table>
+<h4 id="minimax">MiniMax<a class="headerlink" href="#minimax" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: right;">卡数</th>
+<th style="text-align: right;">并发</th>
+<th style="text-align: right;">TTFT(s)</th>
+<th style="text-align: right;">AR tps</th>
+<th style="text-align: right;">DFlash tps</th>
+<th style="text-align: right;">自建$/千req(AR)</th>
+<th style="text-align: right;">自建(DFlash)</th>
+<th style="text-align: right;">API$/千req</th>
+<th style="text-align: right;">加价(AR)</th>
+<th style="text-align: right;">加价(DFlash)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">minimax-m2</td>
+<td style="text-align: left;">230/10</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">3972</td>
+<td style="text-align: right;">15888</td>
+<td style="text-align: right;">0.168</td>
+<td style="text-align: right;">0.121</td>
+<td style="text-align: right;">3.927</td>
+<td style="text-align: right;">23.4</td>
+<td style="text-align: right;">32.37</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m2-her</td>
+<td style="text-align: left;">230/10</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">3972</td>
+<td style="text-align: right;">15888</td>
+<td style="text-align: right;">0.168</td>
+<td style="text-align: right;">0.121</td>
+<td style="text-align: right;">4.62</td>
+<td style="text-align: right;">27.53</td>
+<td style="text-align: right;">38.09</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m2.1</td>
+<td style="text-align: left;">230/10</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">3972</td>
+<td style="text-align: right;">15888</td>
+<td style="text-align: right;">0.168</td>
+<td style="text-align: right;">0.121</td>
+<td style="text-align: right;">4.62</td>
+<td style="text-align: right;">27.53</td>
+<td style="text-align: right;">38.09</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m2.5</td>
+<td style="text-align: left;">230/10</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">3972</td>
+<td style="text-align: right;">15888</td>
+<td style="text-align: right;">0.168</td>
+<td style="text-align: right;">0.121</td>
+<td style="text-align: right;">4.145</td>
+<td style="text-align: right;">24.7</td>
+<td style="text-align: right;">34.17</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m2.7</td>
+<td style="text-align: left;">230/10</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">3972</td>
+<td style="text-align: right;">15888</td>
+<td style="text-align: right;">0.168</td>
+<td style="text-align: right;">0.121</td>
+<td style="text-align: right;">3.234</td>
+<td style="text-align: right;">19.27</td>
+<td style="text-align: right;">26.66</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-01</td>
+<td style="text-align: left;">456/45.9</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">19352</td>
+<td style="text-align: right;">41884</td>
+<td style="text-align: right;">0.557</td>
+<td style="text-align: right;">0.557</td>
+<td style="text-align: right;">3.11</td>
+<td style="text-align: right;">5.58</td>
+<td style="text-align: right;">5.58</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m1</td>
+<td style="text-align: left;">456/45.9</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">19352</td>
+<td style="text-align: right;">41884</td>
+<td style="text-align: right;">0.557</td>
+<td style="text-align: right;">0.557</td>
+<td style="text-align: right;">6.22</td>
+<td style="text-align: right;">11.17</td>
+<td style="text-align: right;">11.17</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m3</td>
+<td style="text-align: left;">456/23</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">2964</td>
+<td style="text-align: right;">11855</td>
+<td style="text-align: right;">0.279</td>
+<td style="text-align: right;">0.279</td>
+<td style="text-align: right;">3.448</td>
+<td style="text-align: right;">12.36</td>
+<td style="text-align: right;">12.36</td>
+</tr>
+<tr>
+<td style="text-align: left;">minimax-m3.1-flash</td>
+<td style="text-align: left;">456/23</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">2964</td>
+<td style="text-align: right;">11855</td>
+<td style="text-align: right;">0.279</td>
+<td style="text-align: right;">0.279</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">2.76</td>
+<td style="text-align: right;">2.76</td>
+</tr>
+</tbody>
+</table>
+<h4 id="kimi">Kimi (月之暗面)<a class="headerlink" href="#kimi" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: right;">卡数</th>
+<th style="text-align: right;">并发</th>
+<th style="text-align: right;">TTFT(s)</th>
+<th style="text-align: right;">AR tps</th>
+<th style="text-align: right;">DFlash tps</th>
+<th style="text-align: right;">自建$/千req(AR)</th>
+<th style="text-align: right;">自建(DFlash)</th>
+<th style="text-align: right;">API$/千req</th>
+<th style="text-align: right;">加价(AR)</th>
+<th style="text-align: right;">加价(DFlash)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">kimi-k2</td>
+<td style="text-align: left;">1000/32</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">26054</td>
+<td style="text-align: right;">104217</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">8.78</td>
+<td style="text-align: right;">22.62</td>
+<td style="text-align: right;">22.62</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k2-0905</td>
+<td style="text-align: left;">1000/32</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">26054</td>
+<td style="text-align: right;">104217</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">9.25</td>
+<td style="text-align: right;">23.83</td>
+<td style="text-align: right;">23.83</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k2-thinking</td>
+<td style="text-align: left;">1000/32</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">26054</td>
+<td style="text-align: right;">104217</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">9.25</td>
+<td style="text-align: right;">23.83</td>
+<td style="text-align: right;">23.83</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k2.5</td>
+<td style="text-align: left;">1000/32</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">26054</td>
+<td style="text-align: right;">104217</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">7.6</td>
+<td style="text-align: right;">19.58</td>
+<td style="text-align: right;">19.58</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k2.6</td>
+<td style="text-align: left;">1000/32</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">26054</td>
+<td style="text-align: right;">104217</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">6.006</td>
+<td style="text-align: right;">15.47</td>
+<td style="text-align: right;">15.47</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k2.7-code</td>
+<td style="text-align: left;">1000/32</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">26054</td>
+<td style="text-align: right;">104217</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">0.388</td>
+<td style="text-align: right;">9.3</td>
+<td style="text-align: right;">23.96</td>
+<td style="text-align: right;">23.96</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k3</td>
+<td style="text-align: left;">2800/104</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">29751</td>
+<td style="text-align: right;">73941</td>
+<td style="text-align: right;">1.262</td>
+<td style="text-align: right;">1.262</td>
+<td style="text-align: right;">2.95</td>
+<td style="text-align: right;">2.34</td>
+<td style="text-align: right;">2.34</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k3:batch</td>
+<td style="text-align: left;">2800/104</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">29751</td>
+<td style="text-align: right;">73941</td>
+<td style="text-align: right;">1.262</td>
+<td style="text-align: right;">1.262</td>
+<td style="text-align: right;">2.95</td>
+<td style="text-align: right;">2.34</td>
+<td style="text-align: right;">2.34</td>
+</tr>
+<tr>
+<td style="text-align: left;">kimi-k3.1-pro</td>
+<td style="text-align: left;">3000/104</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">29751</td>
+<td style="text-align: right;">73941</td>
+<td style="text-align: right;">1.262</td>
+<td style="text-align: right;">1.262</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">24.57</td>
+<td style="text-align: right;">24.57</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_2">混元 (腾讯)<a class="headerlink" href="#_2" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模型</th>
+<th style="text-align: left;">参数B</th>
+<th style="text-align: right;">卡数</th>
+<th style="text-align: right;">并发</th>
+<th style="text-align: right;">TTFT(s)</th>
+<th style="text-align: right;">AR tps</th>
+<th style="text-align: right;">DFlash tps</th>
+<th style="text-align: right;">自建$/千req(AR)</th>
+<th style="text-align: right;">自建(DFlash)</th>
+<th style="text-align: right;">API$/千req</th>
+<th style="text-align: right;">加价(AR)</th>
+<th style="text-align: right;">加价(DFlash)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">hy-mt2-1.8b</td>
+<td style="text-align: left;">1.8/1.8</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">1281</td>
+<td style="text-align: right;">5125</td>
+<td style="text-align: right;">0.065</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">0.678</td>
+<td style="text-align: right;">10.43</td>
+<td style="text-align: right;">36.44</td>
+</tr>
+<tr>
+<td style="text-align: left;">hy-mt2-7b</td>
+<td style="text-align: left;">7/7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">1220</td>
+<td style="text-align: right;">4882</td>
+<td style="text-align: right;">0.072</td>
+<td style="text-align: right;">0.072</td>
+<td style="text-align: right;">1.139</td>
+<td style="text-align: right;">15.78</td>
+<td style="text-align: right;">15.78</td>
+</tr>
+<tr>
+<td style="text-align: left;">hy-mt2-30b-a3b</td>
+<td style="text-align: left;">30/3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">1256</td>
+<td style="text-align: right;">5023</td>
+<td style="text-align: right;">0.066</td>
+<td style="text-align: right;">0.031</td>
+<td style="text-align: right;">1.139</td>
+<td style="text-align: right;">17.16</td>
+<td style="text-align: right;">36.88</td>
+</tr>
+<tr>
+<td style="text-align: left;">hunyuan-a13b-instruct</td>
+<td style="text-align: left;">80/13</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">5760</td>
+<td style="text-align: right;">23041</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">0.158</td>
+<td style="text-align: right;">2.157</td>
+<td style="text-align: right;">13.68</td>
+<td style="text-align: right;">13.68</td>
+</tr>
+<tr>
+<td style="text-align: left;">hy3</td>
+<td style="text-align: left;">295/21</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">9868</td>
+<td style="text-align: right;">39471</td>
+<td style="text-align: right;">0.255</td>
+<td style="text-align: right;">0.255</td>
+<td style="text-align: right;">2.033</td>
+<td style="text-align: right;">7.98</td>
+<td style="text-align: right;">7.98</td>
+</tr>
+<tr>
+<td style="text-align: left;">hy3-preview</td>
+<td style="text-align: left;">295/21</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">256</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">9868</td>
+<td style="text-align: right;">39471</td>
+<td style="text-align: right;">0.255</td>
+<td style="text-align: right;">0.255</td>
+<td style="text-align: right;">2.76</td>
+<td style="text-align: right;">10.83</td>
+<td style="text-align: right;">10.83</td>
+</tr>
+<tr>
+<td style="text-align: left;">hy4-preview</td>
+<td style="text-align: left;">770/49</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">6820</td>
+<td style="text-align: right;">27278</td>
+<td style="text-align: right;">0.595</td>
+<td style="text-align: right;">0.595</td>
+<td style="text-align: right;">12.76</td>
+<td style="text-align: right;">21.46</td>
+<td style="text-align: right;">21.46</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">关键结论<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<blockquote>
+<p>校准说明：基于实测 Qwen3.8-27B 单卡 QPS=3 / E2E=0.8s 反推，模型 v7 校准项：① <strong>KV 前缀缓存命中率 0.6</strong>（prefill 计算量打 4 折）；② <strong>prefill/decode 分离 MFU</strong>（prefill 0.49，decode 0.30）；③ <strong>prefill/decode 流水线重叠</strong>（gpu_s=max 非 sum）；④ <strong>DFlash 有效 τ=4</strong>（接受长度，非草稿长度 8，端到端加速比≈3×）；⑤ <strong>多卡 TP 效率 0.85</strong>（AllReduce 开销）；⑥ <strong>卡数向上取整到 8 卡整机</strong>。自建成本为理论下界（不含空闲/运维/网络）。</p>
+</blockquote>
+<ol>
+<li><strong>自建甜区 0.3~88 倍</strong>（85 个开源模型）。GLM-5.3-Prime 88 倍、Qwen3-VL-30B-A3B-Thinking 67 倍、GLM-4.5V 63 倍、Qwen3-Next-80B-A3B 47 倍（自建仅 $0.031/千req）、MiniMax-M2.1 38 倍。前缀缓存把 prefill 计算量打 4 折，是自建性价比翻倍的主因。GLM-5.2 加价 0.31 倍（API 引流价 $0.15/千req 低于自建）。</li>
+<li><strong>DeepSeek 不再是反例</strong>：V4-Pro-0813 自建 $0.60 vs API $1.64，加价 2.75 倍；V4-Flash 自建 $0.19 vs API $0.58，3.1 倍。全家族自建均更划算。</li>
+<li><strong>唯一 API 更便宜的是竞争充分的 dense 模型</strong>：Qwen3.8-27B（22 个 provider）自建 $0.28 vs API $0.31，加价 1.10 倍——价格战已把 API 压到自建理论下界附近，中小流量可直接调 API。其余 dense 模型自建 1~3 倍空间，需权衡运维成本。</li>
+<li><strong>MLA 的 KV 红利</strong>：DeepSeek-V3.2（671B）单序列 15k KV 仅 ~1.05GB（GQA 同档 3~6GB），8 卡 H200 支撑大 batch；Kimi-K2（1T）16 卡。长上下文场景 MLA 自建可行性远好于 GQA。</li>
+<li><strong>KV 预算决定部署形态</strong>：卡数寻优按 8 卡整机取整，「装得下」不等于「跑得划算」——单卡恰好装下但 KV 预算只够 batch=1 时，加卡到 8 卡整机可大幅摊薄成本。</li>
+<li><strong>闭源梯队价格战离谱</strong>：DeepSeek-V4.1-Flash 最低输入 $0.0038/M（$0.072/千req，全表最低）、GLM-5.2 列表输入 $0.006/M 配输出 $6.8/M（长输入场景输入白送）。多为引流/不对称定价，按中位 provider 价重算结论会反转。</li>
+<li><strong>DFlash 在本场景（15k 入/100 出）与 AR 成本相同</strong>：prefill 占 88%+ GPU 时间是绝对瓶颈，DFlash 加速的 decode 被 prefill 掩盖。DFlash 价值在<strong>长输出场景</strong>（长 CoT、代码生成），此时 decode 成瓶颈，有效 τ=4 可降成本约 4×。端到端加速比≈3×（官方数据），因为 TTFT 不加速。目前仅 Qwen 有官方 checkpoint。</li>
+</ol>
+<h3 id="3_api_claude_gemini_gpt96">表 3：闭源模型 API 报价概览（Claude / Gemini / GPT，96 个主流模型）<a class="headerlink" href="#3_api_claude_gemini_gpt96" title="Permanent link">#</a></h3>
+<p>闭源模型无公开权重，无法自部署，只能调 API。价格跨度极大：最便宜 GPT-5-Nano $0.395/千req，最贵 GPT-4 $456/千req（相差 1150 倍）。</p>
+<p><strong>关键对比</strong>：
+- 闭源最便宜（GPT-5-Nano $0.395）比开源最便宜（DeepSeek-V4.1-Flash $0.072）贵 <strong>5.5 倍</strong>
+- 闭源旗舰（Claude-Opus-4.1 $232.5、GPT-5.5-Pro $234）比同档开源旗舰（GLM-5.3-Prime API $43、自建 $0.49）贵 <strong>5~480 倍</strong>
+- 同一能力档闭源 vs 开源：GPT-5-Nano（$0.395）≈ Qwen3.8-27B API（$0.31）但比其自建（$0.28）贵 40%
+- <strong>batch 变体</strong>：闭源厂商普遍提供 5 折 batch 价（异步队列），高延迟容忍场景可直接减半成本</p>
+<h3 id="_4">局限与下一步<a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
+<ul>
+<li>自部署为<strong>理论下界</strong>：未计空闲冗余、运维人力、电力网络、折旧；低峰期并发上不去时成本显著劣化。实际成本按量级 ×1.5~3 估计。</li>
+<li>前缀缓存命中率 0.6 为通用假设：实际取决于 prompt 结构（系统 prompt 越长命中率越高），可按业务 0.3~0.8 调整。</li>
+<li>多卡 TP 效率 0.85 为 8 卡内经验值：更大规模集群（16+ 卡）通信开销更高，效率可能降到 0.7~0.8。</li>
+<li>校准后仍有 ±2x 精度：GLM/MiniMax/混元 KV 配置为按架构推测的 [估] 值；MiniMax-01/M1 混合线性注意力仅按 1/8 层全注意力计 KV；未计 MoE 专家并行通信开销。</li>
+<li>最低价 provider 的延迟/可用性通常弱于头部 provider，表 1 的 p50/tps 是全 provider 最优值，需按业务 SLA 取舍。</li>
+<li>下一步：接入质量维度（benchmark 分数）做性价比帕累托；长输出场景（代码生成、长 CoT）重跑对比，DFlash 权重会显著上升。</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../GPU-Price/" class="btn btn-neutral float-left" title="GPU Price"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../3.infra/Env/" class="btn btn-neutral float-right" title="Env">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../GPU-Price/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../3.infra/Env/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

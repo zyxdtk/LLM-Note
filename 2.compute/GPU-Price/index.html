@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>GPU Price - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "GPU Price";
+        var mkdocs_page_input_path = "2.compute/GPU-Price.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2.compute</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">GPU Price</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">主表</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">读表要点</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">国产卡（人民币口径）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">国产卡读表要点</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">与成本模型的对应</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">局限</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">数据源与采集方法</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">平台分级</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#azure">自动化脚本（Azure 侧）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2026-11">踩坑清单（2026-11 实测）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">更新工作流</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_10">已知盲区</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_11">国产卡数据来源</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../LLM-Pricing/">LLM Pricing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/inference-perf-theory/">Inference perf theory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../3.infra/train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingEconomics/">ScalingEconomics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LLM-Judge/">LLM Judge</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2.compute</li>
+      <li class="breadcrumb-item active">GPU Price</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="gpu_2026-11">GPU 单卡价格与算力成本参考（2026-11）<a class="headerlink" href="#gpu_2026-11" title="Permanent link">#</a></h2>
+<blockquote>
+<p>整理日期：2026-11-01 | 口径：单卡，价格为市场估计值（随行情波动，±20% 正常）
+用途：自部署成本模型的硬件参数基线（配合 <code>src/pricing/selfhost_h200.py</code> 使用）
+Azure 侧租价可用 <code>uv run python src/pricing/fetch_gpu_rental.py</code> 免登录刷新；数据源分级与踩坑见文末「数据源与采集方法」</p>
+</blockquote>
+<h3 id="_1">主表<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<p>售价 = 单卡市场售价（千卡集采价更低）；租金 = 按需租用单卡价。<code>$/EFLOP</code> = 按租金跑满 1 EFLOP(10¹⁸) FP8 有效算力的理论成本（100% MFU，实际 ÷MFU，如 30% MFU 则 ×3.3）。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">GPU</th>
+<th style="text-align: left;">架构</th>
+<th style="text-align: left;">显存</th>
+<th style="text-align: right;">带宽</th>
+<th style="text-align: right;">BF16</th>
+<th style="text-align: right;">FP8</th>
+<th style="text-align: right;">FP4</th>
+<th style="text-align: right;">售价$</th>
+<th style="text-align: right;">租金$/h</th>
+<th style="text-align: right;">租金$/s</th>
+<th style="text-align: right;">$/EFLOP(FP8)</th>
+<th style="text-align: right;">售价$/TFLOP(FP8)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">B300 (Blackwell Ultra)</td>
+<td style="text-align: left;">Blackwell</td>
+<td style="text-align: left;">288GB HBM3e</td>
+<td style="text-align: right;">8.0 TB/s</td>
+<td style="text-align: right;">2500</td>
+<td style="text-align: right;">5000</td>
+<td style="text-align: right;">10000</td>
+<td style="text-align: right;">50000 [估]</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">0.001944</td>
+<td style="text-align: right;">389</td>
+<td style="text-align: right;">10.0</td>
+</tr>
+<tr>
+<td style="text-align: left;">B200</td>
+<td style="text-align: left;">Blackwell</td>
+<td style="text-align: left;">192GB HBM3e</td>
+<td style="text-align: right;">8.0 TB/s</td>
+<td style="text-align: right;">2250</td>
+<td style="text-align: right;">4500</td>
+<td style="text-align: right;">9000</td>
+<td style="text-align: right;">40000</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">0.001389</td>
+<td style="text-align: right;">309</td>
+<td style="text-align: right;">8.9</td>
+</tr>
+<tr>
+<td style="text-align: left;">H200 SXM</td>
+<td style="text-align: left;">Hopper</td>
+<td style="text-align: left;">141GB HBM3e</td>
+<td style="text-align: right;">4.8 TB/s</td>
+<td style="text-align: right;">989</td>
+<td style="text-align: right;">1979</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">30000</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">0.000833</td>
+<td style="text-align: right;">421</td>
+<td style="text-align: right;">15.2</td>
+</tr>
+<tr>
+<td style="text-align: left;">H100 SXM</td>
+<td style="text-align: left;">Hopper</td>
+<td style="text-align: left;">80GB HBM3</td>
+<td style="text-align: right;">3.35 TB/s</td>
+<td style="text-align: right;">989</td>
+<td style="text-align: right;">1979</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">25000</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">0.000694</td>
+<td style="text-align: right;">351</td>
+<td style="text-align: right;">12.6</td>
+</tr>
+<tr>
+<td style="text-align: left;">H20</td>
+<td style="text-align: left;">Hopper(阉割)</td>
+<td style="text-align: left;">96GB HBM3</td>
+<td style="text-align: right;">4.0 TB/s</td>
+<td style="text-align: right;">148</td>
+<td style="text-align: right;">296</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">13000</td>
+<td style="text-align: right;">1.2</td>
+<td style="text-align: right;">0.000333</td>
+<td style="text-align: right;">1126</td>
+<td style="text-align: right;">43.9</td>
+</tr>
+<tr>
+<td style="text-align: left;">A100 80G</td>
+<td style="text-align: left;">Ampere</td>
+<td style="text-align: left;">80GB HBM2e</td>
+<td style="text-align: right;">2.0 TB/s</td>
+<td style="text-align: right;">312</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">12000</td>
+<td style="text-align: right;">1.2</td>
+<td style="text-align: right;">0.000333</td>
+<td style="text-align: right;">1068(BF16)</td>
+<td style="text-align: right;">38.5</td>
+</tr>
+<tr>
+<td style="text-align: left;">MI355X</td>
+<td style="text-align: left;">CDNA4</td>
+<td style="text-align: left;">288GB HBM3e</td>
+<td style="text-align: right;">8.0 TB/s</td>
+<td style="text-align: right;">2300</td>
+<td style="text-align: right;">4600</td>
+<td style="text-align: right;">9200</td>
+<td style="text-align: right;">25000 [估]</td>
+<td style="text-align: right;">3.5</td>
+<td style="text-align: right;">0.000972</td>
+<td style="text-align: right;">211</td>
+<td style="text-align: right;">5.4</td>
+</tr>
+<tr>
+<td style="text-align: left;">MI325X</td>
+<td style="text-align: left;">CDNA3</td>
+<td style="text-align: left;">256GB HBM3e</td>
+<td style="text-align: right;">6.0 TB/s</td>
+<td style="text-align: right;">1307</td>
+<td style="text-align: right;">2614</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">20000</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">0.000694</td>
+<td style="text-align: right;">266</td>
+<td style="text-align: right;">7.6</td>
+</tr>
+<tr>
+<td style="text-align: left;">MI300X</td>
+<td style="text-align: left;">CDNA3</td>
+<td style="text-align: left;">192GB HBM3</td>
+<td style="text-align: right;">5.3 TB/s</td>
+<td style="text-align: right;">1307</td>
+<td style="text-align: right;">2614</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">18000</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: right;">0.000556</td>
+<td style="text-align: right;">213</td>
+<td style="text-align: right;">6.9</td>
+</tr>
+<tr>
+<td style="text-align: left;">L40S</td>
+<td style="text-align: left;">Ada</td>
+<td style="text-align: left;">48GB GDDR6</td>
+<td style="text-align: right;">0.86 TB/s</td>
+<td style="text-align: right;">362</td>
+<td style="text-align: right;">733</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">8000</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">0.000278</td>
+<td style="text-align: right;">379</td>
+<td style="text-align: right;">10.9</td>
+</tr>
+<tr>
+<td style="text-align: left;">RTX 5090</td>
+<td style="text-align: left;">Blackwell 消费级</td>
+<td style="text-align: left;">32GB GDDR7</td>
+<td style="text-align: right;">1.79 TB/s</td>
+<td style="text-align: right;">419</td>
+<td style="text-align: right;">838</td>
+<td style="text-align: right;">1676</td>
+<td style="text-align: right;">2200</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">0.000111</td>
+<td style="text-align: right;">133</td>
+<td style="text-align: right;">2.6</td>
+</tr>
+</tbody>
+</table>
+<p>算力单位均为 dense TFLOPS（不含 sparsity 虚标）。FP8 列空 = 不支持。<code>[估]</code> = 官方未公开单卡价，按整机/竞品推测。</p>
+<h3 id="_2">读表要点<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<ol>
+<li><strong>算力代际价差 3~5 倍</strong>：同样租 1 PFLOPS FP8 一小时，MI300X/MI355X/5090 约 $0.21~0.13，H200 要 $0.42，H20 要 $1.13。B 系/AMD 卡的纸面算力性价比碾压 Hopper。</li>
+<li><strong>但推理不只看 FLOPS</strong>：decode 阶段是带宽瓶颈。H20 算力被砍到 296 TFLOPS 但带宽 4.0TB/s 接近 H200——它就是为推理 decode 设计的「带宽卡」，长上下文 decode 性价比不差；prefill 重（算力瓶颈）的场景它最亏。</li>
+<li><strong>消费级 5090 是每 FLOP 之王</strong>（$2.6/TFLOP）但没有 NVLink、显存 32GB、数据中心合规受限——适合小模型/边缘，大模型多卡互联场景不可用。</li>
+<li><strong>售价 vs 租金盈亏线</strong>：H200 $30k ÷ $3/h = <strong>1 万小时 ≈ 14 个月满负载</strong>。利用率低于 ~50% 时租比买划算；自有电 + 二手卡 + 高利用率才考虑买。</li>
+<li><strong>租金有量价差</strong>：表中为按需价；包月/包年合约通常 6~8 折，竞价实例（spot）可到 5 折但会被抢占。超大规模云（AWS/GCP 官方价）通常比表中高 50%+。</li>
+</ol>
+<h3 id="_3">国产卡（人民币口径）<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<p>售价均为单卡人民币参考价（万），渠道/集采价差大，±30% 正常；云租金市场不透明，仅摩尔线程 S4000 在 AutoDL 有公开时租。算力均为 dense BF16/FP16 TFLOPS（国产卡宣传常混 sparsity 口径，已尽量剥离，存疑处标注）。<code>¥/ZF</code> = 按租金跑满 10²¹ 次 BF16 浮点运算的理论成本（同主表口径，可横向对比）。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">芯片</th>
+<th style="text-align: left;">显存</th>
+<th style="text-align: right;">带宽</th>
+<th style="text-align: right;">BF16</th>
+<th style="text-align: left;">FP8</th>
+<th style="text-align: right;">售价¥(万)</th>
+<th style="text-align: right;">租金¥/h</th>
+<th style="text-align: right;">售价¥/T(BF16)</th>
+<th style="text-align: right;">¥/ZF(BF16)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">昇腾 910C</td>
+<td style="text-align: left;">128GB HBM2e</td>
+<td style="text-align: right;">3.2 TB/s</td>
+<td style="text-align: right;">780</td>
+<td style="text-align: left;">存疑</td>
+<td style="text-align: right;">10~11</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">~135</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">昇腾 910B</td>
+<td style="text-align: left;">64GB HBM2e</td>
+<td style="text-align: right;">1.6 TB/s</td>
+<td style="text-align: right;">320</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">7~10</td>
+<td style="text-align: right;">华为云实例计价</td>
+<td style="text-align: right;">~265</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">昇腾 950PR (2026Q4 量产)</td>
+<td style="text-align: left;">144GB 自研 HiZQ</td>
+<td style="text-align: right;">4.0 TB/s</td>
+<td style="text-align: right;">(FP8 1P)</td>
+<td style="text-align: left;">1000</td>
+<td style="text-align: right;">8+ [估]</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">寒武纪 MLU590</td>
+<td style="text-align: left;">96GB HBM2e</td>
+<td style="text-align: right;">2.0 TB/s</td>
+<td style="text-align: right;">314~345</td>
+<td style="text-align: left;">支持(口径不一)</td>
+<td style="text-align: right;">5.7~7 [估]</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">~180</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">寒武纪 MLU690 (2026 量产)</td>
+<td style="text-align: left;">196GB HBM3</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">&gt;700</td>
+<td style="text-align: left;">支持</td>
+<td style="text-align: right;">未公开</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">昆仑芯 P800</td>
+<td style="text-align: left;">96GB HBM</td>
+<td style="text-align: right;">2.4 TB/s</td>
+<td style="text-align: right;">~345 [估]</td>
+<td style="text-align: left;">8bit 推理</td>
+<td style="text-align: right;">未公开</td>
+<td style="text-align: right;">百度百舸平台</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">沐曦 C500</td>
+<td style="text-align: left;">64GB HBM2e</td>
+<td style="text-align: right;">1.8 TB/s</td>
+<td style="text-align: right;">~250~300 [估]</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">3.7~4.8</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">~150</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">摩尔线程 S5000</td>
+<td style="text-align: left;">80GB</td>
+<td style="text-align: right;">1.6 TB/s</td>
+<td style="text-align: right;">~500 [估]</td>
+<td style="text-align: left;">~1000 [估]</td>
+<td style="text-align: right;">未公开</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">摩尔线程 S4000</td>
+<td style="text-align: left;">48GB GDDR6</td>
+<td style="text-align: right;">0.77 TB/s</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">3~4 [估]</td>
+<td style="text-align: right;">1.86 (AutoDL)</td>
+<td style="text-align: right;">~350</td>
+<td style="text-align: right;">517</td>
+</tr>
+<tr>
+<td style="text-align: left;">海光 DCU K100-AI</td>
+<td style="text-align: left;">64GB HBM2e</td>
+<td style="text-align: right;">0.9 TB/s</td>
+<td style="text-align: right;">196</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">5.34 (零售挂牌)</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">272</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">燧原 云燧 T21 (OAM)</td>
+<td style="text-align: left;">64GB HBM2e</td>
+<td style="text-align: right;">1.8 TB/s</td>
+<td style="text-align: right;">~160 [估]</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">未公开</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">燧原 S60 (推理卡)</td>
+<td style="text-align: left;">48GB GDDR6</td>
+<td style="text-align: right;">0.67 TB/s</td>
+<td style="text-align: right;">~128 [估]</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">未公开</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">天数智芯 天垓150</td>
+<td style="text-align: left;">64GB</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">~300 [估]</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">7.5 (零售挂牌)</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">~250</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">天数智芯 天垓100</td>
+<td style="text-align: left;">32GB HBM2</td>
+<td style="text-align: right;">1.2 TB/s</td>
+<td style="text-align: right;">147</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: right;">未公开</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+</tbody>
+</table>
+<p>数据可信度：最硬的是沐曦 C500 出厂均价（IPO 问询函法定披露）与昇腾 910C 渠道报价（路透社 2026-09，受 HBM 涨价两月涨 20~50%）；规格以官方手册为准的仅 S4000/燧原/天垓100；MLU590/690 来自证券时报引券商研报；其余标 [估] 的为媒体/第三方口径。来源见文末。</p>
+<h4 id="_4">国产卡读表要点<a class="headerlink" href="#_4" title="Permanent link">#</a></h4>
+<ol>
+<li><strong>推理性价比看 910C vs H20</strong>（同按 BF16 dense 口径）：910C ¥10 万 / 780T ≈ ¥128/T，H20 ¥9.2 万（$13k）/ 148T ≈ ¥624/T，售价算力密度差约 5 倍；但 910C 无成熟 FP8、生态为 CANN——模型迁移与算子适配的人力成本要算进 TCO。适合政策导向/供给受限场景，纯经济账仍看具体负载。</li>
+<li><strong>生态是隐性成本</strong>：CUDA（英伟达/AMD 类 ROCm）之外，昇腾 CANN、摩尔线程 MUSA、寒武纪 Neuware 均需模型适配；主流开源模型官方支持度 昇腾 &gt; 寒武纪 &gt; 其他。自部署成本模型直接套用时，MFU/带宽利用率需按生态成熟度再打折（经验：CANN 打 8 折，其他打 6~7 折起步）。</li>
+<li><strong>多数国产卡无 FP8</strong>：套 <code>selfhost_h200.py</code> 时需切 BF16 口径——<code>weight_bytes</code> 1.0→2.0（权重显存翻倍、卡数增加），<code>fp8_flops</code> 换 BF16 列。</li>
+<li><strong>租金市场不透明</strong>：昇腾走华为云、昆仑芯走百度百舸，均为实例/集群打包价，无单卡时租；唯一公开时租的 S4000（¥1.86/h）换算 ¥517/ZFLOP，与 H200 的 $421/ZFLOP 同量级——但 100T 算力的卡租金便宜只是因为算力小，单位算力成本并不占优。</li>
+<li><strong>供给与价格波动大</strong>：HBM 缺货下昇腾渠道价两月涨 20~50%；集采价（运营商/银行大单）通常比表中零售/估计价低 20~30%。</li>
+</ol>
+<h3 id="_5">与成本模型的对应<a class="headerlink" href="#_5" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">成本模型参数（selfhost_h200.py CONFIG）</th>
+<th style="text-align: left;">取值来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>gpu_price_per_hour</code></td>
+<td style="text-align: left;">本表租金列（H200 当前取 3.0）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>hbm_gb</code> / <code>bandwidth_bps</code></td>
+<td style="text-align: left;">本表显存/带宽列</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>fp8_flops</code></td>
+<td style="text-align: left;">本表 FP8 列</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>bw_util</code> / <code>mfu</code></td>
+<td style="text-align: left;">实测校准系数（0.40 / 0.30），与硬件无关</td>
+</tr>
+</tbody>
+</table>
+<p>切换硬件（如 B200+FP4 口径）= 换一行参数。FP4 有效算力按 FP4 列代入，权重字节数 1.0→0.5。</p>
+<h3 id="_6">局限<a class="headerlink" href="#_6" title="Permanent link">#</a></h3>
+<ul>
+<li>价格为 2026-11 快照，GPU 租金处于长期下行通道（B 系放量后 Hopper 租金持续走低），使用时注意时效</li>
+<li>单卡售价为零售/小批量参考，千卡以上集采可低 20~30%</li>
+<li>未含整机配套成本（CPU/网卡/NVLink 交换机/电力/机架），整机落地成本约为纯卡价 ×1.3~1.5</li>
+</ul>
+<h3 id="_7">数据源与采集方法<a class="headerlink" href="#_7" title="Permanent link">#</a></h3>
+<p>回答一个问题：哪些 GPU 租赁平台的报价可以公开查、怎么查、有哪些坑。</p>
+<h4 id="_8">平台分级<a class="headerlink" href="#_8" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">层级</th>
+<th style="text-align: left;">平台</th>
+<th style="text-align: left;">查询方式</th>
+<th style="text-align: left;">认证</th>
+<th style="text-align: left;">覆盖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">T0 开放 API</td>
+<td style="text-align: left;"><strong>Azure 零售价 API</strong></td>
+<td style="text-align: left;"><code>GET https://prices.azure.com/api/retail/prices?currencyCode=USD&amp;$filter=...</code>，JSON，支持 OData filter</td>
+<td style="text-align: left;">免登录</td>
+<td style="text-align: left;">H100/H200/MI300X/GB200 等整机价，on-demand/Spot/LP 三档，分区域。超大规模云里<strong>唯一</strong>免登录可脚本化的</td>
+</tr>
+<tr>
+<td style="text-align: left;">T0 开放 API</td>
+<td style="text-align: left;">OpenRouter</td>
+<td style="text-align: left;"><code>/api/v1/models</code> + 详情页 RSC 数据</td>
+<td style="text-align: left;">免登录</td>
+<td style="text-align: left;">LLM 牌价与端点延迟（<code>src/pricing/fetch_openrouter.py</code>）</td>
+</tr>
+<tr>
+<td style="text-align: left;">T0 开放 API</td>
+<td style="text-align: left;">HuggingFace</td>
+<td style="text-align: left;"><code>/api/models/{repo}</code>（safetensors 总参）+ README/config（激活参数、量化格式）</td>
+<td style="text-align: left;">免登录</td>
+<td style="text-align: left;">模型规格侧，非租价</td>
+</tr>
+<tr>
+<td style="text-align: left;">T1 页面公开·SPA</td>
+<td style="text-align: left;">Vast.ai / RunPod / Lambda</td>
+<td style="text-align: left;">浏览器渲染后读表；curl 只拿到空壳</td>
+<td style="text-align: left;">免登录（浏览即可）</td>
+<td style="text-align: left;"><strong>市场化单卡时租</strong>（$2-3 档），本表租金列的主要对标</td>
+</tr>
+<tr>
+<td style="text-align: left;">T1 页面公开</td>
+<td style="text-align: left;">AutoDL</td>
+<td style="text-align: left;">页面直读</td>
+<td style="text-align: left;">免登录</td>
+<td style="text-align: left;">国内：消费级卡 + 部分国产卡时租（如 S4000 ¥1.86/h）</td>
+</tr>
+<tr>
+<td style="text-align: left;">T2 需登录/合同</td>
+<td style="text-align: left;">AWS / GCP</td>
+<td style="text-align: left;">AWS 免签 Pricing API 已失效（需 SigV4 签名或 GB 级 bulk JSON）；GCP Catalog API 需 API key</td>
+<td style="text-align: left;">需</td>
+<td style="text-align: left;">超大规模云官方目录价、reserved/集采价</td>
+</tr>
+<tr>
+<td style="text-align: left;">T3 三方转述</td>
+<td style="text-align: left;">国内卡渠道价</td>
+<td style="text-align: left;">路透/证券时报/IPO 问询函/招采公告</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">下节国产卡表的来源，无实时性</td>
+</tr>
+</tbody>
+</table>
+<p><strong>结论：要"可公开查 + 可脚本化"，Azure 零售价 API 是超大规模云里的独苗；市场化平台页面公开但全是 SPA，只能浏览器读表。</strong></p>
+<h4 id="azure">自动化脚本（Azure 侧）<a class="headerlink" href="#azure" title="Permanent link">#</a></h4>
+<p><code>src/pricing/fetch_gpu_rental.py</code>：免登录，输出 <code>data/pricing/raw/azure_retail_YYYY-MM-DD.json</code> 与 <code>data/pricing/processed/gpu_rental_azure_YYYY-MM-DD.{csv,md}</code>（sku × 计费档，整机价 + 折算单卡价）。</p>
+<pre><code class="language-bash">uv run python src/pricing/fetch_gpu_rental.py
+</code></pre>
+<h4 id="2026-11">踩坑清单（2026-11 实测）<a class="headerlink" href="#2026-11" title="Permanent link">#</a></h4>
+<ol>
+<li>Azure OData 不支持 <code>not(contains(...))</code> → BadRequest「Invalid OData parameters」，所有排除逻辑（去 Windows/Spot/噪声）必须在客户端做</li>
+<li>噪声 meter：同一 skuName 下混有数十万刀的 meter（<code>unitOfMeasure</code> 同为 "1 Hour"，reserved/许可口径，如 1645165.0），按 <code>price &gt; 10000</code> 剔除</li>
+<li>Spot / Low Priority 是独立 meterName（不是独立 priceType），要分档；实测 eastus ND96isr_H100_v5：on-demand $98.32 vs Spot $18.17 vs LP $19.66（整机 8 卡）</li>
+<li>卡数拆算：NC* 单卡整机；ND96* 8 卡 ÷8；NCads A100 系 24 vCPU/卡；ND128 GB200 v6 等未知封装按整机输出，不猜</li>
+<li>AWS GetProducts 免密调用已失效（无签名直接 400）；bulk Price List JSON 公开但单文件 GB 级，不实用 → AWS 价只能官方目录页人工读</li>
+<li>Vast/RunPod/Lambda 定价页全是 SPA：curl 拿到的是 JS 空壳（页面不小但 grep 不到 GPU 名）；Vast <code>/api/v0/gpu_listing/</code> 无 cookie 返回 <code>success:false</code>；r.jina.ai 渲染代理对这些站超时 → 市场平台价走浏览器</li>
+<li>两个反直觉但真实的现象（别当 bug 修）：Azure 上 H200 on-demand 单卡（$10.60）<strong>低于</strong> H100（$12.29）——H100 是 2023 年定价锁死的，H200 是 2025-26 按竞争力定的；超大规模云 <strong>Spot ≈ 市场化平台 on-demand</strong>（H100 Spot $2.27/卡 vs $2-3/卡）——两档市场的价差本质是"确定性溢价"，不是平台成本差</li>
+</ol>
+<h4 id="_9">更新工作流<a class="headerlink" href="#_9" title="Permanent link">#</a></h4>
+<ol>
+<li><code>uv run python src/pricing/fetch_gpu_rental.py</code> → 当日 Azure 三档价（秒级，免登录）</li>
+<li>市场平台价：浏览器开 vast.ai/pricing、runpod.io/pod-pricing、lambda.ai/service/gpu-pricing，人工读表（暂无自动化；若要自动化需带 cookie 调各站内部 API，另行评估）</li>
+<li>对表更新本页主表「租金$/h」列 + 顶部日期戳</li>
+<li><code>src/pricing/selfhost_h200.py</code> 的 <code>gpu_price_per_hour</code> 同步改</li>
+</ol>
+<h4 id="_10">已知盲区<a class="headerlink" href="#_10" title="Permanent link">#</a></h4>
+<ul>
+<li>H20 / B300 / MI355X / 国产卡：Azure 无此命名，国际市场平台货少，主要靠 T3 转述</li>
+<li>售价（买断价）没有公开 API：只有媒体/招采/IPO 问询函口径</li>
+<li>Azure 区域价差大（如 ND H100 v5 澳东 $142.6 vs 美东 $98.32 整机），脚本取的是全球最低 on-demand，与"就近部署"实际成本有差距</li>
+</ul>
+<h3 id="_11">国产卡数据来源<a class="headerlink" href="#_11" title="Permanent link">#</a></h3>
+<ul>
+<li>昇腾 910C/950 报价：<a href="http://m.toutiao.com/group/7683849329102111251">路透社 HBM 涨价报道（观察者网转载）</a>、<a href="http://m.toutiao.com/group/7506517789307450454/">昇腾 950/960 时间表</a></li>
+<li>寒武纪 MLU590/690：<a href="https://www.stcn.com/article/detail/3991331.html">证券时报：寒武纪万亿市值</a></li>
+<li>沐曦 C500 出厂均价：<a href="https://static.sse.com.cn/stock/disclosure/announcement/c/202508/002078_20250827_OO1E.pdf">上交所 IPO 问询函</a></li>
+<li>摩尔线程：<a href="https://docs.mthreads.com/s4000/s4000-doc-online/introduction/">S4000 官方规格</a>、<a href="https://36kr.com/p/3680191355597316">S5000 参数首曝（36氪）</a>、<a href="https://www.autodl.com/home">AutoDL 租金</a></li>
+<li>燧原：<a href="https://support.enflame-tech.com/onlinedoc_hw/5-s6x/S60/product_manual/content/source/S60_product_manual.html">S60 产品手册</a>、<a href="https://support.enflame-tech.com/onlinedoc_hw/1-t2x/t21/product_manual/content/source/product-manual.html">云燧 T21 手册</a></li>
+<li>海光：<a href="https://m.suning.com/bigimages/12449465163.html">K100-AI 苏宁挂牌</a>、K100 淘宝零售</li>
+<li>昆仑芯：<a href="https://www.kunlunxin.com/news/4469.html">P800 中标招行（官网）</a>；天数智芯：<a href="https://www.iluvatar.com/productDetails?fullCode=cpjs-yj-xlxl-tg100">天垓100 官网</a>、天垓150 淘宝零售</li>
+<li>壁仞 BR100 未列入（原旗舰已被制裁打断，在售 BR106/166 无公开报价，512T dense 为发布口径）</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../1.data/data/" class="btn btn-neutral float-left" title="Data"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../LLM-Pricing/" class="btn btn-neutral float-right" title="LLM Pricing">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../1.data/data/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../LLM-Pricing/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

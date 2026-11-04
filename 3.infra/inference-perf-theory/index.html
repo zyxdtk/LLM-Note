@@ -1,0 +1,2362 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Inference perf theory - 大模型笔记</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Inference perf theory";
+        var mkdocs_page_input_path = "3.infra/inference-perf-theory.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> 大模型笔记
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">0.inbox</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-04/">[Read]2025 04</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2025-09/">[Read]2025 09</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-01/">[Read]2026 01</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/%5BRead%5D2026-02/">[Read]2026 02</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../0.inbox/alg-interview-faq/">Alg interview faq</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1.data</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../1.data/data/">Data</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2.compute</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute/GPU-Price/">GPU Price</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../2.compute/LLM-Pricing/">LLM Pricing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3.infra</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../Env/">Env</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Inference/">Inference</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Inference perf theory</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 推理两阶段：根本差异</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2_tpot_10-20ms_50-100_toks">2. TPOT：为什么普遍在 10-20ms / 50-100 tok/s</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21">2.1 硬公式</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22">2.2 理论计算</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23">2.3 为什么收敛到这个区间</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3_ttft">3. TTFT：取决于什么</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31">3.1 公式</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32_attention_prompt_70b_4xh100">3.2 Attention 占比随 prompt 长度变化（70B / 4xH100）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33">3.3 影响因素排序</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#34_vs">3.4 算力 vs 带宽——不同阶段吃不同资源</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4_nvidia_gpu">4. NVIDIA 数据中心 GPU 谱系</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5">5. 推理性能优化全景</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#51_layer_0">5.1 Layer 0: 芯片/硬件层</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#52_layer_1">5.2 Layer 1: 模型结构层</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#53_layer_2">5.3 Layer 2: 算法层</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#54_layer_3">5.4 Layer 3: 推理引擎/系统层</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#55_layer_4_prompt">5.5 Layer 4: Prompt/请求层</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#56_layer_5">5.6 Layer 5: 部署架构层</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#57">5.7 全景总结：优化方向 × 目标矩阵</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6_speculative_prefill_specprefill">6. Speculative Prefill (SpecPrefill)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#61">6.1 核心思想</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#62">6.2 四步流程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#63_speculative_decoding">6.3 与 Speculative Decoding 的关系</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#64">6.4 效果</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#7_agent">7. Agent工程师实践指南</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#71_agent">7.1 Agent场景的本质区别</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#72">7.2 模型选择：什么任务用什么模型</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#73_agent">7.3 上下文管理：agent最大的性能杀手</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#74_vs">7.4 调用编排：串行vs并行</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#75_prompt">7.5 Prompt工程：性能视角</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#76">7.6 实用性能预估速查</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#77">7.7 成本控制</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#78_agent">7.8 Agent工程师的杠杆点</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#79_checklist">7.9 Checklist</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#8">8. 推理芯片</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#81_vs_gpu">8.1 推理芯片 vs 训练GPU：本质区别</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#82">8.2 推理芯片主要玩家</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1_1">类别1：晶圆级/超大芯片</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#2">类别2：可重构/数据流架构</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3asic">类别3：推理专用ASIC</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#4">类别4：大厂自研</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#83">8.3 技术路线对比</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#84">8.4 芯片层面的推理优化方法</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#85_vs_gpu">8.5 推理芯片 vs GPU 实际对比</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#86_gpu">8.6 推理芯片会取代GPU吗？</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#9">9. 总结</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">关联</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../train/">Train</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4.text model</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/CodeLLM/">CodeLLM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/Embedding/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/LongContext/">LongContext</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PostTraining/">PostTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/PreTraining/">PreTraining</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingEconomics/">ScalingEconomics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/ScalingLaws/">ScalingLaws</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../4.text-model/TTT/">TTT</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">5.multimodal</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/MultiModalEmbedding/">MultiModalEmbedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/Ox-Alpha/">Ox Alpha</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/PhysicalAI/">PhysicalAI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/T2V/">T2V</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLA/">VLA</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../5.multimodal/VLM/">VLM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">6.eval</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Benchmark/">Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LLM-Judge/">LLM Judge</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/LMM_Benchmark/">LMM Benchmark</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../6.eval/Metric/">Metric</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">7.product</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Agent/">Agent</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Context/">Context</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Memory/">Memory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/NovelGenerator/">NovelGenerator</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/Product/">Product</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/SelfEvolving/">SelfEvolving</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../7.product/VibeCoding/">VibeCoding</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">8.tutorial</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/AGI-Feynman/">AGI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/PhysicalAI-Feynman/">PhysicalAI Feynman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../8.tutorial/TTT-Feynman/">TTT Feynman</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">9.people</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/Cosmos-Interview/">Cosmos Interview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PercyLiang/">PercyLiang</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/PhysicalAI-Landscape/">PhysicalAI Landscape</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../9.people/SSI-Ilya/">SSI Ilya</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">大模型笔记</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">3.infra</li>
+      <li class="breadcrumb-item active">Inference perf theory</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="llm">LLM 推理性能分析<a class="headerlink" href="#llm" title="Permanent link">#</a></h2>
+<blockquote>
+<p>2026.08.31 | 基于理论推导 + arXiv:2502.02789 (SpecPrefill, ICML 2025) + NVIDIA 官方规格</p>
+</blockquote>
+<h3 id="1">1. 推理两阶段：根本差异<a class="headerlink" href="#1" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Prefill (→TTFT)</th>
+<th>Decode (→TPOT)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算类型</td>
+<td>GEMM（矩阵×矩阵）</td>
+<td>GEMV（矩阵×向量）</td>
+</tr>
+<tr>
+<td>瓶颈</td>
+<td>算力（FLOPS）</td>
+<td>显存带宽（TB/s）</td>
+</tr>
+<tr>
+<td>每token读权重</td>
+<td>S个token分摊1次</td>
+<td>每个token读1次完整权重</td>
+</tr>
+<tr>
+<td>Attention</td>
+<td>O(S²) 对全序列</td>
+<td>O(n) 对单个token</td>
+</tr>
+<tr>
+<td>公式</td>
+<td>2PS / FLOPS + attn(S²)</td>
+<td>W_bytes / BW</td>
+</tr>
+<tr>
+<td>随prompt长度</td>
+<td>线性 + 二次</td>
+<td>不变</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2_tpot_10-20ms_50-100_toks">2. TPOT：为什么普遍在 10-20ms / 50-100 tok/s<a class="headerlink" href="#2_tpot_10-20ms_50-100_toks" title="Permanent link">#</a></h3>
+<h4 id="21">2.1 硬公式<a class="headerlink" href="#21" title="Permanent link">#</a></h4>
+<pre><code>TPOT_min = 模型权重总字节数 / 显存总带宽
+</code></pre>
+<p>这是物理下限，无法通过优化绕过。</p>
+<h4 id="22">2.2 理论计算<a class="headerlink" href="#22" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>权重(GB)</th>
+<th>带宽(TB/s)</th>
+<th>理论TPOT(ms)</th>
+<th>理论tok/s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7B FP16 / A100</td>
+<td>14</td>
+<td>2.0</td>
+<td>7.0</td>
+<td>143</td>
+</tr>
+<tr>
+<td>7B FP16 / H100</td>
+<td>14</td>
+<td>3.4</td>
+<td>4.2</td>
+<td>239</td>
+</tr>
+<tr>
+<td>13B FP16 / A100</td>
+<td>26</td>
+<td>2.0</td>
+<td>13.0</td>
+<td>77</td>
+</tr>
+<tr>
+<td>13B FP16 / H100</td>
+<td>26</td>
+<td>3.4</td>
+<td>7.8</td>
+<td>129</td>
+</tr>
+<tr>
+<td>70B FP16 / 4xA100</td>
+<td>140</td>
+<td>8.0</td>
+<td>17.5</td>
+<td>57</td>
+</tr>
+<tr>
+<td>70B FP16 / 4xH100</td>
+<td>140</td>
+<td>13.4</td>
+<td>10.4</td>
+<td>96</td>
+</tr>
+<tr>
+<td>70B FP8 / 4xH100</td>
+<td>70</td>
+<td>13.4</td>
+<td>5.2</td>
+<td>191</td>
+</tr>
+<tr>
+<td>67B FP8 / 2xH100</td>
+<td>67</td>
+<td>6.7</td>
+<td>10.0</td>
+<td>100</td>
+</tr>
+<tr>
+<td>405B FP8 / 8xH100</td>
+<td>405</td>
+<td>26.8</td>
+<td>15.1</td>
+<td>66</td>
+</tr>
+</tbody>
+</table>
+<h4 id="23">2.3 为什么收敛到这个区间<a class="headerlink" href="#23" title="Permanent link">#</a></h4>
+<ol>
+<li><strong>模型越大→用的卡越多→带宽同步增大</strong>：分子（权重大小）和分母（总带宽）基本同步增长，比值天然趋于常数。这不是巧合，而是部署逻辑决定的——用多少卡取决于模型能塞进多少显存。</li>
+<li><strong>硬件代际锚定</strong>：当前一代GPU的HBM带宽是物理常数（A100=2.0, H100=3.35, B200=8.0 TB/s），模型大小×量化精度的组合天然在"适配"这个带宽常数。</li>
+<li><strong>固定开销叠加</strong>：实际TPOT = 理论值 + KV cache读取 + attention计算 + kernel启动 + 采样 ≈ +3~8ms。所以理论5-17ms → 实际8-25ms → 40-125 tok/s，去掉极端值就是 10-20ms / 50-100 tok/s。</li>
+</ol>
+<h3 id="3_ttft">3. TTFT：取决于什么<a class="headerlink" href="#3_ttft" title="Permanent link">#</a></h3>
+<h4 id="31">3.1 公式<a class="headerlink" href="#31" title="Permanent link">#</a></h4>
+<pre><code>TTFT = (2PS + 4LH·S²) / FLOPS + 固定开销
+</code></pre>
+<ul>
+<li>P = 参数量，S = prompt长度，L = 层数，H = head_dim × num_heads</li>
+<li>线性层(GEMM)：2PS → 随prompt线性增长</li>
+<li>Attention：4LH·S² → 随prompt平方增长</li>
+</ul>
+<h4 id="32_attention_prompt_70b_4xh100">3.2 Attention 占比随 prompt 长度变化（70B / 4xH100）<a class="headerlink" href="#32_attention_prompt_70b_4xh100" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Prompt长度</th>
+<th>GEMM(TF)</th>
+<th>Attention(TF)</th>
+<th>Attn占比</th>
+<th>理论TTFT(ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>14.0</td>
+<td>0.0</td>
+<td>0.2%</td>
+<td>3.5</td>
+</tr>
+<tr>
+<td>500</td>
+<td>70.0</td>
+<td>0.7</td>
+<td>0.9%</td>
+<td>17.9</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>280.0</td>
+<td>10.5</td>
+<td>3.6%</td>
+<td>73.4</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>560.0</td>
+<td>41.9</td>
+<td>7.0%</td>
+<td>152.2</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>1120.0</td>
+<td>167.8</td>
+<td>13.0%</td>
+<td>325.5</td>
+</tr>
+<tr>
+<td>16000</td>
+<td>2240.0</td>
+<td>671.1</td>
+<td>23.1%</td>
+<td>735.9</td>
+</tr>
+<tr>
+<td>32000</td>
+<td>4480.0</td>
+<td>2684.4</td>
+<td>37.5%</td>
+<td>1811.0</td>
+</tr>
+</tbody>
+</table>
+<p>转折点：S≈4000 时 attention 开始显著，S&gt;8000 后 attention 主导。</p>
+<h4 id="33">3.3 影响因素排序<a class="headerlink" href="#33" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>因素</th>
+<th>影响方式</th>
+<th>程度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prompt长度(S)</td>
+<td>GEMM线性 + Attn平方</td>
+<td>★★★★★ 最大因素</td>
+</tr>
+<tr>
+<td>模型大小(P)</td>
+<td>GEMM线性增长</td>
+<td>★★★★</td>
+</tr>
+<tr>
+<td>GPU算力(FLOPS)</td>
+<td>反比，直接决定下限</td>
+<td>★★★★</td>
+</tr>
+<tr>
+<td>Attention O(S²)</td>
+<td>长上下文时主导</td>
+<td>★★★</td>
+</tr>
+<tr>
+<td>TP通信(all-reduce)</td>
+<td>每层2次，层数越多越重</td>
+<td>★★★</td>
+</tr>
+<tr>
+<td>KV Cache分配</td>
+<td>需为S个token分配显存</td>
+<td>★★ 5-20ms</td>
+</tr>
+<tr>
+<td>调度排队</td>
+<td>取决于系统负载</td>
+<td>★★~★★★★</td>
+</tr>
+<tr>
+<td>网络延迟</td>
+<td>远程调用时</td>
+<td>★★ 10-50ms</td>
+</tr>
+</tbody>
+</table>
+<p>TP通信开销估算：7B(32层)≈64ms, 70B(80层)≈160ms, 405B(126层)≈252ms</p>
+<h4 id="34_vs">3.4 算力 vs 带宽——不同阶段吃不同资源<a class="headerlink" href="#34_vs" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>GPU</th>
+<th>算力(TF FP16)</th>
+<th>带宽(TB/s)</th>
+<th>算力/带宽比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A100</td>
+<td>312</td>
+<td>2.0</td>
+<td>156</td>
+</tr>
+<tr>
+<td>H100</td>
+<td>989</td>
+<td>3.35</td>
+<td>295</td>
+</tr>
+</tbody>
+</table>
+<p>H100 比 A100 算力提升 3.2x，带宽只提升 1.7x：
+- 对 TTFT（算力受限）：快 ~3 倍
+- 对 TPOT（带宽受限）：快 ~1.7 倍</p>
+<h3 id="4_nvidia_gpu">4. NVIDIA 数据中心 GPU 谱系<a class="headerlink" href="#4_nvidia_gpu" title="Permanent link">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>GPU</th>
+<th>显存</th>
+<th>带宽(TB/s)</th>
+<th>算力</th>
+<th>上市</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A100</td>
+<td>80GB HBM2e</td>
+<td>2.0</td>
+<td>312 TF FP16</td>
+<td>2020</td>
+</tr>
+<tr>
+<td>H100</td>
+<td>80GB HBM3</td>
+<td>3.35</td>
+<td>989 TF FP16</td>
+<td>2022.03</td>
+</tr>
+<tr>
+<td>H200</td>
+<td>141GB HBM3e</td>
+<td>4.8</td>
+<td>989 TF FP16</td>
+<td>2024.11</td>
+</tr>
+<tr>
+<td>B200</td>
+<td>180GB HBM3e</td>
+<td>8.0</td>
+<td>1191 TF FP4</td>
+<td>2024.11</td>
+</tr>
+<tr>
+<td>B300</td>
+<td>288GB HBM3e</td>
+<td>8.0</td>
+<td>1232 TF FP4</td>
+<td>2025.09</td>
+</tr>
+<tr>
+<td>Rubin</td>
+<td>HBM4</td>
+<td>待确认</td>
+<td>50 PF FP4</td>
+<td>2026 H2</td>
+</tr>
+<tr>
+<td>Rubin Ultra</td>
+<td>待确认</td>
+<td>待确认</td>
+<td>100 PF FP4</td>
+<td>2027</td>
+</tr>
+</tbody>
+</table>
+<p>注意：H200 相对 H100 是容量 80→141GB、带宽 3.35→4.8 TB/s（+43%），算力不变；B200/B300 的 8.0 TB/s 是双芯片聚合带宽。</p>
+<p>算力/带宽比的代际演进决定 TPOT"引力井"位置：
+- 当前：A100/H100 → 10-20ms / 50-100 tok/s
+- 下一代：B200/Rubin(HBM4) → 预计 5-10ms / 100-200 tok/s</p>
+<h3 id="5">5. 推理性能优化全景<a class="headerlink" href="#5" title="Permanent link">#</a></h3>
+<p>从硅片到 prompt，分六层，每层解决的问题不同：</p>
+<pre><code>Layer 0  芯片/硬件层     —— 物理上限
+Layer 1  模型结构层       —— 减少计算量和参数量
+Layer 2  算法层           —— 用策略绕过物理极限
+Layer 3  推理引擎/系统层  —— 提高资源利用率
+Layer 4  Prompt/请求层    —— 减少输入量
+Layer 5  部署架构层       —— 系统级调度
+</code></pre>
+<p>优化目标说明：</p>
+<table>
+<thead>
+<tr>
+<th>目标</th>
+<th>含义</th>
+<th>主要受谁影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TTFT</td>
+<td>首token延迟</td>
+<td>算力、prompt长度</td>
+</tr>
+<tr>
+<td>TPOT</td>
+<td>单token生成延迟</td>
+<td>带宽、模型大小</td>
+</tr>
+<tr>
+<td>Throughput</td>
+<td>聚合吞吐(tokens/s)</td>
+<td>batching、调度、并行</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>显存占用(KV cache+权重)</td>
+<td>量化、cache管理</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>$/token</td>
+<td>以上所有的 trade-off</td>
+</tr>
+</tbody>
+</table>
+<h4 id="51_layer_0">5.1 Layer 0: 芯片/硬件层<a class="headerlink" href="#51_layer_0" title="Permanent link">#</a></h4>
+<p>物理地基，决定一切优化的天花板。</p>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>原理</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HBM带宽提升</td>
+<td>HBM2e→HBM3e→HBM4, A100=2.0→H100=3.35→B200=8.0 TB/s</td>
+<td>直接降TPOT（带宽引力井）</td>
+</tr>
+<tr>
+<td>互联带宽</td>
+<td>NVLink/NVSwitch, NVLink4=900GB/s vs PCIe5=64</td>
+<td>降TP通信开销（TTFT的TP部分）</td>
+</tr>
+<tr>
+<td>计算密度</td>
+<td>Tensor Core代际, FP16→FP8→FP4支持</td>
+<td>降TTFT（算力提升）</td>
+</tr>
+<tr>
+<td>显存容量</td>
+<td>80GB→141GB→288GB</td>
+<td>能装更大模型/更长KV</td>
+</tr>
+<tr>
+<td>多芯片封装</td>
+<td>B200双die=8TB/s聚合带宽</td>
+<td>带宽翻倍但单die不变</td>
+</tr>
+</tbody>
+</table>
+<p>硬件层是"慢变量"，一代芯片2-3年，但锚定了TPOT的物理下限。是唯一能同时改善TTFT和TPOT的手段，但成本最高。</p>
+<h4 id="52_layer_1">5.2 Layer 1: 模型结构层<a class="headerlink" href="#52_layer_1" title="Permanent link">#</a></h4>
+<p>不改硬件，改模型本身的"计算形状"。</p>
+<p><strong>Attention 结构优化：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>原理</th>
+<th>KV cache减少</th>
+<th>精度影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MHA</td>
+<td>每个head独立QKV</td>
+<td>基准</td>
+<td>基准</td>
+</tr>
+<tr>
+<td>MQA</td>
+<td>所有head共享1组KV</td>
+<td>~1/N_heads</td>
+<td>较大</td>
+</tr>
+<tr>
+<td>GQA</td>
+<td>分组共享KV(折中)</td>
+<td>~1/G</td>
+<td>小</td>
+</tr>
+<tr>
+<td>MLA</td>
+<td>低秩投影压缩KV(DeepSeek)</td>
+<td>大幅</td>
+<td>极小</td>
+</tr>
+<tr>
+<td>Sparse Attn</td>
+<td>只关注局部/token子集</td>
+<td>不变</td>
+<td>中等</td>
+</tr>
+<tr>
+<td>Linear Attn</td>
+<td>用核函数近似,去softmax</td>
+<td>不变</td>
+<td>较大</td>
+</tr>
+</tbody>
+</table>
+<p>MLA 是目前最优解，DeepSeek-V2/V3 采用，KV cache压缩到1/4以上。</p>
+<p><strong>FFN 结构优化：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>原理</th>
+<th>激活参数</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dense FFN</td>
+<td>全连接,所有参数参与</td>
+<td>100%</td>
+<td>基准</td>
+</tr>
+<tr>
+<td>MoE</td>
+<td>稀疏激活,只激活Top-K专家</td>
+<td>5-15%</td>
+<td>TPOT↓（读的权重少），但总参数更大</td>
+</tr>
+</tbody>
+</table>
+<p>MoE 对推理：TPOT降低（每token只激活部分专家，等效"小模型"），但总参数增大（需更多显存，TP切分更复杂）。DeepSeek-V3: 671B总参数, 37B激活 → TPOT接近37B模型。</p>
+<p><strong>量化：</strong></p>
+<table>
+<thead>
+<tr>
+<th>精度</th>
+<th>字节/参数</th>
+<th>TPOT影响</th>
+<th>精度损失</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FP16/BF16</td>
+<td>2</td>
+<td>基准</td>
+<td>0</td>
+</tr>
+<tr>
+<td>FP8</td>
+<td>1</td>
+<td>TPOT减半</td>
+<td>&lt;1%</td>
+</tr>
+<tr>
+<td>INT8</td>
+<td>1</td>
+<td>TPOT减半</td>
+<td>1-3%</td>
+</tr>
+<tr>
+<td>INT4/FP4</td>
+<td>0.5</td>
+<td>TPOT降4倍</td>
+<td>3-8%</td>
+</tr>
+</tbody>
+</table>
+<p>量化直接减少"权重字节数"，在 TPOT = W_bytes / BW 公式里分子变小。是性价比最高的TPOT优化手段。</p>
+<p>两种路线：
+- Weight-only（只量化权重）: W8A16, W4A16 → TPOT降，但计算时反量化
+- Weight+Activation: W8A8, W4A4 → TPOT更优，但精度损失大</p>
+<p><strong>架构创新：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>原理</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mamba/SSM</td>
+<td>线性复杂度替代attention</td>
+<td>实验中,长序列有优势</td>
+</tr>
+<tr>
+<td>Hybrid</td>
+<td>前几层attention+后面SSM</td>
+<td>Jamba等在探索</td>
+</tr>
+<tr>
+<td>RWKV</td>
+<td>线性RNN架构</td>
+<td>小众但有社区</td>
+</tr>
+</tbody>
+</table>
+<p>这些方案把 attention 的 O(S²) 降到 O(S)，理论上对长上下文 TTFT 有质的飞跃，但通用能力尚未追上 Transformer。</p>
+<p>模型结构层的优化大多是训练时就决定的，推理时改不了。量化和蒸馏是例外——可以 post-training 做。</p>
+<h4 id="53_layer_2">5.3 Layer 2: 算法层<a class="headerlink" href="#53_layer_2" title="Permanent link">#</a></h4>
+<p>不改模型、不改硬件，用算法策略"作弊"绕过物理极限。</p>
+<p><strong>Speculative Decoding（投机解码）：</strong></p>
+<p>小模型快速起草 K 个token，大模型一次性批量验证。等效TPOT降低2-5x（取决于接受率），且无损（大模型做最终判定）。代表：EAGLE-3(5.6x), Medusa, Lookahead。</p>
+<p>本质：把多个串行的decode步骤，变成一个并行验证步骤。一次带宽读取验证K个token，等效TPOT/K。</p>
+<p><strong>Speculative Prefill：</strong></p>
+<p>小模型筛掉不重要token，压缩prompt。TTFT提升最高7.66x，有损(&lt;5%)。详见第6节。</p>
+<p><strong>其他算法策略：</strong></p>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>原理</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>投机解码+prefill</td>
+<td>同一小模型两阶段共用</td>
+<td>TTFT+TPOT同时优化</td>
+</tr>
+<tr>
+<td>Early Exit</td>
+<td>前几层就输出(如果自信)</td>
+<td>降TPOT,但精度风险</td>
+</tr>
+<tr>
+<td>Medusa多头</td>
+<td>一个模型多个解码头并行预测</td>
+<td>降TPOT,需训练</td>
+</tr>
+<tr>
+<td>Token Skipping</td>
+<td>低置信度token跳过某些层</td>
+<td>降TPOT,实验阶段</td>
+</tr>
+</tbody>
+</table>
+<p>算法层大多需要额外的小模型或训练，且投机解码的收益高度依赖接受率（任务相关）。</p>
+<h4 id="54_layer_3">5.4 Layer 3: 推理引擎/系统层<a class="headerlink" href="#54_layer_3" title="Permanent link">#</a></h4>
+<p>工程优化最密集的层，不改模型不改硬件，纯粹提高资源利用率。</p>
+<p><strong>Batching：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>原理</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Static Batching</td>
+<td>等齐再一起算</td>
+<td>低效,padding浪费</td>
+</tr>
+<tr>
+<td>Continuous Batching</td>
+<td>请求随到随算,每步可加入/移除</td>
+<td>吞吐提升22x(vLLM)</td>
+</tr>
+</tbody>
+</table>
+<p>Continuous batching 不影响单个请求的TPOT，但大幅提升聚合吞吐——不同请求的decode步骤可以交织，GPU不会闲着。</p>
+<p><strong>KV Cache 管理：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>原理</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PagedAttention</td>
+<td>类似OS虚拟内存,分页管理KV</td>
+<td>碎片浪费从60%→&lt;4%</td>
+</tr>
+<tr>
+<td>KV Compression</td>
+<td>量化KV cache(INT8/FP8)</td>
+<td>显存减半,可服务更多并发</td>
+</tr>
+<tr>
+<td>KV Eviction</td>
+<td>丢掉不重要的KV(H2O等)</td>
+<td>长上下文不OOM,但有损</td>
+</tr>
+<tr>
+<td>RadixAttention</td>
+<td>前缀树共享公共前缀KV</td>
+<td>RAG场景大幅省计算</td>
+</tr>
+</tbody>
+</table>
+<p>主要影响显存利用率 → 能服务的并发数 → 吞吐。</p>
+<p><strong>调度：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>原理</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chunked Prefill</td>
+<td>长prompt分块,与decode交替</td>
+<td>短请求不被长prompt阻塞</td>
+</tr>
+<tr>
+<td>Priority Scheduling</td>
+<td>按优先级调度</td>
+<td>SLA保障</td>
+</tr>
+<tr>
+<td>Prefill-Decode分离</td>
+<td>不同阶段分配不同GPU</td>
+<td>各自最优配置</td>
+</tr>
+</tbody>
+</table>
+<p><strong>算子优化：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>原理</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FlashAttention</td>
+<td>分块计算attention,减少HBM读写</td>
+<td>attn快2-4x</td>
+</tr>
+<tr>
+<td>Kernel Fusion</td>
+<td>QKV融合/bias融合/激活融合</td>
+<td>减少kernel launch</td>
+</tr>
+<tr>
+<td>CUDA Graph</td>
+<td>预录制计算图,免运行时开销</td>
+<td>省2-5ms/step</td>
+</tr>
+<tr>
+<td>FlashInfer</td>
+<td>可定制attention引擎</td>
+<td>灵活适配各种attn变体</td>
+</tr>
+</tbody>
+</table>
+<p><strong>并行：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>原理</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tensor Parallel (TP)</td>
+<td>层内切分,每卡算一部分</td>
+<td>单机多卡,需NVLink</td>
+</tr>
+<tr>
+<td>Pipeline Parallel</td>
+<td>层间切分,流水线</td>
+<td>跨机,有bubble</td>
+</tr>
+<tr>
+<td>Expert Parallel</td>
+<td>MoE专家分布到不同卡</td>
+<td>MoE模型</td>
+</tr>
+<tr>
+<td>Sequence Parallel</td>
+<td>长序列切分到多卡</td>
+<td>超长上下文</td>
+</tr>
+</tbody>
+</table>
+<p>TP对TTFT的影响：计算加速，但引入all-reduce通信开销。7B(32层,1卡)=0通信, 70B(80层,4卡)≈160ms, 405B(126层,8卡)≈252ms。</p>
+<p>系统层优化大多是"无损"的——不降精度，只提高利用率。但复杂度高，且某些优化（如KV eviction）有精度风险。</p>
+<h4 id="55_layer_4_prompt">5.5 Layer 4: Prompt/请求层<a class="headerlink" href="#55_layer_4_prompt" title="Permanent link">#</a></h4>
+<p>从"输入"端做优化，减少需要计算的内容。</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>原理</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prompt压缩</td>
+<td>删除冗余token(SpecPrefill等)</td>
+<td>TTFT↓ 7.66x</td>
+</tr>
+<tr>
+<td>Prefix Caching</td>
+<td>缓存共享前缀的KV</td>
+<td>TTFT↓ (跳过已算前缀)</td>
+</tr>
+<tr>
+<td>RAG替代长上下文</td>
+<td>只检索相关片段,不塞全文</td>
+<td>TTFT大幅↓</td>
+</tr>
+<tr>
+<td>Prompt工程</td>
+<td>精简prompt表述</td>
+<td>TTFT↓ (S减少)</td>
+</tr>
+<tr>
+<td>上下文窗口管理</td>
+<td>滑动窗口/摘要替代全历史</td>
+<td>TTFT↓ + KV↓</td>
+</tr>
+</tbody>
+</table>
+<p>直接作用于 TTFT 公式里的 S：S减半 → GEMM部分减半，attention部分减4倍。</p>
+<p>最灵活（不需要改模型/硬件），但效果依赖具体任务，RAG可能影响准确性。</p>
+<h4 id="56_layer_5">5.6 Layer 5: 部署架构层<a class="headerlink" href="#56_layer_5" title="Permanent link">#</a></h4>
+<p>系统级的资源调度和拓扑设计。</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>原理</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PD分离</td>
+<td>prefill和decode用不同GPU集群(Mooncake架构)</td>
+<td>各自最优配置</td>
+</tr>
+<tr>
+<td>多级缓存</td>
+<td>KV cache跨节点共享</td>
+<td>跨请求复用</td>
+</tr>
+<tr>
+<td>弹性伸缩</td>
+<td>按负载动态调整GPU分配</td>
+<td>降成本</td>
+</tr>
+<tr>
+<td>模型路由</td>
+<td>简单query用小模型,复杂的用大</td>
+<td>降平均延迟和成本</td>
+</tr>
+<tr>
+<td>混合精度部署</td>
+<td>不同层用不同精度</td>
+<td>权衡精度和速度</td>
+</tr>
+</tbody>
+</table>
+<p>PD分离是目前部署架构最热的方向：prefill是算力受限→用算力强但显存小的卡；decode是带宽受限→用带宽高但算力可以弱的卡。两者分离后各自配置最优硬件，不互相拖累。</p>
+<p>架构层优化需要多节点协调，复杂度和成本最高，但能实现单机无法达到的规模。</p>
+<h4 id="57">5.7 全景总结：优化方向 × 目标矩阵<a class="headerlink" href="#57" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>优化方向</th>
+<th>TTFT</th>
+<th>TPOT</th>
+<th>吞吐</th>
+<th>显存</th>
+<th>精度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Layer 0 芯片</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>HBM带宽提升</td>
+<td>-</td>
+<td>★★★★★</td>
+<td>★★</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>互联带宽</td>
+<td>★★★</td>
+<td>★★</td>
+<td>★★</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>算力提升</td>
+<td>★★★★★</td>
+<td>-</td>
+<td>★★</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>显存容量</td>
+<td>★</td>
+<td>-</td>
+<td>★★</td>
+<td>★★★★</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Layer 1 模型结构</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Attention优化</td>
+<td>-</td>
+<td>-</td>
+<td>★★</td>
+<td>★★★★</td>
+<td>★</td>
+</tr>
+<tr>
+<td>MoE</td>
+<td>-</td>
+<td>★★★</td>
+<td>★</td>
+<td>★</td>
+<td>★</td>
+</tr>
+<tr>
+<td>量化</td>
+<td>-</td>
+<td>★★★★</td>
+<td>★★</td>
+<td>★★★</td>
+<td>★★</td>
+</tr>
+<tr>
+<td>架构创新</td>
+<td>★★★★</td>
+<td>-</td>
+<td>★</td>
+<td>-</td>
+<td>★★★</td>
+</tr>
+<tr>
+<td><strong>Layer 2 算法</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>投机解码</td>
+<td>-</td>
+<td>★★★★</td>
+<td>★★</td>
+<td>-</td>
+<td>无损</td>
+</tr>
+<tr>
+<td>Speculative Prefill</td>
+<td>★★★★</td>
+<td>-</td>
+<td>★★</td>
+<td>-</td>
+<td>★</td>
+</tr>
+<tr>
+<td><strong>Layer 3 引擎系统</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Continuous Batching</td>
+<td>-</td>
+<td>-</td>
+<td>★★★★</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>PagedAttention</td>
+<td>-</td>
+<td>-</td>
+<td>★★★</td>
+<td>★★★★</td>
+<td>-</td>
+</tr>
+<tr>
+<td>FlashAttention</td>
+<td>★★</td>
+<td>★</td>
+<td>★</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Chunked Prefill</td>
+<td>★★</td>
+<td>-</td>
+<td>★★★</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TP并行</td>
+<td>★★</td>
+<td>★★</td>
+<td>★</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Layer 4 Prompt</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Prompt压缩</td>
+<td>★★★★</td>
+<td>-</td>
+<td>★★</td>
+<td>-</td>
+<td>★</td>
+</tr>
+<tr>
+<td>Prefix Caching</td>
+<td>★★★</td>
+<td>-</td>
+<td>★★</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>RAG</td>
+<td>★★★★</td>
+<td>-</td>
+<td>★</td>
+<td>-</td>
+<td>★</td>
+</tr>
+<tr>
+<td><strong>Layer 5 部署架构</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>PD分离</td>
+<td>★★</td>
+<td>-</td>
+<td>★★★</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>模型路由</td>
+<td>★★★</td>
+<td>★★★</td>
+<td>★★</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>关键规律：</p>
+<ol>
+<li><strong>TPOT优化</strong>主要靠：带宽提升（芯片）+ 量化（模型）+ 投机解码（算法）。三者分别从公式 TPOT = W_bytes / BW 的分子、分母、和"作弊"三个角度下手。</li>
+<li><strong>TTFT优化</strong>主要靠：算力提升（芯片）+ prompt压缩（prompt层）+ FlashAttention（引擎）。核心是减少计算量(2PS + S²)和提升算力。</li>
+<li><strong>吞吐优化</strong>主要靠：Continuous Batching + PagedAttention + PD分离。核心是提高GPU利用率。</li>
+<li><strong>唯一无损的加速</strong>：投机解码 + Continuous Batching + PagedAttention + FlashAttention。其他手段都有精度trade-off。</li>
+<li><strong>越往下层</strong>（芯片），影响越大但迭代越慢；<strong>越往上层</strong>（prompt），越灵活但效果有限。</li>
+</ol>
+<h3 id="6_speculative_prefill_specprefill">6. Speculative Prefill (SpecPrefill)<a class="headerlink" href="#6_speculative_prefill_specprefill" title="Permanent link">#</a></h3>
+<blockquote>
+<p>论文：<a href="https://arxiv.org/abs/2502.02789">arXiv:2502.02789</a>, ICML 2025
+后续：<a href="https://arxiv.org/abs/2603.02631">Cross-Family版 arXiv:2603.02631</a>, ICLR 2026 WS</p>
+</blockquote>
+<h4 id="61">6.1 核心思想<a class="headerlink" href="#61" title="Permanent link">#</a></h4>
+<p>LLM 足够 robust，只给它 prompt 中"精心选择的子集"token，质量基本不掉。用小模型(speculator)跑一遍 prompt，通过 attention score 判断哪些 token 重要，只把这些重要 token 发给大模型做 prefill。本质是 prompt 压缩，S 降到 S/k，TTFT 降 k 倍。</p>
+<h4 id="62">6.2 四步流程<a class="headerlink" href="#62" title="Permanent link">#</a></h4>
+<ol>
+<li><strong>小模型前向传播</strong>：选一个轻量模型对完整prompt跑一遍</li>
+<li><strong>Attention score 估计重要性</strong>：取最后一个token对所有prompt token的attention score作代理</li>
+<li><strong>Look-Ahead + 聚合去噪</strong>：</li>
+<li>Look-Ahead：再decode N步，用N个token的attention取平均，消除位置偏置（sink现象、近距偏置）</li>
+<li>聚合：attention tensor [N,L,S,H] → 对L和H取max，对N取mean</li>
+<li>Chunk分块 + 1D average pooling 平滑，选Top-K块</li>
+<li><strong>恢复原始位置ID</strong>：选中token保留原始位置编号（非连续），送入大模型做prefill</li>
+</ol>
+<h4 id="63_speculative_decoding">6.3 与 Speculative Decoding 的关系<a class="headerlink" href="#63_speculative_decoding" title="Permanent link">#</a></h4>
+<p>两者是"一体两面"，可共用同一个小模型：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Prefill 阶段</th>
+<th>Decode 阶段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Speculative Prefill</td>
+<td>小模型选重要token压缩</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Speculative Decoding</td>
+<td>—</td>
+<td>小模型起草token，大模型批量验证</td>
+</tr>
+<tr>
+<td>两者结合</td>
+<td>小模型做prefill压缩 ✓</td>
+<td>同一小模型做decode起草 ✓</td>
+</tr>
+</tbody>
+</table>
+<h4 id="64">6.4 效果<a class="headerlink" href="#64" title="Permanent link">#</a></h4>
+<ul>
+<li>TTFT 提升：7.66x</li>
+<li>最大 QPS 提升：7x</li>
+<li>精度损失：&lt;5%</li>
+<li>Training-free，可与量化/KV eviction/投机解码叠加</li>
+<li>跨家族也可行（Qwen小模型给LLaMA大模型压缩，保留90-100%精度）</li>
+<li>实验：Llama-3.1-405B-Instruct-FP8, 8xH200</li>
+</ul>
+<h3 id="7_agent">7. Agent工程师实践指南<a class="headerlink" href="#7_agent" title="Permanent link">#</a></h3>
+<p>前面六层优化大多属于模型工程师和infra工程师的战场。Agent工程师控制不了芯片和模型结构，但在"如何用模型"这件事上有巨大优化空间。</p>
+<h4 id="71_agent">7.1 Agent场景的本质区别<a class="headerlink" href="#71_agent" title="Permanent link">#</a></h4>
+<pre><code>单轮对话:    1次 prefill + N次 decode → 用户等一次
+Agent工作流: K次 prefill + 每次N_i次 decode + 工具调用 → 用户等K轮
+</code></pre>
+<p>Agent的延迟是"乘法级"的：每次LLM调用的TTFT和TPOT，乘以调用次数，再加上工具执行时间。核心矛盾是 <strong>调用次数多 × 每次延迟 = 总延迟爆炸</strong>。</p>
+<h4 id="72">7.2 模型选择：什么任务用什么模型<a class="headerlink" href="#72" title="Permanent link">#</a></h4>
+<p>Agent工程师最大的杠杆。选错模型，后面所有优化都白费。</p>
+<table>
+<thead>
+<tr>
+<th>决策维度</th>
+<th>小模型(7B-14B)</th>
+<th>大模型(70B+)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TPOT</td>
+<td>8-12ms / 80-125t/s</td>
+<td>12-20ms / 50-80t/s</td>
+</tr>
+<tr>
+<td>TTFT(500tok)</td>
+<td>~25ms</td>
+<td>~70ms</td>
+</tr>
+<tr>
+<td>成本$/Mtok</td>
+<td>$0.1-0.5</td>
+<td>$2-10</td>
+</tr>
+<tr>
+<td>适合任务</td>
+<td>分类/提取/路由/简单判断</td>
+<td>推理/写作/复杂工具调用</td>
+</tr>
+<tr>
+<td>工具调用能力</td>
+<td>弱(需few-shot)</td>
+<td>强(零样本)</td>
+</tr>
+</tbody>
+</table>
+<p>多模型路由策略：</p>
+<table>
+<thead>
+<tr>
+<th>步骤类型</th>
+<th>推荐模型</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>意图识别/路由</td>
+<td>7B-8B</td>
+<td>二分类/多分类，小模型够用</td>
+</tr>
+<tr>
+<td>信息提取</td>
+<td>7B-14B</td>
+<td>结构化输出，小模型+schema约束</td>
+</tr>
+<tr>
+<td>简单判断(是否安全)</td>
+<td>7B</td>
+<td>规则化任务</td>
+</tr>
+<tr>
+<td>工具调用决策</td>
+<td>70B+</td>
+<td>需要理解上下文+选择正确工具</td>
+</tr>
+<tr>
+<td>多步推理</td>
+<td>70B+ / 推理模型</td>
+<td>需要CoT</td>
+</tr>
+<tr>
+<td>最终回答生成</td>
+<td>70B+</td>
+<td>质量要求高</td>
+</tr>
+<tr>
+<td>结果格式化/校验</td>
+<td>7B</td>
+<td>模式匹配</td>
+</tr>
+</tbody>
+</table>
+<p>关键：不要只看单次延迟，要看"延迟×调用次数"的总和。路由用7B: 10次×30ms=300ms vs 路由用70B: 10次×80ms=800ms，多出的500ms对用户感知差别不大，但成本差10倍。</p>
+<p>需要建立内部的"任务-模型-延迟-质量"映射表，持续benchmark。</p>
+<h4 id="73_agent">7.3 上下文管理：agent最大的性能杀手<a class="headerlink" href="#73_agent" title="Permanent link">#</a></h4>
+<p>Agent和单轮对话最大的区别：上下文会累积。</p>
+<pre><code>第1轮:  prompt = 500 tokens → TTFT = 25ms
+第5轮:  prompt = 3000 tokens → TTFT = 110ms
+第10轮: prompt = 8000 tokens → TTFT = 326ms
+第20轮: prompt = 20000 tokens → TTFT = 1000ms+
+</code></pre>
+<p>TPOT也会受影响，因为KV cache随上下文增长：70B模型约1.3MB/token，8000 token上下文→KV cache≈10.5GB，挤占显存→减少batch size→间接降低吞吐。</p>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>原理</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对话摘要压缩</td>
+<td>定期把历史摘要成短文本替换</td>
+<td>S大幅↓，但有信息损失</td>
+</tr>
+<tr>
+<td>滑动窗口</td>
+<td>只保留最近N轮+系统prompt</td>
+<td>S可控，但丢失早期上下文</td>
+</tr>
+<tr>
+<td>关键信息提取</td>
+<td>从历史中提取关键事实单独存储</td>
+<td>S↓+信息保留，但需额外调用</td>
+</tr>
+<tr>
+<td>工具结果裁剪</td>
+<td>工具返回的长结果做摘要再入上下文</td>
+<td>S↓，最容易被忽视</td>
+</tr>
+<tr>
+<td>结构化上下文</td>
+<td>用JSON/精简格式而非自然语言</td>
+<td>S↓ 20-50%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>最容易忽视的：工具返回值。</strong> 一次搜索工具返回5000 token的网页内容，直接塞进上下文，后面每一轮都要为这5000 token付出TTFT和KV cache成本。应该在工具调用后立即做摘要/提取，把5000 token压到500。</p>
+<h4 id="74_vs">7.4 调用编排：串行vs并行<a class="headerlink" href="#74_vs" title="Permanent link">#</a></h4>
+<p>Agent工作流里经常有多个独立的LLM调用。串行还是并行，对延迟影响巨大。</p>
+<pre><code>场景: 需要对3个文档分别做分析，然后综合
+
+串行: 3 × (TTFT + 生成时间) = 3 × 200ms = 600ms
+并行: max(3 × TTFT + 生成时间) ≈ 250ms (假设batch够大)
+</code></pre>
+<p>并行有前提：两个调用之间无数据依赖；serving框架支持continuous batching；GPU有足够显存做并发batch。</p>
+<table>
+<thead>
+<tr>
+<th>编排模式</th>
+<th>适用场景</th>
+<th>延迟</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>串行链式</td>
+<td>后一步依赖前一步输出</td>
+<td>Σ(每步延迟)</td>
+</tr>
+<tr>
+<td>并行map-reduce</td>
+<td>多个独立任务→汇总</td>
+<td>max(各步延迟)+汇总</td>
+</tr>
+<tr>
+<td>流水线</td>
+<td>前一步出结果就开始下一步</td>
+<td>约等于最长单步</td>
+</tr>
+<tr>
+<td>投机并行</td>
+<td>同时调大+小模型，快的先用</td>
+<td>小模型延迟+可能的校验</td>
+</tr>
+</tbody>
+</table>
+<p>在画工作流DAG时，标注每个节点的依赖关系，把无依赖的节点并行化。很多agent框架默认串行执行。</p>
+<h4 id="75_prompt">7.5 Prompt工程：性能视角<a class="headerlink" href="#75_prompt" title="Permanent link">#</a></h4>
+<p>从性能角度，prompt工程的核心是：在保证质量的前提下最小化S。</p>
+<table>
+<thead>
+<tr>
+<th>手段</th>
+<th>具体做法</th>
+<th>S减少幅度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>去冗余</td>
+<td>删除示例中不必要的解释</td>
+<td>10-30%</td>
+</tr>
+<tr>
+<td>结构化</td>
+<td>用JSON/YAML替代自然语言描述</td>
+<td>20-50%</td>
+</tr>
+<tr>
+<td>Few-shot精选</td>
+<td>3个高质量示例&gt;10个普通示例</td>
+<td>50%+</td>
+</tr>
+<tr>
+<td>系统prompt复用</td>
+<td>公共前缀提取，利用prefix cache</td>
+<td>间接省TTFT</td>
+</tr>
+<tr>
+<td>输出格式约束</td>
+<td>限制输出长度(max_tokens)</td>
+<td>TPOT阶段↓</td>
+</tr>
+<tr>
+<td>动态prompt</td>
+<td>根据任务难度动态调整prompt长度</td>
+<td>视情况</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prefix caching</strong>：如果agent有固定的系统prompt（比如500 token的角色设定），确保所有请求共享这个前缀，且serving框架支持prefix caching。第1次全算，后续跳过前500 token → TTFT大幅降低。</p>
+<h4 id="76">7.6 实用性能预估速查<a class="headerlink" href="#76" title="Permanent link">#</a></h4>
+<p>基于前面的公式，简化成实用规则：</p>
+<pre><code>TTFT ≈ prompt长度 × 0.05ms/token (70B级别)
+     ≈ prompt长度 × 0.02ms/token (7B级别)
+
+生成时间 ≈ 输出token数 × TPOT
+
+总延迟 = TTFT + 输出token数 × TPOT + 网络RTT
+</code></pre>
+<p>实用速查（70B级别，API调用）：</p>
+<table>
+<thead>
+<tr>
+<th>Prompt长度</th>
+<th>TTFT估算</th>
+<th>输出500token总延迟</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>500 token</td>
+<td>~70ms</td>
+<td>~7.6s</td>
+</tr>
+<tr>
+<td>2000 token</td>
+<td>~140ms</td>
+<td>~7.6s</td>
+</tr>
+<tr>
+<td>8000 token</td>
+<td>~400ms</td>
+<td>~7.9s</td>
+</tr>
+<tr>
+<td>32000 token</td>
+<td>~2s</td>
+<td>~9.5s</td>
+</tr>
+</tbody>
+</table>
+<p>Agent工作流总延迟估算：</p>
+<pre><code>总延迟 = Σ(TTFT_i + 输出_i × TPOT) + Σ(工具执行_i) + Σ(网络RTT)
+
+10步agent，每次平均输出200 token，70B模型:
+10 × (TTFT + 200×15ms) = 10 × (TTFT + 3s) ≈ 30s+ (不含工具执行)
+</code></pre>
+<p>每多一步LLM调用，就是3-15秒的额外延迟。</p>
+<h4 id="77">7.7 成本控制<a class="headerlink" href="#77" title="Permanent link">#</a></h4>
+<pre><code>成本 = Σ(prompt_tokens × input_price + output_tokens × output_price)
+</code></pre>
+<p>典型价格（2026年，API）：</p>
+<table>
+<thead>
+<tr>
+<th>模型级别</th>
+<th>input $/Mtok</th>
+<th>output $/Mtok</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7B级别</td>
+<td>$0.05-0.15</td>
+<td>$0.05-0.15</td>
+</tr>
+<tr>
+<td>70B级别</td>
+<td>$0.5-3</td>
+<td>$0.5-5</td>
+</tr>
+<tr>
+<td>旗舰(405B/GPT)</td>
+<td>$3-15</td>
+<td>$10-75</td>
+</tr>
+</tbody>
+</table>
+<p>三大成本陷阱：</p>
+<ol>
+<li><strong>上下文累积</strong>：第1轮500 token→$0.0015，第10轮8000 token→$0.024(16倍)，第20轮20000 token→$0.06(40倍)</li>
+<li><strong>冗余调用</strong>：能一次完成的任务拆成3次→成本3倍；能用小模型的任务用了大模型→成本10倍</li>
+<li><strong>工具返回值不裁剪</strong>：搜索返回5000 token→每轮多付5000 token input cost→10轮多付45000 token</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>成本优化策略</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模型路由(小+大)</td>
+<td>降成本50-80%</td>
+</tr>
+<tr>
+<td>上下文压缩</td>
+<td>降成本30-60%</td>
+</tr>
+<tr>
+<td>结果缓存(相同query)</td>
+<td>降成本10-40%</td>
+</tr>
+<tr>
+<td>批量调用(合并prompt)</td>
+<td>降成本10-20%</td>
+</tr>
+<tr>
+<td>输出长度控制</td>
+<td>降成本10-30%</td>
+</tr>
+</tbody>
+</table>
+<h4 id="78_agent">7.8 Agent工程师的杠杆点<a class="headerlink" href="#78_agent" title="Permanent link">#</a></h4>
+<p>从六层优化框架看，agent工程师的杠杆集中在 Layer 4(Prompt) 和 Layer 5(部署架构中的模型路由)：</p>
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>你能做什么</th>
+<th>杠杆大小</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layer 0 芯片</td>
+<td>选模型时间接选择</td>
+<td>★</td>
+</tr>
+<tr>
+<td>Layer 1 模型结构</td>
+<td>选模型时间接选择</td>
+<td>★</td>
+</tr>
+<tr>
+<td>Layer 2 算法</td>
+<td>几乎无法控制</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Layer 3 引擎系统</td>
+<td>选择serving框架，利用cache</td>
+<td>★★</td>
+</tr>
+<tr>
+<td>Layer 4 Prompt</td>
+<td><strong>核心战场</strong></td>
+<td>★★★★★</td>
+</tr>
+<tr>
+<td>Layer 5 部署架构</td>
+<td>模型路由、PD分离、缓存</td>
+<td>★★★★</td>
+</tr>
+</tbody>
+</table>
+<p>还有一个不在六层框架里的关键维度——<strong>编排层</strong>：如何组织K次LLM调用的拓扑和依赖关系。这是agent工程师独有的：既是模型的使用者，也是工作流的设计师。同样一个任务，串行10步和并行3步的延迟可以差3倍，成本可以差2倍。</p>
+<p>Agent工程师需要建立的核心能力：</p>
+<ol>
+<li>对每次LLM调用的延迟和成本有精确的心理模型</li>
+<li>对工作流拓扑有优化意识（并行化、减少步数）</li>
+<li>对上下文生命周期有管理意识（压缩、裁剪、缓存）</li>
+<li>对模型能力边界有清晰认知（什么任务需要多大模型）</li>
+</ol>
+<h4 id="79_checklist">7.9 Checklist<a class="headerlink" href="#79_checklist" title="Permanent link">#</a></h4>
+<ul>
+<li>[ ] 每个LLM调用节点是否选了合适的模型大小？</li>
+<li>[ ] 工具返回值是否做了摘要/裁剪再入上下文？</li>
+<li>[ ] 无依赖的LLM调用是否并行化了？</li>
+<li>[ ] 系统prompt是否复用（利用prefix caching）？</li>
+<li>[ ] 对话历史是否定期压缩？</li>
+<li>[ ] 是否监控了每次调用的实际TTFT/TPOT？</li>
+<li>[ ] 是否有结果缓存避免重复调用？</li>
+<li>[ ] 输出长度是否做了约束（max_tokens）？</li>
+<li>[ ] 是否能快速估算任意工作流的总延迟？</li>
+<li>[ ] 成本是否按"$/用户/次"做了核算？</li>
+</ul>
+<h3 id="8">8. 推理芯片<a class="headerlink" href="#8" title="Permanent link">#</a></h3>
+<h4 id="81_vs_gpu">8.1 推理芯片 vs 训练GPU：本质区别<a class="headerlink" href="#81_vs_gpu" title="Permanent link">#</a></h4>
+<p>训练GPU（如H100/B200）的设计目标是"全能"：既要训练（GEMM密集）又要推理（GEMV密集）。但这两个场景的计算特征完全不同：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>训练</th>
+<th>推理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算类型</td>
+<td>GEMM（矩阵×矩阵）</td>
+<td>GEMV（矩阵×向量）为主</td>
+</tr>
+<tr>
+<td>计算强度</td>
+<td>高（FLOPS充分利用）</td>
+<td>低（算力大量闲置）</td>
+</tr>
+<tr>
+<td>瓶颈</td>
+<td>算力+显存+互联</td>
+<td>显存带宽为主</td>
+</tr>
+<tr>
+<td>Batch size</td>
+<td>大（几百~几千）</td>
+<td>小（1~几十）</td>
+</tr>
+<tr>
+<td>精度需求</td>
+<td>高（FP16/BF16，梯度需要）</td>
+<td>低（FP8/INT4/FP4够用）</td>
+</tr>
+<tr>
+<td>模型是否变化</td>
+<td>是（每步更新权重）</td>
+<td>否（权重固定）</td>
+</tr>
+<tr>
+<td>互联需求</td>
+<td>极高（梯度同步）</td>
+<td>中（TP切分）</td>
+</tr>
+<tr>
+<td>内存层次</td>
+<td>HBM+片外</td>
+<td>片上SRAM最优</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键洞察：训练GPU在做推理decode时，算力利用率极低。</strong></p>
+<pre><code>H100 decode阶段的计算强度：
+  每读1 byte权重，只做 ~2 FLOPS（矩阵×向量）
+  H100算力/带宽比 = 989TF / 3.35TB/s = 295 FLOPS/byte
+  实际只需要 2 FLOPS/byte
+  → 算力利用率 = 2/295 = 0.7%
+</code></pre>
+<p>99%以上的算力在decode阶段是闲置的。这就是推理芯片的机会——不需要那么多算力，但需要极致的带宽和内存访问效率。</p>
+<p>核心设计哲学差异：
+- 训练GPU：算力优先，带宽跟上
+- 推理芯片：带宽优先，算力够用，架构匹配decode的GEMV特征</p>
+<table>
+<thead>
+<tr>
+<th>设计维度</th>
+<th>训练GPU (H100)</th>
+<th>推理专用芯片</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SRAM</td>
+<td>少（~50MB）</td>
+<td>多（几百MB~几十GB）</td>
+</tr>
+<tr>
+<td>HBM</td>
+<td>大容量（80GB）</td>
+<td>可选，有些用SRAM替代</td>
+</tr>
+<tr>
+<td>计算单元</td>
+<td>密集Tensor Core</td>
+<td>稀疏/定制化，够用即可</td>
+</tr>
+<tr>
+<td>精度支持</td>
+<td>FP16/BF16/FP8</td>
+<td>INT4/INT8/FP4/FP8</td>
+</tr>
+<tr>
+<td>互联</td>
+<td>NVLink（900GB/s）</td>
+<td>定制fabric或以太网</td>
+</tr>
+<tr>
+<td>架构</td>
+<td>SIMD（通用）</td>
+<td>Dataflow/脉动阵列/定制</td>
+</tr>
+<tr>
+<td>灵活性</td>
+<td>高（可编程）</td>
+<td>低（针对特定模型）</td>
+</tr>
+<tr>
+<td>权重存储</td>
+<td>每次从HBM读</td>
+<td>预加载到SRAM/片上</td>
+</tr>
+</tbody>
+</table>
+<h4 id="82">8.2 推理芯片主要玩家<a class="headerlink" href="#82" title="Permanent link">#</a></h4>
+<h5 id="1_1">类别1：晶圆级/超大芯片<a class="headerlink" href="#1_1" title="Permanent link">#</a></h5>
+<p><strong>Cerebras Systems（美国）</strong>
+- 芯片：WSE-3（Wafer-Scale Engine），已上市（Nasdaq:CBRS）
+- 架构：整块晶圆做成一个芯片，215mm×215mm，4万亿晶体管，90万cores
+- 内存：44GB 片上SRAM（不用HBM），125PB/s 片上内存带宽（vs H100的3.35TB/s）
+- 推理优势：权重全在片上SRAM，带宽是H100的37000倍。Llama推理：1200 tokens/s（Perplexity Sonar）
+- 核心思路：不是提升HBM带宽，而是把HBM直接做到芯片上（SRAM），消除"权重搬运"瓶颈。代价是芯片极大、良率挑战、成本高
+- 2025年营收$510M，覆盖训练+推理</p>
+<p><strong>Groq（美国）</strong>
+- 芯片：LPU（Language Processing Unit）/ TSP
+- 架构：数据流架构，确定性执行（无缓存、无分支预测、无乱序执行），SRAM为主（230MB/芯片）
+- 推理优势：Llama 70B 500+ tokens/s，单token延迟极低
+- 核心思路：去掉所有"不确定"的硬件，做极致确定性的数据流。每个cycle都知道在算什么，没有浪费。但灵活性极低，基本只能跑矩阵乘法
+- 创始人：Jonathan Ross（Google TPU设计者之一）
+- 2025年营收$500M，2025年12月Nvidia以~$200亿license Groq技术
+- 纯推理</p>
+<h5 id="2">类别2：可重构/数据流架构<a class="headerlink" href="#2" title="Permanent link">#</a></h5>
+<p><strong>SambaNova Systems（美国）</strong>
+- 芯片：SN40L（Reconfigurable Dataflow Unit, RDU）
+- 架构：可重构数据流，软硬件协同设计。三层内存：SRAM + HBM + 外部DDR，精度可变（FP8/FP16/INT8混合）
+- 推理优势：大模型可分布在DDR上，不挤HBM，适合超大模型推理
+- 创始人：Kunle Olukotun（Stanford），Christopher Ré（Stanford）
+- 累计融资$1.6B+，估值$5B，覆盖训练+推理</p>
+<p><strong>Tenstorrent（美国/加拿大）</strong>
+- 芯片：Grayskull / Wormhole / Blackhole
+- 架构：RISC-V + AI加速核（Tensix Core），片上以太网互联，模块化扩展
+- 创始人：Jim Keller（传奇芯片架构师，AMD Zen / Apple A4 / Tesla FSD）
+- 覆盖训练+推理，从边缘到数据中心</p>
+<p><strong>Graphcore（英国）</strong>
+- 芯片：IPU（Intelligence Processing Unit）/ Bow
+- 架构：大量小核（数千个），MIMD架构，纯SRAM（~900MB/芯片）
+- 状态：2024年从公开市场收缩，转向政府/国防项目</p>
+<h5 id="3asic">类别3：推理专用ASIC<a class="headerlink" href="#3asic" title="Permanent link">#</a></h5>
+<p><strong>Etched（美国）</strong>
+- 芯片：Sohu
+- 架构：纯Transformer ASIC，硬件固化attention+FFN，只能跑Transformer
+- 推理优势：固化了Transformer结构，无需通用计算开销，宣称单芯片推理速度比H100快一个数量级
+- 状态：2024年融$120M，芯片仍在流片阶段
+- 纯推理（只支持Transformer）</p>
+<p><strong>D-Matrix（美国）</strong>
+- 芯片：Corsair
+- 架构：Chiplet设计，片上SRAM为主，数字in-memory computing，专为LLM推理的decode阶段优化
+- 状态：2024年融$154M，纯推理</p>
+<p><strong>FuriosaAI（韩国）</strong>
+- 芯片：Renegade（RNGD）
+- 架构：数据流架构，8nm，专注推理，低功耗
+- 状态：2025年被OpenAI考虑投资/收购，纯推理</p>
+<p><strong>Rebellions（韩国）</strong>
+- 芯片：ATOM / REBEL
+- 架构：定制指令集，针对推理优化，从边缘推理起家向数据中心扩展
+- 状态：2025年与FuriosaAI讨论合并，纯推理</p>
+<h5 id="4">类别4：大厂自研<a class="headerlink" href="#4" title="Permanent link">#</a></h5>
+<table>
+<thead>
+<tr>
+<th>公司</th>
+<th>芯片</th>
+<th>架构特点</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google</td>
+<td>TPU v5e / v7（Ironwood）</td>
+<td>脉动阵列，MXU矩阵单元，v5e专门针对推理优化</td>
+<td>自用+GCP对外</td>
+</tr>
+<tr>
+<td>AWS</td>
+<td>Inferentia2 / Trainium2</td>
+<td>NeuronCore架构，支持FP8/INT8</td>
+<td>EC2 Inf2实例对外</td>
+</tr>
+<tr>
+<td>Microsoft</td>
+<td>Maia 100</td>
+<td>为Azure AI工作负载定制</td>
+<td>2024年部署，Azure内部</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>MTIA</td>
+<td>为推荐系统和LLM推理定制</td>
+<td>2024年第二代，自用</td>
+</tr>
+<tr>
+<td>华为</td>
+<td>昇腾910B/910C</td>
+<td>达芬奇架构，3D Cube矩阵计算</td>
+<td>国内主力，替代Nvidia</td>
+</tr>
+<tr>
+<td>寒武纪</td>
+<td>思元590/MLU系列</td>
+<td>专为AI计算设计</td>
+<td>国产推理芯片上市</td>
+</tr>
+</tbody>
+</table>
+<h4 id="83">8.3 技术路线对比<a class="headerlink" href="#83" title="Permanent link">#</a></h4>
+<p>各家解决"带宽瓶颈"的策略不同：</p>
+<table>
+<thead>
+<tr>
+<th>路线</th>
+<th>代表</th>
+<th>核心思路</th>
+<th>优势</th>
+<th>劣势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>晶圆级SRAM</td>
+<td>Cerebras</td>
+<td>全片上SRAM替代HBM</td>
+<td>带宽极高</td>
+<td>成本/良率</td>
+</tr>
+<tr>
+<td>纯SRAM数据流</td>
+<td>Groq</td>
+<td>去缓存+确定性执行</td>
+<td>延迟极低</td>
+<td>灵活性低</td>
+</tr>
+<tr>
+<td>可重构数据流</td>
+<td>SambaNova</td>
+<td>软硬件协同+多层内存</td>
+<td>灵活</td>
+<td>复杂度高</td>
+</tr>
+<tr>
+<td>Transformer固化</td>
+<td>Etched</td>
+<td>硬件固化模型结构</td>
+<td>效率极高</td>
+<td>只能跑Transformer</td>
+</tr>
+<tr>
+<td>In-memory计算</td>
+<td>D-Matrix</td>
+<td>计算直接在存储中做</td>
+<td>省搬运</td>
+<td>精度/工艺挑战</td>
+</tr>
+<tr>
+<td>脉动阵列</td>
+<td>Google TPU</td>
+<td>经典矩阵加速架构</td>
+<td>成熟稳定</td>
+<td>对decode非最优</td>
+</tr>
+<tr>
+<td>大厂定制</td>
+<td>AWS/Meta/MS</td>
+<td>和自有云生态绑定</td>
+<td>规模效应</td>
+<td>不对外/绑定生态</td>
+</tr>
+</tbody>
+</table>
+<h4 id="84">8.4 芯片层面的推理优化方法<a class="headerlink" href="#84" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>原理</th>
+<th>代表</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SRAM替代HBM</td>
+<td>权重放片上，消除搬运</td>
+<td>Cerebras（125PB/s vs 3.35TB/s）</td>
+<td>TPOT降10-100x（理论）</td>
+</tr>
+<tr>
+<td>确定性数据流</td>
+<td>去缓存/分支预测/乱序</td>
+<td>Groq TSP</td>
+<td>提高利用率</td>
+</tr>
+<tr>
+<td>模型结构固化</td>
+<td>把attention/FFN做到硬件里</td>
+<td>Etched Sohu</td>
+<td>去通用计算开销</td>
+</tr>
+<tr>
+<td>In-memory计算</td>
+<td>计算在存储单元内完成</td>
+<td>D-Matrix</td>
+<td>省数据搬运</td>
+</tr>
+<tr>
+<td>低精度计算</td>
+<td>原生支持INT4/FP4</td>
+<td>推理芯片普遍比GPU更大胆</td>
+<td>TPOT降2-4x</td>
+</tr>
+<tr>
+<td>Chiplet封装</td>
+<td>多小芯粒互联</td>
+<td>AMD/Groq/Cerebras</td>
+<td>降成本/提良率</td>
+</tr>
+<tr>
+<td>PD分离专用硬件</td>
+<td>prefill用算力芯片，decode用带宽芯片</td>
+<td>部署架构层</td>
+<td>各自最优</td>
+</tr>
+<tr>
+<td>稀疏化硬件支持</td>
+<td>MoE专家路由硬件加速</td>
+<td>—</td>
+<td>只算激活参数</td>
+</tr>
+<tr>
+<td>KV cache压缩</td>
+<td>硬件级量化KV</td>
+<td>—</td>
+<td>省显存→更多并发</td>
+</tr>
+<tr>
+<td>批处理优化</td>
+<td>数据流架构天然支持</td>
+<td>Groq/Cerebras</td>
+<td>高吞吐</td>
+</tr>
+</tbody>
+</table>
+<h4 id="85_vs_gpu">8.5 推理芯片 vs GPU 实际对比<a class="headerlink" href="#85_vs_gpu" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>H100（GPU）</th>
+<th>Cerebras WSE-3</th>
+<th>Groq LPU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>片上SRAM</td>
+<td>~50MB</td>
+<td>44GB</td>
+<td>230MB</td>
+</tr>
+<tr>
+<td>内存带宽</td>
+<td>3.35TB/s（HBM）</td>
+<td>125PB/s（SRAM）</td>
+<td>~80TB/s（SRAM）</td>
+</tr>
+<tr>
+<td>Llama 70B推理</td>
+<td>~80 tok/s</td>
+<td>~1200 tok/s</td>
+<td>~500 tok/s</td>
+</tr>
+<tr>
+<td>灵活性</td>
+<td>高（通用）</td>
+<td>中（CUDA生态外）</td>
+<td>低（专用）</td>
+</tr>
+<tr>
+<td>生态</td>
+<td>CUDA，最完善</td>
+<td>自有框架</td>
+<td>自有框架</td>
+</tr>
+<tr>
+<td>能否训练</td>
+<td>是</td>
+<td>是</td>
+<td>否（纯推理）</td>
+</tr>
+<tr>
+<td>价格</td>
+<td>~$30k</td>
+<td>~$2-3M（系统级）</td>
+<td>~$20k（芯片）</td>
+</tr>
+</tbody>
+</table>
+<p>注意：Cerebras和Groq的速度数字是单流延迟（低并发），GPU在batch大时吞吐更高。推理芯片在低延迟单请求场景优势最大。</p>
+<h4 id="86_gpu">8.6 推理芯片会取代GPU吗？<a class="headerlink" href="#86_gpu" title="Permanent link">#</a></h4>
+<p>短期内不会，但会瓜分推理市场。</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>最优选择</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大批量吞吐（API服务）</td>
+<td>GPU（H100/B200）</td>
+<td>Continuous batching利用率高</td>
+</tr>
+<tr>
+<td>低延迟单流（实时对话）</td>
+<td>推理芯片（Cerebras/Groq）</td>
+<td>SRAM带宽碾压</td>
+</tr>
+<tr>
+<td>超大模型（405B+）</td>
+<td>GPU集群</td>
+<td>生态成熟，TP/PP完善</td>
+</tr>
+<tr>
+<td>边缘/端侧推理</td>
+<td>专用ASIC/NPU</td>
+<td>功耗敏感</td>
+</tr>
+<tr>
+<td>成本敏感推理</td>
+<td>推理芯片</td>
+<td>$/tok更低（带宽利用率高）</td>
+</tr>
+</tbody>
+</table>
+<p>核心逻辑：
+- GPU的"算力/带宽比"对decode是浪费的（利用率&lt;1%）
+- 推理芯片通过架构匹配，把带宽利用率拉到极致
+- 但GPU的生态（CUDA）和灵活性是巨大壁垒
+- 训练市场GPU几乎垄断，推理市场将分化</p>
+<p>这也是为什么Nvidia在2025年底花$200亿license Groq技术——它意识到了推理专用架构的价值，试图在保持GPU主导地位的同时吸收推理芯片的创新。</p>
+<h3 id="9">9. 总结<a class="headerlink" href="#9" title="Permanent link">#</a></h3>
+<ul>
+<li><strong>TPOT 是"带宽引力井"</strong>——硬件带宽×模型部署配比把它锁在 10-20ms</li>
+<li><strong>TTFT 是"算力×长度的函数"</strong>——从 30ms 到数秒，取决于 prompt 多长</li>
+<li><strong>优化分六层</strong>：芯片（物理上限）→ 模型结构（减少计算量）→ 算法（绕过极限）→ 引擎系统（提高利用率）→ Prompt（减少输入）→ 部署架构（系统调度）</li>
+<li>TPOT 优化靠：带宽提升 + 量化 + 投机解码（分子/分母/作弊）</li>
+<li>TTFT 优化靠：算力提升 + prompt压缩 + FlashAttention（减计算量+提算力）</li>
+<li>无损加速：投机解码 + Continuous Batching + PagedAttention + FlashAttention</li>
+<li><strong>Agent工程师的杠杆</strong>在 Layer 4(Prompt) + Layer 5(模型路由) + 编排层（调用拓扑），核心是：选对模型、管好上下文、并行化无依赖调用</li>
+<li><strong>推理芯片</strong>通过SRAM替代HBM、确定性数据流、模型结构固化等路线，解决GPU在decode阶段算力利用率&lt;1%的问题。推理市场将分化：GPU主导大批量吞吐，推理芯片主导低延迟场景</li>
+<li>下一代硬件（HBM4/Rubin）会让整个区间下移一倍</li>
+</ul>
+<h3 id="_1">关联<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<ul>
+<li><a href="../Inference/">Inference.md</a> — 推理优化论文与工具索引</li>
+<li><a href="../train/">train.md</a> — 训练框架与分布式训练</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Inference/" class="btn btn-neutral float-left" title="Inference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../train/" class="btn btn-neutral float-right" title="Train">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Inference/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../train/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
