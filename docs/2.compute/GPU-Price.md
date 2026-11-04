@@ -2,6 +2,7 @@
 
 > 整理日期：2026-11-01 | 口径：单卡，价格为市场估计值（随行情波动，±20% 正常）
 > 用途：自部署成本模型的硬件参数基线（配合 `src/pricing/selfhost_h200.py` 使用）
+> Azure 侧租价可用 `uv run python src/pricing/fetch_gpu_rental.py` 免登录刷新；数据源分级与踩坑见文末「数据源与采集方法」
 
 ## 主表
 
@@ -78,6 +79,55 @@
 - 价格为 2026-11 快照，GPU 租金处于长期下行通道（B 系放量后 Hopper 租金持续走低），使用时注意时效
 - 单卡售价为零售/小批量参考，千卡以上集采可低 20~30%
 - 未含整机配套成本（CPU/网卡/NVLink 交换机/电力/机架），整机落地成本约为纯卡价 ×1.3~1.5
+
+## 数据源与采集方法
+
+回答一个问题：哪些 GPU 租赁平台的报价可以公开查、怎么查、有哪些坑。
+
+### 平台分级
+
+| 层级 | 平台 | 查询方式 | 认证 | 覆盖 |
+|:--|:--|:--|:--|:--|
+| T0 开放 API | **Azure 零售价 API** | `GET https://prices.azure.com/api/retail/prices?currencyCode=USD&$filter=...`，JSON，支持 OData filter | 免登录 | H100/H200/MI300X/GB200 等整机价，on-demand/Spot/LP 三档，分区域。超大规模云里**唯一**免登录可脚本化的 |
+| T0 开放 API | OpenRouter | `/api/v1/models` + 详情页 RSC 数据 | 免登录 | LLM 牌价与端点延迟（`src/pricing/fetch_openrouter.py`） |
+| T0 开放 API | HuggingFace | `/api/models/{repo}`（safetensors 总参）+ README/config（激活参数、量化格式） | 免登录 | 模型规格侧，非租价 |
+| T1 页面公开·SPA | Vast.ai / RunPod / Lambda | 浏览器渲染后读表；curl 只拿到空壳 | 免登录（浏览即可） | **市场化单卡时租**（$2-3 档），本表租金列的主要对标 |
+| T1 页面公开 | AutoDL | 页面直读 | 免登录 | 国内：消费级卡 + 部分国产卡时租（如 S4000 ¥1.86/h） |
+| T2 需登录/合同 | AWS / GCP | AWS 免签 Pricing API 已失效（需 SigV4 签名或 GB 级 bulk JSON）；GCP Catalog API 需 API key | 需 | 超大规模云官方目录价、reserved/集采价 |
+| T3 三方转述 | 国内卡渠道价 | 路透/证券时报/IPO 问询函/招采公告 | - | 下节国产卡表的来源，无实时性 |
+
+**结论：要"可公开查 + 可脚本化"，Azure 零售价 API 是超大规模云里的独苗；市场化平台页面公开但全是 SPA，只能浏览器读表。**
+
+### 自动化脚本（Azure 侧）
+
+`src/pricing/fetch_gpu_rental.py`：免登录，输出 `data/pricing/raw/azure_retail_YYYY-MM-DD.json` 与 `data/pricing/processed/gpu_rental_azure_YYYY-MM-DD.{csv,md}`（sku × 计费档，整机价 + 折算单卡价）。
+
+```bash
+uv run python src/pricing/fetch_gpu_rental.py
+```
+
+### 踩坑清单（2026-11 实测）
+
+1. Azure OData 不支持 `not(contains(...))` → BadRequest「Invalid OData parameters」，所有排除逻辑（去 Windows/Spot/噪声）必须在客户端做
+2. 噪声 meter：同一 skuName 下混有数十万刀的 meter（`unitOfMeasure` 同为 "1 Hour"，reserved/许可口径，如 1645165.0），按 `price > 10000` 剔除
+3. Spot / Low Priority 是独立 meterName（不是独立 priceType），要分档；实测 eastus ND96isr_H100_v5：on-demand $98.32 vs Spot $18.17 vs LP $19.66（整机 8 卡）
+4. 卡数拆算：NC\* 单卡整机；ND96\* 8 卡 ÷8；NCads A100 系 24 vCPU/卡；ND128 GB200 v6 等未知封装按整机输出，不猜
+5. AWS GetProducts 免密调用已失效（无签名直接 400）；bulk Price List JSON 公开但单文件 GB 级，不实用 → AWS 价只能官方目录页人工读
+6. Vast/RunPod/Lambda 定价页全是 SPA：curl 拿到的是 JS 空壳（页面不小但 grep 不到 GPU 名）；Vast `/api/v0/gpu_listing/` 无 cookie 返回 `success:false`；r.jina.ai 渲染代理对这些站超时 → 市场平台价走浏览器
+7. 两个反直觉但真实的现象（别当 bug 修）：Azure 上 H200 on-demand 单卡（$10.60）**低于** H100（$12.29）——H100 是 2023 年定价锁死的，H200 是 2025-26 按竞争力定的；超大规模云 **Spot ≈ 市场化平台 on-demand**（H100 Spot $2.27/卡 vs $2-3/卡）——两档市场的价差本质是"确定性溢价"，不是平台成本差
+
+### 更新工作流
+
+1. `uv run python src/pricing/fetch_gpu_rental.py` → 当日 Azure 三档价（秒级，免登录）
+2. 市场平台价：浏览器开 vast.ai/pricing、runpod.io/pod-pricing、lambda.ai/service/gpu-pricing，人工读表（暂无自动化；若要自动化需带 cookie 调各站内部 API，另行评估）
+3. 对表更新本页主表「租金$/h」列 + 顶部日期戳
+4. `src/pricing/selfhost_h200.py` 的 `gpu_price_per_hour` 同步改
+
+### 已知盲区
+
+- H20 / B300 / MI355X / 国产卡：Azure 无此命名，国际市场平台货少，主要靠 T3 转述
+- 售价（买断价）没有公开 API：只有媒体/招采/IPO 问询函口径
+- Azure 区域价差大（如 ND H100 v5 澳东 $142.6 vs 美东 $98.32 整机），脚本取的是全球最低 on-demand，与"就近部署"实际成本有差距
 
 ## 国产卡数据来源
 

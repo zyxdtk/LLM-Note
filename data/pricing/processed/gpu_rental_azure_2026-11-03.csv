@@ -1,0 +1,53 @@
+sku,product,gpu_count,kind,min_price_vm,min_price_gpu,region_of_min,n_regions
+NC40adsH100v5,Virtual Machines NCadsH100v5 Series,1,on_demand,6.98,6.98,eastus,29
+NC40adsH100v5 Low Priority,Virtual Machines NCadsH100v5 Series,1,low_priority,1.40,1.40,eastus,21
+NC40adsH100v5 Spot,Virtual Machines NCadsH100v5 Series,1,spot,1.42,1.42,eastus,27
+NC80adisH100v5,Virtual Machines NCadsH100v5 Series,1,on_demand,13.96,13.96,eastus,29
+NC80adisH100v5 Low Priority,Virtual Machines NCadsH100v5 Series,1,low_priority,2.79,2.79,eastus,21
+NC80adisH100v5 Spot,Virtual Machines NCadsH100v5 Series,1,spot,2.84,2.84,eastus,27
+ND128isrNDRGB200v6,Virtual Machines NDsrGB200NDRv6 Series,,on_demand,108.16,,eastus,19
+ND128isrNDRGB200v6 Spot,Virtual Machines NDsrGB200NDRv6 Series,,spot,108.16,,eastus,19
+ND128isrfNDRGB200v6,Virtual Machines NDsrfGB200NDRv6 Series,,on_demand,124.40,,koreasouth,1
+ND128isrfNDRGB200v6 Spot,Virtual Machines NDsrfGB200NDRv6 Series,,spot,24.88,,koreasouth,1
+ND96amsA100v4,Virtual Machines NDamsr A100 v4 Series Linux,8,on_demand,32.77,4.10,eastus,30
+ND96amsA100v4 Low Priority,Virtual Machines NDamsr A100 v4 Series Linux,8,low_priority,6.55,0.82,eastus,30
+ND96amsA100v4 Spot,Virtual Machines NDamsr A100 v4 Series Linux,8,spot,8.44,1.06,eastus,30
+ND96asrA100v4_NU,Virtual Machines NDasr A100 v4 Series,8,on_demand,27.20,3.40,eastus,7
+ND96asrA100v4_NU Low Priority,Virtual Machines NDasr A100 v4 Series,8,low_priority,5.44,0.68,eastus,7
+ND96asrA100v4_NU Spot,Virtual Machines NDasr A100 v4 Series,8,spot,5.98,0.75,eastus,7
+ND96asr_A100_v4,Virtual Machines NDasr A100 v4 Series,8,on_demand,27.20,3.40,eastus,6
+ND96asr_A100_v4 Low Priority,Virtual Machines NDasr A100 v4 Series,8,low_priority,5.44,0.68,eastus,5
+ND96asr_A100_v4 Spot,Virtual Machines NDasr A100 v4 Series,8,spot,5.90,0.74,eastus,6
+ND96isH100v5,Virtual Machines NDsr H100 v5 Series,8,on_demand,88.49,11.06,eastus,19
+ND96isH100v5 Low Priority,Virtual Machines NDsr H100 v5 Series,8,low_priority,17.70,2.21,eastus,16
+ND96isH100v5 Spot,Virtual Machines NDsr H100 v5 Series,8,spot,16.35,2.04,eastus,19
+ND96isMI300Xv5,Virtual Machines NDMI300Xv5 Srs,8,on_demand,48.00,6.00,eastus2,17
+ND96isMI300Xv5 Low Priority,Virtual Machines NDMI300Xv5 Srs,8,low_priority,9.60,1.20,eastus2,17
+ND96isMI300Xv5 Spot,Virtual Machines NDMI300Xv5 Srs,8,spot,8.87,1.11,eastus2,17
+ND96isfH100v5,Virtual Machines NDsrf H100 v5 Series,8,on_demand,88.49,11.06,eastus2,4
+ND96isfH100v5 Spot,Virtual Machines NDsrf H100 v5 Series,8,spot,16.35,2.04,eastus2,4
+ND96isflH100v5,Virtual Machines NDsfH100v5 Series,8,on_demand,88.49,11.06,eastus,13
+ND96isflH100v5 Spot,Virtual Machines NDsfH100v5 Series,8,spot,16.35,2.04,eastus,13
+ND96isnIBH100v5,Virtual Machines NDsH100v5 Series,8,on_demand,88.49,11.06,eastus,13
+ND96isnIBH100v5 Spot,Virtual Machines NDsH100v5 Series,8,spot,16.35,2.04,eastus,13
+ND96isrH100v5,Virtual Machines NDsr H100 v5 Series,8,on_demand,98.32,12.29,eastus,24
+ND96isrH100v5 Low Priority,Virtual Machines NDsr H100 v5 Series,8,low_priority,19.66,2.46,eastus,21
+ND96isrH100v5 Spot,Virtual Machines NDsr H100 v5 Series,8,spot,18.17,2.27,eastus,24
+ND96isrH200v5,Virtual Machines NDsrH200v5 Series,8,on_demand,84.80,10.60,eastus2,31
+ND96isrH200v5 Low Priority,Virtual Machines NDsrH200v5 Series,8,low_priority,16.96,2.12,eastus2,7
+ND96isrH200v5 Spot,Virtual Machines NDsrH200v5 Series,8,spot,84.80,10.60,eastus2,31
+ND96isrMI300Xv5,Virtual Machines NDMI300Xv5 Srs,8,on_demand,48.00,6.00,eastus2,17
+ND96isrMI300Xv5 Low Priority,Virtual Machines NDMI300Xv5 Srs,8,low_priority,9.60,1.20,eastus2,17
+ND96isrMI300Xv5 Spot,Virtual Machines NDMI300Xv5 Srs,8,spot,8.87,1.11,eastus2,17
+ND96isrfH100v5,Virtual Machines NDsrf H100 v5 Series,8,on_demand,98.32,12.29,eastus,9
+ND96isrfH100v5 Spot,Virtual Machines NDsrf H100 v5 Series,8,spot,18.17,2.27,eastus,9
+ND96isrfH200v5,Virtual Machines NDsrfH200v5 Series,8,on_demand,106.00,13.25,usgovarizona,1
+ND96isrfH200v5 Spot,Virtual Machines NDsrfH200v5 Series,8,spot,106.00,13.25,usgovarizona,1
+Standard_NC24ads_A100_v4 Low Priority,NCads A100 v4 Series Linux,1,low_priority,0.73,0.73,eastus,26
+Standard_NC24ads_A100_v4 Spot,NCads A100 v4 Series Linux,1,spot,0.68,0.68,eastus,25
+Standard_NC48ads_A100_v4 Low Priority,NCads A100 v4 Series Linux,2,low_priority,1.47,0.73,eastus,26
+Standard_NC48ads_A100_v4 Spot,NCads A100 v4 Series Linux,2,spot,1.36,0.68,eastus,25
+Standard_NC96ads_A100_v4 Low Priority,NCads A100 v4 Series Linux,4,low_priority,2.94,0.73,eastus,26
+Standard_NC96ads_A100_v4 Spot,NCads A100 v4 Series Linux,4,spot,2.72,0.68,eastus,25
+Standard_ND96amsr_A100_v4 Low Priority,Virtual Machines NDamsr A100 v4 Series Linux,8,low_priority,6.55,0.82,eastus,29
+Standard_ND96amsr_A100_v4 Spot,Virtual Machines NDamsr A100 v4 Series Linux,8,spot,6.87,0.86,centralus,29
